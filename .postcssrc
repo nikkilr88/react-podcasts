@@ -2,7 +2,8 @@
   "modules": true,
   "plugins": {
     "autoprefixer": {
-      "grid": true
+      "grid": true,
+       "browsers": ["last 4 versions"]
     }
   }
 }
