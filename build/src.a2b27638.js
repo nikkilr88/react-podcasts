@@ -24607,7 +24607,7 @@ function (_Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement("div", null, _react.default.createElement("h1", null, "Parcel React Boilerplate"), _react.default.createElement("p", null, "Have fun building! You got this!"), _react.default.createElement("img", {
+      return _react.default.createElement(_react.Fragment, null, _react.default.createElement("h1", null, "Parcel React Boilerplate"), _react.default.createElement("p", null, "Have fun building! You got this!"), _react.default.createElement("img", {
         src: _boilerplateImg.default,
         alt: "heart girl"
       }));
@@ -24674,7 +24674,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54061" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56774" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
