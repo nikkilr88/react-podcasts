@@ -12,19 +12,89 @@ body {
 }
 
 img {
-  margin: 100px 0 0;
-  max-width: 500px;
-  width: 80%;
+  width: 50px;
+  height: auto;
+  border-radius: 5px;
+  align-self: center;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+header {
+  width: 100%;
+  height: 200px;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CHANNEL INFO */
+.channel-title {
+  color: #fff;
+  z-index: 999;
+  font-size: 22px;
+  text-align: center;
+  padding: 50px;
+}
+
+.channel-img {
+  position: absolute;
+  display: block;
+  height: 100px;
+  width: 100px;
+  z-index: 999;
+  border-radius: 100%;
+  top: 150px;
+  border: 3px solid #fff;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* HEADER */
+.bg-wrapper {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.header-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: blur(10px) brightness(75%);
+  transform: scale(1.5);
+}
+
+/* PODCAST LIST */
+.items {
+  margin: 200px 0 100px 0;
+  padding: 50px 0;
+  position: relative;
+  background: whitesmoke;
 }
 
 .infoBox {
   max-width: 600px;
   width: 90%;
-  margin: 35px auto;
+  margin: 10px auto;
   padding: 10px;
   display: flex;
   align-items: center;
   margin-right: auto;
+  display: flex;
+  align-items: center;
 }
 
 .infoBox h3 {
@@ -50,14 +120,14 @@ img {
 
 /* PLAY BUTTON */
 .btn {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   margin: 0 15px;
   border: 1px solid #2980b9;
   color: #2980b9;
   border-radius: 50px;
   height: 40px;
   width: 40px;
-  line-height: 40px;
   font-size: 16px;
   text-align: center;
   flex-shrink: 0;
@@ -101,7 +171,42 @@ img {
   margin: 0 15px;
 }
 
-#time {
+.control-btns {
+  display: flex;
+  align-items: center;
+}
+
+.time {
   font-weight: bold;
   margin: 0 25px;
+  font-size: 1.6em;
+}
+
+.title {
+  font-size: 1.6em;
+  margin-bottom: 15px;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  border-right: 4px solid #e74c3c;
+  border-bottom: 4px solid #2ecc71;
+  border-left: 4px solid #f1c40f;
+  animation: rotate 2s infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
