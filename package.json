@@ -1,5 +1,5 @@
 {
-  "name": "parcel-react-boilerplate",
+  "name": "devCasts",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "react-sound": "^1.2.0"
   },
   "scripts": {
     "dev": "parcel index.html --out-dir build",

@@ -24482,82 +24482,7 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"src/images/boilerplate-img.svg":[function(require,module,exports) {
-module.exports = "/boilerplate-img.2ced6b86.svg";
-},{}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"src/components/App/App.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-module.exports = {};
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/App/App.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"src/components/PodcastListElement.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -24567,9 +24492,146 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _boilerplateImg = _interopRequireDefault(require("../../images/boilerplate-img.svg"));
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
-require("./App.css");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var PodcastListElement =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(PodcastListElement, _Component);
+
+  function PodcastListElement() {
+    _classCallCheck(this, PodcastListElement);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(PodcastListElement).apply(this, arguments));
+  }
+
+  _createClass(PodcastListElement, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          title = _this$props.title,
+          date = _this$props.date,
+          audio = _this$props.audio,
+          setAudio = _this$props.setAudio;
+      return _react.default.createElement("div", {
+        className: "infoBox"
+      }, _react.default.createElement("div", {
+        className: "text"
+      }, _react.default.createElement("p", {
+        className: "date"
+      }, date), _react.default.createElement("h3", null, title)), _react.default.createElement("button", {
+        onClick: function onClick() {
+          return setAudio(audio, title);
+        }
+      }, "Play"));
+    }
+  }]);
+
+  return PodcastListElement;
+}(_react.Component);
+
+var _default = PodcastListElement;
+exports.default = _default;
+},{"react":"node_modules/react/index.js"}],"src/components/Controls.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Controls =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Controls, _Component);
+
+  function Controls() {
+    _classCallCheck(this, Controls);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Controls).apply(this, arguments));
+  }
+
+  _createClass(Controls, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          pauseAudio = _this$props.pauseAudio,
+          audio = _this$props.audio,
+          getAudioTime = _this$props.getAudioTime;
+      return _react.default.createElement("div", {
+        id: "player"
+      }, _react.default.createElement("div", {
+        id: "title"
+      }, audio.title), _react.default.createElement("span", null, audio.time), _react.default.createElement("div", null, _react.default.createElement("button", null, _react.default.createElement("i", {
+        className: "material-icons"
+      }, "replay_5")), _react.default.createElement("button", {
+        onClick: pauseAudio
+      }, _react.default.createElement("i", {
+        className: "material-icons paused"
+      }, "pause")), _react.default.createElement("button", null, _react.default.createElement("i", {
+        className: "material-icons"
+      }, "forward_10"))));
+    }
+  }]);
+
+  return Controls;
+}(_react.Component);
+
+var _default = Controls;
+exports.default = _default;
+},{"react":"node_modules/react/index.js"}],"src/components/App.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _PodcastListElement = _interopRequireDefault(require("./PodcastListElement"));
+
+var _Controls = _interopRequireDefault(require("./Controls"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24599,17 +24661,121 @@ function (_Component) {
   _inherits(App, _Component);
 
   function App() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    var _temp;
+
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(App).apply(this, arguments));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(App)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.state = {
+      isLoading: true,
+      title: '',
+      description: '',
+      img: '',
+      episodes: [],
+      audio: {}
+    }, _this.setAudio = function (audio, title) {
+      _this.stopAudio();
+
+      _this.setState(function () {
+        return {
+          audio: {
+            title: title,
+            src: new Audio(audio)
+          }
+        };
+      });
+    }, _this.pauseAudio = function () {
+      if (!_this.state.audio.src) return;
+      !_this.state.audio.src.paused ? _this.state.audio.src.pause() : _this.state.audio.src.play();
+    }, _this.stopAudio = function () {
+      if (!_this.state.audio.src) return;
+
+      _this.state.audio.src.pause();
+
+      _this.state.audio.src.currentTime = 0;
+    }, _this.setAudioTime = function () {
+      if (!_this.state.audio.src) return;
+
+      _this.setState(function (prevState) {
+        return {
+          audio: {
+            title: prevState.audio.title,
+            src: prevState.audio.src,
+            time: _this.convertSeconds(_this.state.audio.src.currentTime)
+          }
+        };
+      });
+
+      console.log('update time');
+    }, _this.convertSeconds = function (sec) {
+      var h = Math.floor(sec / 3600);
+      var m = Math.floor(sec % 3600 / 60);
+      var s = Math.floor(sec % 60);
+      var hDisplay = h <= 0 ? '' : "".concat(h, ":");
+      var mDisplay = m < 10 ? "0".concat(m) : m;
+      var sDisplay = s < 10 ? "0".concat(s) : s;
+      return "".concat(hDisplay).concat(mDisplay, ":").concat(sDisplay);
+    }, _temp));
   }
 
   _createClass(App, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (this.state.audio.title !== prevState.audio.title) {
+        this.state.audio.src.play();
+        setInterval(this.setAudioTime, 1000);
+      }
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      fetch('https://xmlparse.glitch.me/?url=https://feed.syntax.fm/rss').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.setState(function () {
+          return {
+            title: data.rss.channel.title._text,
+            description: data.rss.channel.description._cdata,
+            img: data.rss.channel.image.url._text,
+            episodes: data.rss.channel.item,
+            isLoading: false
+          };
+        });
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return _react.default.createElement(_react.Fragment, null, _react.default.createElement("h1", null, "Parcel React Boilerplate"), _react.default.createElement("p", null, "Have fun building! You got this!"), _react.default.createElement("img", {
-        src: _boilerplateImg.default,
-        alt: "heart girl"
+      var _this3 = this;
+
+      var episodeList = this.state.episodes.filter(function (e) {
+        return e.hasOwnProperty('enclosure');
+      }).map(function (e, i) {
+        return _react.default.createElement(_PodcastListElement.default, {
+          key: i,
+          date: e.pubDate._text,
+          title: e.title._text,
+          audio: e.enclosure._attributes.url,
+          setAudio: _this3.setAudio
+        });
+      });
+      return _react.default.createElement(_react.Fragment, null, this.state.isLoading ? _react.default.createElement("p", null, "Loading...") : _react.default.createElement("div", {
+        className: "test"
+      }, _react.default.createElement("img", {
+        src: this.state.img,
+        alt: "podcast image"
+      }), _react.default.createElement("p", null, this.state.title), _react.default.createElement("p", null, this.state.description), episodeList), this.state.audio.src && _react.default.createElement(_Controls.default, {
+        pauseAudio: this.pauseAudio,
+        audio: this.state.audio
       }));
     }
   }]);
@@ -24619,23 +24785,7 @@ function (_Component) {
 
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../../images/boilerplate-img.svg":"src/images/boilerplate-img.svg","./App.css":"src/components/App/App.css"}],"src/components/App/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _App = _interopRequireDefault(require("./App"));
-
-require("./App.css");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = _App.default;
-exports.default = _default;
-},{"./App":"src/components/App/App.js","./App.css":"src/components/App/App.css"}],"src/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./PodcastListElement":"src/components/PodcastListElement.js","./Controls":"src/components/Controls.js"}],"src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -24647,7 +24797,7 @@ var _App = _interopRequireDefault(require("./components/App"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom.default.render(_react.default.createElement(_App.default, null), document.getElementById('root'));
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./components/App":"src/components/App/index.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./components/App":"src/components/App.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -24674,7 +24824,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56774" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58344" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
