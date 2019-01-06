@@ -21,8 +21,16 @@ class Header extends Component {
         '50% ' + (50 + scrollPos / 25 + '%')
 
       // Fade out text
-      document.querySelector('.channel-title').style.opacity =
-        starting - scrollPos / 100
+      const descripton = document.querySelector('.description')
+      const title = document.querySelector('.channel-title')
+
+      if (title) {
+        title.style.opacity = starting - scrollPos / 100
+      }
+
+      if (descripton) {
+        descripton.style.opacity = starting - scrollPos / 100
+      }
     })
   }
 
@@ -42,7 +50,12 @@ class Header extends Component {
             info_outline
           </i>
           {this.state.showDescription && (
-            <div className="description">{description}</div>
+            <Fragment>
+              <div className="description-wrapper header-bg" style={styles} />
+              <div className="description">
+                {description || <p>No description available</p>}
+              </div>
+            </Fragment>
           )}
           <div className="bg-wrapper">
             <div style={styles} className="header-bg" />
