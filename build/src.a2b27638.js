@@ -36449,6 +36449,19 @@ function (_Component) {
   }
 
   _createClass(Header, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      document.addEventListener('scroll', function () {
+        var starting = 1;
+        var scrollPos = document.documentElement.scrollTop;
+        if (scrollPos > 200) return; // Move background image up at a slower rate
+
+        document.querySelector('.header-bg').style.backgroundPosition = '50% ' + (50 + scrollPos / 25 + '%'); // Fade out text
+
+        document.querySelector('.channel-title').style.opacity = starting - scrollPos / 100;
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -36457,7 +36470,7 @@ function (_Component) {
       var styles = {
         background: "url(".concat(img, ")"),
         backgroundSize: 'cover',
-        backgroundPosition: 'center'
+        backgroundPosition: '50% 50%'
       };
       return _react.default.createElement(_react.Fragment, null, _react.default.createElement("header", null, _react.default.createElement("div", {
         className: "bg-wrapper"
@@ -36493,8 +36506,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Loader = function Loader() {
   return _react.default.createElement("div", {
+    className: "loader-wrapper"
+  }, _react.default.createElement("div", {
     className: "loader"
-  });
+  }));
 };
 
 var _default = Loader;
@@ -36756,7 +36771,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61673" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51651" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
