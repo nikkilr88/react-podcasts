@@ -5,7 +5,7 @@ import Controls from './Controls'
 import Header from './Header'
 import Loader from './Loader'
 
-import { convertSeconds } from '../utils'
+import { convertSeconds, fetchData } from '../utils'
 
 class App extends Component {
   state = {
@@ -16,6 +16,7 @@ class App extends Component {
     episodes: [],
     track: { title: '', src: '' },
     position: 0,
+    duration: 0,
     playingStatus: Sound.status.PLAYING
   }
 
@@ -67,7 +68,8 @@ class App extends Component {
   handleOnPlaying = data => {
     if (this.state.playingStatus != Sound.status.PLAYING) return
     this.setState(() => ({
-      position: data.position
+      position: data.position,
+      duration: data.duration
     }))
   }
 
@@ -75,21 +77,21 @@ class App extends Component {
     console.log(data)
   }
 
-  // Fetch podcast data on mount
   // http://freecodecamp.libsyn.com/rss
   // https://feed.syntax.fm/rss
+  // https://rss.simplecast.com/podcasts/363/rss
+
+  // Fetch podcast data on mount
   componentDidMount() {
-    fetch('https://xmlparse.glitch.me/?url=https://feed.syntax.fm/rss')
-      .then(res => res.json())
-      .then(data => {
-        this.setState(() => ({
-          title: data.rss.channel.title._text,
-          description: data.rss.channel.description._cdata,
-          img: data.rss.channel.image.url._text,
-          episodes: data.rss.channel.item,
-          isLoading: false
-        }))
-      })
+    fetchData('https://feed.syntax.fm/rss').then(data => {
+      this.setState(() => ({
+        title: data.rss.channel.title._text,
+        description: data.rss.channel.description._cdata,
+        img: data.rss.channel.image.url._text,
+        episodes: data.rss.channel.item,
+        isLoading: false
+      }))
+    })
   }
 
   render() {
@@ -137,6 +139,8 @@ class App extends Component {
               rewind={this.rewind}
               audio={this.state.track}
               time={convertSeconds(this.state.position / 1000)}
+              position={this.state.position}
+              duration={this.state.duration}
             />
           </Fragment>
         )}
