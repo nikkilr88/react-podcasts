@@ -80,6 +80,7 @@ class App extends Component {
   // http://freecodecamp.libsyn.com/rss
   // https://feed.syntax.fm/rss
   // https://rss.simplecast.com/podcasts/363/rss
+  // http://lavieencode.libsyn.com/rss
 
   // Fetch podcast data on mount
   componentDidMount() {
