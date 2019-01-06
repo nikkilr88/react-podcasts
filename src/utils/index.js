@@ -9,3 +9,7 @@ export const convertSeconds = sec => {
 
   return `${hDisplay}${mDisplay}:${sDisplay}`
 }
+
+export const fetchData = url => {
+  return fetch(`https://xmlparse.glitch.me/?url=${url}`).then(res => res.json())
+}
