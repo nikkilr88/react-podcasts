@@ -36547,7 +36547,16 @@ function (_Component) {
 
         document.querySelector('.header-bg').style.backgroundPosition = '50% ' + (50 + scrollPos / 25 + '%'); // Fade out text
 
-        document.querySelector('.channel-title').style.opacity = starting - scrollPos / 100;
+        var descripton = document.querySelector('.description');
+        var title = document.querySelector('.channel-title');
+
+        if (title) {
+          title.style.opacity = starting - scrollPos / 100;
+        }
+
+        if (descripton) {
+          descripton.style.opacity = starting - scrollPos / 100;
+        }
       });
     }
   }, {
@@ -36565,9 +36574,12 @@ function (_Component) {
       return _react.default.createElement(_react.Fragment, null, _react.default.createElement("header", null, _react.default.createElement("i", {
         className: "material-icons info",
         onClick: this.toggleDescription
-      }, "info_outline"), this.state.showDescription && _react.default.createElement("div", {
+      }, "info_outline"), this.state.showDescription && _react.default.createElement(_react.Fragment, null, _react.default.createElement("div", {
+        className: "description-wrapper header-bg",
+        style: styles
+      }), _react.default.createElement("div", {
         className: "description"
-      }, description), _react.default.createElement("div", {
+      }, description || _react.default.createElement("p", null, "No description available"))), _react.default.createElement("div", {
         className: "bg-wrapper"
       }, _react.default.createElement("div", {
         style: styles,
@@ -36775,11 +36787,12 @@ function (_Component) {
     // http://freecodecamp.libsyn.com/rss
     // https://feed.syntax.fm/rss
     // https://rss.simplecast.com/podcasts/363/rss
+    // http://lavieencode.libsyn.com/rss
     // Fetch podcast data on mount
     value: function componentDidMount() {
       var _this2 = this;
 
-      (0, _utils.fetchData)('https://feed.syntax.fm/rss').then(function (data) {
+      (0, _utils.fetchData)('http://lavieencode.libsyn.com/rss').then(function (data) {
         _this2.setState(function () {
           return {
             title: data.rss.channel.title._text,
@@ -36877,7 +36890,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50022" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57518" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

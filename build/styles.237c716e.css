@@ -9,6 +9,8 @@ body {
 * {
   margin: 0;
   padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 img {
@@ -51,6 +53,7 @@ header {
   text-align: center;
   padding: 50px;
   text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+  z-index: 2;
 }
 
 .channel-img {
@@ -61,7 +64,7 @@ header {
   z-index: 999;
   border-radius: 100%;
   top: 150px;
-  border: 3px solid #fff;
+  border: 3px solid whitesmoke;
   left: 50%;
   -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
@@ -91,32 +94,40 @@ header {
           transform: scale(1.5);
 }
 
+.description-wrapper {
+  z-index: 3;
+}
+
 .description {
-  z-index: 9998;
+  z-index: 3;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   position: absolute;
-  padding: 25px;
+  padding: 10px 25px 25px;
   font-size: 1.6em;
-  left: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
   height: 100%;
+  width: 500px;
+  max-width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   color: #fff;
-  background: rgba(52, 52, 52, 0.8);
-}
-
-.description::-webkit-scrollbar {
-  display: none;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
 }
 
 .info {
   position: absolute;
   top: 5px;
   right: 5px;
-  z-index: 9999;
+  z-index: 999;
   color: #fff;
   cursor: pointer;
 }
