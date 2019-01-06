@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import ProgressBar from './ProgressBar'
+
 import Sound from 'react-sound'
 
 class Controls extends Component {
@@ -9,6 +11,8 @@ class Controls extends Component {
       stopAudio,
       fastforward,
       rewind,
+      position,
+      duration,
       audio,
       time
     } = this.props
@@ -20,6 +24,8 @@ class Controls extends Component {
             ? audio.title.substring(0, 50) + '...'
             : audio.title}
         </div>
+
+        <ProgressBar position={position} duration={duration} />
 
         <div className="control-btns">
           <span className="time">{time}</span>
