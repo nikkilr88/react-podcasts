@@ -36316,7 +36316,7 @@ function (_Component) {
 
 var _default = PodcastListElement;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","moment":"node_modules/moment/moment.js"}],"src/components/Controls.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","moment":"node_modules/moment/moment.js"}],"src/components/ProgressBar.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36325,6 +36325,72 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var ProgressBar =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(ProgressBar, _Component);
+
+  function ProgressBar() {
+    _classCallCheck(this, ProgressBar);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ProgressBar).apply(this, arguments));
+  }
+
+  _createClass(ProgressBar, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          position = _this$props.position,
+          duration = _this$props.duration;
+      var styles = {
+        width: position * 100 / duration + '%'
+      };
+      return _react.default.createElement("div", {
+        className: "progress-wrapper"
+      }, _react.default.createElement("div", {
+        style: styles,
+        className: "progress-bar"
+      }));
+    }
+  }]);
+
+  return ProgressBar;
+}(_react.Component);
+
+var _default = ProgressBar;
+exports.default = _default;
+},{"react":"node_modules/react/index.js"}],"src/components/Controls.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _ProgressBar = _interopRequireDefault(require("./ProgressBar"));
 
 var _reactSound = _interopRequireDefault(require("react-sound"));
 
@@ -36370,13 +36436,18 @@ function (_Component) {
           stopAudio = _this$props.stopAudio,
           fastforward = _this$props.fastforward,
           rewind = _this$props.rewind,
+          position = _this$props.position,
+          duration = _this$props.duration,
           audio = _this$props.audio,
           time = _this$props.time;
       return _react.default.createElement("div", {
         id: "player"
       }, _react.default.createElement("div", {
         className: "title"
-      }, audio.title.length > 50 ? audio.title.substring(0, 50) + '...' : audio.title), _react.default.createElement("div", {
+      }, audio.title.length > 50 ? audio.title.substring(0, 50) + '...' : audio.title), _react.default.createElement(_ProgressBar.default, {
+        position: position,
+        duration: duration
+      }), _react.default.createElement("div", {
         className: "control-btns"
       }, _react.default.createElement("span", {
         className: "time"
@@ -36407,7 +36478,7 @@ function (_Component) {
 
 var _default = Controls;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","react-sound":"node_modules/react-sound/lib/index.js"}],"src/components/Header.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./ProgressBar":"src/components/ProgressBar.js","react-sound":"node_modules/react-sound/lib/index.js"}],"src/components/Header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36443,9 +36514,27 @@ function (_Component) {
   _inherits(Header, _Component);
 
   function Header() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    var _temp;
+
     _classCallCheck(this, Header);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Header).apply(this, arguments));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Header)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.state = {
+      showDescription: false
+    }, _this.toggleDescription = function () {
+      _this.setState(function () {
+        return {
+          showDescription: !_this.state.showDescription
+        };
+      });
+    }, _temp));
   }
 
   _createClass(Header, [{
@@ -36466,13 +36555,19 @@ function (_Component) {
     value: function render() {
       var _this$props = this.props,
           title = _this$props.title,
-          img = _this$props.img;
+          img = _this$props.img,
+          description = _this$props.description;
       var styles = {
         background: "url(".concat(img, ")"),
         backgroundSize: 'cover',
         backgroundPosition: '50% 50%'
       };
-      return _react.default.createElement(_react.Fragment, null, _react.default.createElement("header", null, _react.default.createElement("div", {
+      return _react.default.createElement(_react.Fragment, null, _react.default.createElement("header", null, _react.default.createElement("i", {
+        className: "material-icons info",
+        onClick: this.toggleDescription
+      }, "info_outline"), this.state.showDescription && _react.default.createElement("div", {
+        className: "description"
+      }, description), _react.default.createElement("div", {
         className: "bg-wrapper"
       }, _react.default.createElement("div", {
         style: styles,
@@ -36520,7 +36615,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.convertSeconds = void 0;
+exports.fetchData = exports.convertSeconds = void 0;
 
 var convertSeconds = function convertSeconds(sec) {
   var h = Math.floor(sec / 3600);
@@ -36533,6 +36628,14 @@ var convertSeconds = function convertSeconds(sec) {
 };
 
 exports.convertSeconds = convertSeconds;
+
+var fetchData = function fetchData(url) {
+  return fetch("https://xmlparse.glitch.me/?url=".concat(url)).then(function (res) {
+    return res.json();
+  });
+};
+
+exports.fetchData = fetchData;
 },{}],"src/components/App.js":[function(require,module,exports) {
 "use strict";
 
@@ -36606,6 +36709,7 @@ function (_Component) {
         src: ''
       },
       position: 0,
+      duration: 0,
       playingStatus: _reactSound.default.status.PLAYING // Update state with track information
 
     }, _this.setAudio = function (audio, title) {
@@ -36652,7 +36756,8 @@ function (_Component) {
 
       _this.setState(function () {
         return {
-          position: data.position
+          position: data.position,
+          duration: data.duration
         };
       });
     }, _this.handleOnError = function (data) {
@@ -36667,15 +36772,14 @@ function (_Component) {
 
   _createClass(App, [{
     key: "componentDidMount",
-    // Fetch podcast data on mount
     // http://freecodecamp.libsyn.com/rss
     // https://feed.syntax.fm/rss
+    // https://rss.simplecast.com/podcasts/363/rss
+    // Fetch podcast data on mount
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch('https://xmlparse.glitch.me/?url=https://feed.syntax.fm/rss').then(function (res) {
-        return res.json();
-      }).then(function (data) {
+      (0, _utils.fetchData)('https://feed.syntax.fm/rss').then(function (data) {
         _this2.setState(function () {
           return {
             title: data.rss.channel.title._text,
@@ -36722,7 +36826,9 @@ function (_Component) {
         fastforward: this.fastforward,
         rewind: this.rewind,
         audio: this.state.track,
-        time: (0, _utils.convertSeconds)(this.state.position / 1000)
+        time: (0, _utils.convertSeconds)(this.state.position / 1000),
+        position: this.state.position,
+        duration: this.state.duration
       })));
     }
   }]);
@@ -36771,7 +36877,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51651" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50022" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
