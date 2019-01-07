@@ -36296,34 +36296,7 @@ function (_Component) {
     return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(PodcastListElement)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.handleOnClick = function (e) {
       _this.props.setAudio(_this.props.audio, _this.props.title);
 
-      var btns = document.querySelectorAll('.btn');
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = btns[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var btn = _step.value;
-          btn.classList.remove('selected');
-          btn.innerHTML = '<i class="material-icons">play_arrow</i>';
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-      e.target.classList.add('selected');
-      e.target.innerHTML = '<i class="material-icons">volume_up</i>';
+      _this.props.resetButtons(e);
     }, _temp));
   }
 
@@ -36754,6 +36727,8 @@ function (_Component) {
           position: 0
         };
       });
+
+      _this.resetButtons();
     }, _this.fastforward = function () {
       _this.setState(function (prevState) {
         return {
@@ -36777,6 +36752,36 @@ function (_Component) {
       });
     }, _this.handleOnError = function (data) {
       console.log(data);
+    }, _this.resetButtons = function (e) {
+      var btns = document.querySelectorAll('.btn');
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = btns[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var btn = _step.value;
+          btn.classList.remove('selected');
+          btn.innerHTML = '<i class="material-icons">play_arrow</i>';
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      if (!e) return;
+      e.target.classList.add('selected');
+      e.target.innerHTML = '<i class="material-icons">volume_up</i>';
     }, _temp));
   } // Pause audio
   // Stop audio
@@ -36820,7 +36825,8 @@ function (_Component) {
           date: e.pubDate._text,
           title: e.title._text,
           audio: e.enclosure._attributes.url,
-          setAudio: _this3.setAudio
+          setAudio: _this3.setAudio,
+          resetButtons: _this3.resetButtons
         });
       });
       return _react.default.createElement(_react.Fragment, null, this.state.isLoading ? _react.default.createElement(_Loader.default, null) : _react.default.createElement(_react.Fragment, null, _react.default.createElement(_Header.default, {
