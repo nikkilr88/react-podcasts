@@ -4,14 +4,7 @@ import moment from 'moment'
 class PodcastListElement extends Component {
   handleOnClick = e => {
     this.props.setAudio(this.props.audio, this.props.title)
-
-    const btns = document.querySelectorAll('.btn')
-    for (let btn of btns) {
-      btn.classList.remove('selected')
-      btn.innerHTML = '<i class="material-icons">play_arrow</i>'
-    }
-    e.target.classList.add('selected')
-    e.target.innerHTML = '<i class="material-icons">volume_up</i>'
+    this.props.resetButtons(e)
   }
   render() {
     const { title, date } = this.props
