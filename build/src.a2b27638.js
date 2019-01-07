@@ -36551,27 +36551,9 @@ function (_Component) {
   _inherits(Header, _Component);
 
   function Header() {
-    var _getPrototypeOf2;
-
-    var _this;
-
-    var _temp;
-
     _classCallCheck(this, Header);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Header)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.state = {
-      showDescription: false
-    }, _this.toggleDescription = function () {
-      _this.setState(function () {
-        return {
-          showDescription: !_this.state.showDescription
-        };
-      });
-    }, _temp));
+    return _possibleConstructorReturn(this, _getPrototypeOf(Header).apply(this, arguments));
   }
 
   _createClass(Header, [{
@@ -36583,47 +36565,31 @@ function (_Component) {
         if (scrollPos > 200) return; // Move background image up at a slower rate
 
         document.querySelector('.header-bg').style.backgroundPosition = '50% ' + (50 + scrollPos / 25 + '%'); // Fade out text
-
-        var descripton = document.querySelector('.description');
-        var title = document.querySelector('.channel-title');
-
-        if (title) {
-          title.style.opacity = starting - scrollPos / 100;
-        }
-
-        if (descripton) {
-          descripton.style.opacity = starting - scrollPos / 100;
-        }
+        // const descripton = document.querySelector('.description')
+        // const title = document.querySelector('.channel-title')
+        // if (title) {
+        //   title.style.opacity = starting - scrollPos / 100
+        // }
+        // if (descripton) {
+        //   descripton.style.opacity = starting - scrollPos / 100
+        // }
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          title = _this$props.title,
-          img = _this$props.img,
-          description = _this$props.description;
+      var img = this.props.img;
       var styles = {
         background: "url(".concat(img, ")"),
         backgroundSize: 'cover',
         backgroundPosition: '50% 50%'
       };
-      return _react.default.createElement(_react.Fragment, null, _react.default.createElement("header", null, _react.default.createElement("i", {
-        className: "material-icons info",
-        onClick: this.toggleDescription
-      }, "info_outline"), this.state.showDescription && _react.default.createElement(_react.Fragment, null, _react.default.createElement("div", {
-        className: "description-wrapper header-bg",
-        style: styles
-      }), _react.default.createElement("div", {
-        className: "description"
-      }, description || _react.default.createElement("p", null, "No description available"))), _react.default.createElement("div", {
+      return _react.default.createElement(_react.Fragment, null, _react.default.createElement("header", null, _react.default.createElement("div", {
         className: "bg-wrapper"
       }, _react.default.createElement("div", {
         style: styles,
         className: "header-bg"
-      })), _react.default.createElement("p", {
-        className: "channel-title"
-      }, title)), _react.default.createElement("img", {
+      }))), _react.default.createElement("img", {
         className: "channel-img",
         src: img,
         alt: "podcast image"
@@ -36858,12 +36824,16 @@ function (_Component) {
         });
       });
       return _react.default.createElement(_react.Fragment, null, this.state.isLoading ? _react.default.createElement(_Loader.default, null) : _react.default.createElement(_react.Fragment, null, _react.default.createElement(_Header.default, {
-        title: this.state.title,
-        description: this.state.description,
         img: this.state.img
       }), _react.default.createElement("div", {
         className: "items"
-      }, episodeList)), this.state.track.src && _react.default.createElement(_react.Fragment, null, _react.default.createElement(_reactSound.default, {
+      }, _react.default.createElement("div", {
+        className: "channel-info"
+      }, _react.default.createElement("h1", {
+        className: "title"
+      }, this.state.title), _react.default.createElement("p", null, this.state.description)), _react.default.createElement("h1", {
+        className: "episodes"
+      }, "Episodes"), episodeList)), this.state.track.src && _react.default.createElement(_react.Fragment, null, _react.default.createElement(_reactSound.default, {
         url: this.state.track.src,
         playStatus: this.state.playingStatus,
         playFromPosition: this.state.position,
@@ -36927,7 +36897,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50416" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55743" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

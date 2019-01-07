@@ -31,7 +31,7 @@ button {
 
 header {
   width: 100%;
-  height: 200px;
+  height: 150px;
   position: fixed;
   top: 0;
   display: -webkit-box;
@@ -63,8 +63,8 @@ header {
   width: 100px;
   z-index: 999;
   border-radius: 100%;
-  top: 150px;
-  border: 3px solid whitesmoke;
+  top: 100px;
+  border: 3px solid #e9e9e9;
   left: 50%;
   -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
@@ -94,48 +94,39 @@ header {
           transform: scale(1.5);
 }
 
-.description-wrapper {
-  z-index: 3;
+/* CHANNEL INFO */
+.channel-info {
+  width: 100%;
+  background: #e9e9e9;
+  color: #555;
+  padding: 50px 25px;
+}
+.channel-info .title {
+  margin: 15px auto;
+  font-size: 2em;
 }
 
-.description {
-  z-index: 3;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  position: absolute;
-  padding: 10px 25px 25px;
-  font-size: 1.6em;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-          transform: translateX(-50%);
-  height: 100%;
-  width: 500px;
-  max-width: 100%;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  color: #fff;
-  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+.channel-info p {
+  margin: 10px auto;
+  font-size: 1.5em;
+  max-width: 500px;
+  width: 95%;
 }
 
-.info {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  z-index: 999;
-  color: #fff;
-  cursor: pointer;
+.episodes {
+  margin: 50px auto 35px auto;
+  text-align: left;
+  max-width: 600px;
+  width: 90%;
+  padding: 10px;
+  color: #999;
+  border-bottom: 1px solid #ccc;
+  display: block;
 }
 
 /* PODCAST LIST */
 .items {
-  margin: 200px 0 100px 0;
-  padding: 50px 0;
+  margin: 150px 0 100px 0;
   position: relative;
   background: whitesmoke;
 }
@@ -169,7 +160,7 @@ header {
 }
 
 .infoBox .text {
-  padding: 0 15px;
+  padding-right: 25px;
   text-align: left;
 }
 
@@ -271,8 +262,9 @@ header {
   background: #ccc;
   height: 5px;
   border-radius: 10px;
+  max-width: 600px;
   width: 75%;
-  margin: 10px 0 20px 0;
+  margin: 25px 0;
 }
 
 .progress-bar {
