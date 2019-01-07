@@ -173,10 +173,6 @@ header {
   text-align: left;
 }
 
-.infoBox button {
-  margin-left: auto;
-}
-
 /* PLAY BUTTON */
 .btn {
   display: -webkit-box;
@@ -185,7 +181,7 @@ header {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin: 0 15px;
+  margin-left: auto;
   border: 1px solid #2980b9;
   color: #2980b9;
   border-radius: 50px;
@@ -200,9 +196,14 @@ header {
   transition: all 0.2s;
 }
 
+.selected,
 .btn:hover {
   background: #2980b9;
   color: #fcfcfc;
+}
+
+.btn > .material-icons {
+  pointer-events: none;
 }
 
 /* PLAYER CONTROLS */

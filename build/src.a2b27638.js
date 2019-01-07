@@ -36281,9 +36281,50 @@ function (_Component) {
   _inherits(PodcastListElement, _Component);
 
   function PodcastListElement() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    var _temp;
+
     _classCallCheck(this, PodcastListElement);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(PodcastListElement).apply(this, arguments));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(PodcastListElement)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.handleOnClick = function (e) {
+      _this.props.setAudio(_this.props.audio, _this.props.title);
+
+      var btns = document.querySelectorAll('.btn');
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = btns[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var btn = _step.value;
+          btn.classList.remove('selected');
+          btn.innerHTML = '<i class="material-icons">play_arrow</i>';
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      e.target.classList.add('selected');
+      e.target.innerHTML = '<i class="material-icons">volume_up</i>';
+    }, _temp));
   }
 
   _createClass(PodcastListElement, [{
@@ -36291,9 +36332,7 @@ function (_Component) {
     value: function render() {
       var _this$props = this.props,
           title = _this$props.title,
-          date = _this$props.date,
-          audio = _this$props.audio,
-          setAudio = _this$props.setAudio;
+          date = _this$props.date;
       return _react.default.createElement("div", {
         className: "infoBox"
       }, _react.default.createElement("div", {
@@ -36302,9 +36341,7 @@ function (_Component) {
         className: "date"
       }, (0, _moment.default)(date).format('LL')), _react.default.createElement("h3", null, title.length > 50 ? title.substring(0, 50) + '...' : title)), _react.default.createElement("button", {
         className: "btn",
-        onClick: function onClick() {
-          return setAudio(audio, title);
-        }
+        onClick: this.handleOnClick
       }, _react.default.createElement("i", {
         className: "material-icons"
       }, "play_arrow")));
@@ -36792,7 +36829,7 @@ function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      (0, _utils.fetchData)('http://lavieencode.libsyn.com/rss').then(function (data) {
+      (0, _utils.fetchData)('https://feed.syntax.fm/rss').then(function (data) {
         _this2.setState(function () {
           return {
             title: data.rss.channel.title._text,
@@ -36890,7 +36927,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57518" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50416" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
