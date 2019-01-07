@@ -114,12 +114,16 @@ class App extends Component {
           <Loader />
         ) : (
           <Fragment>
-            <Header
-              title={this.state.title}
-              description={this.state.description}
-              img={this.state.img}
-            />
-            <div className="items">{episodeList}</div>
+            <Header img={this.state.img} />
+
+            <div className="items">
+              <div className="channel-info">
+                <h1 className="title">{this.state.title}</h1>
+                <p>{this.state.description}</p>
+              </div>
+              <h1 className="episodes">Episodes</h1>
+              {episodeList}
+            </div>
           </Fragment>
         )}
 
