@@ -48,6 +48,7 @@ class App extends Component {
       track: { title: '', src: '' },
       position: 0
     }))
+    this.resetButtons()
   }
 
   // Fastforward track 10 seconds
@@ -75,6 +76,17 @@ class App extends Component {
 
   handleOnError = data => {
     console.log(data)
+  }
+
+  resetButtons = e => {
+    const btns = document.querySelectorAll('.btn')
+    for (let btn of btns) {
+      btn.classList.remove('selected')
+      btn.innerHTML = '<i class="material-icons">play_arrow</i>'
+    }
+    if (!e) return
+    e.target.classList.add('selected')
+    e.target.innerHTML = '<i class="material-icons">volume_up</i>'
   }
 
   // http://freecodecamp.libsyn.com/rss
@@ -105,6 +117,7 @@ class App extends Component {
           title={e.title._text}
           audio={e.enclosure._attributes.url}
           setAudio={this.setAudio}
+          resetButtons={this.resetButtons}
         />
       ))
 
