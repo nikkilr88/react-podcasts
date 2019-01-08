@@ -1,0 +1,47 @@
+/* PLAYER CONTROLS */
+#player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  align-items: center;
+  justify-content: center;
+  color: #444;
+  border-top: 1px solid #ccc;
+  background: whitesmoke;
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#player div {
+  text-align: center;
+}
+
+#player #title {
+  width: 80%;
+  text-align: center;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+#player button {
+  color: #444;
+  margin: 0 15px;
+}
+
+.control-btns {
+  display: flex;
+  align-items: center;
+}
+
+.time {
+  font-weight: bold;
+  margin: 0 25px;
+  font-size: 1.6em;
+}
+
+.title {
+  font-size: 1.6em;
+}

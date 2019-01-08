@@ -1,0 +1,60 @@
+/* PODCAST LIST */
+.items {
+  margin: 150px 0 175px 0;
+  position: relative;
+  background: whitesmoke;
+}
+
+.infoBox {
+  max-width: 600px;
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+}
+
+.infoBox h3 {
+  color: #333;
+  padding: 5px 0;
+  font-size: 1.6em;
+}
+
+.infoBox .date {
+  color: #999;
+  font-size: 13px;
+}
+
+.infoBox .text {
+  padding-right: 25px;
+  text-align: left;
+}
+
+/* PLAY BUTTON */
+.btn {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  border: 1px solid #2980b9;
+  color: #2980b9;
+  border-radius: 50px;
+  height: 40px;
+  width: 40px;
+  font-size: 16px;
+  text-align: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.selected,
+.btn:hover {
+  background: #2980b9;
+  color: #fcfcfc;
+}
+
+.btn > .material-icons {
+  pointer-events: none;
+}

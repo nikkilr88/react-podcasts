@@ -1,0 +1,31 @@
+/* CHANNEL INFO */
+.channel-info {
+  width: 100%;
+  background: #e9e9e9;
+  color: #555;
+  padding: 50px 25px 25px;
+}
+.channel-info .title {
+  margin: 15px auto;
+  font-size: 2em;
+  width: 90%;
+}
+
+.channel-info p {
+  margin: 10px auto;
+  font-size: 1.5em;
+  max-width: 500px;
+  width: 95%;
+  line-height: 1.5em;
+}
+
+.episodes {
+  margin: 50px auto 25px auto;
+  text-align: left;
+  max-width: 600px;
+  width: 90%;
+  padding: 10px;
+  color: #999;
+  border-bottom: 1px solid #ccc;
+  display: block;
+}

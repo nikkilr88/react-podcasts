@@ -1,0 +1,27 @@
+/* LOADER */
+.loader-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loader {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  border-right: 4px solid #e74c3c;
+  border-bottom: 4px solid #2ecc71;
+  border-left: 4px solid #f1c40f;
+  animation: rotate 2s infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
