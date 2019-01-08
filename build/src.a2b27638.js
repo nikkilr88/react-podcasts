@@ -36241,7 +36241,79 @@ var global = arguments[3];
 
 })));
 
-},{}],"src/components/PodcastListElement.js":[function(require,module,exports) {
+},{}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"src/css/PodcastList.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/PodcastListElement.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36252,6 +36324,8 @@ exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 
 var _moment = _interopRequireDefault(require("moment"));
+
+require("../css/PodcastList.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36326,7 +36400,12 @@ function (_Component) {
 
 var _default = PodcastListElement;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","moment":"node_modules/moment/moment.js"}],"src/components/ProgressBar.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","moment":"node_modules/moment/moment.js","../css/PodcastList.css":"src/css/PodcastList.css"}],"src/css/ProgressBar.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/ProgressBar.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36335,6 +36414,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
+
+require("../css/ProgressBar.css");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -36390,7 +36471,12 @@ function (_Component) {
 
 var _default = ProgressBar;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"src/components/Controls.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../css/ProgressBar.css":"src/css/ProgressBar.css"}],"src/css/Controls.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/Controls.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36403,6 +36489,8 @@ var _react = _interopRequireWildcard(require("react"));
 var _ProgressBar = _interopRequireDefault(require("./ProgressBar"));
 
 var _reactSound = _interopRequireDefault(require("react-sound"));
+
+require("../css/Controls.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36488,7 +36576,12 @@ function (_Component) {
 
 var _default = Controls;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./ProgressBar":"src/components/ProgressBar.js","react-sound":"node_modules/react-sound/lib/index.js"}],"src/components/Header.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./ProgressBar":"src/components/ProgressBar.js","react-sound":"node_modules/react-sound/lib/index.js","../css/Controls.css":"src/css/Controls.css"}],"src/css/Header.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/Header.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36497,6 +36590,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
+
+require("../css/Header.css");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -36535,9 +36630,10 @@ function (_Component) {
       document.addEventListener('scroll', function () {
         var starting = 1;
         var scrollPos = document.documentElement.scrollTop;
-        if (scrollPos > 200) return; // Move background image up at a slower rate
+        if (scrollPos > 150 || window.innerWidth < 950) return; // Move background image up at a slower rate
 
-        document.querySelector('.header-bg').style.backgroundPosition = '50% ' + (50 + scrollPos / 25 + '%'); // Fade out text
+        var header = document.querySelector('.header-bg');
+        header.style.backgroundPosition = '50% ' + (50 + scrollPos / 25 + '%'); // Fade out text
         // const descripton = document.querySelector('.description')
         // const title = document.querySelector('.channel-title')
         // if (title) {
@@ -36575,7 +36671,12 @@ function (_Component) {
 
 var _default = Header;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"src/components/Loader.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../css/Header.css":"src/css/Header.css"}],"src/css/Loader.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/Loader.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36584,6 +36685,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
+
+require("../css/Loader.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36597,7 +36700,7 @@ var Loader = function Loader() {
 
 var _default = Loader;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"src/utils/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../css/Loader.css":"src/css/Loader.css"}],"src/utils/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36624,7 +36727,12 @@ var fetchData = function fetchData(url) {
 };
 
 exports.fetchData = fetchData;
-},{}],"src/components/App.js":[function(require,module,exports) {
+},{}],"src/css/ChannelInfo.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36645,6 +36753,8 @@ var _Header = _interopRequireDefault(require("./Header"));
 var _Loader = _interopRequireDefault(require("./Loader"));
 
 var _utils = require("../utils");
+
+require("../css/ChannelInfo.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36864,7 +36974,12 @@ function (_Component) {
 
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","react-sound":"node_modules/react-sound/lib/index.js","./PodcastListElement":"src/components/PodcastListElement.js","./Controls":"src/components/Controls.js","./Header":"src/components/Header.js","./Loader":"src/components/Loader.js","../utils":"src/utils/index.js"}],"src/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-sound":"node_modules/react-sound/lib/index.js","./PodcastListElement":"src/components/PodcastListElement.js","./Controls":"src/components/Controls.js","./Header":"src/components/Header.js","./Loader":"src/components/Loader.js","../utils":"src/utils/index.js","../css/ChannelInfo.css":"src/css/ChannelInfo.css"}],"src/css/styles.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -36873,10 +36988,12 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _App = _interopRequireDefault(require("./components/App"));
 
+require("./css/styles.css");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom.default.render(_react.default.createElement(_App.default, null), document.getElementById('root'));
-},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./components/App":"src/components/App.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-dom":"node_modules/react-dom/index.js","./components/App":"src/components/App.js","./css/styles.css":"src/css/styles.css"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -36903,7 +37020,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55743" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64459" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
