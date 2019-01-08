@@ -3,6 +3,8 @@ import ProgressBar from './ProgressBar'
 
 import Sound from 'react-sound'
 
+import '../css/Controls.css'
+
 class Controls extends Component {
   render() {
     const {

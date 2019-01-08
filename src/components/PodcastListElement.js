@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 
+import '../css/PodcastList.css'
+
 class PodcastListElement extends Component {
   handleOnClick = e => {
     this.props.setAudio(this.props.audio, this.props.title)

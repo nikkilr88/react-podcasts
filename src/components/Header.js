@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import '../css/Header.css'
 
 class Header extends Component {
   componentDidMount() {
@@ -6,11 +7,10 @@ class Header extends Component {
       let starting = 1
       let scrollPos = document.documentElement.scrollTop
 
-      if (scrollPos > 200) return
-
+      if (scrollPos > 150 || window.innerWidth < 950) return
       // Move background image up at a slower rate
-      document.querySelector('.header-bg').style.backgroundPosition =
-        '50% ' + (50 + scrollPos / 25 + '%')
+      const header = document.querySelector('.header-bg')
+      header.style.backgroundPosition = '50% ' + (50 + scrollPos / 25 + '%')
 
       // Fade out text
       // const descripton = document.querySelector('.description')

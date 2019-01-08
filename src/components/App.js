@@ -7,6 +7,8 @@ import Loader from './Loader'
 
 import { convertSeconds, fetchData } from '../utils'
 
+import '../css/ChannelInfo.css'
+
 class App extends Component {
   state = {
     isLoading: true,
