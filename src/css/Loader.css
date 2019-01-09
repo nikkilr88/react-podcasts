@@ -3,17 +3,18 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  margin-left: calc(75px / 2);
   transform: translate(-50%, -50%);
 }
 
 .loader {
-  height: 35px;
-  width: 35px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   border-top: 4px solid #3498db;
-  border-right: 4px solid #e74c3c;
-  border-bottom: 4px solid #2ecc71;
-  border-left: 4px solid #f1c40f;
+  border-right: 4px solid #3498db;
+  border-bottom: 4px solid #3498db;
+  border-left: 4px solid transparent;
   animation: rotate 2s infinite;
 }
 
