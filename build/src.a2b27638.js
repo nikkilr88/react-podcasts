@@ -36782,7 +36782,9 @@ var Loader = function Loader() {
 
 var _default = Loader;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../css/Loader.css":"src/css/Loader.css"}],"src/css/Sidebar.css":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../css/Loader.css":"src/css/Loader.css"}],"src/images/devcasts-logo-slant.png":[function(require,module,exports) {
+module.exports = "/devcasts-logo-slant.658a7055.png";
+},{}],"src/css/Sidebar.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -36797,7 +36799,11 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _devcastsLogoSlant = _interopRequireDefault(require("../images/devcasts-logo-slant.png"));
+
 require("../css/Sidebar.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -36913,6 +36919,7 @@ function (_Component) {
           key: i,
           className: i === 0 ? 'sidebar-selected' : ''
         }, _react.default.createElement("img", {
+          className: "img-link",
           src: e.img,
           alt: "podcast icon"
         }));
@@ -36921,9 +36928,10 @@ function (_Component) {
         className: "sidebar"
       }, _react.default.createElement("li", {
         className: "sidebar-top"
-      }, _react.default.createElement("i", {
-        className: "material-icons"
-      }, "swap_horiz")), list);
+      }, _react.default.createElement("img", {
+        src: _devcastsLogoSlant.default,
+        alt: "dev casts logo"
+      })), list);
     }
   }]);
 
@@ -36932,7 +36940,7 @@ function (_Component) {
 
 var _default = Sidebar;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../css/Sidebar.css":"src/css/Sidebar.css"}],"src/utils/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../images/devcasts-logo-slant.png":"src/images/devcasts-logo-slant.png","../css/Sidebar.css":"src/css/Sidebar.css"}],"src/utils/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -37261,7 +37269,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50428" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54324" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

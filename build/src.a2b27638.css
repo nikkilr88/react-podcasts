@@ -259,12 +259,12 @@ header {
 
 .sidebar-top {
   color: rgba(255, 255, 255, 0.5);
-  background: #34495e;
+  background: #333;
   padding: 20px;
   margin-bottom: 25px;
 }
 
-.sidebar li {
+.sidebar li:not(.sidebar-top) {
   list-style: none;
   -webkit-filter: grayscale(100%);
           filter: grayscale(100%);
@@ -279,7 +279,7 @@ header {
   width: 60%;
 }
 
-.sidebar img {
+.sidebar .img-link {
   position: relative;
   display: block;
   border-radius: 50%;
