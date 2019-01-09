@@ -90,13 +90,16 @@ class App extends Component {
     e.target.innerHTML = '<i class="material-icons">volume_up</i>'
   }
 
+  handleOnError = err => {
+    console.log(err)
+  }
+
   // Fetch podcast data and set state
   fetchData = url => {
     this.setState(() => ({ isLoading: true }))
     return fetch(`https://xmlparse.glitch.me/?url=${url}`)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         this.setState(() => ({
           title: data.rss.channel.title._text,
           description:
@@ -160,6 +163,7 @@ class App extends Component {
               playStatus={this.state.playingStatus}
               playFromPosition={this.state.position}
               onPlaying={this.handleOnPlaying}
+              onError={this.handleOnError}
             />
             <Controls
               playingStatus={this.state.playingStatus}
