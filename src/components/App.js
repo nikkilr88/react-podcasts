@@ -1,9 +1,11 @@
 import React, { Component, Fragment } from 'react'
+import SoundWrapper from './SoundWrapper'
 import Sound from 'react-sound'
 import PodcastListElement from './PodcastListElement'
 import Controls from './Controls'
 import Header from './Header'
 import Loader from './Loader'
+import Sidebar from './Sidebar'
 
 import { convertSeconds, fetchData } from '../utils'
 
@@ -76,10 +78,7 @@ class App extends Component {
     }))
   }
 
-  handleOnError = data => {
-    console.log(data)
-  }
-
+  // Reset play button styles
   resetButtons = e => {
     const btns = document.querySelectorAll('.btn')
     for (let btn of btns) {
@@ -91,22 +90,28 @@ class App extends Component {
     e.target.innerHTML = '<i class="material-icons">volume_up</i>'
   }
 
-  // http://freecodecamp.libsyn.com/rss
-  // https://feed.syntax.fm/rss
-  // https://rss.simplecast.com/podcasts/363/rss
-  // http://lavieencode.libsyn.com/rss
+  // Fetch podcast data and set state
+  fetchData = url => {
+    this.setState(() => ({ isLoading: true }))
+    return fetch(`https://xmlparse.glitch.me/?url=${url}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        this.setState(() => ({
+          title: data.rss.channel.title._text,
+          description:
+            data.rss.channel.description._cdata ||
+            data.rss.channel.description._text,
+          img: data.rss.channel.image.url._text,
+          episodes: data.rss.channel.item,
+          isLoading: false
+        }))
+      })
+  }
 
   // Fetch podcast data on mount
   componentDidMount() {
-    fetchData('https://feed.syntax.fm/rss').then(data => {
-      this.setState(() => ({
-        title: data.rss.channel.title._text,
-        description: data.rss.channel.description._cdata,
-        img: data.rss.channel.image.url._text,
-        episodes: data.rss.channel.item,
-        isLoading: false
-      }))
-    })
+    this.fetchData('https://feed.syntax.fm/rss')
   }
 
   render() {
@@ -117,6 +122,7 @@ class App extends Component {
           key={i}
           date={e.pubDate._text}
           title={e.title._text}
+          nowPlaying={this.state.track.title}
           audio={e.enclosure._attributes.url}
           setAudio={this.setAudio}
           resetButtons={this.resetButtons}
@@ -125,16 +131,21 @@ class App extends Component {
 
     return (
       <Fragment>
+        <Sidebar fetchData={this.fetchData} />
         {this.state.isLoading ? (
           <Loader />
         ) : (
           <Fragment>
             <Header img={this.state.img} />
-
             <div className="items">
               <div className="channel-info">
+                <img
+                  className="channel-img"
+                  src={this.state.img}
+                  alt="podcast image"
+                />
                 <h1 className="title">{this.state.title}</h1>
-                <p>{this.state.description}</p>
+                <p>{this.state.description || 'No Description Available :('}</p>
               </div>
               <h1 className="episodes">Episodes</h1>
               {episodeList}
@@ -144,12 +155,11 @@ class App extends Component {
 
         {this.state.track.src && (
           <Fragment>
-            <Sound
+            <SoundWrapper
               url={this.state.track.src}
               playStatus={this.state.playingStatus}
               playFromPosition={this.state.position}
               onPlaying={this.handleOnPlaying}
-              onError={this.handleOnError}
             />
             <Controls
               playingStatus={this.state.playingStatus}
