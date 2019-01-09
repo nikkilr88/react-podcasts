@@ -4,6 +4,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  margin-left: 75px;
   display: flex;
   flex-direction: column;
   padding: 15px;
@@ -39,9 +40,9 @@
 .time {
   font-weight: bold;
   margin: 0 25px;
-  font-size: 1.6em;
+  font-size: 1rem;
 }
 
 .title {
-  font-size: 1.6em;
+  font-size: 1rem;
 }
