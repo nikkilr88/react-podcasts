@@ -31787,7 +31787,8 @@ function (_Component) {
         url: this.props.url,
         playStatus: this.props.playStatus,
         playFromPosition: this.props.playFromPosition,
-        onPlaying: this.props.onPlaying
+        onPlaying: this.props.onPlaying,
+        onError: this.props.onError
       });
     }
   }]);
@@ -37117,6 +37118,8 @@ function (_Component) {
       if (!e) return;
       e.target.classList.add('selected');
       e.target.innerHTML = '<i class="material-icons">volume_up</i>';
+    }, _this.handleOnError = function (err) {
+      console.log(err);
     }, _this.fetchData = function (url) {
       _this.setState(function () {
         return {
@@ -37127,8 +37130,6 @@ function (_Component) {
       return fetch("https://xmlparse.glitch.me/?url=".concat(url)).then(function (res) {
         return res.json();
       }).then(function (data) {
-        console.log(data);
-
         _this.setState(function () {
           return {
             title: data.rss.channel.title._text,
@@ -37193,7 +37194,8 @@ function (_Component) {
         url: this.state.track.src,
         playStatus: this.state.playingStatus,
         playFromPosition: this.state.position,
-        onPlaying: this.handleOnPlaying
+        onPlaying: this.handleOnPlaying,
+        onError: this.handleOnError
       }), _react.default.createElement(_Controls.default, {
         playingStatus: this.state.playingStatus,
         pauseAudio: this.pauseAudio,
@@ -37259,7 +37261,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64374" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50428" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
