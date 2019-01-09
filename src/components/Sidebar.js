@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Logo from '../images/devcasts-logo-slant.png'
 import '../css/Sidebar.css'
 
 class Sidebar extends Component {
@@ -57,7 +58,7 @@ class Sidebar extends Component {
           key={i}
           className={i === 0 ? 'sidebar-selected' : ''}
         >
-          <img src={e.img} alt="podcast icon" />
+          <img className="img-link" src={e.img} alt="podcast icon" />
         </li>
       )
     })
@@ -65,7 +66,7 @@ class Sidebar extends Component {
     return (
       <ul className="sidebar">
         <li className="sidebar-top">
-          <i className="material-icons">swap_horiz</i>
+          <img src={Logo} alt="dev casts logo" />
         </li>
         {list}
       </ul>
