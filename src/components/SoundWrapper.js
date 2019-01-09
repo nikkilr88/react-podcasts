@@ -18,6 +18,7 @@ class SoundWrapper extends Component {
         playStatus={this.props.playStatus}
         playFromPosition={this.props.playFromPosition}
         onPlaying={this.props.onPlaying}
+        onError={this.props.onError}
       />
     )
   }
