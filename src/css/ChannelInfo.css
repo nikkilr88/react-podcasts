@@ -36,10 +36,11 @@
 .episodes {
   margin: 50px auto 25px auto;
   text-align: left;
-  max-width: 600px;
+  max-width: 800px;
   width: 90%;
   padding: 10px;
   color: #999;
+  font-weight: normal;
   border-bottom: 1px solid #ccc;
   display: block;
 }
