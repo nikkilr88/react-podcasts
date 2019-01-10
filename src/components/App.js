@@ -7,9 +7,11 @@ import Header from './Header'
 import Loader from './Loader'
 import Sidebar from './Sidebar'
 
-import { convertSeconds, fetchData } from '../utils'
+import { convertSeconds } from '../utils'
 
 import '../css/ChannelInfo.css'
+import '../css/themes/light.css'
+import '../css/themes/dark.css'
 
 class App extends Component {
   state = {
@@ -21,7 +23,8 @@ class App extends Component {
     track: { title: '', src: '' },
     position: 0,
     duration: 0,
-    playingStatus: Sound.status.PLAYING
+    playingStatus: Sound.status.PLAYING,
+    theme: 'light'
   }
 
   // Update state with track information
@@ -97,7 +100,7 @@ class App extends Component {
   // Fetch podcast data and set state
   fetchData = url => {
     this.setState(() => ({ isLoading: true }))
-    return fetch(`https://xmlparse.glitch.me/?url=${url}`)
+    fetch(`https://xmlparse.glitch.me/?url=${url}`)
       .then(res => res.json())
       .then(data => {
         this.setState(() => ({
@@ -129,6 +132,7 @@ class App extends Component {
           audio={e.enclosure._attributes.url}
           setAudio={this.setAudio}
           resetButtons={this.resetButtons}
+          theme={this.state.theme}
         />
       ))
 
@@ -140,17 +144,17 @@ class App extends Component {
         ) : (
           <Fragment>
             <Header img={this.state.img} />
-            <div className="items">
-              <div className="channel-info">
+            <div className={`items ${this.state.theme}`}>
+              <div className={`channel-info ${this.state.theme}`}>
                 <img
-                  className="channel-img"
+                  className={`channel-img ${this.state.theme}`}
                   src={this.state.img}
                   alt="podcast image"
                 />
                 <h1 className="title">{this.state.title}</h1>
                 <p>{this.state.description || 'No Description Available :('}</p>
               </div>
-              <h1 className="episodes">Episodes</h1>
+              <h1 className={`episodes ${this.state.theme}`}>Episodes</h1>
               {episodeList}
             </div>
           </Fragment>
@@ -175,6 +179,7 @@ class App extends Component {
               time={convertSeconds(this.state.position / 1000)}
               position={this.state.position}
               duration={this.state.duration}
+              theme={this.state.theme}
             />
           </Fragment>
         )}
