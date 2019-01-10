@@ -16,18 +16,19 @@ class Controls extends Component {
       position,
       duration,
       audio,
-      time
+      time,
+      theme
     } = this.props
 
     return (
-      <div id="player">
+      <div id="player" className={theme}>
         <div className="title">
           {audio.title.length > 50
             ? audio.title.substring(0, 50) + '...'
             : audio.title}
         </div>
 
-        <ProgressBar position={position} duration={duration} />
+        <ProgressBar position={position} duration={duration} theme={theme} />
 
         <div className="control-btns">
           <span className="time">{time}</span>

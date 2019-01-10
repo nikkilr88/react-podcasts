@@ -10,11 +10,11 @@ class PodcastListElement extends Component {
   }
 
   render() {
-    const { title, date } = this.props
+    const { title, date, theme } = this.props
     const isPlaying = this.props.title == this.props.nowPlaying
 
     return (
-      <div className="infoBox">
+      <div className={`infoBox ${theme}`}>
         <div className="text">
           <p className="date">{moment(date).format('LL')}</p>
           <h3>{title.length > 50 ? title.substring(0, 50) + '...' : title}</h3>
