@@ -36869,9 +36869,13 @@ function (_Component) {
         link: 'http://lavieencode.libsyn.com/rss',
         img: 'http://static.libsyn.com/p/assets/f/2/0/9/f2097918a8e6b61c/lvec-podcast-itunes-logo-3000.png'
       }, {
-        name: 'Code Newbie',
+        name: 'Base.cs',
         link: 'http://feeds.codenewbie.org/basecs_podcast.xml',
         img: 'http://s3.amazonaws.com/codenewbie-assets/basecs-podcast/basecs+podcast+cover+7.png'
+      }, {
+        name: 'Code Newbie',
+        link: 'http://feeds.codenewbie.org/cnpodcast.xml',
+        img: 'http://s3.amazonaws.com/codenewbie-assets/podcasts/codenewbie_podcast_cover_art_gradient.png'
       }]
     }, _this.handleOnClick = function (e) {
       var links = _toConsumableArray(document.querySelectorAll('.sidebar li'));
