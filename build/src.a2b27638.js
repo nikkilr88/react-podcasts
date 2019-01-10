@@ -36451,10 +36451,11 @@ function (_Component) {
     value: function render() {
       var _this$props = this.props,
           title = _this$props.title,
-          date = _this$props.date;
+          date = _this$props.date,
+          theme = _this$props.theme;
       var isPlaying = this.props.title == this.props.nowPlaying;
       return _react.default.createElement("div", {
-        className: "infoBox"
+        className: "infoBox ".concat(theme)
       }, _react.default.createElement("div", {
         className: "text"
       }, _react.default.createElement("p", {
@@ -36528,12 +36529,13 @@ function (_Component) {
     value: function render() {
       var _this$props = this.props,
           position = _this$props.position,
-          duration = _this$props.duration;
+          duration = _this$props.duration,
+          theme = _this$props.theme;
       var styles = {
         width: position * 100 / duration + '%'
       };
       return _react.default.createElement("div", {
-        className: "progress-wrapper"
+        className: "progress-wrapper ".concat(theme)
       }, _react.default.createElement("div", {
         style: styles,
         className: "progress-bar"
@@ -36612,14 +36614,17 @@ function (_Component) {
           position = _this$props.position,
           duration = _this$props.duration,
           audio = _this$props.audio,
-          time = _this$props.time;
+          time = _this$props.time,
+          theme = _this$props.theme;
       return _react.default.createElement("div", {
-        id: "player"
+        id: "player",
+        className: theme
       }, _react.default.createElement("div", {
         className: "title"
       }, audio.title.length > 50 ? audio.title.substring(0, 50) + '...' : audio.title), _react.default.createElement(_ProgressBar.default, {
         position: position,
-        duration: duration
+        duration: duration,
+        theme: theme
       }), _react.default.createElement("div", {
         className: "control-btns"
       }, _react.default.createElement("span", {
@@ -36968,6 +36973,16 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/css/themes/light.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/css/themes/dark.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
 },{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/App.js":[function(require,module,exports) {
 "use strict";
 
@@ -36995,6 +37010,10 @@ var _Sidebar = _interopRequireDefault(require("./Sidebar"));
 var _utils = require("../utils");
 
 require("../css/ChannelInfo.css");
+
+require("../css/themes/light.css");
+
+require("../css/themes/dark.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37048,7 +37067,8 @@ function (_Component) {
       },
       position: 0,
       duration: 0,
-      playingStatus: _reactSound.default.status.PLAYING // Update state with track information
+      playingStatus: _reactSound.default.status.PLAYING,
+      theme: 'light' // Update state with track information
 
     }, _this.setAudio = function (audio, title) {
       _this.setState(function () {
@@ -37139,7 +37159,7 @@ function (_Component) {
         };
       });
 
-      return fetch("https://xmlparse.glitch.me/?url=".concat(url)).then(function (res) {
+      fetch("https://xmlparse.glitch.me/?url=".concat(url)).then(function (res) {
         return res.json();
       }).then(function (data) {
         _this.setState(function () {
@@ -37183,7 +37203,8 @@ function (_Component) {
           nowPlaying: _this2.state.track.title,
           audio: e.enclosure._attributes.url,
           setAudio: _this2.setAudio,
-          resetButtons: _this2.resetButtons
+          resetButtons: _this2.resetButtons,
+          theme: _this2.state.theme
         });
       });
       return _react.default.createElement(_react.Fragment, null, _react.default.createElement(_Sidebar.default, {
@@ -37191,17 +37212,17 @@ function (_Component) {
       }), this.state.isLoading ? _react.default.createElement(_Loader.default, null) : _react.default.createElement(_react.Fragment, null, _react.default.createElement(_Header.default, {
         img: this.state.img
       }), _react.default.createElement("div", {
-        className: "items"
+        className: "items ".concat(this.state.theme)
       }, _react.default.createElement("div", {
-        className: "channel-info"
+        className: "channel-info ".concat(this.state.theme)
       }, _react.default.createElement("img", {
-        className: "channel-img",
+        className: "channel-img ".concat(this.state.theme),
         src: this.state.img,
         alt: "podcast image"
       }), _react.default.createElement("h1", {
         className: "title"
       }, this.state.title), _react.default.createElement("p", null, this.state.description || 'No Description Available :(')), _react.default.createElement("h1", {
-        className: "episodes"
+        className: "episodes ".concat(this.state.theme)
       }, "Episodes"), episodeList)), this.state.track.src && _react.default.createElement(_react.Fragment, null, _react.default.createElement(_SoundWrapper.default, {
         url: this.state.track.src,
         playStatus: this.state.playingStatus,
@@ -37217,7 +37238,8 @@ function (_Component) {
         audio: this.state.track,
         time: (0, _utils.convertSeconds)(this.state.position / 1000),
         position: this.state.position,
-        duration: this.state.duration
+        duration: this.state.duration,
+        theme: this.state.theme
       })));
     }
   }]);
@@ -37227,7 +37249,7 @@ function (_Component) {
 
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./SoundWrapper":"src/components/SoundWrapper.js","react-sound":"node_modules/react-sound/lib/index.js","./PodcastListElement":"src/components/PodcastListElement.js","./Controls":"src/components/Controls.js","./Header":"src/components/Header.js","./Loader":"src/components/Loader.js","./Sidebar":"src/components/Sidebar.js","../utils":"src/utils/index.js","../css/ChannelInfo.css":"src/css/ChannelInfo.css"}],"src/css/styles.css":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./SoundWrapper":"src/components/SoundWrapper.js","react-sound":"node_modules/react-sound/lib/index.js","./PodcastListElement":"src/components/PodcastListElement.js","./Controls":"src/components/Controls.js","./Header":"src/components/Header.js","./Loader":"src/components/Loader.js","./Sidebar":"src/components/Sidebar.js","../utils":"src/utils/index.js","../css/ChannelInfo.css":"src/css/ChannelInfo.css","../css/themes/light.css":"src/css/themes/light.css","../css/themes/dark.css":"src/css/themes/dark.css"}],"src/css/styles.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -37273,7 +37295,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54324" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50705" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
