@@ -1,7 +1,8 @@
 /* PODCAST LIST */
 .items {
-  margin: 150px 0 175px 75px;
+  margin: 150px 0 0 75px;
   position: relative;
+  padding-bottom: 175px;
 }
 
 .infoBox {
