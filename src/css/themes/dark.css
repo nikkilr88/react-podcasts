@@ -54,3 +54,7 @@
 .progress-wrapper.dark {
   background: #444;
 }
+
+.loader-bg.dark {
+  background: #333;
+}

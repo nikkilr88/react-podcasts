@@ -61,3 +61,7 @@
 .progress-wrapper.light {
   background: #ccc;
 }
+
+.loader-bg.light {
+  background: whitesmoke;
+}
