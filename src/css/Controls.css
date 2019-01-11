@@ -1,15 +1,14 @@
 /* PLAYER CONTROLS */
 #player {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin-left: 75px;
+  bottom: 5px;
+  right: 5px;
+  left: 80px;
   display: flex;
-  flex-direction: column;
-  padding: 15px;
+  flex-direction: row;
+  padding: 20px 15px 15px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 #player div {
@@ -33,7 +32,6 @@
 }
 
 .time {
-  font-weight: bold;
   margin: 0 25px;
   font-size: 1rem;
 }
