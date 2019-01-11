@@ -1,10 +1,9 @@
 .progress-wrapper {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 5px;
-  border-radius: 10px;
-  max-width: 500px;
-  width: 75%;
-  margin: 25px 0;
+  width: 100%;
 }
 
 .progress-bar {
@@ -13,6 +12,5 @@
   left: 0;
   height: 100%;
   width: 0%;
-  border-radius: 10px;
   background: linear-gradient(to right, #2980b9, #8e44ad, #e84393);
 }
