@@ -24,7 +24,7 @@ class App extends Component {
     position: 0,
     duration: 0,
     playingStatus: Sound.status.PLAYING,
-    theme: 'light'
+    theme: 'dark'
   }
 
   // Update state with track information
@@ -41,6 +41,7 @@ class App extends Component {
 
   // Pause audio
   pauseAudio = () => {
+    if (this.state.position == 0) return
     this.setState(() => ({
       playingStatus:
         this.state.playingStatus == Sound.status.PLAYING
@@ -60,6 +61,7 @@ class App extends Component {
 
   // Fastforward track 10 seconds
   fastforward = () => {
+    if (this.state.position == 0) return
     this.setState(prevState => ({
       position: (prevState.position += 1000 * 10)
     }))
@@ -67,6 +69,7 @@ class App extends Component {
 
   // Rewind track 5 seconds
   rewind = () => {
+    if (this.state.position == 0) return
     this.setState(prevState => ({
       position: (prevState.position -= 1000 * 5)
     }))
@@ -81,6 +84,17 @@ class App extends Component {
     }))
   }
 
+  handleOnFinishedPlaying = () => {
+    this.setState(() => ({
+      position: 0,
+      playingStatus: Sound.status.PAUSED
+    }))
+  }
+
+  handleOnError = err => {
+    console.log(err)
+  }
+
   // Reset play button styles
   resetButtons = e => {
     const btns = document.querySelectorAll('.btn')
@@ -93,8 +107,15 @@ class App extends Component {
     e.target.innerHTML = '<i class="material-icons">volume_up</i>'
   }
 
-  handleOnError = err => {
-    console.log(err)
+  keyboardShortcuts = e => {
+    if (e.which == 32) {
+      this.pauseAudio()
+      return false
+    } else if (e.which == 39) {
+      this.fastforward()
+    } else if (e.which == 37) {
+      this.rewind()
+    }
   }
 
   // Fetch podcast data and set state
@@ -118,6 +139,21 @@ class App extends Component {
   // Fetch podcast data on mount
   componentDidMount() {
     this.fetchData('https://feed.syntax.fm/rss')
+
+    // Keyboard controls
+    document.addEventListener('keyup', this.keyboardShortcuts, false)
+
+    // Prevent spacebar scrolling
+    document.addEventListener('keydown', e => {
+      if (e.which == 32) {
+        e.preventDefault()
+        return false
+      }
+    })
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keyup', this.keyboardShortcuts, false)
   }
 
   render() {
@@ -140,7 +176,7 @@ class App extends Component {
       <Fragment>
         <Sidebar fetchData={this.fetchData} />
         {this.state.isLoading ? (
-          <Loader />
+          <Loader theme={this.state.theme} />
         ) : (
           <Fragment>
             <Header img={this.state.img} />
@@ -168,6 +204,7 @@ class App extends Component {
               playFromPosition={this.state.position}
               onPlaying={this.handleOnPlaying}
               onError={this.handleOnError}
+              onFinishedPlaying={this.handleOnFinishedPlaying}
             />
             <Controls
               playingStatus={this.state.playingStatus}
