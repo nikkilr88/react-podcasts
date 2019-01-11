@@ -1,7 +1,8 @@
 /* PODCAST LIST */
 .items {
-  margin: 150px 0 175px 75px;
+  margin: 150px 0 0 75px;
   position: relative;
+  padding-bottom: 175px;
 }
 
 .infoBox {
@@ -193,6 +194,7 @@ header {
   -webkit-transform: translate(-50%, -50%);
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+  z-index: 999;
 }
 
 .loader {
@@ -205,6 +207,14 @@ header {
   border-left: 4px solid transparent;
   -webkit-animation: rotate 2s infinite;
           animation: rotate 2s infinite;
+}
+
+.loader-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 @-webkit-keyframes rotate {
@@ -401,6 +411,10 @@ header {
 .progress-wrapper.light {
   background: #ccc;
 }
+
+.loader-bg.light {
+  background: whitesmoke;
+}
 .channel-info.dark {
   background: #444;
   color: #ccc;
@@ -457,6 +471,10 @@ header {
 
 .progress-wrapper.dark {
   background: #444;
+}
+
+.loader-bg.dark {
+  background: #333;
 }
 body {
   font-family: sans-serif;

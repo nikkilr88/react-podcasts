@@ -31788,7 +31788,8 @@ function (_Component) {
         playStatus: this.props.playStatus,
         playFromPosition: this.props.playFromPosition,
         onPlaying: this.props.onPlaying,
-        onError: this.props.onError
+        onError: this.props.onError,
+        onFinishedPlaying: this.props.onFinishedPlaying
       });
     }
   }]);
@@ -36771,17 +36772,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 require("../css/Loader.css");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
-var Loader = function Loader() {
-  return _react.default.createElement("div", {
+var Loader = function Loader(props) {
+  return _react.default.createElement(_react.Fragment, null, _react.default.createElement("div", {
     className: "loader-wrapper"
   }, _react.default.createElement("div", {
     className: "loader"
+  })), _react.default.createElement("div", {
+    className: "loader-bg ".concat(props.theme)
   }));
 };
 
@@ -37068,7 +37071,7 @@ function (_Component) {
       position: 0,
       duration: 0,
       playingStatus: _reactSound.default.status.PLAYING,
-      theme: 'light' // Update state with track information
+      theme: 'dark' // Update state with track information
 
     }, _this.setAudio = function (audio, title) {
       _this.setState(function () {
@@ -37082,6 +37085,8 @@ function (_Component) {
         };
       });
     }, _this.pauseAudio = function () {
+      if (_this.state.position == 0) return;
+
       _this.setState(function () {
         return {
           playingStatus: _this.state.playingStatus == _reactSound.default.status.PLAYING ? _reactSound.default.status.PAUSED : _reactSound.default.status.PLAYING
@@ -37100,12 +37105,16 @@ function (_Component) {
 
       _this.resetButtons();
     }, _this.fastforward = function () {
+      if (_this.state.position == 0) return;
+
       _this.setState(function (prevState) {
         return {
           position: prevState.position += 1000 * 10
         };
       });
     }, _this.rewind = function () {
+      if (_this.state.position == 0) return;
+
       _this.setState(function (prevState) {
         return {
           position: prevState.position -= 1000 * 5
@@ -37120,6 +37129,15 @@ function (_Component) {
           duration: data.duration
         };
       });
+    }, _this.handleOnFinishedPlaying = function () {
+      _this.setState(function () {
+        return {
+          position: 0,
+          playingStatus: _reactSound.default.status.PAUSED
+        };
+      });
+    }, _this.handleOnError = function (err) {
+      console.log(err);
     }, _this.resetButtons = function (e) {
       var btns = document.querySelectorAll('.btn');
       var _iteratorNormalCompletion = true;
@@ -37150,8 +37168,16 @@ function (_Component) {
       if (!e) return;
       e.target.classList.add('selected');
       e.target.innerHTML = '<i class="material-icons">volume_up</i>';
-    }, _this.handleOnError = function (err) {
-      console.log(err);
+    }, _this.keyboardShortcuts = function (e) {
+      if (e.which == 32) {
+        _this.pauseAudio();
+
+        return false;
+      } else if (e.which == 39) {
+        _this.fastforward();
+      } else if (e.which == 37) {
+        _this.rewind();
+      }
     }, _this.fetchData = function (url) {
       _this.setState(function () {
         return {
@@ -37186,7 +37212,21 @@ function (_Component) {
     key: "componentDidMount",
     // Fetch podcast data on mount
     value: function componentDidMount() {
-      this.fetchData('https://feed.syntax.fm/rss');
+      this.fetchData('https://feed.syntax.fm/rss'); // Keyboard controls
+
+      document.addEventListener('keyup', this.keyboardShortcuts, false); // Prevent spacebar scrolling
+
+      document.addEventListener('keydown', function (e) {
+        if (e.which == 32) {
+          e.preventDefault();
+          return false;
+        }
+      });
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      document.removeEventListener('keyup', this.keyboardShortcuts, false);
     }
   }, {
     key: "render",
@@ -37209,7 +37249,9 @@ function (_Component) {
       });
       return _react.default.createElement(_react.Fragment, null, _react.default.createElement(_Sidebar.default, {
         fetchData: this.fetchData
-      }), this.state.isLoading ? _react.default.createElement(_Loader.default, null) : _react.default.createElement(_react.Fragment, null, _react.default.createElement(_Header.default, {
+      }), this.state.isLoading ? _react.default.createElement(_Loader.default, {
+        theme: this.state.theme
+      }) : _react.default.createElement(_react.Fragment, null, _react.default.createElement(_Header.default, {
         img: this.state.img
       }), _react.default.createElement("div", {
         className: "items ".concat(this.state.theme)
@@ -37228,7 +37270,8 @@ function (_Component) {
         playStatus: this.state.playingStatus,
         playFromPosition: this.state.position,
         onPlaying: this.handleOnPlaying,
-        onError: this.handleOnError
+        onError: this.handleOnError,
+        onFinishedPlaying: this.handleOnFinishedPlaying
       }), _react.default.createElement(_Controls.default, {
         playingStatus: this.state.playingStatus,
         pauseAudio: this.pauseAudio,
@@ -37295,7 +37338,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50705" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62195" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
