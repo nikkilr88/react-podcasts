@@ -59,12 +59,11 @@
   pointer-events: none;
 }
 .progress-wrapper {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 5px;
-  border-radius: 10px;
-  max-width: 500px;
-  width: 75%;
-  margin: 25px 0;
+  width: 100%;
 }
 
 .progress-bar {
@@ -73,7 +72,6 @@
   left: 0;
   height: 100%;
   width: 0%;
-  border-radius: 10px;
   background: -webkit-gradient(linear, left top, right top, from(#2980b9), color-stop(#8e44ad), to(#e84393));
   background: -webkit-linear-gradient(left, #2980b9, #8e44ad, #e84393);
   background: -o-linear-gradient(left, #2980b9, #8e44ad, #e84393);
@@ -82,24 +80,23 @@
 /* PLAYER CONTROLS */
 #player {
   position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin-left: 75px;
+  bottom: 5px;
+  right: 5px;
+  left: 80px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  padding: 15px;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 20px 15px 15px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 #player div {
@@ -127,7 +124,6 @@
 }
 
 .time {
-  font-weight: bold;
   margin: 0 25px;
   font-size: 1rem;
 }
@@ -396,12 +392,11 @@ header {
   color: #fcfcfc;
 }
 
-#player.dark {
-  color: #ccc;
-  border-top: 1px solid #444;
-  background: #333;
-  -webkit-box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-          box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+#player.light {
+  color: #333;
+  background: #e9e9e9e9;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 #player.light button {
@@ -459,10 +454,9 @@ header {
 
 #player.dark {
   color: #ccc;
-  border-top: 1px solid #444;
-  background: #333;
-  -webkit-box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-          box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+  /* border-top: 1px solid #444; */
+  background: #2b2b2b;
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); */
 }
 
 #player.dark button {
