@@ -36455,13 +36455,16 @@ function (_Component) {
           date = _this$props.date,
           theme = _this$props.theme;
       var isPlaying = this.props.title == this.props.nowPlaying;
+      var now = (0, _moment.default)();
+      var releaseDate = (0, _moment.default)(date);
+      var formattedDate = now.diff(releaseDate, 'days') > 10 ? (0, _moment.default)(date).format('LL') : (0, _moment.default)(date).fromNow();
       return _react.default.createElement("div", {
         className: "infoBox ".concat(theme)
       }, _react.default.createElement("div", {
         className: "text"
       }, _react.default.createElement("p", {
         className: "date"
-      }, (0, _moment.default)(date).format('LL')), _react.default.createElement("h3", null, title.length > 50 ? title.substring(0, 50) + '...' : title)), _react.default.createElement("button", {
+      }, formattedDate), _react.default.createElement("h3", null, title.length > 50 ? title.substring(0, 50) + '...' : title)), _react.default.createElement("button", {
         className: isPlaying ? 'btn selected' : 'btn',
         onClick: this.handleOnClick
       }, isPlaying ? _react.default.createElement("i", {
@@ -36869,9 +36872,9 @@ function (_Component) {
         link: 'http://freecodecamp.libsyn.com/rss',
         img: 'http://static.libsyn.com/p/assets/2/f/f/7/2ff7cc8aa33fe438/freecodecamp-square-logo-large-1400.jpg'
       }, {
-        name: 'Developer Tea',
-        link: 'https://rss.simplecast.com/podcasts/363/rss',
-        img: 'https://media.simplecast.com/podcast/image/363/1471485029-artwork.jpg'
+        name: 'Full Stack Radio',
+        link: 'https://rss.simplecast.com/podcasts/279/rss',
+        img: 'https://media.simplecast.com/podcast/image/279/1413649662-artwork.jpg'
       }, {
         name: 'La Vie En Code',
         link: 'http://lavieencode.libsyn.com/rss',
@@ -37338,7 +37341,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49371" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58934" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
