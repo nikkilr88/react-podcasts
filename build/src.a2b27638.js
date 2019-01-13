@@ -36453,18 +36453,21 @@ function (_Component) {
       var _this$props = this.props,
           title = _this$props.title,
           date = _this$props.date,
+          duration = _this$props.duration,
           theme = _this$props.theme;
       var isPlaying = this.props.title == this.props.nowPlaying;
       var now = (0, _moment.default)();
       var releaseDate = (0, _moment.default)(date);
       var formattedDate = now.diff(releaseDate, 'days') > 10 ? (0, _moment.default)(date).format('LL') : (0, _moment.default)(date).fromNow();
+      var formattedDuration = duration.length < 8 ? '00:' + duration : duration;
+      var minutesLong = Math.round(_moment.default.duration(formattedDuration).asMinutes());
       return _react.default.createElement("div", {
         className: "infoBox ".concat(theme)
       }, _react.default.createElement("div", {
         className: "text"
       }, _react.default.createElement("p", {
         className: "date"
-      }, formattedDate), _react.default.createElement("h3", null, title.length > 50 ? title.substring(0, 50) + '...' : title)), _react.default.createElement("button", {
+      }, formattedDate, " \uD83D\uDF84 ", minutesLong, " mins"), _react.default.createElement("h3", null, title.length > 50 ? title.substring(0, 50) + '...' : title)), _react.default.createElement("button", {
         className: isPlaying ? 'btn selected' : 'btn',
         onClick: this.handleOnClick
       }, isPlaying ? _react.default.createElement("i", {
@@ -37247,7 +37250,8 @@ function (_Component) {
           audio: e.enclosure._attributes.url,
           setAudio: _this2.setAudio,
           resetButtons: _this2.resetButtons,
-          theme: _this2.state.theme
+          theme: _this2.state.theme,
+          duration: e['itunes:duration']._text
         });
       });
       return _react.default.createElement(_react.Fragment, null, _react.default.createElement(_Sidebar.default, {
@@ -37341,7 +37345,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58934" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51812" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
