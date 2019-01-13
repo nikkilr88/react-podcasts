@@ -169,6 +169,7 @@ class App extends Component {
           setAudio={this.setAudio}
           resetButtons={this.resetButtons}
           theme={this.state.theme}
+          duration={e['itunes:duration']._text}
         />
       ))
 
