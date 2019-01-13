@@ -18,10 +18,10 @@ class Sidebar extends Component {
           'http://static.libsyn.com/p/assets/2/f/f/7/2ff7cc8aa33fe438/freecodecamp-square-logo-large-1400.jpg'
       },
       {
-        name: 'Developer Tea',
-        link: 'https://rss.simplecast.com/podcasts/363/rss',
+        name: 'Full Stack Radio',
+        link: 'https://rss.simplecast.com/podcasts/279/rss',
         img:
-          'https://media.simplecast.com/podcast/image/363/1471485029-artwork.jpg'
+          'https://media.simplecast.com/podcast/image/279/1413649662-artwork.jpg'
       },
       {
         name: 'La Vie En Code',
