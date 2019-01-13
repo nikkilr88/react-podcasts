@@ -13,10 +13,18 @@ class PodcastListElement extends Component {
     const { title, date, theme } = this.props
     const isPlaying = this.props.title == this.props.nowPlaying
 
+    const now = moment()
+    const releaseDate = moment(date)
+
+    const formattedDate =
+      now.diff(releaseDate, 'days') > 10
+        ? moment(date).format('LL')
+        : moment(date).fromNow()
+
     return (
       <div className={`infoBox ${theme}`}>
         <div className="text">
-          <p className="date">{moment(date).format('LL')}</p>
+          <p className="date">{formattedDate}</p>
           <h3>{title.length > 50 ? title.substring(0, 50) + '...' : title}</h3>
         </div>
         <button
