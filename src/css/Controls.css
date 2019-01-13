@@ -2,8 +2,8 @@
 #player {
   position: fixed;
   bottom: 5px;
-  right: 5px;
-  left: 80px;
+  right: 10px;
+  left: 85px;
   display: flex;
   flex-direction: row;
   padding: 20px 15px 15px;
