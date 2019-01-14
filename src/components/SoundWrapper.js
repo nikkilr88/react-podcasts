@@ -12,14 +12,25 @@ class SoundWrapper extends Component {
     return false
   }
   render() {
+    const {
+      url,
+      volume,
+      playStatus,
+      playFromPosition,
+      onPlaying,
+      onError,
+      onFinishedPlaying
+    } = this.props
+
     return (
       <Sound
-        url={this.props.url}
-        playStatus={this.props.playStatus}
-        playFromPosition={this.props.playFromPosition}
-        onPlaying={this.props.onPlaying}
-        onError={this.props.onError}
-        onFinishedPlaying={this.props.onFinishedPlaying}
+        url={url}
+        volume={volume}
+        playStatus={playStatus}
+        playFromPosition={playFromPosition}
+        onPlaying={onPlaying}
+        onError={onError}
+        onFinishedPlaying={onFinishedPlaying}
       />
     )
   }
