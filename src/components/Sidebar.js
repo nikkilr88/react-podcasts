@@ -70,7 +70,7 @@ class Sidebar extends Component {
     })
 
     return (
-      <ul className="sidebar">
+      <ul className={`sidebar ${this.props.theme}`}>
         <li className="sidebar-top">
           <img src={Logo} alt="dev casts logo" />
         </li>
