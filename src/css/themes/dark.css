@@ -1,3 +1,7 @@
+.sidebar.dark {
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
 .channel-info.dark {
   background: #444;
   color: #ccc;
@@ -42,9 +46,8 @@
 
 #player.dark {
   color: #ccc;
-  /* border-top: 1px solid #444; */
-  background: #2b2b2b;
-  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); */
+  background: #222;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 #player.dark button {

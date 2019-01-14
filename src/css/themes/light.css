@@ -1,3 +1,7 @@
+.sidebar.light .sidebar-top {
+  background: #2b2b2b;
+}
+
 .channel-info.light {
   background: #e9e9e9;
   color: #555;
@@ -5,13 +9,6 @@
 
 .channel-img.light {
   border: 3px solid #e9e9e9;
-}
-
-#player.light {
-  color: #444;
-  border-top: 1px solid #ccc;
-  background: whitesmoke;
-  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .infoBox.light:hover {
@@ -49,8 +46,8 @@
 
 #player.light {
   color: #333;
-  background: #e9e9e9e9;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  background: #e9e9e9;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 #player.light button {
@@ -63,4 +60,8 @@
 
 .loader-bg.light {
   background: whitesmoke;
+}
+
+.volume-wrapper.light {
+  background: #666;
 }
