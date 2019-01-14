@@ -31783,13 +31783,22 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this$props = this.props,
+          url = _this$props.url,
+          volume = _this$props.volume,
+          playStatus = _this$props.playStatus,
+          playFromPosition = _this$props.playFromPosition,
+          onPlaying = _this$props.onPlaying,
+          onError = _this$props.onError,
+          onFinishedPlaying = _this$props.onFinishedPlaying;
       return _react.default.createElement(_reactSound.default, {
-        url: this.props.url,
-        playStatus: this.props.playStatus,
-        playFromPosition: this.props.playFromPosition,
-        onPlaying: this.props.onPlaying,
-        onError: this.props.onError,
-        onFinishedPlaying: this.props.onFinishedPlaying
+        url: url,
+        volume: volume,
+        playStatus: playStatus,
+        playFromPosition: playFromPosition,
+        onPlaying: onPlaying,
+        onError: onError,
+        onFinishedPlaying: onFinishedPlaying
       });
     }
   }]);
@@ -36458,7 +36467,7 @@ function (_Component) {
       var isPlaying = this.props.title == this.props.nowPlaying;
       var now = (0, _moment.default)();
       var releaseDate = (0, _moment.default)(date);
-      var formattedDate = now.diff(releaseDate, 'days') > 10 ? (0, _moment.default)(date).format('LL') : (0, _moment.default)(date).fromNow();
+      var formattedDate = now.diff(releaseDate, 'days') > 14 ? (0, _moment.default)(date).format('LL') : (0, _moment.default)(date).fromNow();
       var formattedDuration = duration.length < 8 ? '00:' + duration : duration;
       var minutesLong = Math.round(_moment.default.duration(formattedDuration).asMinutes());
       return _react.default.createElement("div", {
@@ -36958,7 +36967,77 @@ function (_Component) {
 
 var _default = Sidebar;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../images/devcasts-logo-slant.png":"src/images/devcasts-logo-slant.png","../css/Sidebar.css":"src/css/Sidebar.css"}],"src/utils/index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../images/devcasts-logo-slant.png":"src/images/devcasts-logo-slant.png","../css/Sidebar.css":"src/css/Sidebar.css"}],"src/css/Volume.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/Volume.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+require("../css/Volume.css");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Volume =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Volume, _Component);
+
+  function Volume() {
+    _classCallCheck(this, Volume);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Volume).apply(this, arguments));
+  }
+
+  _createClass(Volume, [{
+    key: "render",
+    value: function render() {
+      var styles = {
+        width: this.props.volume + '%'
+      };
+      return _react.default.createElement("div", {
+        className: "volume-container"
+      }, _react.default.createElement("h3", null, "Volume"), _react.default.createElement("div", {
+        className: "volume-wrapper"
+      }, _react.default.createElement("div", {
+        style: styles,
+        className: "volume-bar"
+      })));
+    }
+  }]);
+
+  return Volume;
+}(_react.Component);
+
+var _default = Volume;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../css/Volume.css":"src/css/Volume.css"}],"src/utils/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -37015,6 +37094,8 @@ var _Header = _interopRequireDefault(require("./Header"));
 var _Loader = _interopRequireDefault(require("./Loader"));
 
 var _Sidebar = _interopRequireDefault(require("./Sidebar"));
+
+var _Volume = _interopRequireDefault(require("./Volume"));
 
 var _utils = require("../utils");
 
@@ -37077,7 +37158,10 @@ function (_Component) {
       position: 0,
       duration: 0,
       playingStatus: _reactSound.default.status.PLAYING,
-      theme: 'dark' // Update state with track information
+      volume: 75,
+      showVolume: false,
+      theme: 'dark' // light or dark
+      // Update state with track information
 
     }, _this.setAudio = function (audio, title) {
       _this.setState(function () {
@@ -37138,12 +37222,62 @@ function (_Component) {
     }, _this.handleOnFinishedPlaying = function () {
       _this.setState(function () {
         return {
-          position: 0,
+          position: 1,
           playingStatus: _reactSound.default.status.PAUSED
         };
       });
     }, _this.handleOnError = function (err) {
       console.log(err);
+    }, _this.hideVolume = function () {
+      if (_this.timeout) {
+        clearInterval(_this.timeout);
+      }
+
+      _this.timeout = setTimeout(function () {
+        _this.setState(function () {
+          return {
+            showVolume: false
+          };
+        });
+      }, 2000);
+    }, _this.setVolume = function (e) {
+      if (!_this.state.track.src) return;
+      var val = e.which == 38 ? 5 : -5;
+      if (_this.state.volume + val < 0 || _this.state.volume + val > 100) return;
+
+      _this.setState(function (prevState) {
+        return {
+          volume: prevState.volume + val,
+          showVolume: true
+        };
+      });
+
+      _this.hideVolume();
+    }, _this.keyboardShortcuts = function (e) {
+      if (e.which == 32) {
+        _this.pauseAudio();
+
+        return false;
+      } else if (e.which == 39) {
+        _this.fastforward();
+      } else if (e.which == 37) {
+        _this.rewind();
+      }
+    }, _this.handleOnKeyUp = function (e) {
+      switch (e.which) {
+        case 32:
+        case 39:
+        case 37:
+          _this.keyboardShortcuts(e);
+
+          break;
+
+        case 38:
+        case 40:
+          _this.setVolume(e);
+
+          break;
+      }
     }, _this.resetButtons = function (e) {
       var btns = document.querySelectorAll('.btn');
       var _iteratorNormalCompletion = true;
@@ -37174,16 +37308,6 @@ function (_Component) {
       if (!e) return;
       e.target.classList.add('selected');
       e.target.innerHTML = '<i class="material-icons">volume_up</i>';
-    }, _this.keyboardShortcuts = function (e) {
-      if (e.which == 32) {
-        _this.pauseAudio();
-
-        return false;
-      } else if (e.which == 39) {
-        _this.fastforward();
-      } else if (e.which == 37) {
-        _this.rewind();
-      }
     }, _this.fetchData = function (url) {
       _this.setState(function () {
         return {
@@ -37210,6 +37334,9 @@ function (_Component) {
   // Fastforward track 10 seconds
   // Rewind track 5 seconds
   // Handle track playback
+  // Set volume
+  // Pause, skip forward / back
+  // Keyup keyboard shortcuts
   // Reset play button styles
   // Fetch podcast data and set state
 
@@ -37218,12 +37345,16 @@ function (_Component) {
     key: "componentDidMount",
     // Fetch podcast data on mount
     value: function componentDidMount() {
+      var _this2 = this;
+
       this.fetchData('https://feed.syntax.fm/rss'); // Keyboard controls
 
-      document.addEventListener('keyup', this.keyboardShortcuts, false); // Prevent spacebar scrolling
+      document.addEventListener('keyup', this.handleOnKeyUp, false); // Prevent spacebar scrolling
 
       document.addEventListener('keydown', function (e) {
-        if (e.which == 32) {
+        if (_this2.state.track.src.length < 1) return;
+
+        if (e.which == 32 || e.which == 38 || e.which == 40) {
           e.preventDefault();
           return false;
         }
@@ -37232,12 +37363,12 @@ function (_Component) {
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      document.removeEventListener('keyup', this.keyboardShortcuts, false);
+      document.removeEventListener('keyup', this.handleOnKeyUp, false);
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var episodeList = this.state.episodes.filter(function (e) {
         return e.hasOwnProperty('enclosure');
@@ -37246,11 +37377,11 @@ function (_Component) {
           key: i,
           date: e.pubDate._text,
           title: e.title._text,
-          nowPlaying: _this2.state.track.title,
+          nowPlaying: _this3.state.track.title,
           audio: e.enclosure._attributes.url,
-          setAudio: _this2.setAudio,
-          resetButtons: _this2.resetButtons,
-          theme: _this2.state.theme,
+          setAudio: _this3.setAudio,
+          resetButtons: _this3.resetButtons,
+          theme: _this3.state.theme,
           duration: e['itunes:duration']._text
         });
       });
@@ -37258,7 +37389,9 @@ function (_Component) {
         fetchData: this.fetchData
       }), this.state.isLoading ? _react.default.createElement(_Loader.default, {
         theme: this.state.theme
-      }) : _react.default.createElement(_react.Fragment, null, _react.default.createElement(_Header.default, {
+      }) : _react.default.createElement(_react.Fragment, null, this.state.showVolume && _react.default.createElement(_Volume.default, {
+        volume: this.state.volume
+      }), _react.default.createElement(_Header.default, {
         img: this.state.img
       }), _react.default.createElement("div", {
         className: "items ".concat(this.state.theme)
@@ -37274,6 +37407,7 @@ function (_Component) {
         className: "episodes ".concat(this.state.theme)
       }, "Episodes"), episodeList)), this.state.track.src && _react.default.createElement(_react.Fragment, null, _react.default.createElement(_SoundWrapper.default, {
         url: this.state.track.src,
+        volume: this.state.volume,
         playStatus: this.state.playingStatus,
         playFromPosition: this.state.position,
         onPlaying: this.handleOnPlaying,
@@ -37289,6 +37423,7 @@ function (_Component) {
         time: (0, _utils.convertSeconds)(this.state.position / 1000),
         position: this.state.position,
         duration: this.state.duration,
+        volume: this.state.volume,
         theme: this.state.theme
       })));
     }
@@ -37299,7 +37434,7 @@ function (_Component) {
 
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./SoundWrapper":"src/components/SoundWrapper.js","react-sound":"node_modules/react-sound/lib/index.js","./PodcastListElement":"src/components/PodcastListElement.js","./Controls":"src/components/Controls.js","./Header":"src/components/Header.js","./Loader":"src/components/Loader.js","./Sidebar":"src/components/Sidebar.js","../utils":"src/utils/index.js","../css/ChannelInfo.css":"src/css/ChannelInfo.css","../css/themes/light.css":"src/css/themes/light.css","../css/themes/dark.css":"src/css/themes/dark.css"}],"src/css/styles.css":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./SoundWrapper":"src/components/SoundWrapper.js","react-sound":"node_modules/react-sound/lib/index.js","./PodcastListElement":"src/components/PodcastListElement.js","./Controls":"src/components/Controls.js","./Header":"src/components/Header.js","./Loader":"src/components/Loader.js","./Sidebar":"src/components/Sidebar.js","./Volume":"src/components/Volume.js","../utils":"src/utils/index.js","../css/ChannelInfo.css":"src/css/ChannelInfo.css","../css/themes/light.css":"src/css/themes/light.css","../css/themes/dark.css":"src/css/themes/dark.css"}],"src/css/styles.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -37345,7 +37480,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51812" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49645" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
