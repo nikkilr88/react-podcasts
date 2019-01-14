@@ -36471,7 +36471,8 @@ function (_Component) {
       var formattedDuration = duration.length < 8 ? '00:' + duration : duration;
       var minutesLong = Math.round(_moment.default.duration(formattedDuration).asMinutes());
       return _react.default.createElement("div", {
-        className: "infoBox ".concat(theme)
+        className: "infoBox ".concat(theme),
+        title: title
       }, _react.default.createElement("div", {
         className: "text"
       }, _react.default.createElement("p", {
@@ -36952,7 +36953,7 @@ function (_Component) {
         }));
       });
       return _react.default.createElement("ul", {
-        className: "sidebar"
+        className: "sidebar ".concat(this.props.theme)
       }, _react.default.createElement("li", {
         className: "sidebar-top"
       }, _react.default.createElement("img", {
@@ -37024,7 +37025,7 @@ function (_Component) {
       return _react.default.createElement("div", {
         className: "volume-container"
       }, _react.default.createElement("h3", null, "Volume"), _react.default.createElement("div", {
-        className: "volume-wrapper"
+        className: "volume-wrapper ".concat(this.props.theme)
       }, _react.default.createElement("div", {
         style: styles,
         className: "volume-bar"
@@ -37160,7 +37161,7 @@ function (_Component) {
       playingStatus: _reactSound.default.status.PLAYING,
       volume: 75,
       showVolume: false,
-      theme: 'dark' // light or dark
+      theme: 'light' // light or dark
       // Update state with track information
 
     }, _this.setAudio = function (audio, title) {
@@ -37239,7 +37240,7 @@ function (_Component) {
             showVolume: false
           };
         });
-      }, 2000);
+      }, 1000);
     }, _this.setVolume = function (e) {
       if (!_this.state.track.src) return;
       var val = e.which == 38 ? 5 : -5;
@@ -37386,11 +37387,13 @@ function (_Component) {
         });
       });
       return _react.default.createElement(_react.Fragment, null, _react.default.createElement(_Sidebar.default, {
-        fetchData: this.fetchData
+        fetchData: this.fetchData,
+        theme: this.state.theme
       }), this.state.isLoading ? _react.default.createElement(_Loader.default, {
         theme: this.state.theme
       }) : _react.default.createElement(_react.Fragment, null, this.state.showVolume && _react.default.createElement(_Volume.default, {
-        volume: this.state.volume
+        volume: this.state.volume,
+        theme: this.state.theme
       }), _react.default.createElement(_Header.default, {
         img: this.state.img
       }), _react.default.createElement("div", {
@@ -37480,7 +37483,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49645" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63677" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
