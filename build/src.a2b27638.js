@@ -37161,7 +37161,7 @@ function (_Component) {
       playingStatus: _reactSound.default.status.PLAYING,
       volume: 75,
       showVolume: false,
-      theme: 'light' // light or dark
+      theme: 'dark' // light or dark
       // Update state with track information
 
     }, _this.setAudio = function (audio, title) {
@@ -37178,9 +37178,9 @@ function (_Component) {
     }, _this.pauseAudio = function () {
       if (_this.state.position == 0) return;
 
-      _this.setState(function () {
+      _this.setState(function (prevState) {
         return {
-          playingStatus: _this.state.playingStatus == _reactSound.default.status.PLAYING ? _reactSound.default.status.PAUSED : _reactSound.default.status.PLAYING
+          playingStatus: prevState.playingStatus == _reactSound.default.status.PLAYING ? _reactSound.default.status.PAUSED : _reactSound.default.status.PLAYING
         };
       });
     }, _this.stopAudio = function () {
@@ -37200,7 +37200,7 @@ function (_Component) {
 
       _this.setState(function (prevState) {
         return {
-          position: prevState.position += 1000 * 10
+          position: prevState.position + 1000 * 10
         };
       });
     }, _this.rewind = function () {
@@ -37208,7 +37208,7 @@ function (_Component) {
 
       _this.setState(function (prevState) {
         return {
-          position: prevState.position -= 1000 * 5
+          position: prevState.position - 1000 * 5
         };
       });
     }, _this.handleOnPlaying = function (data) {
@@ -37255,14 +37255,21 @@ function (_Component) {
 
       _this.hideVolume();
     }, _this.keyboardShortcuts = function (e) {
-      if (e.which == 32) {
-        _this.pauseAudio();
+      switch (e.which) {
+        case 32:
+          _this.pauseAudio();
 
-        return false;
-      } else if (e.which == 39) {
-        _this.fastforward();
-      } else if (e.which == 37) {
-        _this.rewind();
+          break;
+
+        case 37:
+          _this.rewind();
+
+          break;
+
+        case 39:
+          _this.fastforward();
+
+          break;
       }
     }, _this.handleOnKeyUp = function (e) {
       switch (e.which) {
