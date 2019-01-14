@@ -6,6 +6,7 @@ import Controls from './Controls'
 import Header from './Header'
 import Loader from './Loader'
 import Sidebar from './Sidebar'
+import Volume from './Volume'
 
 import { convertSeconds } from '../utils'
 
@@ -24,7 +25,9 @@ class App extends Component {
     position: 0,
     duration: 0,
     playingStatus: Sound.status.PLAYING,
-    theme: 'dark'
+    volume: 75,
+    showVolume: false,
+    theme: 'dark' // light or dark
   }
 
   // Update state with track information
@@ -86,13 +89,65 @@ class App extends Component {
 
   handleOnFinishedPlaying = () => {
     this.setState(() => ({
-      position: 0,
+      position: 1,
       playingStatus: Sound.status.PAUSED
     }))
   }
 
   handleOnError = err => {
     console.log(err)
+  }
+
+  hideVolume = () => {
+    if (this.timeout) {
+      clearInterval(this.timeout)
+    }
+    this.timeout = setTimeout(() => {
+      this.setState(() => ({ showVolume: false }))
+    }, 2000)
+  }
+
+  // Set volume
+  setVolume = e => {
+    if (!this.state.track.src) return
+
+    const val = e.which == 38 ? 5 : -5
+
+    if (this.state.volume + val < 0 || this.state.volume + val > 100) return
+
+    this.setState(prevState => ({
+      volume: prevState.volume + val,
+      showVolume: true
+    }))
+
+    this.hideVolume()
+  }
+
+  // Pause, skip forward / back
+  keyboardShortcuts = e => {
+    if (e.which == 32) {
+      this.pauseAudio()
+      return false
+    } else if (e.which == 39) {
+      this.fastforward()
+    } else if (e.which == 37) {
+      this.rewind()
+    }
+  }
+
+  // Keyup keyboard shortcuts
+  handleOnKeyUp = e => {
+    switch (e.which) {
+      case 32:
+      case 39:
+      case 37:
+        this.keyboardShortcuts(e)
+        break
+      case 38:
+      case 40:
+        this.setVolume(e)
+        break
+    }
   }
 
   // Reset play button styles
@@ -105,17 +160,6 @@ class App extends Component {
     if (!e) return
     e.target.classList.add('selected')
     e.target.innerHTML = '<i class="material-icons">volume_up</i>'
-  }
-
-  keyboardShortcuts = e => {
-    if (e.which == 32) {
-      this.pauseAudio()
-      return false
-    } else if (e.which == 39) {
-      this.fastforward()
-    } else if (e.which == 37) {
-      this.rewind()
-    }
   }
 
   // Fetch podcast data and set state
@@ -141,11 +185,13 @@ class App extends Component {
     this.fetchData('https://feed.syntax.fm/rss')
 
     // Keyboard controls
-    document.addEventListener('keyup', this.keyboardShortcuts, false)
+    document.addEventListener('keyup', this.handleOnKeyUp, false)
 
     // Prevent spacebar scrolling
     document.addEventListener('keydown', e => {
-      if (e.which == 32) {
+      if (this.state.track.src.length < 1) return
+
+      if (e.which == 32 || e.which == 38 || e.which == 40) {
         e.preventDefault()
         return false
       }
@@ -153,7 +199,7 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keyup', this.keyboardShortcuts, false)
+    document.removeEventListener('keyup', this.handleOnKeyUp, false)
   }
 
   render() {
@@ -180,6 +226,8 @@ class App extends Component {
           <Loader theme={this.state.theme} />
         ) : (
           <Fragment>
+            {this.state.showVolume && <Volume volume={this.state.volume} />}
+
             <Header img={this.state.img} />
             <div className={`items ${this.state.theme}`}>
               <div className={`channel-info ${this.state.theme}`}>
@@ -201,6 +249,7 @@ class App extends Component {
           <Fragment>
             <SoundWrapper
               url={this.state.track.src}
+              volume={this.state.volume}
               playStatus={this.state.playingStatus}
               playFromPosition={this.state.position}
               onPlaying={this.handleOnPlaying}
@@ -217,6 +266,7 @@ class App extends Component {
               time={convertSeconds(this.state.position / 1000)}
               position={this.state.position}
               duration={this.state.duration}
+              volume={this.state.volume}
               theme={this.state.theme}
             />
           </Fragment>
