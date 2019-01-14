@@ -27,7 +27,7 @@ class App extends Component {
     playingStatus: Sound.status.PLAYING,
     volume: 75,
     showVolume: false,
-    theme: 'dark' // light or dark
+    theme: 'light' // light or dark
   }
 
   // Update state with track information
@@ -104,7 +104,7 @@ class App extends Component {
     }
     this.timeout = setTimeout(() => {
       this.setState(() => ({ showVolume: false }))
-    }, 2000)
+    }, 1000)
   }
 
   // Set volume
@@ -221,12 +221,14 @@ class App extends Component {
 
     return (
       <Fragment>
-        <Sidebar fetchData={this.fetchData} />
+        <Sidebar fetchData={this.fetchData} theme={this.state.theme} />
         {this.state.isLoading ? (
           <Loader theme={this.state.theme} />
         ) : (
           <Fragment>
-            {this.state.showVolume && <Volume volume={this.state.volume} />}
+            {this.state.showVolume && (
+              <Volume volume={this.state.volume} theme={this.state.theme} />
+            )}
 
             <Header img={this.state.img} />
             <div className={`items ${this.state.theme}`}>
