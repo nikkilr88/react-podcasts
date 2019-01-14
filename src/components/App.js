@@ -27,7 +27,7 @@ class App extends Component {
     playingStatus: Sound.status.PLAYING,
     volume: 75,
     showVolume: false,
-    theme: 'light' // light or dark
+    theme: 'dark' // light or dark
   }
 
   // Update state with track information
@@ -45,9 +45,9 @@ class App extends Component {
   // Pause audio
   pauseAudio = () => {
     if (this.state.position == 0) return
-    this.setState(() => ({
+    this.setState(prevState => ({
       playingStatus:
-        this.state.playingStatus == Sound.status.PLAYING
+        prevState.playingStatus == Sound.status.PLAYING
           ? Sound.status.PAUSED
           : Sound.status.PLAYING
     }))
@@ -66,7 +66,7 @@ class App extends Component {
   fastforward = () => {
     if (this.state.position == 0) return
     this.setState(prevState => ({
-      position: (prevState.position += 1000 * 10)
+      position: prevState.position + 1000 * 10
     }))
   }
 
@@ -74,7 +74,7 @@ class App extends Component {
   rewind = () => {
     if (this.state.position == 0) return
     this.setState(prevState => ({
-      position: (prevState.position -= 1000 * 5)
+      position: prevState.position - 1000 * 5
     }))
   }
 
@@ -125,13 +125,16 @@ class App extends Component {
 
   // Pause, skip forward / back
   keyboardShortcuts = e => {
-    if (e.which == 32) {
-      this.pauseAudio()
-      return false
-    } else if (e.which == 39) {
-      this.fastforward()
-    } else if (e.which == 37) {
-      this.rewind()
+    switch (e.which) {
+      case 32:
+        this.pauseAudio()
+        break
+      case 37:
+        this.rewind()
+        break
+      case 39:
+        this.fastforward()
+        break
     }
   }
 
