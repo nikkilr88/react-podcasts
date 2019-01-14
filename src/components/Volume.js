@@ -9,7 +9,7 @@ class Volume extends Component {
     return (
       <div className="volume-container">
         <h3>Volume</h3>
-        <div className="volume-wrapper">
+        <div className={`volume-wrapper ${this.props.theme}`}>
           <div style={styles} className="volume-bar" />
         </div>
       </div>
