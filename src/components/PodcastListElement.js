@@ -17,7 +17,7 @@ class PodcastListElement extends Component {
     const releaseDate = moment(date)
 
     const formattedDate =
-      now.diff(releaseDate, 'days') > 10
+      now.diff(releaseDate, 'days') > 14
         ? moment(date).format('LL')
         : moment(date).fromNow()
 
