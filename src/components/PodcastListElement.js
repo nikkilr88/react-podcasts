@@ -27,7 +27,7 @@ class PodcastListElement extends Component {
     )
 
     return (
-      <div className={`infoBox ${theme}`}>
+      <div className={`infoBox ${theme}`} title={title}>
         <div className="text">
           <p className="date">
             {formattedDate} 🞄 {minutesLong} mins
