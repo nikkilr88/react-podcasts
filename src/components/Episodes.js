@@ -14,21 +14,19 @@ class Episodes extends Component {
       img
     } = this.props
 
-    const episodeList = this.props.episodes
-      .filter(e => e.hasOwnProperty('enclosure'))
-      .map((e, i) => (
-        <PodcastListElement
-          key={i}
-          date={e.pubDate._text}
-          title={e.title._text}
-          nowPlaying={nowPlaying}
-          audio={e.enclosure._attributes.url}
-          setAudio={setAudio}
-          resetButtons={resetButtons}
-          theme={theme}
-          duration={e['itunes:duration']._text}
-        />
-      ))
+    const episodeList = this.props.episodes.map((e, i) => (
+      <PodcastListElement
+        key={i}
+        date={e.pubDate._text}
+        title={e.title._text}
+        nowPlaying={nowPlaying}
+        audio={e.enclosure._attributes.url}
+        setAudio={setAudio}
+        resetButtons={resetButtons}
+        theme={theme}
+        duration={e['itunes:duration']._text}
+      />
+    ))
 
     return (
       <div className={`items ${theme}`}>
