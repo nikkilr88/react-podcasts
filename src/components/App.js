@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import SoundWrapper from './SoundWrapper'
 import Sound from 'react-sound'
-import PodcastListElement from './PodcastListElement'
 import Controls from './Controls'
 import Header from './Header'
 import Loader from './Loader'
