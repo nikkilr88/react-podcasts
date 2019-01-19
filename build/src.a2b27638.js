@@ -37129,9 +37129,7 @@ function (_Component) {
           title = _this$props.title,
           description = _this$props.description,
           img = _this$props.img;
-      var episodeList = this.props.episodes.filter(function (e) {
-        return e.hasOwnProperty('enclosure');
-      }).map(function (e, i) {
+      var episodeList = this.props.episodes.map(function (e, i) {
         return _react.default.createElement(_PodcastListElement.default, {
           key: i,
           date: e.pubDate._text,
@@ -37424,7 +37422,9 @@ function (_Component) {
             title: data.rss.channel.title._text,
             description: data.rss.channel.description._cdata || data.rss.channel.description._text,
             img: data.rss.channel.image.url._text,
-            episodes: data.rss.channel.item,
+            episodes: data.rss.channel.item.filter(function (e) {
+              return e.hasOwnProperty('enclosure');
+            }),
             isLoading: false
           };
         });
@@ -37563,7 +37563,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58248" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62760" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
