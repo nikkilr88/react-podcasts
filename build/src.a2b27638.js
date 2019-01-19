@@ -31808,7 +31808,653 @@ function (_Component) {
 
 var _default = SoundWrapper;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","react-sound":"node_modules/react-sound/lib/index.js"}],"node_modules/moment/moment.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","react-sound":"node_modules/react-sound/lib/index.js"}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"src/css/ProgressBar.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/ProgressBar.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+require("../css/ProgressBar.css");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var ProgressBar =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(ProgressBar, _Component);
+
+  function ProgressBar() {
+    _classCallCheck(this, ProgressBar);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ProgressBar).apply(this, arguments));
+  }
+
+  _createClass(ProgressBar, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          position = _this$props.position,
+          duration = _this$props.duration,
+          theme = _this$props.theme;
+      var styles = {
+        width: position * 100 / duration + '%'
+      };
+      return _react.default.createElement("div", {
+        className: "progress-wrapper ".concat(theme)
+      }, _react.default.createElement("div", {
+        style: styles,
+        className: "progress-bar"
+      }));
+    }
+  }]);
+
+  return ProgressBar;
+}(_react.Component);
+
+var _default = ProgressBar;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../css/ProgressBar.css":"src/css/ProgressBar.css"}],"src/css/Controls.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/Controls.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _ProgressBar = _interopRequireDefault(require("./ProgressBar"));
+
+var _reactSound = _interopRequireDefault(require("react-sound"));
+
+require("../css/Controls.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Controls =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Controls, _Component);
+
+  function Controls() {
+    _classCallCheck(this, Controls);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Controls).apply(this, arguments));
+  }
+
+  _createClass(Controls, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          playingStatus = _this$props.playingStatus,
+          pauseAudio = _this$props.pauseAudio,
+          stopAudio = _this$props.stopAudio,
+          fastforward = _this$props.fastforward,
+          rewind = _this$props.rewind,
+          position = _this$props.position,
+          duration = _this$props.duration,
+          audio = _this$props.audio,
+          time = _this$props.time,
+          theme = _this$props.theme;
+      return _react.default.createElement("div", {
+        id: "player",
+        className: theme
+      }, _react.default.createElement("div", {
+        className: "title"
+      }, audio.title.length > 50 ? audio.title.substring(0, 50) + '...' : audio.title), _react.default.createElement(_ProgressBar.default, {
+        position: position,
+        duration: duration,
+        theme: theme
+      }), _react.default.createElement("div", {
+        className: "control-btns"
+      }, _react.default.createElement("span", {
+        className: "time"
+      }, time), _react.default.createElement("button", {
+        onClick: rewind
+      }, _react.default.createElement("i", {
+        className: "material-icons"
+      }, "replay_5")), _react.default.createElement("button", {
+        onClick: pauseAudio
+      }, playingStatus == _reactSound.default.status.PLAYING ? _react.default.createElement("i", {
+        className: "material-icons paused"
+      }, "pause") : _react.default.createElement("i", {
+        className: "material-icons"
+      }, "play_arrow")), _react.default.createElement("button", {
+        onClick: stopAudio
+      }, _react.default.createElement("i", {
+        className: "material-icons"
+      }, "stop")), _react.default.createElement("button", {
+        onClick: fastforward
+      }, _react.default.createElement("i", {
+        className: "material-icons"
+      }, "forward_10"))));
+    }
+  }]);
+
+  return Controls;
+}(_react.Component);
+
+var _default = Controls;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","./ProgressBar":"src/components/ProgressBar.js","react-sound":"node_modules/react-sound/lib/index.js","../css/Controls.css":"src/css/Controls.css"}],"src/css/Header.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/Header.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+require("../css/Header.css");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Header =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Header, _Component);
+
+  function Header() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    var _temp;
+
+    _classCallCheck(this, Header);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Header)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.parallax = function () {
+      var starting = 1;
+      var scrollPos = document.documentElement.scrollTop;
+      if (scrollPos > 150 || window.innerWidth < 950) return; // Move background image up at a slower rate
+
+      var header = document.querySelector('.header-bg');
+      header.style.backgroundPosition = '50% ' + (50 + scrollPos / 25 + '%'); // Fade out text
+      // const descripton = document.querySelector('.description')
+      // const title = document.querySelector('.channel-title')
+      // title.style.opacity = starting - scrollPos / 100
+      // descripton.style.opacity = starting - scrollPos / 100
+    }, _temp));
+  }
+
+  _createClass(Header, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      document.addEventListener('scroll', this.parallax, true);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      document.removeEventListener('scroll', this.parallax, true);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var img = this.props.img;
+      var styles = {
+        background: "url(".concat(img, ")"),
+        backgroundSize: 'cover',
+        backgroundPosition: '50% 50%'
+      };
+      return _react.default.createElement(_react.Fragment, null, _react.default.createElement("header", null, _react.default.createElement("div", {
+        className: "bg-wrapper"
+      }, _react.default.createElement("div", {
+        style: styles,
+        className: "header-bg"
+      }))));
+    }
+  }]);
+
+  return Header;
+}(_react.Component);
+
+var _default = Header;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../css/Header.css":"src/css/Header.css"}],"src/css/Loader.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/Loader.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+require("../css/Loader.css");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+var Loader = function Loader(props) {
+  return _react.default.createElement(_react.Fragment, null, _react.default.createElement("div", {
+    className: "loader-wrapper"
+  }, _react.default.createElement("div", {
+    className: "loader"
+  })), _react.default.createElement("div", {
+    className: "loader-bg ".concat(props.theme)
+  }));
+};
+
+var _default = Loader;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../css/Loader.css":"src/css/Loader.css"}],"src/images/devcasts-logo-slant.png":[function(require,module,exports) {
+module.exports = "/devcasts-logo-slant.658a7055.png";
+},{}],"src/css/Sidebar.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/Sidebar.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _devcastsLogoSlant = _interopRequireDefault(require("../images/devcasts-logo-slant.png"));
+
+require("../css/Sidebar.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Sidebar =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Sidebar, _Component);
+
+  function Sidebar() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    var _temp;
+
+    _classCallCheck(this, Sidebar);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Sidebar)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.state = {
+      list: [{
+        name: 'sytax.fm',
+        link: 'https://feed.syntax.fm/rss',
+        img: 'https://ssl-static.libsyn.com/p/assets/7/9/0/7/790703531a3c8eca/iTunes_Artwork.png'
+      }, {
+        name: 'Free Code Camp',
+        link: 'http://freecodecamp.libsyn.com/rss',
+        img: 'http://static.libsyn.com/p/assets/2/f/f/7/2ff7cc8aa33fe438/freecodecamp-square-logo-large-1400.jpg'
+      }, {
+        name: 'Full Stack Radio',
+        link: 'https://rss.simplecast.com/podcasts/279/rss',
+        img: 'https://media.simplecast.com/podcast/image/279/1413649662-artwork.jpg'
+      }, {
+        name: 'La Vie En Code',
+        link: 'http://lavieencode.libsyn.com/rss',
+        img: 'http://static.libsyn.com/p/assets/f/2/0/9/f2097918a8e6b61c/lvec-podcast-itunes-logo-3000.png'
+      }, {
+        name: 'Base.cs',
+        link: 'http://feeds.codenewbie.org/basecs_podcast.xml',
+        img: 'http://s3.amazonaws.com/codenewbie-assets/basecs-podcast/basecs+podcast+cover+7.png'
+      }, {
+        name: 'Code Newbie',
+        link: 'http://feeds.codenewbie.org/cnpodcast.xml',
+        img: 'http://s3.amazonaws.com/codenewbie-assets/podcasts/codenewbie_podcast_cover_art_gradient.png'
+      }]
+    }, _this.handleOnClick = function (e) {
+      var links = _toConsumableArray(document.querySelectorAll('.sidebar li'));
+
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = links[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var link = _step.value;
+          link.classList.remove('sidebar-selected');
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      e.target.classList.add('sidebar-selected');
+
+      _this.props.fetchData(e.target.dataset.link);
+    }, _temp));
+  }
+
+  _createClass(Sidebar, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var list = this.state.list.map(function (e, i) {
+        return _react.default.createElement("li", {
+          onClick: _this2.handleOnClick,
+          title: e.name,
+          "data-link": e.link,
+          key: i,
+          className: i === 0 ? 'sidebar-selected' : ''
+        }, _react.default.createElement("img", {
+          className: "img-link",
+          src: e.img,
+          alt: "podcast icon"
+        }));
+      });
+      return _react.default.createElement("ul", {
+        className: "sidebar ".concat(this.props.theme)
+      }, _react.default.createElement("li", {
+        className: "sidebar-top"
+      }, _react.default.createElement("img", {
+        src: _devcastsLogoSlant.default,
+        alt: "dev casts logo"
+      })), list);
+    }
+  }]);
+
+  return Sidebar;
+}(_react.Component);
+
+var _default = Sidebar;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../images/devcasts-logo-slant.png":"src/images/devcasts-logo-slant.png","../css/Sidebar.css":"src/css/Sidebar.css"}],"src/css/Volume.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/Volume.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+require("../css/Volume.css");
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Volume =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Volume, _Component);
+
+  function Volume() {
+    _classCallCheck(this, Volume);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Volume).apply(this, arguments));
+  }
+
+  _createClass(Volume, [{
+    key: "render",
+    value: function render() {
+      var styles = {
+        width: this.props.volume + '%'
+      };
+      return _react.default.createElement("div", {
+        className: "volume-container"
+      }, _react.default.createElement("h3", null, "Volume"), _react.default.createElement("div", {
+        className: "volume-wrapper ".concat(this.props.theme)
+      }, _react.default.createElement("div", {
+        style: styles,
+        className: "volume-bar"
+      })));
+    }
+  }]);
+
+  return Volume;
+}(_react.Component);
+
+var _default = Volume;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../css/Volume.css":"src/css/Volume.css"}],"src/utils/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.convertSeconds = void 0;
+
+var convertSeconds = function convertSeconds(sec) {
+  var h = Math.floor(sec / 3600);
+  var m = Math.floor(sec % 3600 / 60);
+  var s = Math.floor(sec % 60);
+  var hDisplay = h <= 0 ? '' : "".concat(h, ":");
+  var mDisplay = m < 10 ? "0".concat(m) : m;
+  var sDisplay = s < 10 ? "0".concat(s) : s;
+  return "".concat(hDisplay).concat(mDisplay, ":").concat(sDisplay);
+};
+
+exports.convertSeconds = convertSeconds;
+},{}],"src/css/ChannelInfo.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/css/themes/light.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/css/themes/dark.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/moment/moment.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 //! moment.js
@@ -36323,74 +36969,7 @@ var global = arguments[3];
 
 })));
 
-},{}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"src/css/PodcastList.css":[function(require,module,exports) {
+},{}],"src/css/PodcastList.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -36493,12 +37072,7 @@ function (_Component) {
 
 var _default = PodcastListElement;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","moment":"node_modules/moment/moment.js","../css/PodcastList.css":"src/css/PodcastList.css"}],"src/css/ProgressBar.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/ProgressBar.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","moment":"node_modules/moment/moment.js","../css/PodcastList.css":"src/css/PodcastList.css"}],"src/components/Episodes.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36508,83 +37082,7 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-require("../css/ProgressBar.css");
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var ProgressBar =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(ProgressBar, _Component);
-
-  function ProgressBar() {
-    _classCallCheck(this, ProgressBar);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(ProgressBar).apply(this, arguments));
-  }
-
-  _createClass(ProgressBar, [{
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          position = _this$props.position,
-          duration = _this$props.duration,
-          theme = _this$props.theme;
-      var styles = {
-        width: position * 100 / duration + '%'
-      };
-      return _react.default.createElement("div", {
-        className: "progress-wrapper ".concat(theme)
-      }, _react.default.createElement("div", {
-        style: styles,
-        className: "progress-bar"
-      }));
-    }
-  }]);
-
-  return ProgressBar;
-}(_react.Component);
-
-var _default = ProgressBar;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../css/ProgressBar.css":"src/css/ProgressBar.css"}],"src/css/Controls.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/Controls.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _ProgressBar = _interopRequireDefault(require("./ProgressBar"));
-
-var _reactSound = _interopRequireDefault(require("react-sound"));
-
-require("../css/Controls.css");
+var _PodcastListElement = _interopRequireDefault(require("./PodcastListElement"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36608,471 +37106,66 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var Controls =
+var Episodes =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Controls, _Component);
+  _inherits(Episodes, _Component);
 
-  function Controls() {
-    _classCallCheck(this, Controls);
+  function Episodes() {
+    _classCallCheck(this, Episodes);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Controls).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(Episodes).apply(this, arguments));
   }
 
-  _createClass(Controls, [{
+  _createClass(Episodes, [{
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          playingStatus = _this$props.playingStatus,
-          pauseAudio = _this$props.pauseAudio,
-          stopAudio = _this$props.stopAudio,
-          fastforward = _this$props.fastforward,
-          rewind = _this$props.rewind,
-          position = _this$props.position,
-          duration = _this$props.duration,
-          audio = _this$props.audio,
-          time = _this$props.time,
-          theme = _this$props.theme;
-      return _react.default.createElement("div", {
-        id: "player",
-        className: theme
-      }, _react.default.createElement("div", {
-        className: "title"
-      }, audio.title.length > 50 ? audio.title.substring(0, 50) + '...' : audio.title), _react.default.createElement(_ProgressBar.default, {
-        position: position,
-        duration: duration,
-        theme: theme
-      }), _react.default.createElement("div", {
-        className: "control-btns"
-      }, _react.default.createElement("span", {
-        className: "time"
-      }, time), _react.default.createElement("button", {
-        onClick: rewind
-      }, _react.default.createElement("i", {
-        className: "material-icons"
-      }, "replay_5")), _react.default.createElement("button", {
-        onClick: pauseAudio
-      }, playingStatus == _reactSound.default.status.PLAYING ? _react.default.createElement("i", {
-        className: "material-icons paused"
-      }, "pause") : _react.default.createElement("i", {
-        className: "material-icons"
-      }, "play_arrow")), _react.default.createElement("button", {
-        onClick: stopAudio
-      }, _react.default.createElement("i", {
-        className: "material-icons"
-      }, "stop")), _react.default.createElement("button", {
-        onClick: fastforward
-      }, _react.default.createElement("i", {
-        className: "material-icons"
-      }, "forward_10"))));
-    }
-  }]);
-
-  return Controls;
-}(_react.Component);
-
-var _default = Controls;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","./ProgressBar":"src/components/ProgressBar.js","react-sound":"node_modules/react-sound/lib/index.js","../css/Controls.css":"src/css/Controls.css"}],"src/css/Header.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/Header.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-require("../css/Header.css");
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var Header =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Header, _Component);
-
-  function Header() {
-    var _getPrototypeOf2;
-
-    var _this;
-
-    var _temp;
-
-    _classCallCheck(this, Header);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Header)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.parallax = function () {
-      var starting = 1;
-      var scrollPos = document.documentElement.scrollTop;
-      if (scrollPos > 150 || window.innerWidth < 950) return; // Move background image up at a slower rate
-
-      var header = document.querySelector('.header-bg');
-      header.style.backgroundPosition = '50% ' + (50 + scrollPos / 25 + '%'); // Fade out text
-      // const descripton = document.querySelector('.description')
-      // const title = document.querySelector('.channel-title')
-      // title.style.opacity = starting - scrollPos / 100
-      // descripton.style.opacity = starting - scrollPos / 100
-    }, _temp));
-  }
-
-  _createClass(Header, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      document.addEventListener('scroll', this.parallax, true);
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      document.removeEventListener('scroll', this.parallax, true);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var img = this.props.img;
-      var styles = {
-        background: "url(".concat(img, ")"),
-        backgroundSize: 'cover',
-        backgroundPosition: '50% 50%'
-      };
-      return _react.default.createElement(_react.Fragment, null, _react.default.createElement("header", null, _react.default.createElement("div", {
-        className: "bg-wrapper"
-      }, _react.default.createElement("div", {
-        style: styles,
-        className: "header-bg"
-      }))));
-    }
-  }]);
-
-  return Header;
-}(_react.Component);
-
-var _default = Header;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../css/Header.css":"src/css/Header.css"}],"src/css/Loader.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/Loader.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-require("../css/Loader.css");
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-var Loader = function Loader(props) {
-  return _react.default.createElement(_react.Fragment, null, _react.default.createElement("div", {
-    className: "loader-wrapper"
-  }, _react.default.createElement("div", {
-    className: "loader"
-  })), _react.default.createElement("div", {
-    className: "loader-bg ".concat(props.theme)
-  }));
-};
-
-var _default = Loader;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../css/Loader.css":"src/css/Loader.css"}],"src/images/devcasts-logo-slant.png":[function(require,module,exports) {
-module.exports = "/devcasts-logo-slant.658a7055.png";
-},{}],"src/css/Sidebar.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/Sidebar.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _devcastsLogoSlant = _interopRequireDefault(require("../images/devcasts-logo-slant.png"));
-
-require("../css/Sidebar.css");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var Sidebar =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Sidebar, _Component);
-
-  function Sidebar() {
-    var _getPrototypeOf2;
-
-    var _this;
-
-    var _temp;
-
-    _classCallCheck(this, Sidebar);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Sidebar)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.state = {
-      list: [{
-        name: 'sytax.fm',
-        link: 'https://feed.syntax.fm/rss',
-        img: 'https://ssl-static.libsyn.com/p/assets/7/9/0/7/790703531a3c8eca/iTunes_Artwork.png'
-      }, {
-        name: 'Free Code Camp',
-        link: 'http://freecodecamp.libsyn.com/rss',
-        img: 'http://static.libsyn.com/p/assets/2/f/f/7/2ff7cc8aa33fe438/freecodecamp-square-logo-large-1400.jpg'
-      }, {
-        name: 'Full Stack Radio',
-        link: 'https://rss.simplecast.com/podcasts/279/rss',
-        img: 'https://media.simplecast.com/podcast/image/279/1413649662-artwork.jpg'
-      }, {
-        name: 'La Vie En Code',
-        link: 'http://lavieencode.libsyn.com/rss',
-        img: 'http://static.libsyn.com/p/assets/f/2/0/9/f2097918a8e6b61c/lvec-podcast-itunes-logo-3000.png'
-      }, {
-        name: 'Base.cs',
-        link: 'http://feeds.codenewbie.org/basecs_podcast.xml',
-        img: 'http://s3.amazonaws.com/codenewbie-assets/basecs-podcast/basecs+podcast+cover+7.png'
-      }, {
-        name: 'Code Newbie',
-        link: 'http://feeds.codenewbie.org/cnpodcast.xml',
-        img: 'http://s3.amazonaws.com/codenewbie-assets/podcasts/codenewbie_podcast_cover_art_gradient.png'
-      }]
-    }, _this.handleOnClick = function (e) {
-      var links = _toConsumableArray(document.querySelectorAll('.sidebar li'));
-
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = links[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var link = _step.value;
-          link.classList.remove('sidebar-selected');
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-      e.target.classList.add('sidebar-selected');
-
-      _this.props.fetchData(e.target.dataset.link);
-    }, _temp));
-  }
-
-  _createClass(Sidebar, [{
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var list = this.state.list.map(function (e, i) {
-        return _react.default.createElement("li", {
-          onClick: _this2.handleOnClick,
-          title: e.name,
-          "data-link": e.link,
+          episodes = _this$props.episodes,
+          nowPlaying = _this$props.nowPlaying,
+          setAudio = _this$props.setAudio,
+          resetButtons = _this$props.resetButtons,
+          theme = _this$props.theme,
+          title = _this$props.title,
+          description = _this$props.description,
+          img = _this$props.img;
+      var episodeList = this.props.episodes.filter(function (e) {
+        return e.hasOwnProperty('enclosure');
+      }).map(function (e, i) {
+        return _react.default.createElement(_PodcastListElement.default, {
           key: i,
-          className: i === 0 ? 'sidebar-selected' : ''
-        }, _react.default.createElement("img", {
-          className: "img-link",
-          src: e.img,
-          alt: "podcast icon"
-        }));
+          date: e.pubDate._text,
+          title: e.title._text,
+          nowPlaying: nowPlaying,
+          audio: e.enclosure._attributes.url,
+          setAudio: setAudio,
+          resetButtons: resetButtons,
+          theme: theme,
+          duration: e['itunes:duration']._text
+        });
       });
-      return _react.default.createElement("ul", {
-        className: "sidebar ".concat(this.props.theme)
-      }, _react.default.createElement("li", {
-        className: "sidebar-top"
-      }, _react.default.createElement("img", {
-        src: _devcastsLogoSlant.default,
-        alt: "dev casts logo"
-      })), list);
-    }
-  }]);
-
-  return Sidebar;
-}(_react.Component);
-
-var _default = Sidebar;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","../images/devcasts-logo-slant.png":"src/images/devcasts-logo-slant.png","../css/Sidebar.css":"src/css/Sidebar.css"}],"src/css/Volume.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/Volume.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-require("../css/Volume.css");
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-var Volume =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Volume, _Component);
-
-  function Volume() {
-    _classCallCheck(this, Volume);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Volume).apply(this, arguments));
-  }
-
-  _createClass(Volume, [{
-    key: "render",
-    value: function render() {
-      var styles = {
-        width: this.props.volume + '%'
-      };
       return _react.default.createElement("div", {
-        className: "volume-container"
-      }, _react.default.createElement("h3", null, "Volume"), _react.default.createElement("div", {
-        className: "volume-wrapper ".concat(this.props.theme)
+        className: "items ".concat(theme)
       }, _react.default.createElement("div", {
-        style: styles,
-        className: "volume-bar"
-      })));
+        className: "channel-info ".concat(theme)
+      }, _react.default.createElement("img", {
+        className: "channel-img ".concat(theme),
+        src: img,
+        alt: "podcast image"
+      }), _react.default.createElement("h1", {
+        className: "title"
+      }, title), _react.default.createElement("p", null, description || 'No Description Available :(')), _react.default.createElement("h1", {
+        className: "episodes ".concat(theme)
+      }, "Episodes"), episodeList);
     }
   }]);
 
-  return Volume;
+  return Episodes;
 }(_react.Component);
 
-var _default = Volume;
+var _default = Episodes;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../css/Volume.css":"src/css/Volume.css"}],"src/utils/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.convertSeconds = void 0;
-
-var convertSeconds = function convertSeconds(sec) {
-  var h = Math.floor(sec / 3600);
-  var m = Math.floor(sec % 3600 / 60);
-  var s = Math.floor(sec % 60);
-  var hDisplay = h <= 0 ? '' : "".concat(h, ":");
-  var mDisplay = m < 10 ? "0".concat(m) : m;
-  var sDisplay = s < 10 ? "0".concat(s) : s;
-  return "".concat(hDisplay).concat(mDisplay, ":").concat(sDisplay);
-};
-
-exports.convertSeconds = convertSeconds;
-},{}],"src/css/ChannelInfo.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/css/themes/light.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/css/themes/dark.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./PodcastListElement":"src/components/PodcastListElement.js"}],"src/components/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -37085,8 +37178,6 @@ var _react = _interopRequireWildcard(require("react"));
 var _SoundWrapper = _interopRequireDefault(require("./SoundWrapper"));
 
 var _reactSound = _interopRequireDefault(require("react-sound"));
-
-var _PodcastListElement = _interopRequireDefault(require("./PodcastListElement"));
 
 var _Controls = _interopRequireDefault(require("./Controls"));
 
@@ -37105,6 +37196,8 @@ require("../css/ChannelInfo.css");
 require("../css/themes/light.css");
 
 require("../css/themes/dark.css");
+
+var _Episodes = _interopRequireDefault(require("./Episodes"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37376,23 +37469,6 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
-
-      var episodeList = this.state.episodes.filter(function (e) {
-        return e.hasOwnProperty('enclosure');
-      }).map(function (e, i) {
-        return _react.default.createElement(_PodcastListElement.default, {
-          key: i,
-          date: e.pubDate._text,
-          title: e.title._text,
-          nowPlaying: _this3.state.track.title,
-          audio: e.enclosure._attributes.url,
-          setAudio: _this3.setAudio,
-          resetButtons: _this3.resetButtons,
-          theme: _this3.state.theme,
-          duration: e['itunes:duration']._text
-        });
-      });
       return _react.default.createElement(_react.Fragment, null, _react.default.createElement(_Sidebar.default, {
         fetchData: this.fetchData,
         theme: this.state.theme
@@ -37403,19 +37479,16 @@ function (_Component) {
         theme: this.state.theme
       }), _react.default.createElement(_Header.default, {
         img: this.state.img
-      }), _react.default.createElement("div", {
-        className: "items ".concat(this.state.theme)
-      }, _react.default.createElement("div", {
-        className: "channel-info ".concat(this.state.theme)
-      }, _react.default.createElement("img", {
-        className: "channel-img ".concat(this.state.theme),
-        src: this.state.img,
-        alt: "podcast image"
-      }), _react.default.createElement("h1", {
-        className: "title"
-      }, this.state.title), _react.default.createElement("p", null, this.state.description || 'No Description Available :(')), _react.default.createElement("h1", {
-        className: "episodes ".concat(this.state.theme)
-      }, "Episodes"), episodeList)), this.state.track.src && _react.default.createElement(_react.Fragment, null, _react.default.createElement(_SoundWrapper.default, {
+      }), _react.default.createElement(_Episodes.default, {
+        episodes: this.state.episodes,
+        nowPlaying: this.state.track.title,
+        setAudio: this.setAudio,
+        resetButtons: this.resetButtons,
+        theme: this.state.theme,
+        title: this.state.title,
+        description: this.state.description,
+        img: this.state.img
+      })), this.state.track.src && _react.default.createElement(_react.Fragment, null, _react.default.createElement(_SoundWrapper.default, {
         url: this.state.track.src,
         volume: this.state.volume,
         playStatus: this.state.playingStatus,
@@ -37444,7 +37517,7 @@ function (_Component) {
 
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./SoundWrapper":"src/components/SoundWrapper.js","react-sound":"node_modules/react-sound/lib/index.js","./PodcastListElement":"src/components/PodcastListElement.js","./Controls":"src/components/Controls.js","./Header":"src/components/Header.js","./Loader":"src/components/Loader.js","./Sidebar":"src/components/Sidebar.js","./Volume":"src/components/Volume.js","../utils":"src/utils/index.js","../css/ChannelInfo.css":"src/css/ChannelInfo.css","../css/themes/light.css":"src/css/themes/light.css","../css/themes/dark.css":"src/css/themes/dark.css"}],"src/css/styles.css":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./SoundWrapper":"src/components/SoundWrapper.js","react-sound":"node_modules/react-sound/lib/index.js","./Controls":"src/components/Controls.js","./Header":"src/components/Header.js","./Loader":"src/components/Loader.js","./Sidebar":"src/components/Sidebar.js","./Volume":"src/components/Volume.js","../utils":"src/utils/index.js","../css/ChannelInfo.css":"src/css/ChannelInfo.css","../css/themes/light.css":"src/css/themes/light.css","../css/themes/dark.css":"src/css/themes/dark.css","./Episodes":"src/components/Episodes.js"}],"src/css/styles.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -37490,7 +37563,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63677" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58248" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

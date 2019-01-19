@@ -1,63 +1,3 @@
-/* PODCAST LIST */
-.items {
-  margin: 150px 0 0 75px;
-  position: relative;
-  padding-bottom: 175px;
-}
-
-.infoBox {
-  max-width: 800px;
-  width: 90%;
-  margin: 10px auto;
-  padding: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-right: auto;
-  display: flex;
-  align-items: center;
-}
-
-.infoBox h3 {
-  padding: 5px 0;
-  font-size: 1.1rem;
-}
-
-.infoBox .date {
-  color: #999;
-  font-size: 1.3em;
-  font-weight: bold;
-}
-
-.infoBox .text {
-  padding-right: 25px;
-  text-align: left;
-}
-
-/* PLAY BUTTON */
-.btn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-left: auto;
-  border-radius: 50px;
-  height: 40px;
-  width: 40px;
-  font-size: 16px;
-  text-align: center;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-}
-
-.btn > .material-icons {
-  pointer-events: none;
-}
 .progress-wrapper {
   position: absolute;
   top: 0;
@@ -505,6 +445,66 @@ header {
 
 .loader-bg.dark {
   background: #333;
+}
+/* PODCAST LIST */
+.items {
+  margin: 150px 0 0 75px;
+  position: relative;
+  padding-bottom: 175px;
+}
+
+.infoBox {
+  max-width: 800px;
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+}
+
+.infoBox h3 {
+  padding: 5px 0;
+  font-size: 1.1rem;
+}
+
+.infoBox .date {
+  color: #999;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.infoBox .text {
+  padding-right: 25px;
+  text-align: left;
+}
+
+/* PLAY BUTTON */
+.btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-left: auto;
+  border-radius: 50px;
+  height: 40px;
+  width: 40px;
+  font-size: 16px;
+  text-align: center;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.btn > .material-icons {
+  pointer-events: none;
 }
 body {
   font-family: sans-serif;
