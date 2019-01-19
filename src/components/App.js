@@ -27,7 +27,7 @@ class App extends Component {
     playingStatus: Sound.status.PLAYING,
     volume: 75,
     showVolume: false,
-    theme: 'dark' // light or dark
+    theme: 'light' // light or dark
   }
 
   // Update state with track information
