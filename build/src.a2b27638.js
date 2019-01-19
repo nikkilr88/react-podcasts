@@ -37252,7 +37252,7 @@ function (_Component) {
       playingStatus: _reactSound.default.status.PLAYING,
       volume: 75,
       showVolume: false,
-      theme: 'dark' // light or dark
+      theme: 'light' // light or dark
       // Update state with track information
 
     }, _this.setAudio = function (audio, title) {
