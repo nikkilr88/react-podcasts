@@ -13,6 +13,7 @@ import { convertSeconds } from '../utils'
 import '../css/ChannelInfo.css'
 import '../css/themes/light.css'
 import '../css/themes/dark.css'
+import Episodes from './Episodes'
 
 class App extends Component {
   state = {
@@ -206,22 +207,6 @@ class App extends Component {
   }
 
   render() {
-    const episodeList = this.state.episodes
-      .filter(e => e.hasOwnProperty('enclosure'))
-      .map((e, i) => (
-        <PodcastListElement
-          key={i}
-          date={e.pubDate._text}
-          title={e.title._text}
-          nowPlaying={this.state.track.title}
-          audio={e.enclosure._attributes.url}
-          setAudio={this.setAudio}
-          resetButtons={this.resetButtons}
-          theme={this.state.theme}
-          duration={e['itunes:duration']._text}
-        />
-      ))
-
     return (
       <Fragment>
         <Sidebar fetchData={this.fetchData} theme={this.state.theme} />
@@ -234,19 +219,16 @@ class App extends Component {
             )}
 
             <Header img={this.state.img} />
-            <div className={`items ${this.state.theme}`}>
-              <div className={`channel-info ${this.state.theme}`}>
-                <img
-                  className={`channel-img ${this.state.theme}`}
-                  src={this.state.img}
-                  alt="podcast image"
-                />
-                <h1 className="title">{this.state.title}</h1>
-                <p>{this.state.description || 'No Description Available :('}</p>
-              </div>
-              <h1 className={`episodes ${this.state.theme}`}>Episodes</h1>
-              {episodeList}
-            </div>
+            <Episodes
+              episodes={this.state.episodes}
+              nowPlaying={this.state.track.title}
+              setAudio={this.setAudio}
+              resetButtons={this.resetButtons}
+              theme={this.state.theme}
+              title={this.state.title}
+              description={this.state.description}
+              img={this.state.img}
+            />
           </Fragment>
         )}
 
