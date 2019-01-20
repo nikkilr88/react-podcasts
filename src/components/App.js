@@ -177,7 +177,10 @@ class App extends Component {
           description:
             data.rss.channel.description._cdata ||
             data.rss.channel.description._text,
-          img: data.rss.channel.image.url._text,
+          img: data.rss.channel.image.url._text.replace(
+            /$http:\/\//,
+            'https://'
+          ),
           episodes: data.rss.channel.item.filter(e =>
             e.hasOwnProperty('enclosure')
           ),
