@@ -15,7 +15,7 @@ class Sidebar extends Component {
         name: 'Free Code Camp',
         link: 'http://freecodecamp.libsyn.com/rss',
         img:
-          'http://static.libsyn.com/p/assets/2/f/f/7/2ff7cc8aa33fe438/freecodecamp-square-logo-large-1400.jpg'
+          'https://static.libsyn.com/p/assets/2/f/f/7/2ff7cc8aa33fe438/freecodecamp-square-logo-large-1400.jpg'
       },
       {
         name: 'Full Stack Radio',
@@ -33,13 +33,13 @@ class Sidebar extends Component {
         name: 'Base.cs',
         link: 'http://feeds.codenewbie.org/basecs_podcast.xml',
         img:
-          'http://s3.amazonaws.com/codenewbie-assets/basecs-podcast/basecs+podcast+cover+7.png'
+          'https://s3.amazonaws.com/codenewbie-assets/basecs-podcast/basecs+podcast+cover+7.png'
       },
       {
         name: 'Code Newbie',
         link: 'http://feeds.codenewbie.org/cnpodcast.xml',
         img:
-          'http://s3.amazonaws.com/codenewbie-assets/podcasts/codenewbie_podcast_cover_art_gradient.png'
+          'https://s3.amazonaws.com/codenewbie-assets/podcasts/codenewbie_podcast_cover_art_gradient.png'
       }
     ]
   }
