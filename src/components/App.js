@@ -6,13 +6,12 @@ import Header from './Header'
 import Loader from './Loader'
 import Sidebar from './Sidebar'
 import Volume from './Volume'
+import Episodes from './Episodes'
 
 import { convertSeconds } from '../utils'
 
-import '../css/ChannelInfo.css'
 import '../css/themes/light.css'
 import '../css/themes/dark.css'
-import Episodes from './Episodes'
 
 class App extends Component {
   state = {
@@ -98,10 +97,13 @@ class App extends Component {
     console.log(err)
   }
 
-  hideVolume = () => {
+  showVolume = () => {
     if (this.timeout) {
       clearInterval(this.timeout)
     }
+
+    this.setState(() => ({ showVolume: true }))
+
     this.timeout = setTimeout(() => {
       this.setState(() => ({ showVolume: false }))
     }, 1000)
@@ -111,16 +113,15 @@ class App extends Component {
   setVolume = e => {
     if (!this.state.track.src) return
 
+    this.showVolume()
+
     const val = e.which == 38 ? 5 : -5
 
     if (this.state.volume + val < 0 || this.state.volume + val > 100) return
 
     this.setState(prevState => ({
-      volume: prevState.volume + val,
-      showVolume: true
+      volume: prevState.volume + val
     }))
-
-    this.hideVolume()
   }
 
   // Pause, skip forward / back
