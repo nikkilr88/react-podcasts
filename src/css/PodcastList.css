@@ -48,4 +48,5 @@
 
 .btn > .material-icons {
   pointer-events: none;
+  font-size: 20px;
 }
