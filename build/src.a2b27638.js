@@ -37427,7 +37427,7 @@ function (_Component) {
           return {
             title: data.rss.channel.title._text,
             description: data.rss.channel.description._cdata || data.rss.channel.description._text,
-            img: data.rss.channel.image.url._text,
+            img: data.rss.channel.image.url._text.replace(/$http:\/\//, 'https://'),
             episodes: data.rss.channel.item.filter(function (e) {
               return e.hasOwnProperty('enclosure');
             }),
