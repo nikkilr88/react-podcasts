@@ -178,7 +178,7 @@ class App extends Component {
             data.rss.channel.description._cdata ||
             data.rss.channel.description._text,
           img: data.rss.channel.image.url._text.replace(
-            /$http:\/\//,
+            /http:\/\//,
             'https://'
           ),
           episodes: data.rss.channel.item.filter(e =>
