@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PodcastListElement from './PodcastListElement'
 
+import '../css/ChannelInfo.css'
+
 class Episodes extends Component {
   render() {
     const {
