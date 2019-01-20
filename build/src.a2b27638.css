@@ -20,7 +20,7 @@
 /* PLAYER CONTROLS */
 #player {
   position: fixed;
-  bottom: 5px;
+  bottom: 10px;
   right: 10px;
   left: 85px;
   display: -webkit-box;
@@ -270,6 +270,67 @@ header {
   height: 100%;
   bottom: 0;
 }
+/* PODCAST LIST */
+.items {
+  margin: 150px 0 0 75px;
+  position: relative;
+  padding-bottom: 175px;
+}
+
+.infoBox {
+  max-width: 800px;
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+}
+
+.infoBox h3 {
+  padding: 5px 0;
+  font-size: 1.1rem;
+}
+
+.infoBox .date {
+  color: #999;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.infoBox .text {
+  padding-right: 25px;
+  text-align: left;
+}
+
+/* PLAY BUTTON */
+.btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-left: auto;
+  border-radius: 50px;
+  height: 40px;
+  width: 40px;
+  font-size: 16px;
+  text-align: center;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.btn > .material-icons {
+  pointer-events: none;
+  font-size: 20px;
+}
 /* CHANNEL INFO */
 .channel-info {
   width: 100%;
@@ -362,6 +423,8 @@ header {
 #player.light {
   color: #ccc;
   background: #2b2b2b;
+  -webkit-box-shadow: 0 10px 15px rgba(245, 245, 245, 0.6);
+          box-shadow: 0 10px 15px rgba(245, 245, 245, 0.6);
 }
 
 #player.light button {
@@ -369,7 +432,7 @@ header {
 }
 
 .progress-wrapper.light {
-  background: #555;
+  background: #444;
 }
 
 .loader-bg.light {
@@ -429,8 +492,8 @@ header {
 #player.dark {
   color: #ccc;
   background: #222;
-  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 10px 15px rgba(51, 51, 51, 0.9);
+          box-shadow: 0 10px 15px rgba(51, 51, 51, 0.9);
 }
 
 #player.dark button {
@@ -443,66 +506,6 @@ header {
 
 .loader-bg.dark {
   background: #333;
-}
-/* PODCAST LIST */
-.items {
-  margin: 150px 0 0 75px;
-  position: relative;
-  padding-bottom: 175px;
-}
-
-.infoBox {
-  max-width: 800px;
-  width: 90%;
-  margin: 10px auto;
-  padding: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-right: auto;
-  display: flex;
-  align-items: center;
-}
-
-.infoBox h3 {
-  padding: 5px 0;
-  font-size: 1.1rem;
-}
-
-.infoBox .date {
-  color: #999;
-  font-size: 1.3em;
-  font-weight: bold;
-}
-
-.infoBox .text {
-  padding-right: 25px;
-  text-align: left;
-}
-
-/* PLAY BUTTON */
-.btn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-left: auto;
-  border-radius: 50px;
-  height: 40px;
-  width: 40px;
-  font-size: 16px;
-  text-align: center;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-}
-
-.btn > .material-icons {
-  pointer-events: none;
 }
 body {
   font-family: sans-serif;

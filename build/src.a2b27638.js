@@ -32420,41 +32420,7 @@ function (_Component) {
 
 var _default = Volume;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../css/Volume.css":"src/css/Volume.css"}],"src/utils/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.convertSeconds = void 0;
-
-var convertSeconds = function convertSeconds(sec) {
-  var h = Math.floor(sec / 3600);
-  var m = Math.floor(sec % 3600 / 60);
-  var s = Math.floor(sec % 60);
-  var hDisplay = h <= 0 ? '' : "".concat(h, ":");
-  var mDisplay = m < 10 ? "0".concat(m) : m;
-  var sDisplay = s < 10 ? "0".concat(s) : s;
-  return "".concat(hDisplay).concat(mDisplay, ":").concat(sDisplay);
-};
-
-exports.convertSeconds = convertSeconds;
-},{}],"src/css/ChannelInfo.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/css/themes/light.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/css/themes/dark.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/moment/moment.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../css/Volume.css":"src/css/Volume.css"}],"node_modules/moment/moment.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 //! moment.js
@@ -37072,7 +37038,12 @@ function (_Component) {
 
 var _default = PodcastListElement;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","moment":"node_modules/moment/moment.js","../css/PodcastList.css":"src/css/PodcastList.css"}],"src/components/Episodes.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","moment":"node_modules/moment/moment.js","../css/PodcastList.css":"src/css/PodcastList.css"}],"src/css/ChannelInfo.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/Episodes.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -37083,6 +37054,8 @@ exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 
 var _PodcastListElement = _interopRequireDefault(require("./PodcastListElement"));
+
+require("../css/ChannelInfo.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37163,7 +37136,36 @@ function (_Component) {
 
 var _default = Episodes;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./PodcastListElement":"src/components/PodcastListElement.js"}],"src/components/App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./PodcastListElement":"src/components/PodcastListElement.js","../css/ChannelInfo.css":"src/css/ChannelInfo.css"}],"src/utils/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.convertSeconds = void 0;
+
+var convertSeconds = function convertSeconds(sec) {
+  var h = Math.floor(sec / 3600);
+  var m = Math.floor(sec % 3600 / 60);
+  var s = Math.floor(sec % 60);
+  var hDisplay = h <= 0 ? '' : "".concat(h, ":");
+  var mDisplay = m < 10 ? "0".concat(m) : m;
+  var sDisplay = s < 10 ? "0".concat(s) : s;
+  return "".concat(hDisplay).concat(mDisplay, ":").concat(sDisplay);
+};
+
+exports.convertSeconds = convertSeconds;
+},{}],"src/css/themes/light.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/css/themes/dark.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/components/App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -37187,15 +37189,13 @@ var _Sidebar = _interopRequireDefault(require("./Sidebar"));
 
 var _Volume = _interopRequireDefault(require("./Volume"));
 
-var _utils = require("../utils");
+var _Episodes = _interopRequireDefault(require("./Episodes"));
 
-require("../css/ChannelInfo.css");
+var _utils = require("../utils");
 
 require("../css/themes/light.css");
 
 require("../css/themes/dark.css");
-
-var _Episodes = _interopRequireDefault(require("./Episodes"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37320,10 +37320,16 @@ function (_Component) {
       });
     }, _this.handleOnError = function (err) {
       console.log(err);
-    }, _this.hideVolume = function () {
+    }, _this.showVolume = function () {
       if (_this.timeout) {
         clearInterval(_this.timeout);
       }
+
+      _this.setState(function () {
+        return {
+          showVolume: true
+        };
+      });
 
       _this.timeout = setTimeout(function () {
         _this.setState(function () {
@@ -37334,17 +37340,17 @@ function (_Component) {
       }, 1000);
     }, _this.setVolume = function (e) {
       if (!_this.state.track.src) return;
+
+      _this.showVolume();
+
       var val = e.which == 38 ? 5 : -5;
       if (_this.state.volume + val < 0 || _this.state.volume + val > 100) return;
 
       _this.setState(function (prevState) {
         return {
-          volume: prevState.volume + val,
-          showVolume: true
+          volume: prevState.volume + val
         };
       });
-
-      _this.hideVolume();
     }, _this.keyboardShortcuts = function (e) {
       switch (e.which) {
         case 32:
@@ -37517,7 +37523,7 @@ function (_Component) {
 
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./SoundWrapper":"src/components/SoundWrapper.js","react-sound":"node_modules/react-sound/lib/index.js","./Controls":"src/components/Controls.js","./Header":"src/components/Header.js","./Loader":"src/components/Loader.js","./Sidebar":"src/components/Sidebar.js","./Volume":"src/components/Volume.js","../utils":"src/utils/index.js","../css/ChannelInfo.css":"src/css/ChannelInfo.css","../css/themes/light.css":"src/css/themes/light.css","../css/themes/dark.css":"src/css/themes/dark.css","./Episodes":"src/components/Episodes.js"}],"src/css/styles.css":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./SoundWrapper":"src/components/SoundWrapper.js","react-sound":"node_modules/react-sound/lib/index.js","./Controls":"src/components/Controls.js","./Header":"src/components/Header.js","./Loader":"src/components/Loader.js","./Sidebar":"src/components/Sidebar.js","./Volume":"src/components/Volume.js","./Episodes":"src/components/Episodes.js","../utils":"src/utils/index.js","../css/themes/light.css":"src/css/themes/light.css","../css/themes/dark.css":"src/css/themes/dark.css"}],"src/css/styles.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -37563,7 +37569,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62760" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50612" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
