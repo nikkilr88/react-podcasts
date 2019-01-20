@@ -27,7 +27,7 @@ class Sidebar extends Component {
         name: 'La Vie En Code',
         link: 'http://lavieencode.libsyn.com/rss',
         img:
-          'http://static.libsyn.com/p/assets/f/2/0/9/f2097918a8e6b61c/lvec-podcast-itunes-logo-3000.png'
+          'https://static.libsyn.com/p/assets/f/2/0/9/f2097918a8e6b61c/lvec-podcast-itunes-logo-3000.png'
       },
       {
         name: 'Base.cs',
