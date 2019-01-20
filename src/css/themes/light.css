@@ -47,6 +47,7 @@
 #player.light {
   color: #ccc;
   background: #2b2b2b;
+  box-shadow: 0 10px 15px rgba(245, 245, 245, 0.6);
 }
 
 #player.light button {
@@ -54,7 +55,7 @@
 }
 
 .progress-wrapper.light {
-  background: #555;
+  background: #444;
 }
 
 .loader-bg.light {

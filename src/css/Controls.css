@@ -1,7 +1,7 @@
 /* PLAYER CONTROLS */
 #player {
   position: fixed;
-  bottom: 5px;
+  bottom: 10px;
   right: 10px;
   left: 85px;
   display: flex;
