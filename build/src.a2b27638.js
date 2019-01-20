@@ -32265,7 +32265,7 @@ function (_Component) {
       }, {
         name: 'Free Code Camp',
         link: 'http://freecodecamp.libsyn.com/rss',
-        img: 'http://static.libsyn.com/p/assets/2/f/f/7/2ff7cc8aa33fe438/freecodecamp-square-logo-large-1400.jpg'
+        img: 'https://static.libsyn.com/p/assets/2/f/f/7/2ff7cc8aa33fe438/freecodecamp-square-logo-large-1400.jpg'
       }, {
         name: 'Full Stack Radio',
         link: 'https://rss.simplecast.com/podcasts/279/rss',
@@ -32277,11 +32277,11 @@ function (_Component) {
       }, {
         name: 'Base.cs',
         link: 'http://feeds.codenewbie.org/basecs_podcast.xml',
-        img: 'http://s3.amazonaws.com/codenewbie-assets/basecs-podcast/basecs+podcast+cover+7.png'
+        img: 'https://s3.amazonaws.com/codenewbie-assets/basecs-podcast/basecs+podcast+cover+7.png'
       }, {
         name: 'Code Newbie',
         link: 'http://feeds.codenewbie.org/cnpodcast.xml',
-        img: 'http://s3.amazonaws.com/codenewbie-assets/podcasts/codenewbie_podcast_cover_art_gradient.png'
+        img: 'https://s3.amazonaws.com/codenewbie-assets/podcasts/codenewbie_podcast_cover_art_gradient.png'
       }]
     }, _this.handleOnClick = function (e) {
       var links = _toConsumableArray(document.querySelectorAll('.sidebar li'));
