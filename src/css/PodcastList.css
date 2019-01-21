@@ -37,6 +37,7 @@
 .btn {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-left: auto;
   border-radius: 50px;
   height: 40px;
