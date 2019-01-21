@@ -14,8 +14,11 @@
   margin-bottom: 25px;
 }
 
-.sidebar li:not(.sidebar-top) {
+.sidebar li {
   list-style: none;
+}
+
+.sidebar li:not(.sidebar-top) {
   filter: grayscale(100%);
   transition: all 0.2s;
 }
@@ -33,6 +36,7 @@
   margin: 20px 0;
   pointer-events: none;
   width: 100%;
+  user-select: none;
 }
 
 .sidebar li:hover {
