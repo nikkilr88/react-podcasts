@@ -190,8 +190,11 @@ header {
   margin-bottom: 25px;
 }
 
-.sidebar li:not(.sidebar-top) {
+.sidebar li {
   list-style: none;
+}
+
+.sidebar li:not(.sidebar-top) {
   -webkit-filter: grayscale(100%);
           filter: grayscale(100%);
   -webkit-transition: all 0.2s;
@@ -212,6 +215,10 @@ header {
   margin: 20px 0;
   pointer-events: none;
   width: 100%;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .sidebar li:hover {
@@ -317,6 +324,9 @@ header {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin-left: auto;
   border-radius: 50px;
   height: 40px;

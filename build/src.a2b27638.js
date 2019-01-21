@@ -32116,11 +32116,7 @@ function (_Component) {
       if (scrollPos > 150 || window.innerWidth < 950) return; // Move background image up at a slower rate
 
       var header = document.querySelector('.header-bg');
-      header.style.backgroundPosition = '50% ' + (50 + scrollPos / 25 + '%'); // Fade out text
-      // const descripton = document.querySelector('.description')
-      // const title = document.querySelector('.channel-title')
-      // title.style.opacity = starting - scrollPos / 100
-      // descripton.style.opacity = starting - scrollPos / 100
+      header.style.backgroundPosition = '50% ' + (50 + scrollPos / 25 + '%');
     }, _temp));
   }
 
@@ -36998,6 +36994,8 @@ function (_Component) {
       _this.props.setAudio(_this.props.audio, _this.props.title);
 
       _this.props.resetButtons(e);
+
+      e.target.blur();
     }, _temp));
   }
 
@@ -37266,7 +37264,8 @@ function (_Component) {
           position: 0
         };
       });
-    }, _this.pauseAudio = function () {
+    }, _this.pauseAudio = function (e) {
+      e && e.target.blur();
       if (_this.state.position == 0) return;
 
       _this.setState(function (prevState) {
@@ -37274,7 +37273,7 @@ function (_Component) {
           playingStatus: prevState.playingStatus == _reactSound.default.status.PLAYING ? _reactSound.default.status.PAUSED : _reactSound.default.status.PLAYING
         };
       });
-    }, _this.stopAudio = function () {
+    }, _this.stopAudio = function (e) {
       _this.setState(function () {
         return {
           track: {
@@ -37286,7 +37285,8 @@ function (_Component) {
       });
 
       _this.resetButtons();
-    }, _this.fastforward = function () {
+    }, _this.fastforward = function (e) {
+      e && e.target.blur();
       if (_this.state.position == 0) return;
 
       _this.setState(function (prevState) {
@@ -37294,7 +37294,8 @@ function (_Component) {
           position: prevState.position + 1000 * 10
         };
       });
-    }, _this.rewind = function () {
+    }, _this.rewind = function (e) {
+      e && e.target.blur();
       if (_this.state.position == 0) return;
 
       _this.setState(function (prevState) {
@@ -37569,7 +37570,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50612" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50049" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
