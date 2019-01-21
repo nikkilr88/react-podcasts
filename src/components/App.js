@@ -42,7 +42,8 @@ class App extends Component {
   }
 
   // Pause audio
-  pauseAudio = () => {
+  pauseAudio = e => {
+    e && e.target.blur()
     if (this.state.position == 0) return
     this.setState(prevState => ({
       playingStatus:
@@ -53,7 +54,7 @@ class App extends Component {
   }
 
   // Stop audio
-  stopAudio = () => {
+  stopAudio = e => {
     this.setState(() => ({
       track: { title: '', src: '' },
       position: 0
@@ -62,7 +63,8 @@ class App extends Component {
   }
 
   // Fastforward track 10 seconds
-  fastforward = () => {
+  fastforward = e => {
+    e && e.target.blur()
     if (this.state.position == 0) return
     this.setState(prevState => ({
       position: prevState.position + 1000 * 10
@@ -70,7 +72,8 @@ class App extends Component {
   }
 
   // Rewind track 5 seconds
-  rewind = () => {
+  rewind = e => {
+    e && e.target.blur()
     if (this.state.position == 0) return
     this.setState(prevState => ({
       position: prevState.position - 1000 * 5
