@@ -7,17 +7,12 @@ class Header extends Component {
     let scrollPos = document.documentElement.scrollTop
 
     if (scrollPos > 150 || window.innerWidth < 950) return
+
     // Move background image up at a slower rate
     const header = document.querySelector('.header-bg')
     header.style.backgroundPosition = '50% ' + (50 + scrollPos / 25 + '%')
-
-    // Fade out text
-    // const descripton = document.querySelector('.description')
-    // const title = document.querySelector('.channel-title')
-
-    // title.style.opacity = starting - scrollPos / 100
-    // descripton.style.opacity = starting - scrollPos / 100
   }
+
   componentDidMount() {
     document.addEventListener('scroll', this.parallax, true)
   }
