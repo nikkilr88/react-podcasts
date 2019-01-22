@@ -36993,8 +36993,6 @@ function (_Component) {
     return _possibleConstructorReturn(_this, (_temp = _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(PodcastListElement)).call.apply(_getPrototypeOf2, [this].concat(args))), _this.handleOnClick = function (e) {
       _this.props.setAudio(_this.props.audio, _this.props.title);
 
-      _this.props.resetButtons(e);
-
       e.target.blur();
     }, _temp));
   }
@@ -37108,7 +37106,6 @@ function (_Component) {
           nowPlaying: nowPlaying,
           audio: e.enclosure._attributes.url,
           setAudio: setAudio,
-          resetButtons: resetButtons,
           theme: theme,
           duration: e['itunes:duration']._text
         });
@@ -37384,36 +37381,6 @@ function (_Component) {
 
           break;
       }
-    }, _this.resetButtons = function (e) {
-      var btns = document.querySelectorAll('.btn');
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = btns[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var btn = _step.value;
-          btn.classList.remove('selected');
-          btn.innerHTML = '<i class="material-icons">play_arrow</i>';
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-      if (!e) return;
-      e.target.classList.add('selected');
-      e.target.innerHTML = '<i class="material-icons">volume_up</i>';
     }, _this.fetchData = function (url) {
       _this.setState(function () {
         return {
@@ -37445,7 +37412,6 @@ function (_Component) {
   // Set volume
   // Pause, skip forward / back
   // Keyup keyboard shortcuts
-  // Reset play button styles
   // Fetch podcast data and set state
 
 
@@ -37490,7 +37456,6 @@ function (_Component) {
         episodes: this.state.episodes,
         nowPlaying: this.state.track.title,
         setAudio: this.setAudio,
-        resetButtons: this.resetButtons,
         theme: this.state.theme,
         title: this.state.title,
         description: this.state.description,
@@ -37570,7 +37535,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50049" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54821" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
