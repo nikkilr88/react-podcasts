@@ -157,18 +157,6 @@ class App extends Component {
     }
   }
 
-  // Reset play button styles
-  resetButtons = e => {
-    const btns = document.querySelectorAll('.btn')
-    for (let btn of btns) {
-      btn.classList.remove('selected')
-      btn.innerHTML = '<i class="material-icons">play_arrow</i>'
-    }
-    if (!e) return
-    e.target.classList.add('selected')
-    e.target.innerHTML = '<i class="material-icons">volume_up</i>'
-  }
-
   // Fetch podcast data and set state
   fetchData = url => {
     this.setState(() => ({ isLoading: true }))
@@ -231,7 +219,6 @@ class App extends Component {
               episodes={this.state.episodes}
               nowPlaying={this.state.track.title}
               setAudio={this.setAudio}
-              resetButtons={this.resetButtons}
               theme={this.state.theme}
               title={this.state.title}
               description={this.state.description}
