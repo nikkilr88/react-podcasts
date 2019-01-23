@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react'
+import axios from 'axios'
+
 import SoundWrapper from './SoundWrapper'
 import Sound from 'react-sound'
 import Controls from './Controls'
@@ -7,11 +9,9 @@ import Loader from './Loader'
 import Sidebar from './Sidebar'
 import Volume from './Volume'
 import Episodes from './Episodes'
+import Clock from '../images/clock.png'
 
 import { convertSeconds } from '../utils'
-
-import '../css/themes/light.css'
-import '../css/themes/dark.css'
 
 class App extends Component {
   state = {
@@ -26,7 +26,8 @@ class App extends Component {
     playingStatus: Sound.status.PLAYING,
     volume: 75,
     showVolume: false,
-    theme: 'light' // light or dark
+    theme: 'light', // light or dark
+    error: ''
   }
 
   // Update state with track information
@@ -159,24 +160,37 @@ class App extends Component {
 
   // Fetch podcast data and set state
   fetchData = url => {
-    this.setState(() => ({ isLoading: true }))
-    fetch(`https://xmlparse.glitch.me/?url=${url}`)
-      .then(res => res.json())
-      .then(data => {
+    this.setState(() => ({ isLoading: true, error: '' }))
+
+    axios({
+      method: 'GET',
+      url: `https://xmlparse.glitch.me/?url=${url}`,
+      timeout: 25 * 1000
+    })
+      .then(res => {
         this.setState(() => ({
-          title: data.rss.channel.title._text,
+          title: res.data.rss.channel.title._text,
           description:
-            data.rss.channel.description._cdata ||
-            data.rss.channel.description._text,
-          img: data.rss.channel.image.url._text.replace(
+            res.data.rss.channel.description._cdata ||
+            res.data.rss.channel.description._text,
+          img: res.data.rss.channel.image.url._text.replace(
             /http:\/\//,
             'https://'
           ),
-          episodes: data.rss.channel.item.filter(e =>
+          episodes: res.data.rss.channel.item.filter(e =>
             e.hasOwnProperty('enclosure')
           ),
-          isLoading: false
+          isLoading: false,
+          error: ''
         }))
+      })
+      .catch(err => {
+        if (err.code == 'ECONNABORTED') {
+          this.setState(() => ({
+            error: 'This is taking longer than expected :('
+          }))
+        }
+        console.log(err)
       })
   }
 
@@ -198,14 +212,17 @@ class App extends Component {
     })
   }
 
-  componentWillUnmount() {
-    document.removeEventListener('keyup', this.handleOnKeyUp, false)
-  }
-
   render() {
     return (
       <Fragment>
         <Sidebar fetchData={this.fetchData} theme={this.state.theme} />
+        {this.state.error && (
+          <div className="error">
+            <p>Uh-oh! {this.state.error}</p>
+            <img src={Clock} alt="sleeping clock" />
+          </div>
+        )}
+
         {this.state.isLoading ? (
           <Loader theme={this.state.theme} />
         ) : (
