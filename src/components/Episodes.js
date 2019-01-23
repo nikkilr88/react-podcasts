@@ -9,14 +9,13 @@ class Episodes extends Component {
       episodes,
       nowPlaying,
       setAudio,
-      resetButtons,
       theme,
       title,
       description,
       img
     } = this.props
 
-    const episodeList = this.props.episodes.map((e, i) => (
+    const episodeList = episodes.map((e, i) => (
       <PodcastListElement
         key={i}
         date={e.pubDate._text}
