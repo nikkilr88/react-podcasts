@@ -56518,10 +56518,7 @@ function (_Component) {
         theme: this.state.theme
       }), this.state.error && _react.default.createElement("div", {
         className: "error"
-      }, _react.default.createElement("p", null, "Uh-oh! ", this.state.error), _react.default.createElement("img", {
-        src: _clock.default,
-        alt: "sleeping clock"
-      })), this.state.isLoading ? _react.default.createElement(_Loader.default, {
+      }, _react.default.createElement("p", null, "Uh-oh! ", this.state.error)), this.state.isLoading ? _react.default.createElement(_Loader.default, {
         theme: this.state.theme
       }) : _react.default.createElement(_react.Fragment, null, this.state.showVolume && _react.default.createElement(_Volume.default, {
         volume: this.state.volume,
