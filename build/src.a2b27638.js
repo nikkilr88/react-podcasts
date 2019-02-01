@@ -51211,12 +51211,12 @@ function (_Component) {
         backgroundSize: 'cover',
         backgroundPosition: '50% 50%'
       };
-      return _react.default.createElement(_react.Fragment, null, _react.default.createElement("header", null, _react.default.createElement("div", {
+      return _react.default.createElement("header", null, _react.default.createElement("div", {
         className: "bg-wrapper"
       }, _react.default.createElement("div", {
         style: styles,
         className: "header-bg"
-      }))));
+      })));
     }
   }]);
 
@@ -56344,8 +56344,6 @@ function (_Component) {
           position: 0
         };
       });
-
-      _this.resetButtons();
     }, _this.fastforward = function (e) {
       e && e.target.blur();
       if (_this.state.position == 0) return;
@@ -56627,7 +56625,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52563" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53857" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
