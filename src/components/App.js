@@ -218,7 +218,6 @@ class App extends Component {
         {this.state.error && (
           <div className="error">
             <p>Uh-oh! {this.state.error}</p>
-            <img src={Clock} alt="sleeping clock" />
           </div>
         )}
 
