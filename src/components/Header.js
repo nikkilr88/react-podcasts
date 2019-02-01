@@ -31,13 +31,11 @@ class Header extends Component {
     }
 
     return (
-      <Fragment>
-        <header>
-          <div className="bg-wrapper">
-            <div style={styles} className="header-bg" />
-          </div>
-        </header>
-      </Fragment>
+      <header>
+        <div className="bg-wrapper">
+          <div style={styles} className="header-bg" />
+        </div>
+      </header>
     )
   }
 }
