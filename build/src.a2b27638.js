@@ -56456,7 +56456,7 @@ function (_Component) {
       (0, _axios.default)({
         method: 'GET',
         url: "https://xmlparse.glitch.me/?url=".concat(url),
-        timeout: 25 * 1000
+        timeout: 1 * 1000
       }).then(function (res) {
         _this.setState(function () {
           return {
@@ -56627,7 +56627,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55652" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59038" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
