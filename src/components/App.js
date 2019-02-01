@@ -60,7 +60,6 @@ class App extends Component {
       track: { title: '', src: '' },
       position: 0
     }))
-    this.resetButtons()
   }
 
   // Fastforward track 10 seconds
