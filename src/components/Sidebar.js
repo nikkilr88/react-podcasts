@@ -74,12 +74,22 @@ class Sidebar extends Component {
     })
 
     return (
-      <ul className={`sidebar ${this.props.theme}`}>
-        <li className='sidebar-top'>
-          <img src={Logo} alt='dev casts logo' />
-        </li>
-        {sidebarItems}
-      </ul>
+      <div className={`sidebar ${this.props.theme}`}>
+        <ul>
+          <li className='sidebar-top'>
+            <img src={Logo} alt='dev casts logo' />
+          </li>
+          {sidebarItems}
+        </ul>
+
+        <div className='theme-wrapper'>
+          <h4>Theme</h4>
+          <div
+            onClick={this.props.changeTheme}
+            className={`change-theme ${this.props.theme}`}
+          />
+        </div>
+      </div>
     )
   }
 }
