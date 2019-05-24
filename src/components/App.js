@@ -30,6 +30,12 @@ class App extends Component {
     error: ''
   }
 
+  changeTheme = () => {
+    this.setState(prevState => ({
+      theme: prevState.theme === 'light' ? 'dark' : 'light'
+    }))
+  }
+
   // Update state with track information
   setAudio = (audio, title) => {
     this.setState(() => ({
@@ -214,7 +220,11 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <Sidebar fetchData={this.fetchData} theme={this.state.theme} />
+        <Sidebar
+          fetchData={this.fetchData}
+          changeTheme={this.changeTheme}
+          theme={this.state.theme}
+        />
         {this.state.error && (
           <div className='error'>
             <p>Uh-oh! {this.state.error}</p>
