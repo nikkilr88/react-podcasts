@@ -216,7 +216,7 @@ class App extends Component {
       <Fragment>
         <Sidebar fetchData={this.fetchData} theme={this.state.theme} />
         {this.state.error && (
-          <div className="error">
+          <div className='error'>
             <p>Uh-oh! {this.state.error}</p>
           </div>
         )}
