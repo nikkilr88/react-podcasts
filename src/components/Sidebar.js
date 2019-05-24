@@ -1,9 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, Suspense } from 'react'
 import Logo from '../images/devcasts-logo-slant.png'
 import '../css/Sidebar.css'
 
+const SidebarImg = React.lazy(() => import('./SidebarImg'))
+
 class Sidebar extends Component {
-  state = {
+  static defaultProps = {
     list: [
       {
         name: 'sytax.fm',
@@ -44,6 +46,7 @@ class Sidebar extends Component {
     ]
   }
   handleOnClick = e => {
+    // Refactor to get rid of query selector
     const links = [...document.querySelectorAll('.sidebar li')]
 
     for (let link of links) {
@@ -55,26 +58,27 @@ class Sidebar extends Component {
   }
 
   render() {
-    const list = this.state.list.map((e, i) => {
+    const sidebarItems = this.props.list.map((e, i) => {
       return (
-        <li
-          onClick={this.handleOnClick}
-          title={e.name}
-          data-link={e.link}
-          key={i}
-          className={i === 0 ? 'sidebar-selected' : ''}
-        >
-          <img className="img-link" src={e.img} alt="podcast icon" />
-        </li>
+        <Suspense key={i} fallback={<div className='img-link placeholder' />}>
+          <SidebarImg
+            onClick={this.handleOnClick}
+            imgSrc={e.img}
+            title={e.name}
+            dataLink={e.link}
+            index={i}
+            className={i === 0 ? 'sidebar-selected' : ''}
+          />
+        </Suspense>
       )
     })
 
     return (
       <ul className={`sidebar ${this.props.theme}`}>
-        <li className="sidebar-top">
-          <img src={Logo} alt="dev casts logo" />
+        <li className='sidebar-top'>
+          <img src={Logo} alt='dev casts logo' />
         </li>
-        {list}
+        {sidebarItems}
       </ul>
     )
   }
