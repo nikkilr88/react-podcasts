@@ -6,6 +6,8 @@
   width: 75px;
   background: #222;
   z-index: 9999;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar img {
@@ -72,4 +74,29 @@
   background: #2980b9;
   border-radius: 50%;
   transform: translateY(-50%);
+}
+
+.theme-wrapper {
+  margin: auto auto 10px;
+}
+
+.theme-wrapper h4 {
+  color: #777;
+  margin: 10px 0;
+}
+
+.change-theme {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  cursor: pointer;
+}
+
+.change-theme.light {
+  background: #eee;
+}
+
+.change-theme.dark {
+  background: #444;
 }
