@@ -93,3 +93,32 @@
 .change-theme.dark {
   background: #444;
 }
+
+@media only screen and (max-width: 600px) {
+  .sidebar {
+    left: 0;
+    top: 0;
+    height: auto;
+    width: 100%;
+    flex-direction: row;
+    overflow-x: scroll;
+  }
+
+  .sidebar ul {
+    display: flex;
+  }
+
+  .sidebar li:not(.sidebar-top) {
+    margin: 0;
+    margin-right: 20px;
+    flex: 0 0 45px;
+  }
+
+  .sidebar-top {
+    margin: 0 20px 0 0;
+  }
+
+  .theme-wrapper {
+    display: none;
+  }
+}
