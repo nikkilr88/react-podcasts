@@ -48,13 +48,6 @@
   user-select: none;
 }
 
-.sidebar .img-link.placeholder {
-  background-color: #555;
-  height: 45px;
-  width: 45px;
-  margin: 20px auto;
-}
-
 .sidebar li:hover {
   filter: grayscale(0%);
 }
