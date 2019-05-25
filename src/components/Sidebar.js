@@ -1,8 +1,8 @@
-import React, { Component, Suspense } from 'react'
+import React, { Component } from 'react'
 import Logo from '../images/devcasts-logo-slant.png'
-import '../css/Sidebar.css'
+import SidebarImg from './SidebarImg'
 
-const SidebarImg = React.lazy(() => import('./SidebarImg'))
+import '../css/Sidebar.css'
 
 class Sidebar extends Component {
   static defaultProps = {
@@ -11,37 +11,37 @@ class Sidebar extends Component {
         name: 'sytax.fm',
         link: 'https://feed.syntax.fm/rss',
         img:
-          'https://ssl-static.libsyn.com/p/assets/7/9/0/7/790703531a3c8eca/iTunes_Artwork.png'
+          'https://is4-ssl.mzstatic.com/image/thumb/Music113/v4/60/4e/d6/604ed6ba-6a5a-5faa-edf5-189a290f3aa3/source/60x60bb.jpg'
       },
       {
         name: 'Free Code Camp',
         link: 'http://freecodecamp.libsyn.com/rss',
         img:
-          'https://static.libsyn.com/p/assets/2/f/f/7/2ff7cc8aa33fe438/freecodecamp-square-logo-large-1400.jpg'
+          'https://is3-ssl.mzstatic.com/image/thumb/Music123/v4/de/83/f9/de83f9d5-1745-8572-56d9-b10f62824807/source/60x60bb.jpg'
       },
       {
         name: 'Full Stack Radio',
         link: 'https://rss.simplecast.com/podcasts/279/rss',
         img:
-          'https://media.simplecast.com/podcast/image/279/1413649662-artwork.jpg'
+          'https://is4-ssl.mzstatic.com/image/thumb/Music113/v4/91/8f/bc/918fbcc5-9e95-4a42-c8f4-50f2321fcc9d/source/60x60bb.jpg'
       },
       {
         name: 'La Vie En Code',
         link: 'http://lavieencode.libsyn.com/rss',
         img:
-          'https://static.libsyn.com/p/assets/f/2/0/9/f2097918a8e6b61c/lvec-podcast-itunes-logo-3000.png'
+          'https://is4-ssl.mzstatic.com/image/thumb/Music113/v4/06/ea/e5/06eae525-675c-d89d-8b21-b36e3d779f42/source/60x60bb.jpg'
       },
       {
         name: 'Base.cs',
         link: 'http://feeds.codenewbie.org/basecs_podcast.xml',
         img:
-          'https://s3.amazonaws.com/codenewbie-assets/basecs-podcast/basecs+podcast+cover+7.png'
+          'https://is5-ssl.mzstatic.com/image/thumb/Music123/v4/11/79/e5/1179e5b5-3899-2c26-175f-d4ab664c5197/source/60x60bb.jpg'
       },
       {
         name: 'Code Newbie',
         link: 'http://feeds.codenewbie.org/cnpodcast.xml',
         img:
-          'https://s3.amazonaws.com/codenewbie-assets/podcasts/codenewbie_podcast_cover_art_gradient.png'
+          'https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/64/02/75/640275f5-5c8e-27ba-352e-3e68449b1335/source/60x60bb.jpg'
       }
     ]
   }
@@ -60,16 +60,15 @@ class Sidebar extends Component {
   render() {
     const sidebarItems = this.props.list.map((e, i) => {
       return (
-        <Suspense key={i} fallback={<div className='img-link placeholder' />}>
-          <SidebarImg
-            onClick={this.handleOnClick}
-            imgSrc={e.img}
-            title={e.name}
-            dataLink={e.link}
-            index={i}
-            className={i === 0 ? 'sidebar-selected' : ''}
-          />
-        </Suspense>
+        <SidebarImg
+          key={i}
+          handleOnClick={this.handleOnClick}
+          imgSrc={e.img}
+          title={e.name}
+          dataLink={e.link}
+          index={i}
+          className={i === 0 ? 'sidebar-selected' : ''}
+        />
       )
     })
 
