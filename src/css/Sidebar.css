@@ -107,6 +107,7 @@
   justify-content: center;
   align-items: center;
   transition: all 0.2s;
+  display: none;
 }
 .toggle-side.over {
   transform: translateX(75px);
@@ -125,5 +126,9 @@
   .sidebar {
     transform: translateX(-100%);
     transition: all 0.2s;
+  }
+
+  .toggle-side {
+    display: flex;
   }
 }
