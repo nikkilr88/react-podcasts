@@ -47,35 +47,18 @@ class Sidebar extends Component {
     ]
   }
 
+  state = {
+    showSidebar: false
+  }
+
   handleOnClick = e => {
-    // Refactor to get rid of query selector
-    // const links = [...document.querySelectorAll('.sidebar li')]
-
-    // for (let link of links) {
-    //   link.classList.remove('sidebar-selected')
-    // }
-    // e.target.classList.add('sidebar-selected')
-
     this.props.fetchData(e.target.dataset.link)
   }
 
   toggleSidebar = e => {
-    const isShowing = this.sidebar.classList.contains('sidebar-out')
-
-    if (!isShowing) {
-      this.sidebar.classList.add('sidebar-out')
-      this.toggleBtn.classList.add('over')
-    } else {
-      this.sidebar.classList.remove('sidebar-out')
-      this.toggleBtn.classList.remove('over')
-    }
-  }
-
-  componentDidUpdate(nextProps) {
-    if (nextProps.theme !== this.props.theme) {
-      this.sidebar.classList.add('sidebar-out')
-      this.toggleBtn.classList.add('over')
-    }
+    this.setState(prevState => ({
+      showSidebar: !prevState.showSidebar
+    }))
   }
 
   render() {
@@ -97,8 +80,8 @@ class Sidebar extends Component {
     return (
       <Fragment>
         <div
-          ref={sidebar => (this.sidebar = sidebar)}
-          className={`sidebar ${this.props.theme}`}
+          className={`sidebar ${this.props.theme} ${this.state.showSidebar &&
+            'sidebar-out'}`}
         >
           <ul>
             <li className='sidebar-top'>
@@ -118,7 +101,7 @@ class Sidebar extends Component {
 
         <div
           ref={toggleBtn => (this.toggleBtn = toggleBtn)}
-          className='toggle-side'
+          className={`toggle-side  ${this.state.showSidebar && 'over'}`}
           onClick={this.toggleSidebar}
         >
           <img src={HamMenu} alt='' />
