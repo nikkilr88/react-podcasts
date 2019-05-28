@@ -165,7 +165,7 @@ class App extends Component {
 
   // Fetch podcast data and set state
   fetchData = url => {
-    this.setState(() => ({ isLoading: true, error: '' }))
+    this.setState(() => ({ isLoading: true, error: '', title: '' }))
 
     axios({
       method: 'GET',
@@ -224,6 +224,7 @@ class App extends Component {
           fetchData={this.fetchData}
           changeTheme={this.changeTheme}
           theme={this.state.theme}
+          currentTrack={this.state.title}
         />
         {this.state.error && (
           <div className='error'>
