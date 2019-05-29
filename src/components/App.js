@@ -29,6 +29,7 @@ class App extends Component {
     error: ''
   }
 
+  // Toggle between light and dark theme
   changeTheme = () => {
     this.setState(prevState => ({
       theme: prevState.theme === 'light' ? 'dark' : 'light'
@@ -176,8 +177,8 @@ class App extends Component {
     // Make GET request to Node service to parse RSS feed and send back JSON
     axios({
       method: 'GET',
-      url: `https://xmlparse.glitch.me/?url=${url}`,
-      timeout: 25 * 1000
+      timeout: 25 * 1000,
+      url: `https://xmlparse.glitch.me/?url=${url}`
     })
       .then(res => {
         // Pull out necessary podcast data
@@ -195,12 +196,12 @@ class App extends Component {
 
         // Set app state with podcast data
         this.setState(() => ({
-          title,
-          description,
           img,
+          title,
           episodes,
+          error: '',
           isLoading: false,
-          error: ''
+          description
         }))
       })
       // Set error ir request timesout
@@ -235,9 +236,9 @@ class App extends Component {
     return (
       <Fragment>
         <Sidebar
+          theme={this.state.theme}
           fetchData={this.fetchData}
           changeTheme={this.changeTheme}
-          theme={this.state.theme}
           currentTrack={this.state.title}
         />
         {this.state.error && (
@@ -256,13 +257,13 @@ class App extends Component {
 
             <Header img={this.state.img} />
             <Episodes
+              img={this.state.img}
+              setAudio={this.setAudio}
+              title={this.state.title}
+              theme={this.state.theme}
               episodes={this.state.episodes}
               nowPlaying={this.state.track.title}
-              setAudio={this.setAudio}
-              theme={this.state.theme}
-              title={this.state.title}
               description={this.state.description}
-              img={this.state.img}
             />
           </Fragment>
         )}
@@ -270,26 +271,26 @@ class App extends Component {
         {this.state.track.src && (
           <Fragment>
             <SoundWrapper
-              url={this.state.track.src}
               volume={this.state.volume}
+              url={this.state.track.src}
+              onError={this.handleOnError}
+              onPlaying={this.handleOnPlaying}
               playStatus={this.state.playingStatus}
               playFromPosition={this.state.position}
-              onPlaying={this.handleOnPlaying}
-              onError={this.handleOnError}
               onFinishedPlaying={this.handleOnFinishedPlaying}
             />
             <Controls
-              playingStatus={this.state.playingStatus}
-              pauseAudio={this.pauseAudio}
-              stopAudio={this.stopAudio}
-              fastforward={this.fastforward}
               rewind={this.rewind}
               audio={this.state.track}
-              time={convertSeconds(this.state.position / 1000)}
+              theme={this.state.theme}
+              stopAudio={this.stopAudio}
+              volume={this.state.volume}
+              pauseAudio={this.pauseAudio}
+              fastforward={this.fastforward}
               position={this.state.position}
               duration={this.state.duration}
-              volume={this.state.volume}
-              theme={this.state.theme}
+              playingStatus={this.state.playingStatus}
+              time={convertSeconds(this.state.position / 1000)}
             />
           </Fragment>
         )}
