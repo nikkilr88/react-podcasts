@@ -39,3 +39,17 @@
 .title {
   font-size: 1rem;
 }
+
+@media only screen and (max-width: 600px) {
+  #player {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+  }
+
+  #player .title {
+    display: none;
+    margin-bottom: 25px;
+  }
+}

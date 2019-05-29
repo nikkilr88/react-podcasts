@@ -15,10 +15,10 @@ class SoundWrapper extends Component {
     const {
       url,
       volume,
+      onError,
+      onPlaying,
       playStatus,
       playFromPosition,
-      onPlaying,
-      onError,
       onFinishedPlaying
     } = this.props
 
@@ -26,10 +26,10 @@ class SoundWrapper extends Component {
       <Sound
         url={url}
         volume={volume}
+        onError={onError}
+        onPlaying={onPlaying}
         playStatus={playStatus}
         playFromPosition={playFromPosition}
-        onPlaying={onPlaying}
-        onError={onError}
         onFinishedPlaying={onFinishedPlaying}
       />
     )

@@ -9,7 +9,6 @@ import Loader from './Loader'
 import Sidebar from './Sidebar'
 import Volume from './Volume'
 import Episodes from './Episodes'
-import Clock from '../images/clock.png'
 
 import { convertSeconds } from '../utils'
 
@@ -30,6 +29,13 @@ class App extends Component {
     error: ''
   }
 
+  // Toggle between light and dark theme
+  changeTheme = () => {
+    this.setState(prevState => ({
+      theme: prevState.theme === 'light' ? 'dark' : 'light'
+    }))
+  }
+
   // Update state with track information
   setAudio = (audio, title) => {
     this.setState(() => ({
@@ -37,56 +43,63 @@ class App extends Component {
         title: title,
         src: audio
       },
-      playingStatus: Sound.status.PLAYING,
-      position: 0
+      position: 0,
+      playingStatus: Sound.status.PLAYING
     }))
   }
 
   // Pause audio
   pauseAudio = e => {
     e && e.target.blur()
-    if (this.state.position == 0) return
-    this.setState(prevState => ({
-      playingStatus:
-        prevState.playingStatus == Sound.status.PLAYING
-          ? Sound.status.PAUSED
-          : Sound.status.PLAYING
-    }))
+
+    if (this.state.position > 0) {
+      this.setState(prevState => ({
+        playingStatus:
+          prevState.playingStatus == Sound.status.PLAYING
+            ? Sound.status.PAUSED
+            : Sound.status.PLAYING
+      }))
+    }
   }
 
   // Stop audio
   stopAudio = e => {
     this.setState(() => ({
-      track: { title: '', src: '' },
-      position: 0
+      position: 0,
+      track: { title: '', src: '' }
     }))
   }
 
   // Fastforward track 10 seconds
   fastforward = e => {
     e && e.target.blur()
-    if (this.state.position == 0) return
-    this.setState(prevState => ({
-      position: prevState.position + 1000 * 10
-    }))
+
+    if (this.state.position > 0) {
+      this.setState(prevState => ({
+        position: prevState.position + 1000 * 10
+      }))
+    }
   }
 
   // Rewind track 5 seconds
   rewind = e => {
     e && e.target.blur()
-    if (this.state.position == 0) return
-    this.setState(prevState => ({
-      position: prevState.position - 1000 * 5
-    }))
+
+    if (this.state.position > 0) {
+      this.setState(prevState => ({
+        position: prevState.position - 1000 * 5
+      }))
+    }
   }
 
   // Handle track playback
   handleOnPlaying = data => {
-    if (this.state.playingStatus != Sound.status.PLAYING) return
-    this.setState(() => ({
-      position: data.position,
-      duration: data.duration
-    }))
+    if (this.state.playingStatus === Sound.status.PLAYING) {
+      this.setState(() => ({
+        position: data.position,
+        duration: data.duration
+      }))
+    }
   }
 
   handleOnFinishedPlaying = () => {
@@ -118,7 +131,7 @@ class App extends Component {
 
     this.showVolume()
 
-    const val = e.which == 38 ? 5 : -5
+    const val = e.which === 38 ? 5 : -5
 
     if (this.state.volume + val < 0 || this.state.volume + val > 100) return
 
@@ -159,37 +172,45 @@ class App extends Component {
 
   // Fetch podcast data and set state
   fetchData = url => {
-    this.setState(() => ({ isLoading: true, error: '' }))
+    this.setState(() => ({ isLoading: true, error: '', title: '' }))
 
+    // Make GET request to Node service to parse RSS feed and send back JSON
     axios({
       method: 'GET',
-      url: `https://xmlparse.glitch.me/?url=${url}`,
-      timeout: 25 * 1000
+      timeout: 25 * 1000,
+      url: `https://xmlparse.glitch.me/?url=${url}`
     })
       .then(res => {
+        // Pull out necessary podcast data
+        const title = res.data.rss.channel.title._text
+        const description =
+          res.data.rss.channel.description._cdata ||
+          res.data.rss.channel.description._text
+        const img = res.data.rss.channel.image.url._text.replace(
+          /http:\/\//,
+          'https://'
+        )
+        const episodes = res.data.rss.channel.item.filter(e =>
+          e.hasOwnProperty('enclosure')
+        )
+
+        // Set app state with podcast data
         this.setState(() => ({
-          title: res.data.rss.channel.title._text,
-          description:
-            res.data.rss.channel.description._cdata ||
-            res.data.rss.channel.description._text,
-          img: res.data.rss.channel.image.url._text.replace(
-            /http:\/\//,
-            'https://'
-          ),
-          episodes: res.data.rss.channel.item.filter(e =>
-            e.hasOwnProperty('enclosure')
-          ),
+          img,
+          title,
+          episodes,
+          error: '',
           isLoading: false,
-          error: ''
+          description
         }))
       })
+      // Set error ir request timesout
       .catch(err => {
         if (err.code == 'ECONNABORTED') {
           this.setState(() => ({
             error: 'This is taking longer than expected :('
           }))
         }
-        console.log(err)
       })
   }
 
@@ -214,9 +235,14 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <Sidebar fetchData={this.fetchData} theme={this.state.theme} />
+        <Sidebar
+          theme={this.state.theme}
+          fetchData={this.fetchData}
+          changeTheme={this.changeTheme}
+          currentTrack={this.state.title}
+        />
         {this.state.error && (
-          <div className="error">
+          <div className='error'>
             <p>Uh-oh! {this.state.error}</p>
           </div>
         )}
@@ -231,13 +257,13 @@ class App extends Component {
 
             <Header img={this.state.img} />
             <Episodes
+              img={this.state.img}
+              setAudio={this.setAudio}
+              title={this.state.title}
+              theme={this.state.theme}
               episodes={this.state.episodes}
               nowPlaying={this.state.track.title}
-              setAudio={this.setAudio}
-              theme={this.state.theme}
-              title={this.state.title}
               description={this.state.description}
-              img={this.state.img}
             />
           </Fragment>
         )}
@@ -245,26 +271,26 @@ class App extends Component {
         {this.state.track.src && (
           <Fragment>
             <SoundWrapper
-              url={this.state.track.src}
               volume={this.state.volume}
+              url={this.state.track.src}
+              onError={this.handleOnError}
+              onPlaying={this.handleOnPlaying}
               playStatus={this.state.playingStatus}
               playFromPosition={this.state.position}
-              onPlaying={this.handleOnPlaying}
-              onError={this.handleOnError}
               onFinishedPlaying={this.handleOnFinishedPlaying}
             />
             <Controls
-              playingStatus={this.state.playingStatus}
-              pauseAudio={this.pauseAudio}
-              stopAudio={this.stopAudio}
-              fastforward={this.fastforward}
               rewind={this.rewind}
               audio={this.state.track}
-              time={convertSeconds(this.state.position / 1000)}
+              theme={this.state.theme}
+              stopAudio={this.stopAudio}
+              volume={this.state.volume}
+              pauseAudio={this.pauseAudio}
+              fastforward={this.fastforward}
               position={this.state.position}
               duration={this.state.duration}
-              volume={this.state.volume}
-              theme={this.state.theme}
+              playingStatus={this.state.playingStatus}
+              time={convertSeconds(this.state.position / 1000)}
             />
           </Fragment>
         )}

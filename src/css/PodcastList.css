@@ -51,3 +51,9 @@
   pointer-events: none;
   font-size: 20px;
 }
+
+@media only screen and (max-width: 600px) {
+  .items {
+    margin: 150px 0 0;
+  }
+}

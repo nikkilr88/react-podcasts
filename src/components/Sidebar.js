@@ -1,81 +1,111 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import Logo from '../images/devcasts-logo-slant.png'
+import SidebarImg from './SidebarImg'
+import HamMenu from '../images/hamburger-menu.png'
+
 import '../css/Sidebar.css'
 
 class Sidebar extends Component {
-  state = {
+  static defaultProps = {
     list: [
       {
-        name: 'sytax.fm',
+        name: 'Syntax - Tasty Web Development Treats',
         link: 'https://feed.syntax.fm/rss',
         img:
-          'https://ssl-static.libsyn.com/p/assets/7/9/0/7/790703531a3c8eca/iTunes_Artwork.png'
+          'https://is4-ssl.mzstatic.com/image/thumb/Music113/v4/60/4e/d6/604ed6ba-6a5a-5faa-edf5-189a290f3aa3/source/60x60bb.jpg'
       },
       {
-        name: 'Free Code Camp',
+        name: 'The freeCodeCamp Podcast',
         link: 'http://freecodecamp.libsyn.com/rss',
         img:
-          'https://static.libsyn.com/p/assets/2/f/f/7/2ff7cc8aa33fe438/freecodecamp-square-logo-large-1400.jpg'
+          'https://is3-ssl.mzstatic.com/image/thumb/Music123/v4/de/83/f9/de83f9d5-1745-8572-56d9-b10f62824807/source/60x60bb.jpg'
       },
       {
         name: 'Full Stack Radio',
         link: 'https://rss.simplecast.com/podcasts/279/rss',
         img:
-          'https://media.simplecast.com/podcast/image/279/1413649662-artwork.jpg'
+          'https://is4-ssl.mzstatic.com/image/thumb/Music113/v4/91/8f/bc/918fbcc5-9e95-4a42-c8f4-50f2321fcc9d/source/60x60bb.jpg'
       },
       {
-        name: 'La Vie En Code',
+        name: 'La Vie en Code',
         link: 'http://lavieencode.libsyn.com/rss',
         img:
-          'https://static.libsyn.com/p/assets/f/2/0/9/f2097918a8e6b61c/lvec-podcast-itunes-logo-3000.png'
+          'https://is4-ssl.mzstatic.com/image/thumb/Music113/v4/06/ea/e5/06eae525-675c-d89d-8b21-b36e3d779f42/source/60x60bb.jpg'
       },
       {
-        name: 'Base.cs',
+        name: 'Base.cs Podcast',
         link: 'http://feeds.codenewbie.org/basecs_podcast.xml',
         img:
-          'https://s3.amazonaws.com/codenewbie-assets/basecs-podcast/basecs+podcast+cover+7.png'
+          'https://is5-ssl.mzstatic.com/image/thumb/Music123/v4/11/79/e5/1179e5b5-3899-2c26-175f-d4ab664c5197/source/60x60bb.jpg'
       },
       {
-        name: 'Code Newbie',
+        name: 'CodeNewbie',
         link: 'http://feeds.codenewbie.org/cnpodcast.xml',
         img:
-          'https://s3.amazonaws.com/codenewbie-assets/podcasts/codenewbie_podcast_cover_art_gradient.png'
+          'https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/64/02/75/640275f5-5c8e-27ba-352e-3e68449b1335/source/60x60bb.jpg'
       }
     ]
   }
+
+  state = {
+    showSidebar: false
+  }
+
   handleOnClick = e => {
-    const links = [...document.querySelectorAll('.sidebar li')]
-
-    for (let link of links) {
-      link.classList.remove('sidebar-selected')
-    }
-    e.target.classList.add('sidebar-selected')
-
     this.props.fetchData(e.target.dataset.link)
   }
 
+  toggleSidebar = e => {
+    this.setState(prevState => ({
+      showSidebar: !prevState.showSidebar
+    }))
+  }
+
   render() {
-    const list = this.state.list.map((e, i) => {
+    const sidebarItems = this.props.list.map((e, i) => {
       return (
-        <li
-          onClick={this.handleOnClick}
-          title={e.name}
-          data-link={e.link}
+        <SidebarImg
           key={i}
-          className={i === 0 ? 'sidebar-selected' : ''}
-        >
-          <img className="img-link" src={e.img} alt="podcast icon" />
-        </li>
+          index={i}
+          imgSrc={e.img}
+          title={e.name}
+          dataLink={e.link}
+          handleOnClick={this.handleOnClick}
+          currentTrack={this.props.currentTrack}
+          className={i === 0 && 'sidebar-selected'}
+        />
       )
     })
 
     return (
-      <ul className={`sidebar ${this.props.theme}`}>
-        <li className="sidebar-top">
-          <img src={Logo} alt="dev casts logo" />
-        </li>
-        {list}
-      </ul>
+      <Fragment>
+        <div
+          className={`sidebar ${this.props.theme} ${this.state.showSidebar &&
+            'sidebar-out'}`}
+        >
+          <ul>
+            <li className='sidebar-top'>
+              <img src={Logo} alt='dev casts logo' />
+            </li>
+            {sidebarItems}
+          </ul>
+
+          <div className='theme-wrapper'>
+            <h4>Theme</h4>
+            <div
+              onClick={this.props.changeTheme}
+              className={`change-theme ${this.props.theme}`}
+            />
+          </div>
+        </div>
+
+        <div
+          onClick={this.toggleSidebar}
+          className={`toggle-side ${this.state.showSidebar && 'over'}`}
+        >
+          <img src={HamMenu} alt='menu icon' />
+        </div>
+      </Fragment>
     )
   }
 }

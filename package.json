@@ -19,6 +19,7 @@
     "moment": "^2.23.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-progressive-image": "^0.6.0",
     "react-sound": "^1.2.0"
   },
   "scripts": {

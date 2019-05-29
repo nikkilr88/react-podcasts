@@ -6,13 +6,13 @@ import '../css/ChannelInfo.css'
 class Episodes extends Component {
   render() {
     const {
-      episodes,
-      nowPlaying,
-      setAudio,
+      img,
       theme,
       title,
-      description,
-      img
+      setAudio,
+      episodes,
+      nowPlaying,
+      description
     } = this.props
 
     const episodeList = episodes.map((e, i) => (
@@ -34,9 +34,9 @@ class Episodes extends Component {
           <img
             className={`channel-img ${theme}`}
             src={img}
-            alt="podcast image"
+            alt='podcast image'
           />
-          <h1 className="title">{title}</h1>
+          <h1 className='title'>{title}</h1>
           <p>{description || 'No Description Available :('}</p>
         </div>
         <h1 className={`episodes ${theme}`}>Episodes</h1>
