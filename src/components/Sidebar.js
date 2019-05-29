@@ -66,13 +66,13 @@ class Sidebar extends Component {
       return (
         <SidebarImg
           key={i}
-          handleOnClick={this.handleOnClick}
+          index={i}
           imgSrc={e.img}
           title={e.name}
-          currentTrack={this.props.currentTrack}
           dataLink={e.link}
-          index={i}
-          className={i === 0 ? 'sidebar-selected' : ''}
+          handleOnClick={this.handleOnClick}
+          currentTrack={this.props.currentTrack}
+          className={i === 0 && 'sidebar-selected'}
         />
       )
     })
@@ -100,11 +100,10 @@ class Sidebar extends Component {
         </div>
 
         <div
-          ref={toggleBtn => (this.toggleBtn = toggleBtn)}
-          className={`toggle-side  ${this.state.showSidebar && 'over'}`}
           onClick={this.toggleSidebar}
+          className={`toggle-side ${this.state.showSidebar && 'over'}`}
         >
-          <img src={HamMenu} alt='' />
+          <img src={HamMenu} alt='menu icon' />
         </div>
       </Fragment>
     )

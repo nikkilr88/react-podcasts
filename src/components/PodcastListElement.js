@@ -10,8 +10,8 @@ class PodcastListElement extends Component {
   }
 
   render() {
-    const { title, date, duration, theme } = this.props
-    const isPlaying = this.props.title == this.props.nowPlaying
+    const { title, date, duration, theme, nowPlaying } = this.props
+    const isPlaying = title === nowPlaying
 
     const now = moment()
     const releaseDate = moment(date)
@@ -28,8 +28,8 @@ class PodcastListElement extends Component {
 
     return (
       <div className={`infoBox ${theme}`} title={title}>
-        <div className="text">
-          <p className="date">
+        <div className='text'>
+          <p className='date'>
             {formattedDate} 🞄 {minutesLong} mins
           </p>
           <h3>{title.length > 50 ? title.substring(0, 50) + '...' : title}</h3>
@@ -39,9 +39,9 @@ class PodcastListElement extends Component {
           onClick={this.handleOnClick}
         >
           {isPlaying ? (
-            <i className="material-icons">volume_up</i>
+            <i className='material-icons'>volume_up</i>
           ) : (
-            <i className="material-icons">play_arrow</i>
+            <i className='material-icons'>play_arrow</i>
           )}
         </button>
       </div>
