@@ -182,17 +182,13 @@ class App extends Component {
     })
       .then(res => {
         // Pull out necessary podcast data
-        const title = res.data.rss.channel.title._text
+        const channel = res.data.rss.channel
+
+        const title = channel.title._text
         const description =
-          res.data.rss.channel.description._cdata ||
-          res.data.rss.channel.description._text
-        const img = res.data.rss.channel.image.url._text.replace(
-          /http:\/\//,
-          'https://'
-        )
-        const episodes = res.data.rss.channel.item.filter(e =>
-          e.hasOwnProperty('enclosure')
-        )
+          channel.description._cdata || channel.description._text
+        const img = channel.image.url._text.replace(/http:\/\//, 'https://')
+        const episodes = channel.item.filter(e => e.hasOwnProperty('enclosure'))
 
         // Set app state with podcast data
         this.setState(() => ({
