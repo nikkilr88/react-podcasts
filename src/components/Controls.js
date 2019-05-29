@@ -7,16 +7,16 @@ import '../css/Controls.css'
 class Controls extends Component {
   render() {
     const {
-      playingStatus,
-      pauseAudio,
-      stopAudio,
-      fastforward,
+      time,
+      audio,
+      theme,
       rewind,
       position,
       duration,
-      audio,
-      time,
-      theme
+      stopAudio,
+      pauseAudio,
+      fastforward,
+      playingStatus
     } = this.props
 
     return (

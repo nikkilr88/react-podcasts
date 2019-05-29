@@ -3,17 +3,17 @@ import ProgressiveImage from 'react-progressive-image'
 import imgPlaceholder from '../images/image-placeholder.png'
 
 const SidebarImg = ({
-  handleOnClick,
-  title,
-  currentTrack,
-  dataLink,
   index,
-  imgSrc
+  title,
+  imgSrc,
+  dataLink,
+  currentTrack,
+  handleOnClick
 }) => (
   <li
-    onClick={handleOnClick}
     title={title}
     data-link={dataLink}
+    onClick={handleOnClick}
     className={title === currentTrack ? 'sidebar-selected' : ''}
   >
     <ProgressiveImage delay={1000} src={imgSrc} placeholder={imgPlaceholder}>
