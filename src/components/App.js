@@ -9,7 +9,6 @@ import Loader from './Loader'
 import Sidebar from './Sidebar'
 import Volume from './Volume'
 import Episodes from './Episodes'
-import Clock from '../images/clock.png'
 
 import { convertSeconds } from '../utils'
 
@@ -43,56 +42,63 @@ class App extends Component {
         title: title,
         src: audio
       },
-      playingStatus: Sound.status.PLAYING,
-      position: 0
+      position: 0,
+      playingStatus: Sound.status.PLAYING
     }))
   }
 
   // Pause audio
   pauseAudio = e => {
     e && e.target.blur()
-    if (this.state.position == 0) return
-    this.setState(prevState => ({
-      playingStatus:
-        prevState.playingStatus == Sound.status.PLAYING
-          ? Sound.status.PAUSED
-          : Sound.status.PLAYING
-    }))
+
+    if (this.state.position > 0) {
+      this.setState(prevState => ({
+        playingStatus:
+          prevState.playingStatus == Sound.status.PLAYING
+            ? Sound.status.PAUSED
+            : Sound.status.PLAYING
+      }))
+    }
   }
 
   // Stop audio
   stopAudio = e => {
     this.setState(() => ({
-      track: { title: '', src: '' },
-      position: 0
+      position: 0,
+      track: { title: '', src: '' }
     }))
   }
 
   // Fastforward track 10 seconds
   fastforward = e => {
     e && e.target.blur()
-    if (this.state.position == 0) return
-    this.setState(prevState => ({
-      position: prevState.position + 1000 * 10
-    }))
+
+    if (this.state.position > 0) {
+      this.setState(prevState => ({
+        position: prevState.position + 1000 * 10
+      }))
+    }
   }
 
   // Rewind track 5 seconds
   rewind = e => {
     e && e.target.blur()
-    if (this.state.position == 0) return
-    this.setState(prevState => ({
-      position: prevState.position - 1000 * 5
-    }))
+
+    if (this.state.position > 0) {
+      this.setState(prevState => ({
+        position: prevState.position - 1000 * 5
+      }))
+    }
   }
 
   // Handle track playback
   handleOnPlaying = data => {
-    if (this.state.playingStatus != Sound.status.PLAYING) return
-    this.setState(() => ({
-      position: data.position,
-      duration: data.duration
-    }))
+    if (this.state.playingStatus === Sound.status.PLAYING) {
+      this.setState(() => ({
+        position: data.position,
+        duration: data.duration
+      }))
+    }
   }
 
   handleOnFinishedPlaying = () => {
@@ -124,7 +130,7 @@ class App extends Component {
 
     this.showVolume()
 
-    const val = e.which == 38 ? 5 : -5
+    const val = e.which === 38 ? 5 : -5
 
     if (this.state.volume + val < 0 || this.state.volume + val > 100) return
 
@@ -167,35 +173,43 @@ class App extends Component {
   fetchData = url => {
     this.setState(() => ({ isLoading: true, error: '', title: '' }))
 
+    // Make GET request to Node service to parse RSS feed and send back JSON
     axios({
       method: 'GET',
       url: `https://xmlparse.glitch.me/?url=${url}`,
       timeout: 25 * 1000
     })
       .then(res => {
+        // Pull out necessary podcast data
+        const title = res.data.rss.channel.title._text
+        const description =
+          res.data.rss.channel.description._cdata ||
+          res.data.rss.channel.description._text
+        const img = res.data.rss.channel.image.url._text.replace(
+          /http:\/\//,
+          'https://'
+        )
+        const episodes = res.data.rss.channel.item.filter(e =>
+          e.hasOwnProperty('enclosure')
+        )
+
+        // Set app state with podcast data
         this.setState(() => ({
-          title: res.data.rss.channel.title._text,
-          description:
-            res.data.rss.channel.description._cdata ||
-            res.data.rss.channel.description._text,
-          img: res.data.rss.channel.image.url._text.replace(
-            /http:\/\//,
-            'https://'
-          ),
-          episodes: res.data.rss.channel.item.filter(e =>
-            e.hasOwnProperty('enclosure')
-          ),
+          title,
+          description,
+          img,
+          episodes,
           isLoading: false,
           error: ''
         }))
       })
+      // Set error ir request timesout
       .catch(err => {
         if (err.code == 'ECONNABORTED') {
           this.setState(() => ({
             error: 'This is taking longer than expected :('
           }))
         }
-        console.log(err)
       })
   }
 
