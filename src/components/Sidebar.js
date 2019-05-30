@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import Logo from '../images/devcasts-logo-slant.png'
 import SidebarImg from './SidebarImg'
 import HamMenu from '../images/hamburger-menu.png'
+import CloseIcon from '../images/close-icon.png'
 
 import '../css/Sidebar.css'
 
@@ -103,7 +104,10 @@ class Sidebar extends Component {
           onClick={this.toggleSidebar}
           className={`toggle-side ${this.state.showSidebar && 'over'}`}
         >
-          <img src={HamMenu} alt='menu icon' />
+          <img
+            alt='menu icon'
+            src={this.state.showSidebar ? CloseIcon : HamMenu}
+          />
         </div>
       </Fragment>
     )
