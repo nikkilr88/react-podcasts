@@ -30,7 +30,9 @@ class PodcastListElement extends Component {
       <div className={`infoBox ${theme}`} title={title}>
         <div className='text'>
           <p className='date'>
-            {formattedDate} 🞄 {minutesLong} mins
+            {formattedDate}
+            <span> &#8226; </span>
+            {minutesLong} mins
           </p>
           <h3>{title.length > 50 ? title.substring(0, 50) + '...' : title}</h3>
         </div>
