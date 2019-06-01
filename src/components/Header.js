@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 import '../css/Header.css'
 
 class Header extends Component {
@@ -6,9 +7,9 @@ class Header extends Component {
     const { img } = this.props
 
     const styles = {
-      background: `url(${img})`,
-      backgroundSize: 'cover',
-      backgroundPosition: '50% 50%'
+      backgroundImage: `url(${img})`,
+      backgroundSize: 'cover !important',
+      backgroundPosition: '50%'
     }
 
     return (
@@ -21,4 +22,8 @@ class Header extends Component {
   }
 }
 
-export default Header
+const mapStateToProps = state => ({
+  img: state.podcast.podcast.img
+})
+
+export default connect(mapStateToProps)(Header)

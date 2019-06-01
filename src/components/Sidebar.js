@@ -1,8 +1,12 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
+
 import Logo from '../images/devcasts-logo-slant.png'
 import SidebarImg from './SidebarImg'
 import HamMenu from '../images/hamburger-menu.png'
 import CloseIcon from '../images/close-icon.png'
+
+import { fetchPodcast, setLoading } from '../actions/podcast'
 
 import '../css/Sidebar.css'
 
@@ -53,7 +57,9 @@ class Sidebar extends Component {
   }
 
   handleOnClick = e => {
-    this.props.fetchData(e.target.dataset.link)
+    // SET LOADING BROKEN
+    // this.props.setLoading()
+    this.props.fetchPodcast(e.target.dataset.link)
   }
 
   toggleSidebar = e => {
@@ -63,6 +69,7 @@ class Sidebar extends Component {
   }
 
   render() {
+    console.log(this.props)
     const sidebarItems = this.props.list.map((e, i) => {
       return (
         <SidebarImg
@@ -114,4 +121,11 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar
+const mapStateToProps = state => ({
+  currentTrack: state.podcast.podcast.title
+})
+
+export default connect(
+  mapStateToProps,
+  { fetchPodcast, setLoading }
+)(Sidebar)

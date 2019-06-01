@@ -1,5 +1,8 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment, Suspense, lazy } from 'react'
+import { connect } from 'react-redux'
 import axios from 'axios'
+
+import { fetchPodcast } from '../actions/podcast'
 
 import SoundWrapper from './SoundWrapper'
 import Sound from 'react-sound'
@@ -14,11 +17,6 @@ import { convertSeconds } from '../utils'
 
 class App extends Component {
   state = {
-    isLoading: true,
-    title: '',
-    description: '',
-    img: '',
-    episodes: [],
     track: { title: '', src: '' },
     position: 0,
     duration: 0,
@@ -170,49 +168,9 @@ class App extends Component {
     }
   }
 
-  // Fetch podcast data and set state
-  fetchData = url => {
-    this.setState(() => ({ isLoading: true, error: '', title: '' }))
-
-    // Make GET request to Node service to parse RSS feed and send back JSON
-    axios({
-      method: 'GET',
-      timeout: 25 * 1000,
-      url: `https://xmlparse.glitch.me/?url=${url}`
-    })
-      .then(res => {
-        // Pull out necessary podcast data
-        const channel = res.data.rss.channel
-
-        const title = channel.title._text
-        const description =
-          channel.description._cdata || channel.description._text
-        const img = channel.image.url._text.replace(/http:\/\//, 'https://')
-        const episodes = channel.item.filter(e => e.hasOwnProperty('enclosure'))
-
-        // Set app state with podcast data
-        this.setState(() => ({
-          img,
-          title,
-          episodes,
-          error: '',
-          isLoading: false,
-          description
-        }))
-      })
-      // Set error ir request timesout
-      .catch(err => {
-        if (err.code == 'ECONNABORTED') {
-          this.setState(() => ({
-            error: 'This is taking longer than expected :('
-          }))
-        }
-      })
-  }
-
   // Fetch podcast data on mount
   componentDidMount() {
-    this.fetchData('https://feed.syntax.fm/rss')
+    this.props.fetchPodcast()
 
     // Keyboard controls
     document.addEventListener('keyup', this.handleOnKeyUp, false)
@@ -231,19 +189,14 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <Sidebar
-          theme={this.state.theme}
-          fetchData={this.fetchData}
-          changeTheme={this.changeTheme}
-          currentTrack={this.state.title}
-        />
-        {this.state.error && (
+        <Sidebar theme={this.state.theme} changeTheme={this.changeTheme} />
+        {this.props.error && (
           <div className='error'>
-            <p>Uh-oh! {this.state.error}</p>
+            <p>{this.props.error}</p>
           </div>
         )}
 
-        {this.state.isLoading ? (
+        {this.props.loading ? (
           <Loader theme={this.state.theme} />
         ) : (
           <Fragment>
@@ -251,15 +204,11 @@ class App extends Component {
               <Volume volume={this.state.volume} theme={this.state.theme} />
             )}
 
-            <Header img={this.state.img} />
+            <Header />
             <Episodes
-              img={this.state.img}
               setAudio={this.setAudio}
-              title={this.state.title}
               theme={this.state.theme}
-              episodes={this.state.episodes}
               nowPlaying={this.state.track.title}
-              description={this.state.description}
             />
           </Fragment>
         )}
@@ -295,4 +244,17 @@ class App extends Component {
   }
 }
 
-export default App
+const mapStateToProps = state => ({
+  loading: state.podcast.loading,
+  error: state.podcast.error
+})
+
+const mapDispatchToProps = dispatch => ({
+  fetchPodcast: () => dispatch(fetchPodcast('https://feed.syntax.fm/rss')),
+  setLoading: () => dispatch(setLoading())
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)

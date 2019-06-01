@@ -1,19 +1,13 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PodcastListElement from './PodcastListElement'
 
 import '../css/ChannelInfo.css'
 
 class Episodes extends Component {
   render() {
-    const {
-      img,
-      theme,
-      title,
-      setAudio,
-      episodes,
-      nowPlaying,
-      description
-    } = this.props
+    const { theme, setAudio, nowPlaying } = this.props
+    const { img, title, episodes, description } = this.props.podcast
 
     const episodeList = episodes.map((e, i) => (
       <PodcastListElement
@@ -46,4 +40,8 @@ class Episodes extends Component {
   }
 }
 
-export default Episodes
+const mapStateToProps = state => ({
+  podcast: state.podcast.podcast
+})
+
+export default connect(mapStateToProps)(Episodes)
