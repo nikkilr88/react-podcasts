@@ -1,10 +1,16 @@
 import axios from 'axios'
 
+export const setLoading = () => dispatch => {
+  dispatch({
+    type: 'SET_LOADING'
+  })
+}
+
 export const fetchPodcast = url => dispatch => {
   // Make GET request to Node service to parse RSS feed and send back JSON
   axios({
     method: 'GET',
-    timeout: 25 * 1000,
+    timeout: 5 * 1000,
     url: `https://xmlparse.glitch.me/?url=${url}`
   })
     .then(res => {
@@ -31,7 +37,7 @@ export const fetchPodcast = url => dispatch => {
     // Set error ir request timesout
     .catch(err => {
       if (err.code == 'ECONNABORTED') {
-        console.log('error', err)
+        dispatch({ type: 'SET_ERROR' })
       }
     })
 }
