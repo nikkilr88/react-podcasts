@@ -1,7 +1,5 @@
 import React, { Component, Fragment, Suspense, lazy } from 'react'
 import { connect } from 'react-redux'
-import axios from 'axios'
-
 import { fetchPodcast } from '../actions/podcast'
 
 import SoundWrapper from './SoundWrapper'
@@ -170,7 +168,7 @@ class App extends Component {
 
   // Fetch podcast data on mount
   componentDidMount() {
-    this.props.fetchPodcast()
+    this.props.fetchPodcast('https://feed.syntax.fm/rss')
 
     // Keyboard controls
     document.addEventListener('keyup', this.handleOnKeyUp, false)
@@ -249,12 +247,7 @@ const mapStateToProps = state => ({
   error: state.podcast.error
 })
 
-const mapDispatchToProps = dispatch => ({
-  fetchPodcast: () => dispatch(fetchPodcast('https://feed.syntax.fm/rss')),
-  setLoading: () => dispatch(setLoading())
-})
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { fetchPodcast }
 )(App)
