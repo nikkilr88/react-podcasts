@@ -12,8 +12,6 @@ import './css/themes/dark.css'
 
 const store = configureStore()
 
-store.dispatch(fetchPodcast('https://feed.syntax.fm/rss'))
-
 ReactDOM.render(
   <Provider store={store}>
     <App />
