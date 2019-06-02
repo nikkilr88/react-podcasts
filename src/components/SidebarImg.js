@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+
 import ProgressiveImage from 'react-progressive-image'
 import imgPlaceholder from '../images/image-placeholder.png'
 
@@ -22,4 +24,8 @@ const SidebarImg = ({
   </li>
 )
 
-export default SidebarImg
+const mapStateToProps = state => ({
+  currentTrack: state.podcast.podcast.title
+})
+
+export default connect(mapStateToProps)(SidebarImg)
