@@ -12,30 +12,35 @@ export const fetchPodcast = url => dispatch => {
     method: 'GET',
     timeout: 25 * 1000,
     url: `https://xmlparse.glitch.me/?url=${url}`
-  }).then(res => {
-    // Pull out necessary podcast data
-    const channel = res.data.rss.channel
+  })
+    .then(res => {
+      // Pull out necessary podcast data
+      const channel = res.data.rss.channel
 
-    const title = channel.title._text
-    const description = channel.description._cdata || channel.description._text
-    const img = channel.image.url._text.replace(/http:\/\//, 'https://')
-    const episodes = channel.item.filter(e => e.hasOwnProperty('enclosure'))
+      const title = channel.title._text
+      const description =
+        channel.description._cdata || channel.description._text
+      const img = channel.image.url._text.replace(/http:\/\//, 'https://')
+      const episodes = channel.item.filter(e => e.hasOwnProperty('enclosure'))
 
-    // Set app state with podcast data
-    dispatch({
-      type: 'FETCH_PODCAST',
-      podcast: {
-        img,
-        title,
-        episodes,
-        description
+      // Set app state with podcast data
+      dispatch({
+        type: 'FETCH_PODCAST',
+        podcast: {
+          img,
+          title,
+          episodes,
+          description
+        }
+      })
+    })
+    // Set error ir request timesout
+    .catch(err => {
+      if (err.code == 'ECONNABORTED') {
+        dispatch({
+          type: 'SET_ERROR',
+          error: 'Oh-oh, this is taking longer that usual...'
+        })
       }
     })
-  })
-  // Set error ir request timesout
-  // .catch(err => {
-  //   if (err.code == 'ECONNABORTED') {
-  //     dispatch({ type: 'SET_ERROR' })
-  //   }
-  // })
 }
