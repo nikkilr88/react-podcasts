@@ -58,7 +58,7 @@ class Sidebar extends Component {
 
   handleOnClick = e => {
     // SET LOADING BROKEN
-    // this.props.setLoading()
+    this.props.setLoading()
     this.props.fetchPodcast(e.target.dataset.link)
   }
 
@@ -79,7 +79,6 @@ class Sidebar extends Component {
           title={e.name}
           dataLink={e.link}
           handleOnClick={this.handleOnClick}
-          currentTrack={this.props.currentTrack}
           className={i === 0 && 'sidebar-selected'}
         />
       )
@@ -121,11 +120,7 @@ class Sidebar extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentTrack: state.podcast.podcast.title
-})
-
 export default connect(
-  mapStateToProps,
+  null,
   { fetchPodcast, setLoading }
 )(Sidebar)
