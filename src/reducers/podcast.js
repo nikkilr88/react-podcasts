@@ -20,11 +20,12 @@ const podcastReducer = (state = podcastState, action) => {
     case 'SET_ERROR':
       return {
         ...state,
-        error: 'Uh-oh, this is taking longer than expected...'
+        error: action.error
       }
     case 'SET_LOADING':
       return {
         ...state,
+        error: '',
         loading: true
       }
     default:
