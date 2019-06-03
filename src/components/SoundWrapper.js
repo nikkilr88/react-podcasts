@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Sound from 'react-sound'
+import { connect } from 'react-redux'
 
 class SoundWrapper extends Component {
   shouldComponentUpdate(nextProps) {
@@ -12,8 +13,9 @@ class SoundWrapper extends Component {
     return false
   }
   render() {
+    console.log(this.props)
     const {
-      url,
+      track,
       volume,
       onError,
       onPlaying,
@@ -24,7 +26,7 @@ class SoundWrapper extends Component {
 
     return (
       <Sound
-        url={url}
+        url={track}
         volume={volume}
         onError={onError}
         onPlaying={onPlaying}
@@ -35,4 +37,13 @@ class SoundWrapper extends Component {
     )
   }
 }
-export default SoundWrapper
+
+const mapStateToProps = state => ({
+  track: state.player.track.src,
+  position: state.player.position,
+  duration: state.player.duration,
+  volume: state.player.volume,
+  playStatus: state.player.playStatus
+})
+
+export default connect(mapStateToProps)(SoundWrapper)
