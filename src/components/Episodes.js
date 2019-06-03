@@ -16,7 +16,6 @@ class Episodes extends Component {
         title={e.title._text}
         nowPlaying={nowPlaying}
         audio={e.enclosure._attributes.url}
-        setAudio={setAudio}
         theme={theme}
         duration={e['itunes:duration']._text}
       />
