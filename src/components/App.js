@@ -21,26 +21,13 @@ class App extends Component {
     playingStatus: Sound.status.PLAYING,
     volume: 75,
     showVolume: false,
-    theme: 'light', // light or dark
-    error: ''
+    theme: 'light' // light or dark
   }
 
   // Toggle between light and dark theme
   changeTheme = () => {
     this.setState(prevState => ({
       theme: prevState.theme === 'light' ? 'dark' : 'light'
-    }))
-  }
-
-  // Update state with track information
-  setAudio = (audio, title) => {
-    this.setState(() => ({
-      track: {
-        title: title,
-        src: audio
-      },
-      position: 0,
-      playingStatus: Sound.status.PLAYING
     }))
   }
 
@@ -56,14 +43,6 @@ class App extends Component {
             : Sound.status.PLAYING
       }))
     }
-  }
-
-  // Stop audio
-  stopAudio = e => {
-    this.setState(() => ({
-      position: 0,
-      track: { title: '', src: '' }
-    }))
   }
 
   // Fastforward track 10 seconds
@@ -204,29 +183,24 @@ class App extends Component {
 
             <Header />
             <Episodes
-              setAudio={this.setAudio}
               theme={this.state.theme}
               nowPlaying={this.state.track.title}
             />
           </Fragment>
         )}
 
-        {this.state.track.src && (
+        {this.props.track.src && (
           <Fragment>
             <SoundWrapper
               volume={this.state.volume}
-              url={this.state.track.src}
               onError={this.handleOnError}
               onPlaying={this.handleOnPlaying}
-              playStatus={this.state.playingStatus}
               playFromPosition={this.state.position}
               onFinishedPlaying={this.handleOnFinishedPlaying}
             />
             <Controls
               rewind={this.rewind}
-              audio={this.state.track}
               theme={this.state.theme}
-              stopAudio={this.stopAudio}
               volume={this.state.volume}
               pauseAudio={this.pauseAudio}
               fastforward={this.fastforward}
@@ -244,7 +218,8 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   loading: state.podcast.loading,
-  error: state.podcast.error
+  error: state.podcast.error,
+  track: state.player.track
 })
 
 export default connect(
