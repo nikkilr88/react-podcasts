@@ -1,25 +1,16 @@
 import React, { Component } from 'react'
 import Sound from 'react-sound'
 import { connect } from 'react-redux'
+import { handleOnPlaying } from '../actions/player'
 
 class SoundWrapper extends Component {
-  shouldComponentUpdate(nextProps) {
-    if (
-      nextProps.playFromPosition !== this.props.playFromPosition ||
-      nextProps.playStatus !== this.props.playStatus
-    ) {
-      return true
-    }
-    return false
-  }
   render() {
-    console.log(this.props)
     const {
       track,
       volume,
       onError,
-      onPlaying,
       playStatus,
+      handleOnPlaying,
       playFromPosition,
       onFinishedPlaying
     } = this.props
@@ -29,7 +20,7 @@ class SoundWrapper extends Component {
         url={track}
         volume={volume}
         onError={onError}
-        onPlaying={onPlaying}
+        onPlaying={handleOnPlaying}
         playStatus={playStatus}
         playFromPosition={playFromPosition}
         onFinishedPlaying={onFinishedPlaying}
@@ -41,9 +32,11 @@ class SoundWrapper extends Component {
 const mapStateToProps = state => ({
   track: state.player.track.src,
   position: state.player.position,
-  duration: state.player.duration,
-  volume: state.player.volume,
+  // volume: state.player.volume,
   playStatus: state.player.playStatus
 })
 
-export default connect(mapStateToProps)(SoundWrapper)
+export default connect(
+  mapStateToProps,
+  { handleOnPlaying }
+)(SoundWrapper)
