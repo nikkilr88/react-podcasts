@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import ProgressBar from './ProgressBar'
 import Sound from 'react-sound'
+import { connect } from 'react-redux'
+import { stopAudio } from '../actions/player'
 
 import '../css/Controls.css'
 
@@ -8,7 +10,7 @@ class Controls extends Component {
   render() {
     const {
       time,
-      audio,
+      track,
       theme,
       rewind,
       position,
@@ -22,9 +24,9 @@ class Controls extends Component {
     return (
       <div id='player' className={theme}>
         <div className='title'>
-          {audio.title.length > 50
-            ? audio.title.substring(0, 50) + '...'
-            : audio.title}
+          {track.title.length > 50
+            ? track.title.substring(0, 50) + '...'
+            : track.title}
         </div>
 
         <ProgressBar position={position} duration={duration} theme={theme} />
@@ -56,4 +58,11 @@ class Controls extends Component {
   }
 }
 
-export default Controls
+const mapStateToProps = state => ({
+  track: state.player.track
+})
+
+export default connect(
+  mapStateToProps,
+  { stopAudio }
+)(Controls)
