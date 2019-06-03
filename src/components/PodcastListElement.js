@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import moment from 'moment'
+import { connect } from 'react-redux'
+import { setAudio } from '../actions/player'
 
 import '../css/PodcastList.css'
 
@@ -51,4 +53,7 @@ class PodcastListElement extends Component {
   }
 }
 
-export default PodcastListElement
+export default connect(
+  null,
+  { setAudio }
+)(PodcastListElement)
