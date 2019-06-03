@@ -32,6 +32,20 @@ const playerReducer = (state = playerState, action) => {
           src: ''
         }
       }
+
+    case 'PAUSE_AUDIO':
+      return {
+        ...state,
+        playStatus: action.paused
+      }
+
+    case 'HANDLE_ON_PLAY':
+      return {
+        ...state,
+        position: action.payload.position,
+        duration: action.payload.duration
+      }
+
     default:
       return state
   }
