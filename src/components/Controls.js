@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import ProgressBar from './ProgressBar'
 import Sound from 'react-sound'
 import { connect } from 'react-redux'
-import { stopAudio } from '../actions/player'
+import { pauseAudio, stopAudio } from '../actions/player'
+import { convertSeconds } from '../utils'
 
 import '../css/Controls.css'
 
@@ -10,15 +11,15 @@ class Controls extends Component {
   render() {
     const {
       time,
-      track,
       theme,
+      track,
       rewind,
       position,
       duration,
       stopAudio,
+      playStatus,
       pauseAudio,
-      fastforward,
-      playingStatus
+      fastforward
     } = this.props
 
     return (
@@ -38,7 +39,7 @@ class Controls extends Component {
           </button>
 
           <button onClick={pauseAudio}>
-            {playingStatus == Sound.status.PLAYING ? (
+            {playStatus == Sound.status.PLAYING ? (
               <i className='material-icons paused'>pause</i>
             ) : (
               <i className='material-icons'>play_arrow</i>
@@ -59,10 +60,14 @@ class Controls extends Component {
 }
 
 const mapStateToProps = state => ({
-  track: state.player.track
+  track: state.player.track,
+  duration: state.player.duration,
+  position: state.player.position,
+  playStatus: state.player.playStatus,
+  time: convertSeconds(state.player.position / 1000)
 })
 
 export default connect(
   mapStateToProps,
-  { stopAudio }
+  { pauseAudio, stopAudio }
 )(Controls)
