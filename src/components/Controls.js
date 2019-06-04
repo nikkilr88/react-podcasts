@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ProgressBar from './ProgressBar'
 import Sound from 'react-sound'
 import { connect } from 'react-redux'
-import { pauseAudio, stopAudio } from '../actions/player'
+import { pauseAudio, stopAudio, skip } from '../actions/player'
 import { convertSeconds } from '../utils'
 
 import '../css/Controls.css'
@@ -11,15 +11,12 @@ class Controls extends Component {
   render() {
     const {
       time,
+      skip,
       theme,
       track,
-      rewind,
-      position,
-      duration,
       stopAudio,
-      playStatus,
       pauseAudio,
-      fastforward
+      playStatus
     } = this.props
 
     return (
@@ -30,11 +27,11 @@ class Controls extends Component {
             : track.title}
         </div>
 
-        <ProgressBar position={position} duration={duration} theme={theme} />
+        <ProgressBar theme={theme} />
 
         <div className='control-btns'>
           <span className='time'>{time}</span>
-          <button onClick={rewind}>
+          <button onClick={() => skip(-10000)}>
             <i className='material-icons'>replay_5</i>
           </button>
 
@@ -50,7 +47,7 @@ class Controls extends Component {
             <i className='material-icons'>stop</i>
           </button>
 
-          <button onClick={fastforward}>
+          <button onClick={() => skip(10000)}>
             <i className='material-icons'>forward_10</i>
           </button>
         </div>
@@ -69,5 +66,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { pauseAudio, stopAudio }
+  { pauseAudio, stopAudio, skip }
 )(Controls)
