@@ -25,28 +25,6 @@ class App extends Component {
     }))
   }
 
-  // Fastforward track 10 seconds
-  fastforward = e => {
-    e && e.target.blur()
-
-    if (this.state.position > 0) {
-      this.setState(prevState => ({
-        position: prevState.position + 1000 * 10
-      }))
-    }
-  }
-
-  // Rewind track 5 seconds
-  rewind = e => {
-    e && e.target.blur()
-
-    if (this.state.position > 0) {
-      this.setState(prevState => ({
-        position: prevState.position - 1000 * 5
-      }))
-    }
-  }
-
   handleOnFinishedPlaying = () => {
     this.setState(() => ({
       position: 1,
@@ -168,12 +146,7 @@ class App extends Component {
               onError={this.handleOnError}
               onFinishedPlaying={this.handleOnFinishedPlaying}
             />
-            <Controls
-              rewind={this.rewind}
-              theme={this.state.theme}
-              volume={this.state.volume}
-              fastforward={this.fastforward}
-            />
+            <Controls theme={this.state.theme} volume={this.state.volume} />
           </Fragment>
         )}
       </Fragment>
