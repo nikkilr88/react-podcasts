@@ -46,6 +46,12 @@ const playerReducer = (state = playerState, action) => {
         duration: action.payload.duration
       }
 
+    case 'SKIP':
+      return {
+        ...state,
+        position: action.position
+      }
+
     default:
       return state
   }
