@@ -9,9 +9,9 @@ class SoundWrapper extends Component {
       track,
       volume,
       onError,
+      position,
       playStatus,
       handleOnPlaying,
-      playFromPosition,
       onFinishedPlaying
     } = this.props
 
@@ -22,7 +22,7 @@ class SoundWrapper extends Component {
         onError={onError}
         onPlaying={handleOnPlaying}
         playStatus={playStatus}
-        playFromPosition={playFromPosition}
+        playFromPosition={position}
         onFinishedPlaying={onFinishedPlaying}
       />
     )
