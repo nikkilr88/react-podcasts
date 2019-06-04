@@ -43,3 +43,14 @@ export const stopAudio = () => dispatch => {
     type: 'STOP_AUDIO'
   })
 }
+
+export const skip = value => (dispatch, getState) => {
+  const state = getState()
+
+  if (state.player.position > 0) {
+    dispatch({
+      type: 'SKIP',
+      position: (state.player.position += value)
+    })
+  }
+}
