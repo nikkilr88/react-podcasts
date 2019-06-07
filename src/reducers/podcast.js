@@ -1,9 +1,10 @@
 const podcastState = {
   podcast: {
-    title: '',
-    description: '',
     img: '',
-    episodes: []
+    title: '',
+    website: '',
+    episodes: [],
+    description: ''
   },
   error: '',
   loading: true
