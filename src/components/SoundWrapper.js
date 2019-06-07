@@ -4,6 +4,16 @@ import { connect } from 'react-redux'
 import { handleOnPlaying } from '../actions/player'
 
 class SoundWrapper extends Component {
+  shouldComponentUpdate(nextProps) {
+    if (
+      nextProps.position !== this.props.position ||
+      nextProps.playStatus !== this.props.playStatus
+    ) {
+      return true
+    }
+    return false
+  }
+
   render() {
     const {
       track,
