@@ -42,7 +42,7 @@ class SoundWrapper extends Component {
 const mapStateToProps = state => ({
   track: state.player.track.src,
   position: state.player.position,
-  // volume: state.player.volume,
+  volume: state.player.volume,
   playStatus: state.player.playStatus
 })
 
