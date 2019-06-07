@@ -7,7 +7,7 @@ import '../css/ChannelInfo.css'
 class Episodes extends Component {
   render() {
     const { theme, setAudio, nowPlaying } = this.props
-    const { img, title, episodes, description } = this.props.podcast
+    const { img, title, episodes, description, website } = this.props.podcast
 
     const episodeList = episodes.map((e, i) => (
       <PodcastListElement
@@ -31,6 +31,13 @@ class Episodes extends Component {
           />
           <h1 className='title'>{title}</h1>
           <p>{description || 'No Description Available :('}</p>
+          <p className='channel-website'>
+            <i className='fas fa-external-link-alt' />
+            <a href={website} target='_blank'>
+              {' '}
+              Visit website
+            </a>
+          </p>
         </div>
         <h1 className={`episodes ${theme}`}>Episodes</h1>
         {episodeList}
