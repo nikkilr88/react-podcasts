@@ -43,6 +43,11 @@ export const fetchPodcast = url => dispatch => {
           type: 'SET_ERROR',
           error: 'Oh-oh, this is taking longer that usual...'
         })
+      } else {
+        dispatch({
+          type: 'SET_ERROR',
+          error: 'Oh-oh, something went wrong ...'
+        })
       }
     })
 }
