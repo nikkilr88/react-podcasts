@@ -30,6 +30,16 @@
   line-height: 1.5rem;
 }
 
+.channel-website {
+  color: #999;
+}
+
+.channel-website a {
+  color: #999;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
 .episodes {
   margin: 50px auto 25px auto;
   text-align: left;
