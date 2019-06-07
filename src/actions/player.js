@@ -54,3 +54,28 @@ export const skip = value => (dispatch, getState) => {
     })
   }
 }
+
+export const showVolume = () => dispatch => {
+  dispatch({
+    type: 'SHOW_VOLUME'
+  })
+}
+
+export const hideVolume = () => dispatch => {
+  dispatch({
+    type: 'HIDE_VOLUME'
+  })
+}
+
+export const setVolume = value => (dispatch, getState) => {
+  const state = getState()
+  const prevVolume = state.player.volume
+
+  if (state.player.volume + value < 0 || state.player.volume + value > 100)
+    return
+
+  dispatch({
+    type: 'SET_VOLUME',
+    volume: prevVolume + value
+  })
+}
