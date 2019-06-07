@@ -2,14 +2,14 @@ import Sound from 'react-sound'
 
 const playerState = {
   track: {
-    title: '',
-    src: ''
+    src: '',
+    title: ''
   },
+  volume: 75,
   position: 0,
   duration: 0,
-  playStatus: Sound.status.PLAYING,
-  volume: 75,
-  showVolume: false
+  showVolume: false,
+  playStatus: Sound.status.PLAYING
 }
 
 const playerReducer = (state = playerState, action) => {
@@ -24,6 +24,7 @@ const playerReducer = (state = playerState, action) => {
         position: action.player.position,
         playStatus: action.player.playStatus
       }
+
     case 'STOP_AUDIO':
       return {
         ...state,
@@ -50,6 +51,24 @@ const playerReducer = (state = playerState, action) => {
       return {
         ...state,
         position: action.position
+      }
+
+    case 'SHOW_VOLUME':
+      return {
+        ...state,
+        showVolume: true
+      }
+
+    case 'HIDE_VOLUME':
+      return {
+        ...state,
+        showVolume: false
+      }
+
+    case 'SET_VOLUME':
+      return {
+        ...state,
+        volume: action.volume
       }
 
     default:
