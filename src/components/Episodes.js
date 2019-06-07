@@ -6,18 +6,18 @@ import '../css/ChannelInfo.css'
 
 class Episodes extends Component {
   render() {
-    const { theme, setAudio, nowPlaying } = this.props
+    const { theme, nowPlaying } = this.props
     const { img, title, episodes, description, website } = this.props.podcast
 
     const episodeList = episodes.map((e, i) => (
       <PodcastListElement
         key={i}
+        theme={theme}
         date={e.pubDate._text}
-        title={e.title._text}
         nowPlaying={nowPlaying}
         audio={e.enclosure._attributes.url}
-        theme={theme}
         duration={e['itunes:duration']._text}
+        title={e.title._text || e.title._cdata}
       />
     ))
 
@@ -47,7 +47,8 @@ class Episodes extends Component {
 }
 
 const mapStateToProps = state => ({
-  podcast: state.podcast.podcast
+  podcast: state.podcast.podcast,
+  nowPlaying: state.player.track.title
 })
 
 export default connect(mapStateToProps)(Episodes)
