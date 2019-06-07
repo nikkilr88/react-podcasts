@@ -65,52 +65,9 @@ class App extends Component {
     }))
   }
 
-  // Pause, skip forward / back
-  keyboardShortcuts = e => {
-    switch (e.which) {
-      case 32:
-        this.pauseAudio()
-        break
-      case 37:
-        this.rewind()
-        break
-      case 39:
-        this.fastforward()
-        break
-    }
-  }
-
-  // Keyup keyboard shortcuts
-  handleOnKeyUp = e => {
-    switch (e.which) {
-      case 32:
-      case 39:
-      case 37:
-        this.keyboardShortcuts(e)
-        break
-      case 38:
-      case 40:
-        this.setVolume(e)
-        break
-    }
-  }
-
   // Fetch podcast data on mount
   componentDidMount() {
     this.props.fetchPodcast('https://feed.syntax.fm/rss')
-
-    // Keyboard controls
-    document.addEventListener('keyup', this.handleOnKeyUp, false)
-
-    // Prevent spacebar scrolling
-    document.addEventListener('keydown', e => {
-      if (this.props.track.src.length < 1) return
-
-      if (e.which == 32 || e.which == 38 || e.which == 40) {
-        e.preventDefault()
-        return false
-      }
-    })
   }
 
   render() {
