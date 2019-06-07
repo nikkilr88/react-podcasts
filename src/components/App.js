@@ -13,12 +13,9 @@ import Episodes from './Episodes'
 
 class App extends Component {
   state = {
-    volume: 75,
-    showVolume: false,
     theme: 'light' // light or dark
   }
 
-  // Toggle between light and dark theme
   changeTheme = () => {
     this.setState(prevState => ({
       theme: prevState.theme === 'light' ? 'dark' : 'light'
@@ -36,74 +33,39 @@ class App extends Component {
     console.log(err)
   }
 
-  showVolume = () => {
-    if (this.timeout) {
-      clearInterval(this.timeout)
-    }
-
-    this.setState(() => ({ showVolume: true }))
-
-    this.timeout = setTimeout(() => {
-      this.setState(() => ({ showVolume: false }))
-    }, 1000)
-  }
-
-  // Set volume
-  setVolume = e => {
-    if (!this.props.track.src) return
-
-    console.log(this.state.volume)
-
-    this.showVolume()
-
-    const val = e.which === 38 ? 5 : -5
-
-    if (this.state.volume + val < 0 || this.state.volume + val > 100) return
-
-    this.setState(prevState => ({
-      volume: prevState.volume + val
-    }))
-  }
-
-  // Fetch podcast data on mount
   componentDidMount() {
     this.props.fetchPodcast('https://feed.syntax.fm/rss')
   }
 
   render() {
+    const { error, loading, track } = this.props
+
     return (
       <Fragment>
         <Sidebar theme={this.state.theme} changeTheme={this.changeTheme} />
-        {this.props.error && (
+
+        {error && (
           <div className='error'>
-            <p>{this.props.error}</p>
+            <p>{error}</p>
           </div>
         )}
 
-        {this.props.loading ? (
+        {loading ? (
           <Loader theme={this.state.theme} />
         ) : (
           <Fragment>
-            {this.state.showVolume && (
-              <Volume volume={this.state.volume} theme={this.state.theme} />
-            )}
-
             <Header />
-            <Episodes
-              theme={this.state.theme}
-              nowPlaying={this.props.track.title}
-            />
+            <Episodes theme={this.state.theme} />
           </Fragment>
         )}
 
-        {this.props.track.src && (
+        {track.src && (
           <Fragment>
             <SoundWrapper
-              volume={this.state.volume}
               onError={this.handleOnError}
               onFinishedPlaying={this.handleOnFinishedPlaying}
             />
-            <Controls theme={this.state.theme} volume={this.state.volume} />
+            <Controls theme={this.state.theme} />
           </Fragment>
         )}
       </Fragment>
