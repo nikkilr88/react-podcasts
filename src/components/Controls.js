@@ -1,8 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import ProgressBar from './ProgressBar'
+import Volume from './Volume'
 import Sound from 'react-sound'
 import { connect } from 'react-redux'
-import { pauseAudio, stopAudio, skip } from '../actions/player'
+import {
+  skip,
+  setVolume,
+  stopAudio,
+  pauseAudio,
+  showVolume,
+  hideVolume
+} from '../actions/player'
 import { convertSeconds } from '../utils'
 
 import '../css/Controls.css'
@@ -33,9 +41,28 @@ class Controls extends Component {
         break
       case 38:
       case 40:
-        // this.setVolume(e)
+        this.setVolume(e)
         break
     }
+  }
+
+  toggleVolume = () => {
+    if (this.timeout) {
+      clearInterval(this.timeout)
+    }
+
+    this.props.showVolume()
+
+    this.timeout = setTimeout(() => {
+      this.props.hideVolume()
+    }, 1000)
+  }
+
+  setVolume = e => {
+    const val = e.which === 38 ? 5 : -5
+
+    this.toggleVolume()
+    this.props.setVolume(val)
   }
 
   handleOnKeyDown = e => {
@@ -69,42 +96,47 @@ class Controls extends Component {
       track,
       stopAudio,
       pauseAudio,
-      playStatus
+      playStatus,
+      volumeVisible
     } = this.props
 
     return (
-      <div id='player' className={theme}>
-        <div className='title'>
-          {track.title.length > 50
-            ? track.title.substring(0, 50) + '...'
-            : track.title}
+      <Fragment>
+        {volumeVisible && <Volume theme={theme} />}
+
+        <div id='player' className={theme}>
+          <div className='title'>
+            {track.title.length > 50
+              ? track.title.substring(0, 50) + '...'
+              : track.title}
+          </div>
+
+          <ProgressBar theme={theme} />
+
+          <div className='control-btns'>
+            <span className='time'>{time}</span>
+            <button onClick={() => skip(-10000)}>
+              <i className='material-icons'>replay_5</i>
+            </button>
+
+            <button onClick={pauseAudio}>
+              {playStatus == Sound.status.PLAYING ? (
+                <i className='material-icons paused'>pause</i>
+              ) : (
+                <i className='material-icons'>play_arrow</i>
+              )}
+            </button>
+
+            <button onClick={stopAudio}>
+              <i className='material-icons'>stop</i>
+            </button>
+
+            <button onClick={() => skip(10000)}>
+              <i className='material-icons'>forward_10</i>
+            </button>
+          </div>
         </div>
-
-        <ProgressBar theme={theme} />
-
-        <div className='control-btns'>
-          <span className='time'>{time}</span>
-          <button onClick={() => skip(-10000)}>
-            <i className='material-icons'>replay_5</i>
-          </button>
-
-          <button onClick={pauseAudio}>
-            {playStatus == Sound.status.PLAYING ? (
-              <i className='material-icons paused'>pause</i>
-            ) : (
-              <i className='material-icons'>play_arrow</i>
-            )}
-          </button>
-
-          <button onClick={stopAudio}>
-            <i className='material-icons'>stop</i>
-          </button>
-
-          <button onClick={() => skip(10000)}>
-            <i className='material-icons'>forward_10</i>
-          </button>
-        </div>
-      </div>
+      </Fragment>
     )
   }
 }
@@ -114,10 +146,11 @@ const mapStateToProps = state => ({
   duration: state.player.duration,
   position: state.player.position,
   playStatus: state.player.playStatus,
+  volumeVisible: state.player.showVolume,
   time: convertSeconds(state.player.position / 1000)
 })
 
 export default connect(
   mapStateToProps,
-  { pauseAudio, stopAudio, skip }
+  { pauseAudio, stopAudio, skip, showVolume, hideVolume, setVolume }
 )(Controls)
