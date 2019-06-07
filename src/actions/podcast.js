@@ -22,6 +22,7 @@ export const fetchPodcast = url => dispatch => {
         channel.description._cdata || channel.description._text
       const img = channel.image.url._text.replace(/http:\/\//, 'https://')
       const episodes = channel.item.filter(e => e.hasOwnProperty('enclosure'))
+      const website = channel.link._text
 
       // Set app state with podcast data
       dispatch({
@@ -29,6 +30,7 @@ export const fetchPodcast = url => dispatch => {
         podcast: {
           img,
           title,
+          website,
           episodes,
           description
         }
