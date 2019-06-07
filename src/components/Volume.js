@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import '../css/Volume.css'
 
 class Volume extends Component {
@@ -7,14 +8,18 @@ class Volume extends Component {
       width: this.props.volume + '%'
     }
     return (
-      <div className="volume-container">
+      <div className='volume-container'>
         <h3>Volume</h3>
         <div className={`volume-wrapper ${this.props.theme}`}>
-          <div style={styles} className="volume-bar" />
+          <div style={styles} className='volume-bar' />
         </div>
       </div>
     )
   }
 }
 
-export default Volume
+const mapStateToProps = state => ({
+  volume: state.player.volume
+})
+
+export default connect(mapStateToProps)(Volume)
