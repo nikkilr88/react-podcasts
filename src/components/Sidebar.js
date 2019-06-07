@@ -69,7 +69,6 @@ class Sidebar extends Component {
   }
 
   render() {
-    console.log(this.props)
     const sidebarItems = this.props.list.map((e, i) => {
       return (
         <SidebarImg
