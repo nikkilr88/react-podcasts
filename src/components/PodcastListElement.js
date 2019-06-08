@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux'
 import { setAudio } from '../actions/player'
+import { convertSeconds } from '../utils/index'
 
 import '../css/PodcastList.css'
 
@@ -11,28 +12,41 @@ class PodcastListElement extends Component {
     e.target.blur()
   }
 
+  formatDuration = duration => {
+    let formattedDuration
+
+    if (duration.includes(':')) {
+      formattedDuration = duration.length < 7 ? '00:' + duration : duration
+    } else {
+      const secToMin = convertSeconds(duration)
+      formattedDuration = secToMin.length < 7 ? '00:' + secToMin : secToMin
+    }
+
+    return formattedDuration
+  }
+
+  formatDate = date => {
+    const now = moment()
+    const releaseDate = moment(date)
+
+    return now.diff(releaseDate, 'days') > 14
+      ? moment(date).format('LL')
+      : moment(date).fromNow()
+  }
+
   render() {
     const { title, date, duration, theme, nowPlaying } = this.props
     const isPlaying = title === nowPlaying
 
-    const now = moment()
-    const releaseDate = moment(date)
-
-    const formattedDate =
-      now.diff(releaseDate, 'days') > 14
-        ? moment(date).format('LL')
-        : moment(date).fromNow()
-
-    const formattedDuration = duration.length < 8 ? '00:' + duration : duration
     const minutesLong = Math.round(
-      moment.duration(formattedDuration).asMinutes()
+      moment.duration(this.formatDuration(duration)).asMinutes()
     )
 
     return (
       <div className={`infoBox ${theme}`} title={title}>
         <div className='text'>
           <p className='date'>
-            {formattedDate}
+            {this.formatDate(date)}
             <span> &#8226; </span>
             {minutesLong} mins
           </p>
