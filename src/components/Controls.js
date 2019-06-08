@@ -11,6 +11,8 @@ import {
   showVolume,
   hideVolume
 } from '../actions/player'
+import Logo from '../images/devcasts-logo-slant.png'
+
 import { convertSeconds } from '../utils'
 
 import '../css/Controls.css'
@@ -23,7 +25,7 @@ class Controls extends Component {
         this.props.pauseAudio()
         break
       case 37:
-        this.props.skip(-10000)
+        this.props.skip(-5000)
         break
       case 39:
         this.props.skip(10000)
@@ -74,8 +76,36 @@ class Controls extends Component {
     }
   }
 
+  setMediaSession = () => {
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: this.props.track.title,
+        artist: this.props.podcast,
+        album: 'Podcast',
+        artwork: [
+          {
+            src: this.props.image,
+            sizes: '192x192',
+            type: 'image/png'
+          }
+        ]
+      })
+
+      navigator.mediaSession.setActionHandler('seekbackward', () => {
+        this.props.skip(-5000)
+      })
+
+      navigator.mediaSession.setActionHandler('seekforward', () => {
+        this.props.skip(10000)
+      })
+    }
+  }
+
   // Fetch podcast data on mount
   componentDidMount() {
+    // Set media session for mobile notifications/lockscreen display
+    this.setMediaSession()
+
     // Keyboard controls
     document.addEventListener('keyup', this.handleOnKeyUp, false)
 
@@ -86,6 +116,13 @@ class Controls extends Component {
   componentWillUnmount() {
     document.removeEventListener('keyup', this.handleOnKeyUp, false)
     document.removeEventListener('keydown', this.handleOnKeyDown, false)
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.track.title !== this.props.track.title) {
+      // Update media session when track changes
+      this.setMediaSession()
+    }
   }
 
   render() {
@@ -115,7 +152,7 @@ class Controls extends Component {
 
           <div className='control-btns'>
             <span className='time'>{time}</span>
-            <button onClick={() => skip(-10000)}>
+            <button onClick={() => skip(-5000)}>
               <i className='material-icons'>replay_5</i>
             </button>
 
@@ -145,7 +182,9 @@ const mapStateToProps = state => ({
   track: state.player.track,
   duration: state.player.duration,
   position: state.player.position,
+  image: state.podcast.podcast.img,
   playStatus: state.player.playStatus,
+  podcast: state.podcast.podcast.title,
   volumeVisible: state.player.showVolume,
   time: convertSeconds(state.player.position / 1000)
 })
