@@ -17,7 +17,7 @@ export const fetchPodcast = url => dispatch => {
       // Pull out necessary podcast data
       const channel = res.data.rss.channel
 
-      const title = channel.title._text
+      const title = channel.title._text || channel.title._cdata
       const description =
         channel.description._cdata || channel.description._text
       const img = channel.image.url._text.replace(/http:\/\//, 'https://')
