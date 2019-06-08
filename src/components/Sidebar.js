@@ -32,10 +32,10 @@ class Sidebar extends Component {
           'https://is4-ssl.mzstatic.com/image/thumb/Music113/v4/91/8f/bc/918fbcc5-9e95-4a42-c8f4-50f2321fcc9d/source/60x60bb.jpg'
       },
       {
-        name: 'La Vie en Code',
-        link: 'http://lavieencode.libsyn.com/rss',
+        name: 'Tech Jr',
+        link: 'https://techjr.dev/rss.xml',
         img:
-          'https://is4-ssl.mzstatic.com/image/thumb/Music113/v4/06/ea/e5/06eae525-675c-d89d-8b21-b36e3d779f42/source/60x60bb.jpg'
+          'https://is3-ssl.mzstatic.com/image/thumb/Music113/v4/bc/ae/5d/bcae5d27-c7d9-6a89-a59f-103049db812b/source/60x60bb.jpg'
       },
       {
         name: 'Base.cs Podcast',
@@ -57,7 +57,6 @@ class Sidebar extends Component {
   }
 
   handleOnClick = e => {
-    // SET LOADING BROKEN
     this.props.setLoading()
     this.props.fetchPodcast(e.target.dataset.link)
   }
