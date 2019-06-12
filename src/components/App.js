@@ -9,7 +9,8 @@ import Header from './Header'
 import Loader from './Loader'
 import Sidebar from './Sidebar'
 import Volume from './Volume'
-import Episodes from './Episodes'
+import EpisodeList from './EpisodeList'
+import ChannelInfo from './ChannelInfo'
 
 class App extends Component {
   state = {
@@ -38,11 +39,11 @@ class App extends Component {
   }
 
   render() {
-    const { error, loading, track } = this.props
+    const { error, loading, track, theme } = this.props
 
     return (
       <Fragment>
-        <Sidebar theme={this.state.theme} changeTheme={this.changeTheme} />
+        <Sidebar changeTheme={this.changeTheme} />
 
         {error && (
           <div className='error'>
@@ -51,11 +52,14 @@ class App extends Component {
         )}
 
         {loading ? (
-          <Loader theme={this.state.theme} />
+          <Loader />
         ) : (
           <Fragment>
             <Header />
-            <Episodes theme={this.state.theme} />
+            <div className={`items ${theme}`}>
+              <ChannelInfo />
+              <EpisodeList />
+            </div>
           </Fragment>
         )}
 
@@ -76,7 +80,8 @@ class App extends Component {
 const mapStateToProps = state => ({
   track: state.player.track,
   error: state.podcast.error,
-  loading: state.podcast.loading
+  loading: state.podcast.loading,
+  theme: state.theme.theme
 })
 
 export default connect(
