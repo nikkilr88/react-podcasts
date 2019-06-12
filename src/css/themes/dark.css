@@ -3,8 +3,9 @@
 }
 
 .channel-info.dark {
-  background: #444;
+  background: #333;
   color: #ccc;
+  border-bottom: 1px solid #444;
 }
 
 .channel-img.dark {
