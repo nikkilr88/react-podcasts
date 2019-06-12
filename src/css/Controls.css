@@ -33,11 +33,11 @@
 
 .time {
   margin: 0 25px;
-  font-size: 1rem;
+  font-size: 1.6rem;
 }
 
 .title {
-  font-size: 1rem;
+  font-size: 1.6rem;
 }
 
 @media only screen and (max-width: 600px) {

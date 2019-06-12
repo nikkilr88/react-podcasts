@@ -1,12 +1,12 @@
 /* PODCAST LIST */
 .items {
-  margin: 150px 0 0 75px;
+  margin: 0 0 0 75px;
   position: relative;
   padding-bottom: 175px;
 }
 
 .infoBox {
-  max-width: 875px;
+  max-width: 975px;
   width: 90%;
   margin: 10px auto;
   padding: 10px;
@@ -19,7 +19,7 @@
 
 .infoBox h3 {
   padding: 5px 0;
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-weight: normal;
 }
 
@@ -55,6 +55,6 @@
 
 @media only screen and (max-width: 600px) {
   .items {
-    margin: 150px 0 0;
+    margin: 0;
   }
 }
