@@ -6,7 +6,7 @@
 }
 
 .infoBox {
-  max-width: 800px;
+  max-width: 875px;
   width: 90%;
   margin: 10px auto;
   padding: 10px;
@@ -19,7 +19,7 @@
 
 .infoBox h3 {
   padding: 5px 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: normal;
 }
 
