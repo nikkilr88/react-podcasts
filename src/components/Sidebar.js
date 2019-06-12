@@ -6,6 +6,7 @@ import SidebarImg from './SidebarImg'
 import HamMenu from '../images/hamburger-menu.png'
 import CloseIcon from '../images/close-icon.png'
 
+import { switchTheme } from '../actions/theme'
 import { fetchPodcast, setLoading } from '../actions/podcast'
 
 import '../css/Sidebar.css'
@@ -68,6 +69,7 @@ class Sidebar extends Component {
   }
 
   render() {
+    const { theme, switchTheme } = this.props
     const sidebarItems = this.props.list.map((e, i) => {
       return (
         <SidebarImg
@@ -85,7 +87,7 @@ class Sidebar extends Component {
     return (
       <Fragment>
         <div
-          className={`sidebar ${this.props.theme} ${this.state.showSidebar &&
+          className={`sidebar ${theme} ${this.state.showSidebar &&
             'sidebar-out'}`}
         >
           <ul>
@@ -97,10 +99,7 @@ class Sidebar extends Component {
 
           <div className='theme-wrapper'>
             <h4>Theme</h4>
-            <div
-              onClick={this.props.changeTheme}
-              className={`change-theme ${this.props.theme}`}
-            />
+            <div onClick={switchTheme} className={`change-theme ${theme}`} />
           </div>
         </div>
 
@@ -118,7 +117,11 @@ class Sidebar extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  theme: state.theme.theme
+})
+
 export default connect(
-  null,
-  { fetchPodcast, setLoading }
+  mapStateToProps,
+  { fetchPodcast, setLoading, switchTheme }
 )(Sidebar)
