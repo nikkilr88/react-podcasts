@@ -29,7 +29,7 @@ class EpisodeList extends Component {
 
     return (
       <Fragment>
-        <h1 className={`episodes ${theme}`}>Episodes</h1>
+        <h1 className={`episodes ${theme}`}>Available Episodes</h1>
         {episodeList}
       </Fragment>
     )
