@@ -2,6 +2,7 @@ const podcastState = {
   podcast: {
     img: '',
     title: '',
+    author: '',
     website: '',
     episodes: [],
     description: ''

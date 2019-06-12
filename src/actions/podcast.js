@@ -14,22 +14,21 @@ export const fetchPodcast = url => dispatch => {
     url: `https://xmlparse.glitch.me/?url=${url}`
   })
     .then(res => {
-      // Pull out necessary podcast data
       const channel = res.data.rss.channel
-
       const title = channel.title._text || channel.title._cdata
       const description =
         channel.description._cdata || channel.description._text
       const img = channel.image.url._text.replace(/http:\/\//, 'https://')
       const episodes = channel.item.filter(e => e.hasOwnProperty('enclosure'))
       const website = channel.link._text
+      const author = channel['itunes:author']._text
 
-      // Set app state with podcast data
       dispatch({
         type: 'FETCH_PODCAST',
         podcast: {
           img,
           title,
+          author,
           website,
           episodes,
           description
@@ -44,6 +43,7 @@ export const fetchPodcast = url => dispatch => {
           error: 'Oh-oh, this is taking longer that usual...'
         })
       } else {
+        console.log(err)
         dispatch({
           type: 'SET_ERROR',
           error: 'Oh-oh, something went wrong ...'
