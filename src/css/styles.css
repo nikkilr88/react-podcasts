@@ -3,9 +3,12 @@ body {
   color: #2b2b2b;
   text-align: center;
   background: #fff;
-  font-size: 62.5%;
   font-family: 'Ubuntu';
   overflow-y: scroll;
+}
+
+html {
+  font-size: 62.5%;
 }
 
 * {
