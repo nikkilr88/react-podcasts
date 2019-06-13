@@ -40,11 +40,18 @@ const playerReducer = (state = playerState, action) => {
         playStatus: action.paused
       }
 
-    case 'HANDLE_ON_PLAY':
+    case 'HANDLE_PLAY':
       return {
         ...state,
         position: action.payload.position,
         duration: action.payload.duration
+      }
+
+    case 'HANDLE_FINISHED_PLAYING':
+      return {
+        ...state,
+        position: 1,
+        playStatus: Sound.status.PAUSED
       }
 
     case 'SKIP':
