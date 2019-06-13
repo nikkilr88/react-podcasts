@@ -2,34 +2,15 @@ import React, { Component, Fragment, Suspense, lazy } from 'react'
 import { connect } from 'react-redux'
 import { fetchPodcast } from '../actions/podcast'
 
-import SoundWrapper from './SoundWrapper'
-import Sound from 'react-sound'
-import Controls from './Controls'
-import Header from './Header'
 import Loader from './Loader'
+import Header from './Header'
 import Sidebar from './Sidebar'
-import Volume from './Volume'
-import EpisodeList from './EpisodeList'
+import Controls from './Controls'
 import ChannelInfo from './ChannelInfo'
+import EpisodeList from './EpisodeList'
+import SoundWrapper from './SoundWrapper'
 
 class App extends Component {
-  state = {
-    theme: 'light' // light or dark
-  }
-
-  changeTheme = () => {
-    this.setState(prevState => ({
-      theme: prevState.theme === 'light' ? 'dark' : 'light'
-    }))
-  }
-
-  handleOnFinishedPlaying = () => {
-    this.setState(() => ({
-      position: 1,
-      playingStatus: Sound.status.PAUSED
-    }))
-  }
-
   handleOnError = err => {
     console.log(err)
   }
@@ -43,7 +24,7 @@ class App extends Component {
 
     return (
       <Fragment>
-        <Sidebar changeTheme={this.changeTheme} />
+        <Sidebar />
 
         {error && (
           <div className='error'>
@@ -65,11 +46,8 @@ class App extends Component {
 
         {track.src && (
           <Fragment>
-            <SoundWrapper
-              onError={this.handleOnError}
-              onFinishedPlaying={this.handleOnFinishedPlaying}
-            />
-            <Controls theme={this.state.theme} />
+            <SoundWrapper onError={this.handleOnError} />
+            <Controls />
           </Fragment>
         )}
       </Fragment>
@@ -78,10 +56,10 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
+  theme: state.theme.theme,
   track: state.player.track,
   error: state.podcast.error,
-  loading: state.podcast.loading,
-  theme: state.theme.theme
+  loading: state.podcast.loading
 })
 
 export default connect(
