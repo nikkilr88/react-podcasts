@@ -1,5 +1,29 @@
 import Sound from 'react-sound'
 
+export const showVolume = () => dispatch => {
+  dispatch({
+    type: 'SHOW_VOLUME'
+  })
+}
+
+export const hideVolume = () => dispatch => {
+  dispatch({
+    type: 'HIDE_VOLUME'
+  })
+}
+
+export const handleFinishedPlaying = () => dispatch => {
+  dispatch({
+    type: 'HANDLE_FINISHED_PLAYING'
+  })
+}
+
+export const stopAudio = () => dispatch => {
+  dispatch({
+    type: 'STOP_AUDIO'
+  })
+}
+
 export const setAudio = (audio, title) => dispatch => {
   dispatch({
     type: 'SET_AUDIO',
@@ -14,12 +38,12 @@ export const setAudio = (audio, title) => dispatch => {
   })
 }
 
-export const handleOnPlaying = data => (dispatch, getState) => {
+export const handlePlay = data => (dispatch, getState) => {
   const state = getState()
 
   if (state.player.playStatus === Sound.status.PLAYING) {
     dispatch({
-      type: 'HANDLE_ON_PLAY',
+      type: 'HANDLE_PLAY',
       payload: data
     })
   }
@@ -38,12 +62,6 @@ export const pauseAudio = () => (dispatch, getState) => {
   })
 }
 
-export const stopAudio = () => dispatch => {
-  dispatch({
-    type: 'STOP_AUDIO'
-  })
-}
-
 export const skip = value => (dispatch, getState) => {
   const state = getState()
 
@@ -53,18 +71,6 @@ export const skip = value => (dispatch, getState) => {
       position: (state.player.position += value)
     })
   }
-}
-
-export const showVolume = () => dispatch => {
-  dispatch({
-    type: 'SHOW_VOLUME'
-  })
-}
-
-export const hideVolume = () => dispatch => {
-  dispatch({
-    type: 'HIDE_VOLUME'
-  })
 }
 
 export const setVolume = value => (dispatch, getState) => {
