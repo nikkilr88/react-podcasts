@@ -12,7 +12,7 @@ class ChannelInfo extends Component {
         <img className={`channel-img ${theme}`} src={img} alt='podcast image' />
         <div className='channel-text'>
           <h1 className='title'>{title}</h1>
-          <h3 className='channel-author'>{author}</h3>
+          <h3 className={`channel-author ${theme}`}>{author}</h3>
           <p>{description || 'No Description Available :('}</p>
           <a href={website} target='_blank' className='channel-website'>
             <i className='fas fa-external-link-alt' />
