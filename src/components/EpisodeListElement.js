@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux'
 import { setAudio } from '../actions/player'
-import { convertSeconds } from '../utils/index'
 
 import '../css/PodcastList.css'
 
@@ -10,19 +9,6 @@ class EpisodeListElement extends Component {
   handleOnClick = e => {
     this.props.setAudio(this.props.audio, this.props.title)
     e.target.blur()
-  }
-
-  formatDuration = duration => {
-    let formattedDuration
-
-    if (duration.includes(':')) {
-      formattedDuration = duration.length < 7 ? '00:' + duration : duration
-    } else {
-      const secToMin = convertSeconds(duration)
-      formattedDuration = secToMin.length < 7 ? '00:' + secToMin : secToMin
-    }
-
-    return formattedDuration
   }
 
   formatDate = date => {
@@ -39,7 +25,7 @@ class EpisodeListElement extends Component {
     const isPlaying = title === nowPlaying
 
     const minutesLong = Math.round(
-      moment.duration(this.formatDuration(duration)).asMinutes()
+      moment.duration(duration, 'seconds').asMinutes()
     )
 
     return (
