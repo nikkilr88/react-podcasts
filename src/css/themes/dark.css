@@ -33,14 +33,14 @@
 }
 
 .items.dark .btn {
-  border: 1px solid #999;
-  color: #999;
+  border: 1px solid #555;
+  color: #555;
 }
 
 .items.dark .selected,
 .items.dark .btn:hover {
-  background: #2980b9;
-  border: 1px solid #2980b9;
+  background: #3498db;
+  border: 1px solid #3498db;
   color: #fcfcfc;
 }
 
