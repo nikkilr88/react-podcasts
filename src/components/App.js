@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { fetchPodcast } from '../actions/podcast'
 
 import Loader from './Loader'
-import Header from './Header'
 import Sidebar from './Sidebar'
 import Controls from './Controls'
 import ChannelInfo from './ChannelInfo'
@@ -35,13 +34,10 @@ class App extends Component {
         {loading ? (
           <Loader />
         ) : (
-          <Fragment>
-            <Header />
-            <div className={`items ${theme}`}>
-              <ChannelInfo />
-              <EpisodeList />
-            </div>
-          </Fragment>
+          <div className={`items ${theme}`}>
+            <ChannelInfo />
+            <EpisodeList />
+          </div>
         )}
 
         {track.src && (
