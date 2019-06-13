@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
-import Logo from '../images/devcasts-logo-slant.png'
 import SidebarImg from './SidebarImg'
-import HamMenu from '../images/hamburger-menu.png'
 import CloseIcon from '../images/close-icon.png'
+import HamMenu from '../images/hamburger-menu.png'
+import Logo from '../images/devcasts-logo-slant.png'
 
 import { switchTheme } from '../actions/theme'
 import { fetchPodcast, setLoading } from '../actions/podcast'
