@@ -8,24 +8,17 @@ class EpisodeList extends Component {
     const { theme, nowPlaying } = this.props
     const { episodes } = this.props.podcast
 
-    const episodeList = episodes
-      .sort((a, b) => {
-        let aDate = moment(a.pubDate._text).unix()
-        let bDate = moment(b.pubDate._text).unix()
-
-        return aDate < bDate ? 1 : aDate > bDate ? -1 : 0
-      })
-      .map((e, i) => (
-        <EpisodeListElement
-          key={i}
-          theme={theme}
-          date={e.pubDate._text}
-          nowPlaying={nowPlaying}
-          audio={e.enclosure._attributes.url}
-          duration={e['itunes:duration']._text}
-          title={e.title._text || e.title._cdata}
-        />
-      ))
+    const episodeList = episodes.map((e, i) => (
+      <EpisodeListElement
+        key={i}
+        theme={theme}
+        title={e.title}
+        date={e.published}
+        duration={e.duration}
+        nowPlaying={nowPlaying}
+        audio={e.enclosure.url}
+      />
+    ))
 
     return (
       <Fragment>
