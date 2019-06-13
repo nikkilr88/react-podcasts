@@ -5,7 +5,11 @@
 }
 
 .channel-img.light {
-  border: 3px solid #fff;
+  border: 3px solid #eee;
+}
+
+.channel-author.light {
+  color: rgb(173, 173, 173);
 }
 
 .infoBox.light:hover {
