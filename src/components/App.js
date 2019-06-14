@@ -25,11 +25,7 @@ class App extends Component {
       <Fragment>
         <Sidebar />
 
-        {error && (
-          <div className='error'>
-            <p>{error}</p>
-          </div>
-        )}
+        {error && <p className='error'>{error}</p>}
 
         {loading ? (
           <Loader />
