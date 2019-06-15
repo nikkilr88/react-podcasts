@@ -142,7 +142,7 @@ class Controls extends Component {
     return track.title ? (
       <Fragment>
         <SoundWrapper />
-        <ProgressBar theme={theme} />
+        <ProgressBar />
 
         {volumeVisible && <Volume theme={theme} />}
 
