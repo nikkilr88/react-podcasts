@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import ReactDOM from 'react-dom'
 import App from './components/App'
 import HomePage from './pages/Home'
+import NotFound from './pages/NotFound'
 import Sidebar from './components/Sidebar'
 import Controls from './components/Controls'
 
@@ -26,6 +27,7 @@ ReactDOM.render(
       <Switch>
         <Route path='/' exact component={HomePage} />
         <Route path='/podcast/:podcast' exact component={App} />
+        <Route component={NotFound} />
       </Switch>
     </Router>
   </Provider>,
