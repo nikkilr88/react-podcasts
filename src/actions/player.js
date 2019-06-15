@@ -24,17 +24,12 @@ export const stopAudio = () => dispatch => {
   })
 }
 
-export const setAudio = (audio, title) => dispatch => {
+export const setAudio = (audio, title, id) => dispatch => {
   dispatch({
     type: 'SET_AUDIO',
-    player: {
-      track: {
-        title: title,
-        src: audio
-      },
-      position: 0,
-      playStatus: Sound.status.PLAYING
-    }
+    title: title,
+    src: audio,
+    id: id
   })
 }
 
