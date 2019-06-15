@@ -1,32 +1,47 @@
 import React, { Component, Fragment, Suspense, lazy } from 'react'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchPodcast } from '../actions/podcast'
+import { fetchPodcast, setLoading } from '../actions/podcast'
 
 import Loader from './Loader'
-import Sidebar from './Sidebar'
-import Controls from './Controls'
 import ChannelInfo from './ChannelInfo'
 import EpisodeList from './EpisodeList'
-import SoundWrapper from './SoundWrapper'
 
 import podcasts from '../data/podcasts'
 
 class App extends Component {
-  handleOnError = err => {
-    console.log(err)
+  loadPodcast = () => {
+    const title = this.props.match.params.podcast.replace(/_/g, ' ')
+    const podcast = podcasts.filter(podcast => podcast.name === title)
+
+    if (podcast.length > 0) {
+      const feedURL = podcast[0].link
+
+      this.props.setLoading()
+      this.props.fetchPodcast(feedURL)
+    } else {
+      this.props.history.push('/404')
+    }
   }
 
   componentDidMount() {
-    this.props.fetchPodcast('https://feed.syntax.fm/rss')
+    this.loadPodcast()
+  }
+
+  componentDidUpdate(prevProps) {
+    const prevURL = prevProps.match.url
+    const currURL = this.props.match.url
+
+    if (prevURL !== currURL) {
+      this.loadPodcast()
+    }
   }
 
   render() {
-    const { error, loading, track, theme } = this.props
+    const { error, loading, theme } = this.props
 
     return (
       <Fragment>
-        <Sidebar list={podcasts} />
-
         {error && <p className='error'>{error}</p>}
 
         {loading ? (
@@ -37,13 +52,6 @@ class App extends Component {
             <EpisodeList />
           </div>
         )}
-
-        {track.src && (
-          <Fragment>
-            <SoundWrapper onError={this.handleOnError} />
-            <Controls />
-          </Fragment>
-        )}
       </Fragment>
     )
   }
@@ -51,12 +59,13 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   theme: state.theme.theme,
-  track: state.player.track,
   error: state.podcast.error,
   loading: state.podcast.loading
 })
 
-export default connect(
-  mapStateToProps,
-  { fetchPodcast }
-)(App)
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { fetchPodcast, setLoading }
+  )(App)
+)
