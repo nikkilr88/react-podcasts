@@ -19,6 +19,7 @@ class ProgressBar extends Component {
 }
 
 const mapStateToProps = state => ({
+  theme: state.theme.theme,
   position: state.player.position,
   duration: state.player.duration
 })
