@@ -5,7 +5,7 @@ import moment from 'moment'
 
 class EpisodeList extends Component {
   render() {
-    const { theme, nowPlaying } = this.props
+    const { theme } = this.props
     const { episodes } = this.props.podcast
 
     const episodeList = episodes.map((e, i) => (
@@ -13,9 +13,9 @@ class EpisodeList extends Component {
         key={i}
         theme={theme}
         title={e.title}
+        trackId={e.guid}
         date={e.published}
         duration={e.duration}
-        nowPlaying={nowPlaying}
         audio={e.enclosure.url}
       />
     ))
@@ -31,8 +31,7 @@ class EpisodeList extends Component {
 
 const mapStateToProps = state => ({
   theme: state.theme.theme,
-  podcast: state.podcast.podcast,
-  nowPlaying: state.player.track.title
+  podcast: state.podcast.podcast
 })
 
 export default connect(mapStateToProps)(EpisodeList)
