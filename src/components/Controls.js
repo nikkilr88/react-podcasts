@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import ProgressBar from './ProgressBar'
+import SoundWrapper from './SoundWrapper'
 import Volume from './Volume'
 import Sound from 'react-sound'
+
 import { connect } from 'react-redux'
 import {
   skip,
@@ -11,8 +13,8 @@ import {
   showVolume,
   hideVolume
 } from '../actions/player'
-import Logo from '../images/devcasts-logo-slant.png'
 
+import Logo from '../images/devcasts-logo-slant.png'
 import { convertSeconds } from '../utils'
 
 import '../css/Controls.css'
@@ -137,8 +139,11 @@ class Controls extends Component {
       volumeVisible
     } = this.props
 
-    return (
+    return track.title ? (
       <Fragment>
+        <SoundWrapper />
+        <ProgressBar theme={theme} />
+
         {volumeVisible && <Volume theme={theme} />}
 
         <div id='player' className={theme}>
@@ -147,8 +152,6 @@ class Controls extends Component {
               ? track.title.substring(0, 50) + '...'
               : track.title}
           </div>
-
-          <ProgressBar theme={theme} />
 
           <div className='control-btns'>
             <span className='time'>{time}</span>
@@ -174,6 +177,8 @@ class Controls extends Component {
           </div>
         </div>
       </Fragment>
+    ) : (
+      ''
     )
   }
 }
