@@ -1,31 +1,20 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { NavLink as Link } from 'react-router-dom'
 
 import ProgressiveImage from 'react-progressive-image'
 import imgPlaceholder from '../images/image-placeholder.png'
 
-const SidebarImg = ({
-  index,
-  title,
-  imgSrc,
-  dataLink,
-  currentTrack,
-  handleOnClick
-}) => (
-  <li
-    title={title}
-    data-link={dataLink}
-    onClick={handleOnClick}
-    className={title === currentTrack ? 'sidebar-selected' : ''}
+const SidebarImg = ({ title, imgSrc }) => (
+  <Link
+    activeClassName='sidebar-selected'
+    to={`/podcast/${title.replace(/ /g, '_')}`}
   >
-    <ProgressiveImage delay={1000} src={imgSrc} placeholder={imgPlaceholder}>
-      {src => <img src={src} className='img-link' alt='an image' />}
-    </ProgressiveImage>
-  </li>
+    <li title={title}>
+      <ProgressiveImage delay={1000} src={imgSrc} placeholder={imgPlaceholder}>
+        {src => <img src={src} className='img-link' alt='an image' />}
+      </ProgressiveImage>
+    </li>
+  </Link>
 )
 
-const mapStateToProps = state => ({
-  currentTrack: state.podcast.podcast.title
-})
-
-export default connect(mapStateToProps)(SidebarImg)
+export default SidebarImg
