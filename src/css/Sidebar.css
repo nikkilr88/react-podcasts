@@ -52,12 +52,12 @@
   filter: grayscale(0%);
 }
 
-.sidebar-selected {
+.sidebar-selected li {
   position: relative;
   filter: grayscale(0%) !important;
 }
 
-.sidebar-selected:after {
+.sidebar-selected li:after {
   content: '';
   position: absolute;
   height: 100%;
