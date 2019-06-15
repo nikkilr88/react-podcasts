@@ -2,6 +2,7 @@ import Sound from 'react-sound'
 
 const playerState = {
   track: {
+    id: '',
     src: '',
     title: ''
   },
@@ -18,11 +19,12 @@ const playerReducer = (state = playerState, action) => {
       return {
         ...state,
         track: {
-          title: action.player.track.title,
-          src: action.player.track.src
+          title: action.title,
+          src: action.src,
+          id: action.id
         },
-        position: action.player.position,
-        playStatus: action.player.playStatus
+        position: 0,
+        playStatus: Sound.status.PLAYING
       }
 
     case 'STOP_AUDIO':
@@ -30,7 +32,8 @@ const playerReducer = (state = playerState, action) => {
         ...state,
         track: {
           title: '',
-          src: ''
+          src: '',
+          id: ''
         }
       }
 
