@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { NavLink as Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import SidebarImg from './SidebarImg'
@@ -7,18 +8,12 @@ import HamMenu from '../images/hamburger-menu.png'
 import Logo from '../images/devcasts-logo-slant.png'
 
 import { switchTheme } from '../actions/theme'
-import { fetchPodcast, setLoading } from '../actions/podcast'
 
 import '../css/Sidebar.css'
 
 class Sidebar extends Component {
   state = {
     showSidebar: false
-  }
-
-  handleOnClick = e => {
-    this.props.setLoading()
-    this.props.fetchPodcast(e.target.dataset.link)
   }
 
   toggleSidebar = e => {
@@ -33,11 +28,8 @@ class Sidebar extends Component {
       return (
         <SidebarImg
           key={i}
-          index={i}
           imgSrc={e.img}
           title={e.name}
-          dataLink={e.link}
-          handleOnClick={this.handleOnClick}
           className={i === 0 && 'sidebar-selected'}
         />
       )
@@ -51,7 +43,9 @@ class Sidebar extends Component {
         >
           <ul>
             <li className='sidebar-top'>
-              <img src={Logo} alt='dev casts logo' />
+              <Link to='/'>
+                <img src={Logo} alt='dev casts logo' />
+              </Link>
             </li>
             {sidebarItems}
           </ul>
@@ -82,5 +76,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchPodcast, setLoading, switchTheme }
+  { switchTheme }
 )(Sidebar)
