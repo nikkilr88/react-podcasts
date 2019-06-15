@@ -7,7 +7,7 @@ import '../css/PodcastList.css'
 
 class EpisodeListElement extends Component {
   handleOnClick = e => {
-    this.props.setAudio(this.props.audio, this.props.title)
+    this.props.setAudio(this.props.audio, this.props.title, this.props.trackId)
     e.target.blur()
   }
 
@@ -21,8 +21,8 @@ class EpisodeListElement extends Component {
   }
 
   render() {
-    const { title, date, duration, theme, nowPlaying } = this.props
-    const isPlaying = title === nowPlaying
+    const { trackId, title, date, duration, theme, nowPlayingId } = this.props
+    const isPlaying = trackId === nowPlayingId
 
     const minutesLong = Math.round(
       moment.duration(duration, 'seconds').asMinutes()
@@ -53,7 +53,11 @@ class EpisodeListElement extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  nowPlayingId: state.player.track.id
+})
+
 export default connect(
-  null,
+  mapStateToProps,
   { setAudio }
 )(EpisodeListElement)
