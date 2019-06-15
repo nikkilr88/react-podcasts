@@ -9,6 +9,8 @@ import ChannelInfo from './ChannelInfo'
 import EpisodeList from './EpisodeList'
 import SoundWrapper from './SoundWrapper'
 
+import podcasts from '../data/podcasts'
+
 class App extends Component {
   handleOnError = err => {
     console.log(err)
@@ -23,7 +25,7 @@ class App extends Component {
 
     return (
       <Fragment>
-        <Sidebar />
+        <Sidebar list={podcasts} />
 
         {error && <p className='error'>{error}</p>}
 
