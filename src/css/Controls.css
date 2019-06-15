@@ -9,6 +9,7 @@
   padding: 20px 15px 15px;
   align-items: center;
   justify-content: space-between;
+  z-index: 999;
 }
 
 #player div {
