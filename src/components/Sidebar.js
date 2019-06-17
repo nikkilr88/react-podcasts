@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react'
 import { NavLink as Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import SidebarImg from './SidebarImg'
 import CloseIcon from '../images/close-icon.png'
 import HamMenu from '../images/hamburger-menu.png'
 import Logo from '../images/devcasts-logo-slant.png'
@@ -24,16 +23,6 @@ class Sidebar extends Component {
 
   render() {
     const { theme, switchTheme } = this.props
-    const sidebarItems = this.props.list.map((e, i) => {
-      return (
-        <SidebarImg
-          key={i}
-          imgSrc={e.img}
-          title={e.name}
-          className={i === 0 && 'sidebar-selected'}
-        />
-      )
-    })
 
     return (
       <Fragment>
@@ -47,13 +36,27 @@ class Sidebar extends Component {
                 <img src={Logo} alt='dev casts logo' />
               </Link>
             </li>
-            {sidebarItems}
+            <li className='sidebar-link'>
+              <Link to='/'>
+                <i className='fas fa-home' /> Home
+              </Link>
+            </li>
+            <li className='sidebar-link'>
+              <Link to='/bookmarked'>
+                <i className='fas fa-bookmark' /> Bookmarked
+              </Link>
+            </li>
+            <li className='sidebar-link settings'>
+              <Link to='/settings'>
+                <i className='fas fa-cog' /> Settings
+              </Link>
+            </li>
           </ul>
 
-          <div className='theme-wrapper'>
+          {/* <div className='theme-wrapper'>
             <h4>Theme</h4>
             <div onClick={switchTheme} className={`change-theme ${theme}`} />
-          </div>
+          </div> */}
         </div>
 
         <div
