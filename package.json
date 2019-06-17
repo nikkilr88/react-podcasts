@@ -30,6 +30,6 @@
   },
   "scripts": {
     "dev": "parcel index.html --out-dir dev",
-    "build": "parcel build index.html --out-dir build  --public-url ./ --no-content-hash --no-source-maps"
+    "build": "parcel build index.html --out-dir build --no-content-hash --no-source-maps"
   }
 }
