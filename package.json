@@ -28,7 +28,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "dev": "parcel index.html --out-dir build",
+    "dev": "parcel index.html --out-dir dev",
     "build": "parcel build index.html --out-dir build  --public-url ./ --no-content-hash --no-source-maps"
   }
 }
