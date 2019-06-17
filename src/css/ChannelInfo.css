@@ -1,6 +1,20 @@
 /* CHANNEL INFO */
+.go-back {
+  display: block;
+  text-align: left;
+  font-size: 1.5rem;
+  padding: 25px 50px;
+  border-bottom: 1px solid #eee;
+  text-decoration: none;
+  color: #999;
+}
+
+.go-back-arrow {
+  margin-right: 5px;
+}
+
 .channel-info {
-  max-width: 975px;
+  max-width: 1200px;
   margin: 0 auto;
   width: 90%;
   padding: 50px 10px;
@@ -63,7 +77,7 @@
 .episodes {
   margin: 50px auto 25px auto;
   text-align: left;
-  max-width: 975px;
+  max-width: 1200px;
   width: 90%;
   padding: 10px;
   font-weight: normal;
