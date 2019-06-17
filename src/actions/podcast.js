@@ -21,7 +21,7 @@ export const fetchPodcast = url => dispatch => {
       const website = channel.link
       const author = channel.author
       const episodes = channel.episodes
-      const description = channel.description.long
+      const description = channel.description.short || channel.description.long
       const img = channel.image.replace(/http:\/\//, 'https://')
 
       dispatch({
