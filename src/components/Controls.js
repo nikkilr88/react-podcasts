@@ -142,11 +142,12 @@ class Controls extends Component {
     return track.title ? (
       <Fragment>
         <SoundWrapper />
-        <ProgressBar />
 
         {volumeVisible && <Volume theme={theme} />}
 
         <div id='player' className={theme}>
+          <ProgressBar />
+
           <div className='title'>
             {track.title.length > 50
               ? track.title.substring(0, 50) + '...'
