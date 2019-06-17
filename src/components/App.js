@@ -1,5 +1,5 @@
 import React, { Component, Fragment, Suspense, lazy } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchPodcast, setLoading } from '../actions/podcast'
 
@@ -7,7 +7,7 @@ import Loader from './Loader'
 import ChannelInfo from './ChannelInfo'
 import EpisodeList from './EpisodeList'
 
-import podcasts from '../data/podcasts'
+import { podcasts } from '../data/podcasts-test'
 
 class App extends Component {
   loadPodcast = () => {
@@ -48,6 +48,10 @@ class App extends Component {
           <Loader />
         ) : (
           <div className={`items ${theme}`}>
+            <Link to='/' className='go-back'>
+              <i className='fas fa-arrow-left go-back-arrow' />
+              Back
+            </Link>
             <ChannelInfo />
             <EpisodeList />
           </div>
