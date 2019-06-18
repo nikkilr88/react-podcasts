@@ -48,10 +48,10 @@ class App extends Component {
           <Loader />
         ) : (
           <div className={`items ${theme}`}>
-            <Link to='/' className='go-back'>
+            <button onClick={() => this.props.history.goBack()} className='go-back'>
               <i className='fas fa-arrow-left go-back-arrow' />
               Back
-            </Link>
+            </button>
             <ChannelInfo />
             <EpisodeList />
           </div>
