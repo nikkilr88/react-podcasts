@@ -24,6 +24,14 @@ button {
   outline: none;
 }
 
+.app-wrapper {
+  display: flex;
+}
+
+.app-wrapper-content {
+  flex: 1;
+}
+
 .error {
   z-index: 9999;
   position: absolute;
