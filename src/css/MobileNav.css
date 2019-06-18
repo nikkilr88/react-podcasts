@@ -1,0 +1,33 @@
+.mobile-nav {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background: #fff;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 25px;
+  font-size: 20px;
+  z-index: 9999;
+  border-top: 1px solid #ccc;
+  display: none;
+}
+
+.mobile-nav .fas {
+  color: #888;
+}
+
+.mobile-nav img {
+  height: 20px;
+}
+
+.mobile-nav h3 {
+  font-size: 18px;
+}
+
+@media only screen and (max-width: 600px) {
+  .mobile-nav {
+    display: flex;
+  }
+}
