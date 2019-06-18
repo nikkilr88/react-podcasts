@@ -4,7 +4,9 @@ const playerState = {
   track: {
     id: '',
     src: '',
-    title: ''
+    title: '',
+    podcast: '',
+    img: ''
   },
   volume: 75,
   position: 0,
@@ -21,7 +23,9 @@ const playerReducer = (state = playerState, action) => {
         track: {
           title: action.title,
           src: action.src,
-          id: action.id
+          id: action.id,
+          img: action.img,
+          podcast: action.podcast
         },
         position: 0,
         playStatus: Sound.status.PLAYING
