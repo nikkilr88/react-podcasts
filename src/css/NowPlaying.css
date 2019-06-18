@@ -1,0 +1,47 @@
+.mobile-player {
+  padding: 50px 25px 85px;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mobile-player img {
+  width: 70%;
+  border-radius: 5px;
+}
+
+.mobile-player h3 {
+  font-size: 22px;
+  color: #555;
+}
+
+.mobile-player h4 {
+  font-weight: normal;
+  font-size: 18px;
+  margin: 10px;
+  color: #999;
+}
+
+.mobile-player a {
+  text-decoration: none;
+}
+
+.mobile-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-controls .material-icons {
+  font-size: 35px;
+  color: #555;
+}
+
+.play-btn {
+  font-size: 65px !important;
+  margin: 0 25px;
+}
