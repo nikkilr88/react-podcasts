@@ -22,13 +22,19 @@ const store = configureStore()
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <Sidebar list={podcasts} />
-      <Controls />
-      <Switch>
-        <Route path='/' exact component={HomePage} />
-        <Route path='/podcast/:podcast' exact component={App} />
-        <Route component={NotFound} />
-      </Switch>
+      <div className='app-wrapper'>
+        <div>
+          <Sidebar list={podcasts} />
+        </div>
+        <div className='app-wrapper-content'>
+          <Controls />
+          <Switch>
+            <Route path='/' exact component={HomePage} />
+            <Route path='/podcast/:podcast' exact component={App} />
+            <Route component={NotFound} />
+          </Switch>
+        </div>
+      </div>
     </Router>
   </Provider>,
   document.getElementById('root')
