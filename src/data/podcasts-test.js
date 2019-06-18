@@ -84,5 +84,27 @@ export const podcasts = [
     link: 'https://changelog.com/jsparty/feed',
     img:
       'https://is2-ssl.mzstatic.com/image/thumb/Music123/v4/18/55/87/18558757-eaf3-e4e3-023a-031ae4c716fc/source/60x60bb.jpg'
+  },
+  {
+    category: 'javascript',
+    name: 'React Podcast',
+    link: 'https://rss.simplecast.com/podcasts/6265/rss',
+    img:
+      'https://is4-ssl.mzstatic.com/image/thumb/Music113/v4/22/2b/d3/222bd331-5d17-28dd-7494-6cec6f7d07bd/source/60x60bb.jpg'
+  },
+  {
+    category: 'general',
+    name: 'The Changelog',
+    link: 'https://changelog.com/podcast/feed',
+    img:
+      'https://is4-ssl.mzstatic.com/image/thumb/Music123/v4/bd/4a/62/bd4a6284-5316-0fd2-d8b4-5ddfc1214279/source/60x60bb.jpg'
+  },
+  {
+    category: 'general',
+    name: 'Front End Happy Hour',
+    link:
+      'https://feeds.soundcloud.com/users/soundcloud:users:206137365/sounds.rss',
+    img:
+      'https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/b6/94/68/b69468bd-753d-50c5-f638-a7a920a0ab16/source/60x60bb.jpg'
   }
 ]
