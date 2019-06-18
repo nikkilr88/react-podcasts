@@ -1,5 +1,5 @@
 .sidebar {
-  position: fixed;
+  position: sticky;
   left: 0;
   top: 0;
   height: 100vh;
@@ -48,6 +48,8 @@
 
 .sidebar-link .fas {
   margin-right: 5px;
+  width: 15px;
+  text-align: center;
 }
 
 .settings {
@@ -111,6 +113,7 @@
   .sidebar {
     transform: translateX(-100%);
     transition: all 0.2s;
+    position: fixed;
   }
 
   .toggle-side {
