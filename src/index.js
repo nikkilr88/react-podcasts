@@ -7,6 +7,8 @@ import HomePage from './pages/Home'
 import NotFound from './pages/NotFound'
 import Sidebar from './components/Sidebar'
 import Controls from './components/Controls'
+import MobileNav from './components/MobileNav'
+import NowPlayingPage from './pages/NowPlaying'
 
 import { Provider } from 'react-redux'
 import configureStore from './store/config-store'
@@ -30,11 +32,13 @@ ReactDOM.render(
           <Controls />
           <Switch>
             <Route path='/' exact component={HomePage} />
+            <Route path='/nowplaying' exact component={NowPlayingPage} />
             <Route path='/podcast/:podcast' exact component={App} />
             <Route component={NotFound} />
           </Switch>
         </div>
       </div>
+      <MobileNav />
     </Router>
   </Provider>,
   document.getElementById('root')
