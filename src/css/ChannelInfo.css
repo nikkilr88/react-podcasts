@@ -3,7 +3,7 @@
   display: block;
   text-align: left;
   font-size: 1.5rem;
-  padding: 25px 50px;
+  padding: 25px;
   border-bottom: 1px solid #eee;
   text-decoration: none;
   color: #999;
@@ -88,6 +88,7 @@
 @media only screen and (max-width: 600px) {
   .channel-info {
     flex-direction: column;
+    padding-top: 0;
   }
   .channel-img {
     margin: 50px 0 25px 0;
