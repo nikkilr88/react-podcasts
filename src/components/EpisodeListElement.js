@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment'
+import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setAudio } from '../actions/player'
 
@@ -7,7 +8,17 @@ import '../css/PodcastList.css'
 
 class EpisodeListElement extends Component {
   handleOnClick = e => {
-    this.props.setAudio(this.props.audio, this.props.title, this.props.trackId)
+    this.props.setAudio(
+      this.props.audio,
+      this.props.title,
+      this.props.trackId,
+      this.props.podcastImage,
+      this.props.podcast
+    )
+
+    if (window.innerWidth <= 600) {
+      this.props.history.push('/nowplaying')
+    }
     e.target.blur()
   }
 
@@ -54,10 +65,14 @@ class EpisodeListElement extends Component {
 }
 
 const mapStateToProps = state => ({
-  nowPlayingId: state.player.track.id
+  nowPlayingId: state.player.track.id,
+  podcastImage: state.podcast.podcast.img,
+  podcast: state.podcast.podcast.title
 })
 
-export default connect(
-  mapStateToProps,
-  { setAudio }
-)(EpisodeListElement)
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { setAudio }
+  )(EpisodeListElement)
+)
