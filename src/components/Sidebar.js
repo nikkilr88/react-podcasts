@@ -2,8 +2,6 @@ import React, { Component, Fragment } from 'react'
 import { NavLink as Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import CloseIcon from '../images/close-icon.png'
-import HamMenu from '../images/hamburger-menu.png'
 import Logo from '../images/devcasts-logo-slant.png'
 
 import { switchTheme } from '../actions/theme'
@@ -52,21 +50,6 @@ class Sidebar extends Component {
               </Link>
             </li>
           </ul>
-
-          {/* <div className='theme-wrapper'>
-            <h4>Theme</h4>
-            <div onClick={switchTheme} className={`change-theme ${theme}`} />
-          </div> */}
-        </div>
-
-        <div
-          onClick={this.toggleSidebar}
-          className={`toggle-side ${this.state.showSidebar && 'over'}`}
-        >
-          <img
-            alt='menu icon'
-            src={this.state.showSidebar ? CloseIcon : HamMenu}
-          />
         </div>
       </Fragment>
     )
