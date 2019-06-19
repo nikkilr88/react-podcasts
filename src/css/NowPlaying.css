@@ -1,4 +1,4 @@
-.mobile-player {
+.NowPlaying-player {
   background-position: center;
   background-size: cover;
   height: 80vh;
@@ -9,34 +9,34 @@
   align-items: center;
 }
 
-.mobile-player img {
+.NowPlaying-player img {
   width: 150px;
   border-radius: 5px;
 }
 
-.mobile-player h3 {
+.NowPlaying-player h3 {
   font-size: 18px;
   color: #555;
 }
 
-.mobile-player h4 {
+.NowPlaying-player h4 {
   font-weight: normal;
   font-size: 16px;
   margin: 10px;
   color: #999;
 }
 
-.mobile-player a {
+.NowPlaying-player a {
   text-decoration: none;
 }
 
-.mobile-controls {
+.NowPlaying-controls {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.mobile-controls .material-icons {
+.NowPlaying-controls .material-icons {
   font-size: 35px;
   color: #555;
 }

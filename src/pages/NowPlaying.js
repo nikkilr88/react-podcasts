@@ -16,7 +16,7 @@ class NowPlaying extends Component {
     return (
       <div>
         {title ? (
-          <div className='mobile-player'>
+          <div className='NowPlaying-player'>
             <img src={img} alt='' />
 
             <div>
@@ -31,7 +31,7 @@ class NowPlaying extends Component {
               <h3>{title}</h3>
             </div>
 
-            <div className='mobile-controls'>
+            <div className='NowPlaying-controls'>
               <i
                 className='material-icons'
                 onClick={() => this.props.skip(-5000)}
