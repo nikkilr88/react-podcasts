@@ -24,6 +24,7 @@ const store = configureStore()
 ReactDOM.render(
   <Provider store={store}>
     <Router>
+      <MobileNav />
       <div className='app-wrapper'>
         <div>
           <Sidebar list={podcasts} />
@@ -38,7 +39,6 @@ ReactDOM.render(
           </Switch>
         </div>
       </div>
-      <MobileNav />
     </Router>
   </Provider>,
   document.getElementById('root')
