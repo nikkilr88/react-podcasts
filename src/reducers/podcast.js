@@ -16,8 +16,11 @@ const podcastReducer = (state = podcastState, action) => {
     case 'FETCH_PODCAST':
       return {
         ...state,
-        loading: false,
-        podcast: action.podcast
+        loading: action.loading,
+        podcast: {
+          ...state.podcast,
+          ...action.podcast
+        }
       }
     case 'SET_ERROR':
       return {
