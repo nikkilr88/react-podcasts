@@ -145,16 +145,16 @@ class Controls extends Component {
 
         {volumeVisible && <Volume theme={theme} />}
 
-        <div id='player' className={theme}>
-          <ProgressBar />
+        <div className={`Controls-player ${theme}`}>
+          <ProgressBar wrapperPosition='absolute' width='100%' />
 
-          <div className='title'>
+          <div className='Controls-title'>
             {track.title.length > 50
               ? track.title.substring(0, 50) + '...'
               : track.title}
           </div>
 
-          <div className='control-btns'>
+          <div className='Controls-btns'>
             <span className='time'>{time}</span>
             <button onClick={() => skip(-5000)}>
               <i className='material-icons'>replay_5</i>
