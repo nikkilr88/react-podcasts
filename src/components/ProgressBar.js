@@ -4,14 +4,27 @@ import '../css/ProgressBar.css'
 
 class ProgressBar extends Component {
   render() {
-    const { position, duration, theme } = this.props
+    const {
+      position,
+      duration,
+      theme,
+      width,
+      wrapperPosition,
+      backgroundColor = ''
+    } = this.props
 
     const styles = {
       width: (position * 100) / duration + '%'
     }
 
+    const wrapperStyles = {
+      width: width,
+      position: wrapperPosition,
+      background: backgroundColor
+    }
+
     return (
-      <div className={`progress-wrapper ${theme}`}>
+      <div className={`progress-wrapper ${theme}`} style={wrapperStyles}>
         <div style={styles} className='progress-bar' />
       </div>
     )
