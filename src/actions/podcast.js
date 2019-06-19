@@ -7,6 +7,13 @@ export const setLoading = () => dispatch => {
 }
 
 export const fetchPodcast = url => dispatch => {
+  dispatch({
+    type: 'FETCH_PODCAST',
+    loading: true,
+    podcast: {
+      title: undefined
+    }
+  })
   // Make GET request to Node service to parse RSS feed and send back JSON
   axios({
     method: 'GET',
@@ -26,6 +33,7 @@ export const fetchPodcast = url => dispatch => {
 
       dispatch({
         type: 'FETCH_PODCAST',
+        loading: false,
         podcast: {
           img,
           title,
