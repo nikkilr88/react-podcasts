@@ -8,13 +8,17 @@ class ChannelInfo extends Component {
     const { img, title, description, website, author } = this.props.podcast
 
     return (
-      <div className={`channel-info ${theme}`}>
-        <img className={`channel-img ${theme}`} src={img} alt='podcast image' />
-        <div className='channel-text'>
-          <h1 className='title'>{title}</h1>
-          <h3 className={`channel-author ${theme}`}>{author}</h3>
+      <div className={`ChannelInfo ${theme}`}>
+        <img
+          src={img}
+          alt='podcast image'
+          className={`ChannelInfo-img ${theme}`}
+        />
+        <div className='ChannelInfo-text'>
+          <h1 className='ChannelInfo-title'>{title}</h1>
+          <h3 className={`ChannelInfo-author ${theme}`}>{author}</h3>
           <p>{description || 'No Description Available :('}</p>
-          <a href={website} target='_blank' className='channel-website'>
+          <a href={website} target='_blank' className='ChannelInfo-website'>
             <i className='fas fa-external-link-alt' />
             Visit website
           </a>
