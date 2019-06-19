@@ -11,7 +11,7 @@ class HomePage extends Component {
         .filter(podcast => podcast.category === category.category)
         .map(podcast => (
           <Link
-            className='category-podcast'
+            className='Home-podcast'
             key={podcast.name}
             to={`/podcast/${podcast.name.replace(/ /g, '_')}`}
           >
@@ -26,20 +26,20 @@ class HomePage extends Component {
           </Link>
         ))
       return (
-        <section key={category.category} className='podcast-category'>
+        <section key={category.category} className='Home-category'>
           <h2>{category.display}</h2>
-          <div className='category-podcasts'>{categoryPodcasts}</div>
+          <div className='Home-podcasts'>{categoryPodcasts}</div>
         </section>
       )
     })
     return (
-      <div className='home-page'>
-        <div className='banner'>
+      <div className='Home'>
+        <div className='Home-banner'>
           <h1>devCasts</h1>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Accusantium, atque. Lorem ipsum dolor sit amet, consectetur
-            adipisicing elit. Dicta, nostrum.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
+            molestiae eius ducimus illo quia odio magnam accusantium pariatur ad
+            autem.
           </p>
         </div>
         {categorySections}
