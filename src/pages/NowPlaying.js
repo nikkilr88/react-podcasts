@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Sound from 'react-sound'
+import ProgressBar from '../components/ProgressBar'
 
 import { pauseAudio, skip } from '../actions/player'
 
@@ -19,6 +20,11 @@ class NowPlaying extends Component {
             <img src={img} alt='' />
 
             <div>
+              <ProgressBar
+                width='75%'
+                backgroundColor='#ccc'
+                wrapperPosition='relative'
+              />
               <Link to={`/podcast/${podcast.replace(/ /g, '_')}`}>
                 <h4>{podcast}</h4>
               </Link>
