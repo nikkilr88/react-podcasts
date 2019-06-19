@@ -1,34 +1,21 @@
 /* CHANNEL INFO */
-.go-back {
-  display: block;
-  text-align: left;
-  font-size: 1.5rem;
-  padding: 25px;
-  border-bottom: 1px solid #eee;
-  text-decoration: none;
-  color: #999;
-  width: 100%;
-}
 
-.go-back-arrow {
-  margin-right: 5px;
-}
-
-.channel-info {
+.ChannelInfo {
   max-width: 1200px;
   margin: 0 auto;
   width: 90%;
   padding: 50px 10px;
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid #eee;
 }
 
-.channel-text {
+.ChannelInfo-text {
   flex: 1 1 auto;
   text-align: left;
 }
 
-.channel-img {
+.ChannelInfo-img {
   flex: 0 0 auto;
   display: block;
   height: 275px;
@@ -37,24 +24,24 @@
   margin-right: 25px;
 }
 
-.channel-info .title {
+.ChannelInfo-title {
   margin: 10px 0;
   font-size: 3.2rem;
   text-align: left;
 }
 
-.channel-author {
+.ChannelInfo-author {
   margin-bottom: 25px;
   font-size: 2rem;
 }
 
-.channel-info p {
+.ChannelInfo p {
   font-size: 1.6rem;
   line-height: 1.5;
   text-align: left;
 }
 
-.channel-website {
+.ChannelInfo-website {
   color: #fff;
   background: #3498db;
   display: inline-block;
@@ -65,11 +52,11 @@
   margin-top: 25px;
 }
 
-.channel-website .fas {
+.ChannelInfo-website .fas {
   margin-right: 5px;
 }
 
-.channel-website a {
+.ChannelInfo-website a {
   color: #999;
   text-decoration: none;
   margin-left: 5px;
@@ -87,11 +74,11 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .channel-info {
+  .ChannelInfo {
     flex-direction: column;
     padding-top: 0;
   }
-  .channel-img {
+  .ChannelInfo-img {
     margin: 50px 0 25px 0;
     height: 150px;
     width: 150px;
