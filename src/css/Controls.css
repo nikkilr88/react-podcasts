@@ -1,5 +1,5 @@
 /* PLAYER CONTROLS */
-#player {
+.Controls-player {
   position: fixed;
   bottom: 10px;
   right: 10px;
@@ -12,22 +12,19 @@
   z-index: 999;
 }
 
-#player div {
-  text-align: center;
-}
-
-#player #title {
+.Controls-title {
   width: 80%;
-  text-align: center;
+  text-align: left;
   padding: 15px;
   margin: 0 auto;
+  font-size: 1.6rem;
 }
 
-#player button {
+.Controls-player button {
   margin: 0 15px;
 }
 
-.control-btns {
+.Controls-btns {
   display: flex;
   align-items: center;
 }
@@ -37,20 +34,12 @@
   font-size: 1.6rem;
 }
 
-.title {
-  font-size: 1.6rem;
-}
-
 @media only screen and (max-width: 600px) {
-  #player {
-    /* left: 0;
-    right: 0;
-    bottom: 60px;
-    flex-direction: column; */
+  .Controls-player {
     display: none;
   }
 
-  #player .title {
+  .Controls-title {
     display: none;
     margin-bottom: 25px;
   }

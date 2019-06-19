@@ -48,13 +48,13 @@
   color: #fcfcfc;
 }
 
-#player.dark {
+.Controls-player.dark {
   color: #ccc;
   background: #222;
   box-shadow: 0 10px 15px rgba(51, 51, 51, 0.9);
 }
 
-#player.dark button {
+.Controls-player.dark button {
   color: #ccc;
 }
 

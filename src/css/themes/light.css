@@ -44,13 +44,13 @@
   color: #fcfcfc;
 }
 
-#player.light {
+.Controls-player.light {
   color: #ccc;
   background: #2b2b2b;
   box-shadow: 0 10px 15px rgba(245, 245, 245, 0.6);
 }
 
-#player.light button {
+.Controls-player.light button {
   color: #888;
 }
 

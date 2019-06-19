@@ -1,8 +1,8 @@
-.home-page {
+.Home {
   padding: 10px;
 }
 
-.banner {
+.Home-banner {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url('../images/banner-bg.jpg');
   border-radius: 10px;
@@ -14,13 +14,13 @@
   background-position: 0 50%;
 }
 
-.banner h1 {
+.Home-banner h1 {
   font-size: 36px;
   margin-bottom: 10px;
   font-weight: 500;
 }
 
-.banner p {
+.Home-banner p {
   font-size: 18px;
   font-weight: 100;
   width: 55%;
@@ -28,15 +28,15 @@
   line-height: 1.5;
 }
 
-.podcast-category {
+.Home-category {
   margin: 50px 25px;
 }
 
-.podcast-category:last-of-type {
+.Home-category:last-of-type {
   margin-bottom: 100px;
 }
 
-.podcast-category h2 {
+.Home-category h2 {
   font-size: 22px;
   text-align: left;
   margin-bottom: 15px;
@@ -44,32 +44,32 @@
   font-weight: 500;
 }
 
-.category-podcast {
-}
-
-.category-podcast img {
+.Home-podcast img {
   margin-bottom: 5px;
   border-radius: 5px;
   width: 100%;
 }
 
-.category-podcast h3 {
+.Home-podcast h3 {
   font-weight: normal;
 }
 
-.category-podcast {
+.Home-podcast {
   color: #999;
   text-decoration: none;
 }
 
-.category-podcasts {
+.Home-podcasts {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
   grid-gap: 10px;
 }
 
 @media only screen and (max-width: 600px) {
-  .banner p {
+  .Home-banner {
+    padding: 25px;
+  }
+  .Home-banner p {
     width: 100%;
   }
 }
