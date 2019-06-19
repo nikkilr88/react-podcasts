@@ -1,27 +1,27 @@
 .mobile-player {
-  padding: 50px 25px 85px;
   background-position: center;
   background-size: cover;
-  height: 100vh;
+  height: 80vh;
+  margin: 0 25px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
 .mobile-player img {
-  width: 70%;
+  width: 150px;
   border-radius: 5px;
 }
 
 .mobile-player h3 {
-  font-size: 22px;
+  font-size: 18px;
   color: #555;
 }
 
 .mobile-player h4 {
   font-weight: normal;
-  font-size: 18px;
+  font-size: 16px;
   margin: 10px;
   color: #999;
 }
@@ -42,6 +42,6 @@
 }
 
 .play-btn {
-  font-size: 65px !important;
+  font-size: 45px !important;
   margin: 0 25px;
 }
