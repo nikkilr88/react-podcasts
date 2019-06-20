@@ -50,6 +50,7 @@ class EpisodeListElement extends Component {
           <h3>{title.length > 50 ? title.substring(0, 50) + '...' : title}</h3>
         </div>
         <button
+          disabled={isPlaying}
           className={isPlaying ? 'btn selected' : 'btn'}
           onClick={this.handleOnClick}
         >
