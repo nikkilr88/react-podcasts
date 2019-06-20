@@ -12,13 +12,13 @@ class ChannelInfo extends Component {
     const { img, title, description, website, author } = this.props.podcast
 
     const podcastImage = podcasts
-      .filter(podcast => podcast.name === title)[0]
+      .filter(p => p.name === title)[0]
       .img.replace(/100x100/g, '30x30')
 
     console.log(podcastImage)
     return (
       <div className={`ChannelInfo ${theme}`}>
-        <ProgressiveImage src={img} placeholder={imgPlaceholder}>
+        <ProgressiveImage src={img} placeholder={podcastImage}>
           {src => (
             <img
               src={src}
