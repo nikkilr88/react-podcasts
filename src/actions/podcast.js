@@ -22,7 +22,6 @@ export const fetchPodcast = url => dispatch => {
   })
     .then(res => {
       const channel = res.data.data
-      console.log(channel)
 
       const title = channel.title
       const website = channel.link
