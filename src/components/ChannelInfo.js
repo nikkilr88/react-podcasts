@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import ProgressiveImage from 'react-progressive-image'
 import { connect } from 'react-redux'
 import imgPlaceholder from '../images/image-placeholder.png'
+import { podcasts } from '../data/podcasts-test'
 
 import '../css/ChannelInfo.css'
 
@@ -10,9 +11,14 @@ class ChannelInfo extends Component {
     const { theme } = this.props
     const { img, title, description, website, author } = this.props.podcast
 
+    const podcastImage = podcasts
+      .filter(podcast => podcast.name === title)[0]
+      .img.replace(/100x100/g, '30x30')
+
+    console.log(podcastImage)
     return (
       <div className={`ChannelInfo ${theme}`}>
-        <ProgressiveImage src={img} placeholder={imgPlaceholder}>
+        <ProgressiveImage src={img} placeholder={podcastImage}>
           {src => (
             <img
               src={src}
