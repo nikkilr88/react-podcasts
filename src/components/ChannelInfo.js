@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from 'react'
+import ProgressiveImage from 'react-progressive-image'
 import { connect } from 'react-redux'
+import imgPlaceholder from '../images/image-placeholder.png'
+
 import '../css/ChannelInfo.css'
 
 class ChannelInfo extends Component {
@@ -9,11 +12,15 @@ class ChannelInfo extends Component {
 
     return (
       <div className={`ChannelInfo ${theme}`}>
-        <img
-          src={img}
-          alt='podcast image'
-          className={`ChannelInfo-img ${theme}`}
-        />
+        <ProgressiveImage src={img} placeholder={imgPlaceholder}>
+          {src => (
+            <img
+              src={src}
+              alt='podcast image'
+              className={`ChannelInfo-img ${theme}`}
+            />
+          )}
+        </ProgressiveImage>
         <div className='ChannelInfo-text'>
           <h1 className='ChannelInfo-title'>{title}</h1>
           <h3 className={`ChannelInfo-author ${theme}`}>{author}</h3>
