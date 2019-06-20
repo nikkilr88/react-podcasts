@@ -18,7 +18,7 @@ class ChannelInfo extends Component {
     console.log(podcastImage)
     return (
       <div className={`ChannelInfo ${theme}`}>
-        <ProgressiveImage src={img} placeholder={podcastImage}>
+        <ProgressiveImage src={img} placeholder={imgPlaceholder}>
           {src => (
             <img
               src={src}
