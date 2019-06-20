@@ -19,7 +19,7 @@ class NowPlaying extends Component {
           <div className='NowPlaying-player'>
             <img src={img} alt='' />
 
-            <div>
+            <div className='NowPlaying-info'>
               <ProgressBar
                 width='75%'
                 backgroundColor='#ccc'
