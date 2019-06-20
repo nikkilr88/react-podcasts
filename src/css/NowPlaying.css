@@ -1,7 +1,7 @@
 .NowPlaying-player {
   background-position: center;
   background-size: cover;
-  height: 80vh;
+  height: calc(100vh - 120px);
   margin: 0 25px;
   display: flex;
   flex-direction: column;
