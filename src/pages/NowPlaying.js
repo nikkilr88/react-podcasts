@@ -6,7 +6,7 @@ import ProgressBar from '../components/ProgressBar'
 import ProgressiveImage from 'react-progressive-image'
 import { podcasts } from '../data/podcasts-test'
 
-import { pauseAudio, skip } from '../actions/player'
+import { pauseAudio, skip, stopAudio } from '../actions/player'
 
 import '../css/NowPlaying.css'
 
@@ -27,6 +27,12 @@ class NowPlaying extends Component {
       <div>
         {title ? (
           <div className='NowPlaying-player'>
+            <i
+              onClick={this.props.stopAudio}
+              className='material-icons NowPlaying-close'
+            >
+              close
+            </i>
             <ProgressiveImage src={img} placeholder={podcastImage}>
               {src => <img src={src} alt='podcast image' />}
             </ProgressiveImage>
@@ -51,8 +57,8 @@ class NowPlaying extends Component {
                 replay_5
               </i>
               <i
-                className='material-icons play-btn'
                 onClick={this.props.pauseAudio}
+                className='material-icons play-btn'
               >
                 {playStatus === Sound.status.PAUSED
                   ? 'play_circle_outline'
@@ -80,5 +86,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { pauseAudio, skip }
+  { pauseAudio, skip, stopAudio }
 )(NowPlaying)
