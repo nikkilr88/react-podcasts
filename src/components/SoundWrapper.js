@@ -2,18 +2,8 @@ import React, { Component } from 'react'
 import Sound from 'react-sound'
 import { connect } from 'react-redux'
 import { handlePlay, handleFinishedPlaying } from '../actions/player'
-import debounce from 'lodash.debounce'
-import throttle from 'lodash.debounce'
 
 class SoundWrapper extends Component {
-  debouncePlay = debounce(
-    data => {
-      this.props.handlePlay(data)
-    },
-    1000,
-    { maxWait: 1000 }
-  )
-
   shouldComponentUpdate(nextProps) {
     if (
       nextProps.position !== this.props.position ||
@@ -40,9 +30,9 @@ class SoundWrapper extends Component {
         url={track}
         volume={volume}
         onError={onError}
+        onPlaying={handlePlay}
         playStatus={playStatus}
         playFromPosition={position}
-        onPlaying={this.debouncePlay}
         onFinishedPlaying={handleFinishedPlaying}
       />
     )
