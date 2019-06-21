@@ -9,7 +9,7 @@ import '../css/PodcastList.css'
 class EpisodeListElement extends Component {
   handleOnClick = e => {
     this.props.setAudio(
-      this.props.audio,
+      this.props.audio.replace(/http:\/\//, 'https://'),
       this.props.title,
       this.props.trackId,
       this.props.podcastImage,
