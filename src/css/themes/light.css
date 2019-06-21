@@ -1,19 +1,14 @@
-.channel-info.light {
-  background: #fff;
+.ChannelInfo.light {
   color: #555;
   border-bottom: 1px solid #eee;
 }
 
-.channel-img.light {
+.ChannelInfo-img.light {
   border: 3px solid #eee;
 }
 
-.channel-author.light {
+.ChannelInfo-author.light {
   color: rgb(173, 173, 173);
-}
-
-.infoBox.light:hover {
-  background: #f9f9f9;
 }
 
 .infoBox.light h3 {
@@ -28,17 +23,12 @@
   color: #555;
 }
 
-.items.light {
-  background: #fff;
-}
-
 .items.light .btn {
   border: 1px solid #ccc;
   color: #ccc;
 }
 
-.items.light .selected,
-.items.light .btn:hover {
+.items.light .selected {
   background: #3498db;
   border: 1px solid #3498db;
   color: #fcfcfc;
@@ -64,4 +54,16 @@
 
 .volume-wrapper.light {
   background: #666;
+}
+
+@media (hover: hover) {
+  .infoBox.light:hover {
+    background: #f9f9f9;
+  }
+
+  .items.light .btn:hover {
+    background: #3498db;
+    border: 1px solid #3498db;
+    color: #fcfcfc;
+  }
 }
