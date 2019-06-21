@@ -12,6 +12,7 @@ import NowPlayingPage from './pages/NowPlaying'
 
 import { Provider } from 'react-redux'
 import configureStore from './store/config-store'
+import throttle from 'lodash.throttle'
 
 import podcasts from './data/podcasts'
 
@@ -19,7 +20,25 @@ import './css/styles.css'
 import './css/themes/light.css'
 import './css/themes/dark.css'
 
+const saveState = state => {
+  try {
+    const serializedState = JSON.stringify(state)
+    localStorage.setItem('playerState', serializedState)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 const store = configureStore()
+
+store.subscribe(
+  throttle(() => {
+    console.log('[REDUX] Saving state')
+    saveState({
+      playerState: { ...store.getState().player, playStatus: 'PAUSED' }
+    })
+  }, 1000)
+)
 
 ReactDOM.render(
   <Provider store={store}>

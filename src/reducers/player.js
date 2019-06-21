@@ -12,7 +12,7 @@ const loadState = () => {
   }
 }
 
-const playerState = {
+const playerState = loadState() || {
   track: {
     id: '',
     src: '',
