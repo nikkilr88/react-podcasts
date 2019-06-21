@@ -9,6 +9,13 @@
   align-items: center;
 }
 
+.NowPlaying-close {
+  position: fixed;
+  top: 70px;
+  left: 10px;
+  color: #999;
+}
+
 .NowPlaying-player img {
   width: 150px;
   border-radius: 5px;
