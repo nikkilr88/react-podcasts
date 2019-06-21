@@ -28,14 +28,14 @@ export default () => {
     )
   )
 
-  store.subscribe(
-    throttle(() => {
-      console.log('[REDUX] Saving state')
-      saveState({
-        playerState: { ...store.getState().player, playStatus: 'PAUSED' }
-      })
-    }, 1000)
-  )
+  // store.subscribe(
+  //   throttle(() => {
+  //     console.log('[REDUX] Saving state')
+  //     saveState({
+  //       playerState: { ...store.getState().player, playStatus: 'PAUSED' }
+  //     })
+  //   }, 1000)
+  // )
 
   return store
 }
