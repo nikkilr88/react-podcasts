@@ -1,6 +1,18 @@
 import Sound from 'react-sound'
 
-const playerState = {
+const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem('playerState')
+    if (serializedState === null) {
+      return undefined
+    }
+    return JSON.parse(serializedState).playerState
+  } catch (err) {
+    return undefined
+  }
+}
+
+const playerState = loadState() || {
   track: {
     id: '',
     src: '',
