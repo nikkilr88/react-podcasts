@@ -11,11 +11,11 @@
   color: rgb(173, 173, 173);
 }
 
-.infoBox.light h3 {
+.EpisodeListElement-title.light {
   color: #333;
 }
 
-.infoBox.light .date {
+.EpisodeListElement-data.light {
   color: #999;
 }
 
@@ -23,12 +23,12 @@
   color: #555;
 }
 
-.items.light .btn {
+.EpisodeListElement-play.light {
   border: 1px solid #ccc;
   color: #ccc;
 }
 
-.items.light .selected {
+.EpisodeListElement-play.light.selected {
   background: #3498db;
   border: 1px solid #3498db;
   color: #fcfcfc;
@@ -57,11 +57,11 @@
 }
 
 @media (hover: hover) {
-  .infoBox.light:hover {
+  .EpisodeListElement.light:hover {
     background: #f9f9f9;
   }
 
-  .items.light .btn:hover {
+  .EpisodeListElement-play.light:hover {
     background: #3498db;
     border: 1px solid #3498db;
     color: #fcfcfc;
