@@ -34,25 +34,18 @@
   margin-right: 5px;
 }
 
-.MobileNav-top button {
+.MobileNav-back {
   color: inherit;
   font-size: 14px;
 }
 
-.MobileNav .fas {
-  color: #888;
-}
-
-.MobileNav img {
-  height: 20px;
-}
-
-.MobileNav h3 {
-  font-size: 18px;
+.MobileNav-icon {
+  color: #fff;
+  opacity: 0.5;
 }
 
 .active-nav-item .fas {
-  color: #fff;
+  opacity: 1;
 }
 
 @media only screen and (max-width: 600px) {
