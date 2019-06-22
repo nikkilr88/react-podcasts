@@ -37,16 +37,16 @@ class MobileNav extends Component {
 
         <nav className='MobileNav'>
           <Link to='/' exact activeClassName='active-nav-item'>
-            <i className='fas fa-home' />
+            <i className='fas fa-home MobileNav-icon' />
           </Link>
           <Link to='/nowplaying' activeClassName='active-nav-item'>
-            <i className='fas fa-headphones-alt' />
+            <i className='fas fa-headphones-alt MobileNav-icon' />
           </Link>
           <Link to='/bookmarked' activeClassName='active-nav-item'>
-            <i className='fas fa-bookmark' />
+            <i className='fas fa-bookmark MobileNav-icon' />
           </Link>
           <Link to='/settings' activeClassName='active-nav-item'>
-            <i className='fas fa-cog' />
+            <i className='fas fa-cog MobileNav-icon' />
           </Link>
         </nav>
       </Fragment>
