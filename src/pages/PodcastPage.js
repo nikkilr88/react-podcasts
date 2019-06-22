@@ -7,7 +7,7 @@ import { fetchPodcast, setLoading } from '../actions/podcast'
 
 import '../css/PodcastPage.css'
 
-import { podcasts } from '../data/podcasts-test'
+import { podcasts } from '../data/podcasts'
 
 class PodcastPage extends Component {
   loadPodcast = () => {

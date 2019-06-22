@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import ProgressiveImage from 'react-progressive-image'
 import { connect } from 'react-redux'
 import imgPlaceholder from '../images/image-placeholder.png'
-import { podcasts } from '../data/podcasts-test'
+import { podcasts } from '../data/podcasts'
 
 import '../css/ChannelInfo.css'
 

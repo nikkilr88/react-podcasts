@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ProgressiveImage from 'react-progressive-image'
 import { Link } from 'react-router-dom'
-import { podcasts, categories } from '../data/podcasts-test'
+import { podcasts, categories } from '../data/podcasts'
 
 import '../css/HomePage.css'
 

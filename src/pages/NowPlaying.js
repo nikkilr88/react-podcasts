@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Sound from 'react-sound'
 import ProgressBar from '../components/ProgressBar'
 import ProgressiveImage from 'react-progressive-image'
-import { podcasts } from '../data/podcasts-test'
+import { podcasts } from '../data/podcasts'
 
 import { pauseAudio, skip, stopAudio } from '../actions/player'
 
