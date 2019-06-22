@@ -12,7 +12,7 @@ class MobileNav extends Component {
       '/settings': 'Settings'
     }
 
-    const { podcast = 'Loading...' } = this.props
+    const { podcast = 'Loading...', theme } = this.props
     const { pathname } = this.props.location
 
     const formattedPodcastName =
@@ -20,7 +20,7 @@ class MobileNav extends Component {
 
     return (
       <Fragment>
-        <nav className='MobileNav-top'>
+        <nav className={`MobileNav-top ${theme}`}>
           <p className='MobileNav-title'>
             {location[pathname] || formattedPodcastName}
           </p>
@@ -35,7 +35,7 @@ class MobileNav extends Component {
           )}
         </nav>
 
-        <nav className='MobileNav'>
+        <nav className={`MobileNav ${theme}`}>
           <Link to='/' exact activeClassName='active-nav-item'>
             <i className='fas fa-home MobileNav-icon' />
           </Link>
@@ -55,6 +55,7 @@ class MobileNav extends Component {
 }
 
 const mapStateToProps = state => ({
+  theme: state.theme.theme,
   podcast: state.podcast.podcast.title
 })
 
