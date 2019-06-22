@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setAudio } from '../actions/player'
 
-import '../css/PodcastList.css'
+import '../css/EpisodeListElement.css'
 
 class EpisodeListElement extends Component {
   handleOnClick = e => {
@@ -40,18 +40,21 @@ class EpisodeListElement extends Component {
     )
 
     return (
-      <div className={`infoBox ${theme}`} title={title}>
-        <div className='text'>
-          <p className='date'>
+      <div className={`EpisodeListElement ${theme}`} title={title}>
+        <div className='EpisodeListElement-text'>
+          <p className='EpisodeListElement-date'>
             {this.formatDate(date)}
             <span> &#8226; </span>
             {minutesLong} mins
           </p>
-          <h3>{title.length > 50 ? title.substring(0, 50) + '...' : title}</h3>
+          <h3 className='EpisodeListElement-title'>
+            {title.length > 50 ? title.substring(0, 50) + '...' : title}
+          </h3>
         </div>
         <button
           disabled={isPlaying}
-          className={isPlaying ? 'btn selected' : 'btn'}
+          className={`EpisodeListElement-play ${theme} ${isPlaying &&
+            'selected'}`}
           onClick={this.handleOnClick}
         >
           {isPlaying ? (
