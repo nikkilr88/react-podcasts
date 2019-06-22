@@ -2,50 +2,14 @@
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.channel-info.dark {
-  background: #333;
+.ChannelInfo.dark {
   color: #ccc;
-  border-bottom: 1px solid #444;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.channel-img.dark {
-  border: 3px solid #444;
-}
-
-.channel-author.dark {
-  color: #555;
-}
-
-.infoBox.dark:hover {
-  background: #393939;
-}
-
-.infoBox.dark h3 {
-  color: #ccc;
-}
-
-.infoBox.dark .date {
-  color: #777;
-}
-
-.episodes.dark {
-  color: #666;
-}
-
-.items.dark {
-  background: #333;
-}
-
-.items.dark .btn {
-  border: 1px solid #555;
-  color: #555;
-}
-
-.items.dark .selected,
-.items.dark .btn:hover {
-  background: #3498db;
-  border: 1px solid #3498db;
-  color: #fcfcfc;
+.ChannelInfo.dark .ChannelInfo-author {
+  color: #fff;
+  opacity: 0.35;
 }
 
 .Controls-player.dark {
@@ -63,5 +27,17 @@
 }
 
 .loader-bg.dark {
-  background: #333;
+  background: none;
+}
+
+@media (hover: hover) {
+  .EpisodeListElement.dark:hover {
+    background: #393939;
+  }
+
+  .EpisodeListElement-play.dark:hover {
+    background: #3498db;
+    border: 1px solid #3498db;
+    color: #fcfcfc;
+  }
 }
