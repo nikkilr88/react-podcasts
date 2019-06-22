@@ -26,6 +26,8 @@ button {
 
 .app-wrapper {
   display: flex;
+  transition: background 0.2s;
+  min-height: calc(100vh - 120px);
 }
 
 .app-wrapper-content {
@@ -62,6 +64,16 @@ button {
   color: #999;
   font-family: 'Lato';
   font-weight: 100;
+}
+
+/* ============ THEMES ============ */
+
+.app-wrapper.dark {
+  background: #333;
+}
+
+.app-wrapper.light {
+  background: #fff;
 }
 
 @media only screen and (max-width: 600px) {
