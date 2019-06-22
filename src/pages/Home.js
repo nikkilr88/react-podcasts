@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ProgressiveImage from 'react-progressive-image'
 import { Link } from 'react-router-dom'
 import { podcasts, categories } from '../data/podcasts-test'
 
@@ -16,7 +17,13 @@ class HomePage extends Component {
             to={`/podcast/${podcast.name.replace(/ /g, '_')}`}
           >
             <div>
-              <img src={podcast.img} alt={podcast.name} />
+              <ProgressiveImage
+                src={podcast.img}
+                placeholder={podcast.img.replace(/100x100/g, '30x30')}
+              >
+                {src => <img src={src} alt='podcast image' />}
+              </ProgressiveImage>
+
               <h3>
                 {podcast.name.length > 13
                   ? podcast.name.substring(0, 13) + '...'
