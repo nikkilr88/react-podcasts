@@ -9,10 +9,12 @@ class SettingsPage extends Component {
   }
 
   render() {
+    const { theme } = this.props
     const themes = ['light', 'dark']
 
     const themeRadioButtons = themes.map(theme => (
-      <label key={theme}>
+      <label className='Setting-radio' key={theme}>
+        {theme}
         <input
           type='radio'
           name='theme'
@@ -20,17 +22,15 @@ class SettingsPage extends Component {
           onChange={this.handleChange}
           checked={theme === this.props.theme}
         />
-        {theme}
+        <span className='checkmark' />
       </label>
     ))
     return (
-      <div className='SettingsPage'>
-        <h1 className='SettingsPage-title'>Settings</h1>
-
-        <section>
-          <h2>Theme</h2>
+      <div className={`SettingsPage ${theme}`}>
+        <div className='SettingsPage-setting'>
+          <h2 className='Setting-title'>Theme</h2>
           {themeRadioButtons}
-        </section>
+        </div>
       </div>
     )
   }
