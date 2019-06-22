@@ -187,7 +187,7 @@ class Controls extends Component {
 const mapStateToProps = state => ({
   theme: state.theme.theme,
   track: state.player.track,
-  image: state.podcast.podcast.img,
+  image: state.player.track.img,
   playStatus: state.player.playStatus,
   podcast: state.podcast.podcast.title,
   volumeVisible: state.player.showVolume,
