@@ -30,6 +30,7 @@ button {
 
 .app-wrapper-content {
   flex: 1;
+  padding: 25px 50px;
 }
 
 .error {
@@ -50,4 +51,10 @@ button {
   position: relative;
   left: -15px;
   opacity: 0.75;
+}
+
+@media only screen and (max-width: 600px) {
+  .app-wrapper-content {
+    padding: 10px;
+  }
 }
