@@ -1,7 +1,4 @@
-export const switchTheme = () => (dispatch, getState) => {
-  const state = getState()
-  const theme = state.theme.theme === 'light' ? 'dark' : 'light'
-
+export const switchTheme = theme => dispatch => {
   localStorage.setItem('theme', theme)
 
   dispatch({
