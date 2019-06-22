@@ -1,7 +1,7 @@
 .NowPlaying-player {
   background-position: center;
   background-size: cover;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 140px);
   margin: 0 25px;
   display: flex;
   flex-direction: column;
@@ -55,4 +55,14 @@
 .play-btn {
   font-size: 45px !important;
   margin: 0 25px;
+}
+
+/* ============ Themes ============ */
+
+.NowPlaying-player.dark .NowPlaying-info h3 {
+  color: #ccc;
+}
+
+.NowPlaying-player.dark .NowPlaying-controls .material-icons {
+  color: #ccc;
 }
