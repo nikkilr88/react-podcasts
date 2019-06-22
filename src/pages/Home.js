@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ProgressiveImage from 'react-progressive-image'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { podcasts, categories } from '../data/podcasts'
 
@@ -7,6 +8,8 @@ import '../css/HomePage.css'
 
 class HomePage extends Component {
   render() {
+    const { theme } = this.props
+
     const categorySections = categories.map(category => {
       const categoryPodcasts = podcasts
         .filter(podcast => podcast.category === category.category)
@@ -24,7 +27,7 @@ class HomePage extends Component {
                 {src => <img src={src} alt='podcast image' />}
               </ProgressiveImage>
 
-              <h3>
+              <h3 className='Home-podcast-title'>
                 {podcast.name.length > 13
                   ? podcast.name.substring(0, 13) + '...'
                   : podcast.name}
@@ -34,13 +37,13 @@ class HomePage extends Component {
         ))
       return (
         <section key={category.category} className='Home-category'>
-          <h2>{category.display}</h2>
+          <h2 className='Home-category-title'>{category.display}</h2>
           <div className='Home-podcasts'>{categoryPodcasts}</div>
         </section>
       )
     })
     return (
-      <div className='Home'>
+      <div className={`Home ${theme}`}>
         <div className='Home-banner'>
           <h1>devCasts</h1>
           <p>
@@ -55,4 +58,8 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage
+const mapStateToProps = state => ({
+  theme: state.theme.theme
+})
+
+export default connect(mapStateToProps)(HomePage)
