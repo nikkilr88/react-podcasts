@@ -139,7 +139,7 @@ class Controls extends Component {
       volumeVisible
     } = this.props
 
-    return track.title ? (
+    return track.title.length > 0 ? (
       <Fragment>
         <SoundWrapper />
 
