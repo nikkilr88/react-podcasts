@@ -24,7 +24,7 @@ class EpisodeList extends Component {
     return (
       <Fragment>
         <h1 className={`EpisodeList-title ${theme}`}>Available Episodes</h1>
-        {episodeList}
+        <div className='EpisodeList-wrapper'>{episodeList}</div>
       </Fragment>
     )
   }
