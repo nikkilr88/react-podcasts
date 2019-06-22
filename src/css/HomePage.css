@@ -6,7 +6,7 @@
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url('../images/banner-bg.jpg');
   border-radius: 10px;
-  margin: 25px 25px 50px;
+  margin: 25px 0;
   text-align: left;
   color: #fff;
   padding: 35px 50px;
@@ -29,7 +29,7 @@
 }
 
 .Home-category {
-  margin: 50px 25px;
+  margin: 50px 0;
 }
 
 .Home-category:last-of-type {
