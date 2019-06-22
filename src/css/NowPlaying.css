@@ -60,9 +60,13 @@
 /* ============ Themes ============ */
 
 .NowPlaying-player.dark .NowPlaying-info h3 {
-  color: #ccc;
+  color: #eee;
 }
 
 .NowPlaying-player.dark .NowPlaying-controls .material-icons {
-  color: #ccc;
+  color: #eee;
+}
+
+.NowPlaying-player.dark .NowPlaying-close {
+  color: #555;
 }
