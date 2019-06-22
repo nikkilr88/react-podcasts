@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import EpisodeListElement from './EpisodeListElement'
 import moment from 'moment'
+import '../css/EpisodeList.css'
 
 class EpisodeList extends Component {
   render() {
@@ -22,7 +23,7 @@ class EpisodeList extends Component {
 
     return (
       <Fragment>
-        <h1 className={`episodes ${theme}`}>Available Episodes</h1>
+        <h1 className={`EpisodeList-title ${theme}`}>Available Episodes</h1>
         {episodeList}
       </Fragment>
     )
