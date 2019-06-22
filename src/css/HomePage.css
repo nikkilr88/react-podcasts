@@ -36,12 +36,16 @@
   margin-bottom: 100px;
 }
 
-.Home-category h2 {
+.Home-category-title {
   font-size: 22px;
   text-align: left;
   margin-bottom: 15px;
   color: #555;
   font-weight: 500;
+}
+
+.Home-podcast {
+  text-decoration: none;
 }
 
 .Home-podcast img {
@@ -50,19 +54,25 @@
   width: 100%;
 }
 
-.Home-podcast h3 {
+.Home-podcast-title {
   font-weight: normal;
-}
-
-.Home-podcast {
   color: #999;
-  text-decoration: none;
 }
 
 .Home-podcasts {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
   grid-gap: 10px;
+}
+
+/* ============ Themes ============ */
+
+.Home.dark .Home-category-title {
+  color: #eee;
+}
+
+.Home.dark .Home-podcast-title {
+  color: #777;
 }
 
 @media only screen and (max-width: 600px) {
