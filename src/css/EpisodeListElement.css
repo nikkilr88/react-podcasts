@@ -1,0 +1,53 @@
+/* PODCAST LIST */
+.EpisodeListElement {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+}
+
+.EpisodeListElement-title {
+  padding: 5px 0;
+  font-size: 1.6rem;
+  font-weight: normal;
+}
+
+.EpisodeListElement-date {
+  color: #999;
+  font-size: 1.3em;
+  font-weight: normal;
+}
+
+.EpisodeListElement-text {
+  padding-right: 25px;
+  text-align: left;
+}
+
+/* PLAY BUTTON */
+.EpisodeListElement-play {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  border-radius: 50px;
+  height: 40px;
+  width: 40px;
+  font-size: 16px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.EpisodeListElement-play > .material-icons {
+  pointer-events: none;
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .items {
+    margin: 0;
+  }
+}
