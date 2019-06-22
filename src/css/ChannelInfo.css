@@ -60,6 +60,21 @@
   margin-left: 5px;
 }
 
+/* ============ Themes ============ */
+
+.ChannelInfo.light {
+  color: #555;
+  border-bottom: 1px solid #eee;
+}
+
+.ChannelInfo-img.light {
+  border: 3px solid #eee;
+}
+
+.ChannelInfo-author.light {
+  color: rgb(173, 173, 173);
+}
+
 @media only screen and (max-width: 950px) {
   .ChannelInfo {
     flex-direction: column;

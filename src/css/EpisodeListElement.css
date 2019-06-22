@@ -46,6 +46,42 @@
   font-size: 20px;
 }
 
+/* ============ Themes ============ */
+
+.EpisodeListElement.light .EpisodeListElement-data {
+  color: #999;
+}
+
+.EpisodeListElement.light .EpisodeListElement-play {
+  border: 1px solid #ccc;
+  color: #ccc;
+}
+
+.EpisodeListElement.light .EpisodeListElement-play.selected {
+  background: #3498db;
+  border: 1px solid #3498db;
+  color: #fcfcfc;
+}
+
+.EpisodeListElement.dark .EpisodeListElement-date {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.EpisodeListElement.dark .EpisodeListElement-title {
+  color: #ccc;
+}
+
+.EpisodeListElement.dark .EpisodeListElement-play {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.EpisodeListElement.dark .EpisodeListElement-play.selected {
+  background: #3498db;
+  border: 1px solid #3498db;
+  color: #fcfcfc;
+}
+
 @media only screen and (max-width: 600px) {
   .EpisodeListElement {
     padding: 0;
