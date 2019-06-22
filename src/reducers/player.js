@@ -47,9 +47,11 @@ const playerReducer = (state = playerState, action) => {
       return {
         ...state,
         track: {
-          title: '',
+          id: '',
           src: '',
-          id: ''
+          title: '',
+          podcast: '',
+          img: ''
         }
       }
 
