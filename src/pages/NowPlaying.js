@@ -26,7 +26,7 @@ class NowPlaying extends Component {
     return (
       <div>
         {title ? (
-          <div className='NowPlaying-player'>
+          <div className={`NowPlaying-player ${this.props.theme}`}>
             <i
               onClick={this.props.stopAudio}
               className='material-icons NowPlaying-close'
@@ -40,7 +40,11 @@ class NowPlaying extends Component {
             <div className='NowPlaying-info'>
               <ProgressBar
                 width='75%'
-                backgroundColor='#ccc'
+                backgroundColor={
+                  this.props.theme === 'light'
+                    ? '#ccc'
+                    : 'rgba(255,255,255,0.1)'
+                }
                 wrapperPosition='relative'
               />
               <Link to={`/podcast/${podcast.replace(/ /g, '_')}`}>
@@ -83,7 +87,8 @@ class NowPlaying extends Component {
 }
 
 const mapStateToProps = state => ({
-  player: state.player
+  player: state.player,
+  theme: state.theme.theme
 })
 
 export default connect(
