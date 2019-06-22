@@ -73,7 +73,9 @@ class NowPlaying extends Component {
             </div>
           </div>
         ) : (
-          <h1>There is nothing playing</h1>
+          <p className='middle'>
+            There is nothing playing. Go find something awesome!
+          </p>
         )}
       </div>
     )
