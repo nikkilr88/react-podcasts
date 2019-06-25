@@ -3,8 +3,8 @@ import Sound from 'react-sound'
 import { connect } from 'react-redux'
 import {
   handlePlay,
-  handleFinishedPlaying,
-  setLoading
+  setLoading,
+  handleFinishedPlaying
 } from '../actions/player'
 
 class SoundWrapper extends Component {
