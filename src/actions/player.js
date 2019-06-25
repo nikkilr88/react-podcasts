@@ -24,6 +24,13 @@ export const stopAudio = () => dispatch => {
   })
 }
 
+export const setLoaded = () => dispatch => {
+  console.log('===LOADED===')
+  dispatch({
+    type: 'SET_LOADED'
+  })
+}
+
 export const setAudio = (audio, title, id, img, podcast) => dispatch => {
   dispatch({
     type: 'SET_AUDIO',
