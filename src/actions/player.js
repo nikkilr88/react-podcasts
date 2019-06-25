@@ -24,10 +24,10 @@ export const stopAudio = () => dispatch => {
   })
 }
 
-export const setLoaded = () => dispatch => {
-  console.log('===LOADED===')
+export const setLoading = value => dispatch => {
   dispatch({
-    type: 'SET_LOADED'
+    type: 'SET_LOADING',
+    loading: value
   })
 }
 
