@@ -14,9 +14,11 @@
 
 /* ============ Themes ============ */
 
-.EpisodeList-title.dark {
+.EpisodeList-title.dark,
+.EpisodeList-title.black {
   color: #ccc;
 }
+
 .EpisodeListElement-title.light {
   color: #333;
 }

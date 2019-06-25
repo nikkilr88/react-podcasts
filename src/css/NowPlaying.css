@@ -71,8 +71,12 @@
   color: #555;
 }
 
+.NowPlaying-player.black .NowPlaying-info h4 {
+  color: #777;
+}
+
 .NowPlaying-player.black .NowPlaying-info h3 {
-  color: #eee;
+  color: #999;
 }
 
 .NowPlaying-player.black .NowPlaying-controls .material-icons {

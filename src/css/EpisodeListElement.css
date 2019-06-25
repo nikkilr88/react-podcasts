@@ -83,7 +83,7 @@
 }
 
 .EpisodeListElement.black .EpisodeListElement-date {
-  color: #222;
+  color: #555;
 }
 
 .EpisodeListElement.black .EpisodeListElement-title {
@@ -91,13 +91,13 @@
 }
 
 .EpisodeListElement.black .EpisodeListElement-play {
-  border: 1px solid #222;
-  color: #222;
+  border: 1px solid #555;
+  color: #555;
 }
 
 .EpisodeListElement.black .EpisodeListElement-play.selected {
   background: linear-gradient(45deg, #c31432, #240b36);
-  border: 1px solid transparent;
+  border: 1px solid #240b36;
   color: #fcfcfc;
 }
 

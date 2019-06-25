@@ -76,11 +76,15 @@
 }
 
 .Home.black .Home-podcast-title {
-  color: #333;
+  color: #555;
 }
 
 .Home.black .Home-category-title {
-  color: #eee;
+  color: #999;
+}
+
+.Home.black .Home-banner {
+  color: #999;
 }
 
 @media only screen and (max-width: 600px) {
