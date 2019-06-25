@@ -70,3 +70,17 @@
 .NowPlaying-player.dark .NowPlaying-close {
   color: #555;
 }
+
+.NowPlaying-player.black .NowPlaying-info h3 {
+  color: #eee;
+}
+
+.NowPlaying-player.black .NowPlaying-controls .material-icons {
+  background: linear-gradient(45deg, #c31432, #240b36);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.NowPlaying-player.black .NowPlaying-close {
+  color: #333;
+}

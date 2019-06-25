@@ -75,6 +75,22 @@
   color: rgb(173, 173, 173);
 }
 
+.ChannelInfo.black .ChannelInfo-title {
+  color: #999;
+}
+
+.ChannelInfo.black .ChannelInfo-text {
+  color: #999;
+}
+
+.ChannelInfo.black .ChannelInfo-author {
+  color: #333;
+}
+
+.ChannelInfo.black .ChannelInfo-website {
+  background: linear-gradient(45deg, #c31432, #240b36);
+}
+
 @media only screen and (max-width: 950px) {
   .ChannelInfo {
     flex-direction: column;

@@ -53,10 +53,35 @@
   background: #222;
 }
 
+.MobileNav.black,
+.MobileNav-top.black {
+  background: #000;
+}
+
+.MobileNav-top.black {
+  border-bottom: 1px solid #111;
+}
+
+.MobileNav.black {
+  border-top: 1px solid #111;
+}
+
+.MobileNav.black .MobileNav-icon {
+  color: #fff;
+  opacity: 0.1;
+}
+
 /* ============ Active styles ============ */
 
 .active-nav-item .fas {
-  opacity: 1;
+  opacity: 1 !important;
+}
+
+.MobileNav.black .active-nav-item .fas {
+  opacity: 1 !important;
+  background: linear-gradient(45deg, #c31432, #240b36);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 @media only screen and (max-width: 600px) {

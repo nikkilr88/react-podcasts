@@ -75,6 +75,14 @@
   color: #777;
 }
 
+.Home.black .Home-podcast-title {
+  color: #333;
+}
+
+.Home.black .Home-category-title {
+  color: #eee;
+}
+
 @media only screen and (max-width: 600px) {
   .Home-banner {
     padding: 25px;

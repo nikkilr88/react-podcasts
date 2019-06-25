@@ -82,6 +82,27 @@
   color: #fcfcfc;
 }
 
+.EpisodeListElement.black .EpisodeListElement-date {
+  color: #222;
+}
+
+.EpisodeListElement.black .EpisodeListElement-title {
+  color: #999;
+}
+
+.EpisodeListElement.black .EpisodeListElement-play {
+  border: 1px solid #222;
+  color: #222;
+}
+
+.EpisodeListElement.black .EpisodeListElement-play.selected {
+  background: linear-gradient(45deg, #c31432, #240b36);
+  border: 1px solid transparent;
+  color: #fcfcfc;
+}
+
+/* background: linear-gradient(45deg, #c31432, #240b36); */
+
 @media only screen and (max-width: 600px) {
   .EpisodeListElement {
     padding: 0;

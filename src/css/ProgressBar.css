@@ -13,3 +13,16 @@
   width: 0%;
   background: linear-gradient(to right, #3498db, #be2edd, #e84393);
 }
+
+/* ============ Themes ============ */
+.progress-wrapper.light {
+  background: #ccc;
+}
+
+.progress-wrapper.black {
+  background: #111;
+}
+
+.progress-wrapper.black .progress-bar {
+  background: linear-gradient(45deg, #c31432, #240b36);
+}
