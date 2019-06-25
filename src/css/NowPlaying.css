@@ -16,6 +16,10 @@
   color: #999;
 }
 
+.NowPlaying-img-wrapper {
+  position: relative;
+}
+
 .NowPlaying-player img {
   width: 150px;
   border-radius: 5px;
