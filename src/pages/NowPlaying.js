@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { podcasts } from '../data/podcasts'
 import ProgressBar from '../components/ProgressBar'
+import Loader from '../components/Loader'
 import ProgressiveImage from 'react-progressive-image'
 import { pauseAudio, skip, stopAudio } from '../actions/player'
 
@@ -11,7 +12,7 @@ import '../css/NowPlaying.css'
 
 class NowPlaying extends Component {
   render() {
-    const { playStatus } = this.props.player
+    const { playStatus, loading } = this.props.player
     const { img, title, podcast } = this.props.player.track
 
     let podcastImage = ''
@@ -32,9 +33,13 @@ class NowPlaying extends Component {
             >
               close
             </i>
-            <ProgressiveImage src={img} placeholder={podcastImage}>
-              {src => <img src={src} alt='podcast image' />}
-            </ProgressiveImage>
+
+            <div className='NowPlaying-img-wrapper'>
+              {playStatus === 'PLAYING' && loading && <Loader />}
+              <ProgressiveImage src={img} placeholder={podcastImage}>
+                {src => <img src={src} alt='podcast image' />}
+              </ProgressiveImage>
+            </div>
 
             <div className='NowPlaying-info'>
               <ProgressBar width='75%' wrapperPosition='relative' />
