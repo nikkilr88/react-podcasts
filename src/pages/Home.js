@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import ProgressiveImage from 'react-progressive-image'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import ProgressiveImage from 'react-progressive-image'
 import { podcasts, categories } from '../data/podcasts'
 
 import '../css/HomePage.css'
@@ -15,8 +15,8 @@ class HomePage extends Component {
         .filter(podcast => podcast.category === category.category)
         .map(podcast => (
           <Link
-            className='Home-podcast'
             key={podcast.name}
+            className='Home-podcast'
             to={`/podcast/${podcast.name.replace(/ /g, '_')}`}
           >
             <div>
