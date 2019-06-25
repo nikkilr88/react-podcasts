@@ -57,15 +57,16 @@ const playerReducer = (state = playerState, action) => {
         }
       }
 
-    case 'SET_LOADED':
+    case 'SET_LOADING':
       return {
         ...state,
-        loading: false
+        loading: action.loading
       }
 
     case 'PAUSE_AUDIO':
       return {
         ...state,
+        loading: true,
         playStatus: action.paused
       }
 
