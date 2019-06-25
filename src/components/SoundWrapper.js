@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
 import Sound from 'react-sound'
 import { connect } from 'react-redux'
-import { handlePlay, handleFinishedPlaying, setLoaded } from '../actions/player'
+import {
+  handlePlay,
+  handleFinishedPlaying,
+  setLoading
+} from '../actions/player'
 
 class SoundWrapper extends Component {
+  handleSetLoading = () => {
+    this.props.setLoading(false)
+  }
+
   shouldComponentUpdate(nextProps) {
     if (
       nextProps.position !== this.props.position ||
@@ -20,7 +28,6 @@ class SoundWrapper extends Component {
       volume,
       onError,
       position,
-      setLoaded,
       playStatus,
       handlePlay,
       handleFinishedPlaying
@@ -34,7 +41,8 @@ class SoundWrapper extends Component {
         onPlaying={handlePlay}
         playStatus={playStatus}
         playFromPosition={position}
-        onLoad={setLoaded}
+        onLoad={this.handleSetLoading}
+        onResume={this.handleSetLoading}
         onFinishedPlaying={handleFinishedPlaying}
       />
     )
@@ -50,5 +58,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { handlePlay, handleFinishedPlaying, setLoaded }
+  { handlePlay, handleFinishedPlaying, setLoading }
 )(SoundWrapper)
