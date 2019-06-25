@@ -15,14 +15,15 @@ const loadState = () => {
 const playerState = loadState() || {
   track: {
     id: '',
+    img: '',
     src: '',
     title: '',
-    podcast: '',
-    img: ''
+    podcast: ''
   },
   volume: 75,
   position: 0,
   duration: 0,
+  loading: true,
   showVolume: false,
   playStatus: Sound.status.PLAYING
 }
@@ -40,6 +41,7 @@ const playerReducer = (state = playerState, action) => {
           podcast: action.podcast
         },
         position: 0,
+        loading: true,
         playStatus: Sound.status.PLAYING
       }
 
@@ -53,6 +55,12 @@ const playerReducer = (state = playerState, action) => {
           podcast: '',
           img: ''
         }
+      }
+
+    case 'SET_LOADED':
+      return {
+        ...state,
+        loading: false
       }
 
     case 'PAUSE_AUDIO':
