@@ -4,14 +4,7 @@ import '../css/ProgressBar.css'
 
 class ProgressBar extends Component {
   render() {
-    const {
-      position,
-      duration,
-      theme,
-      width,
-      wrapperPosition,
-      backgroundColor = ''
-    } = this.props
+    const { position, duration, theme, width, wrapperPosition } = this.props
 
     const styles = {
       width: (position * 100) / duration + '%'
@@ -19,8 +12,7 @@ class ProgressBar extends Component {
 
     const wrapperStyles = {
       width: width,
-      position: wrapperPosition,
-      background: backgroundColor
+      position: wrapperPosition
     }
 
     return (
