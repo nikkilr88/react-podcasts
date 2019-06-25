@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import EpisodeListElement from './EpisodeListElement'
-import moment from 'moment'
 import '../css/EpisodeList.css'
 
 class EpisodeList extends Component {

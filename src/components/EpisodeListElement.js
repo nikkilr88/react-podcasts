@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import moment from 'moment'
-import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setAudio } from '../actions/player'
+import { withRouter } from 'react-router-dom'
 
 import '../css/EpisodeListElement.css'
 
@@ -53,9 +53,9 @@ class EpisodeListElement extends Component {
         </div>
         <button
           disabled={isPlaying}
+          onClick={this.handleOnClick}
           className={`EpisodeListElement-play ${theme} ${isPlaying &&
             'selected'}`}
-          onClick={this.handleOnClick}
         >
           {isPlaying ? (
             <i className='material-icons'>volume_up</i>
