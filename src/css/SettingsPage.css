@@ -81,10 +81,12 @@
   color: #eee;
 }
 
-.SettingsPage.dark .Setting-radio {
+.SettingsPage.dark .Setting-radio,
+.SettingsPage.black .Setting-radio {
   color: #999;
 }
 
-.SettingsPage.dark .checkmark {
+.SettingsPage.dark .checkmark,
+.SettingsPage.black .checkmark {
   background: #555;
 }

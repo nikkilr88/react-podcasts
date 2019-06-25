@@ -23,6 +23,10 @@
   background: #222;
 }
 
+.progress-wrapper.dark {
+  background: #444;
+}
+
 .progress-wrapper.black .progress-bar {
   background: linear-gradient(45deg, #c31432, #240b36);
 }
