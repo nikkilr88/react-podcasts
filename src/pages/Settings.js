@@ -13,7 +13,7 @@ class SettingsPage extends Component {
     const themes = ['light', 'dark', 'black']
 
     const themeRadioButtons = themes.map(theme => (
-      <label className='Setting-radio' key={theme}>
+      <label className={`Setting-radio Setting-radio-${theme}`} key={theme}>
         {theme}
         <input
           type='radio'
