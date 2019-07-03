@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react'
-import ProgressBar from './ProgressBar'
-import SoundWrapper from './SoundWrapper'
 import Volume from './Volume'
 import Sound from 'react-sound'
-
 import { connect } from 'react-redux'
+import ProgressBar from './ProgressBar'
+import SoundWrapper from './SoundWrapper'
+import { convertSeconds } from '../utils'
 import {
   skip,
   setVolume,
@@ -13,9 +13,6 @@ import {
   showVolume,
   hideVolume
 } from '../actions/player'
-
-import Logo from '../images/devcasts-logo-slant.png'
-import { convertSeconds } from '../utils'
 
 import '../css/Controls.css'
 
