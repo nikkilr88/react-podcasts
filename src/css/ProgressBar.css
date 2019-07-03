@@ -15,18 +15,16 @@
 }
 
 /* ============ Themes ============ */
-.progress-wrapper.light {
-  background: #ccc;
-}
 
 .progress-wrapper.black {
   background: #222;
 }
 
-.progress-wrapper.dark {
+.progress-wrapper.dark,
+.progress-wrapper.light {
   background: #444;
 }
 
 .progress-wrapper.black .progress-bar {
-  background: linear-gradient(45deg, #c31432, #240b36);
+  background: #c31432;
 }
