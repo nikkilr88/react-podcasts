@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import Sidebar from '../components/Sidebar'
 import Controls from '../components/Controls'
 import MobileNav from '../components/MobileNav'
+import BackButton from '../components/BackButton'
 
 // Pages
 import HomePage from '../pages/Home'
@@ -22,6 +23,7 @@ const AppRouter = ({ theme }) => (
         <Sidebar />
       </div>
       <div className='app-wrapper-content'>
+        <BackButton />
         <Controls />
         <Switch>
           <Route path='/' exact component={HomePage} />
