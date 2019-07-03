@@ -20,7 +20,7 @@ class ChannelInfo extends Component {
           {src => (
             <img
               src={src}
-              alt='podcast image'
+              alt='podcast cover'
               className={`ChannelInfo-img ${theme}`}
             />
           )}
