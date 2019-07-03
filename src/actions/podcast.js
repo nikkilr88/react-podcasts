@@ -43,7 +43,6 @@ export const fetchPodcast = url => dispatch => {
         }
       })
     })
-    // Set error ir request timesout
     .catch(err => {
       if (err.code == 'ECONNABORTED') {
         dispatch({
