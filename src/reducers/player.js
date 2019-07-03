@@ -57,7 +57,7 @@ const playerReducer = (state = playerState, action) => {
         }
       }
 
-    case 'SET_LOADING':
+    case 'SET_PLAYER_LOADING':
       return {
         ...state,
         loading: action.loading
