@@ -26,7 +26,7 @@ export const stopAudio = () => dispatch => {
 
 export const setLoading = value => dispatch => {
   dispatch({
-    type: 'SET_LOADING',
+    type: 'SET_PLAYER_LOADING',
     loading: value
   })
 }
