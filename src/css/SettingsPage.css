@@ -90,3 +90,13 @@
 .SettingsPage.black .checkmark {
   background: #555;
 }
+
+.Setting-radio-black {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .Setting-radio-black {
+    display: inline-block;
+  }
+}
