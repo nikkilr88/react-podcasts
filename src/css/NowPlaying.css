@@ -65,7 +65,7 @@
 }
 
 .blur {
-  filter: blur(3px) grayscale(50%);
+  filter: blur(3px);
   transform: scale(1.05);
 }
 
