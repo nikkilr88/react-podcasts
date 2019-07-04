@@ -24,7 +24,8 @@
 
 .NowPlaying-player img {
   width: 150px;
-  transition: all 0.2s;
+  transition: all 0.1s;
+  border-radius: 5px;
 }
 
 .NowPlaying-info {
@@ -65,8 +66,7 @@
 
 .blur {
   filter: blur(3px) grayscale(50%);
-  transform: scale(1.1);
-  overflow: hidden;
+  transform: scale(1.05);
 }
 
 /* ============ Themes ============ */
