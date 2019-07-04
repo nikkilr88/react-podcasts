@@ -14,9 +14,9 @@ class NowPlaying extends Component {
   render() {
     const { playStatus, loading } = this.props.player
     const { img, title, podcast } = this.props.player.track
+    const podcastLoading = playStatus === 'PLAYING' && loading
 
     let podcastImage = ''
-    const podcastLoading = playStatus === 'PLAYING' && loading
 
     if (title) {
       podcastImage = podcasts
@@ -40,9 +40,9 @@ class NowPlaying extends Component {
               <ProgressiveImage src={img} placeholder={podcastImage}>
                 {src => (
                   <img
-                    className={podcastLoading && 'blur'}
                     src={src}
                     alt='podcast image'
+                    className={podcastLoading && 'blur'}
                   />
                 )}
               </ProgressiveImage>
