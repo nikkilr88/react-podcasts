@@ -11,8 +11,8 @@ import { podcasts } from '../data/podcasts'
 
 class PodcastPage extends Component {
   loadPodcast = () => {
-    const title = this.props.match.params.podcast.replace(/_/g, ' ')
-    const podcast = podcasts.filter(podcast => podcast.name === title)
+    const name = this.props.match.params.podcast.replace(/_/g, ' ')
+    const podcast = podcasts.filter(podcast => podcast.name === name)
 
     if (podcast.length > 0) {
       const feedURL = podcast[0].link
@@ -38,7 +38,7 @@ class PodcastPage extends Component {
   }
 
   render() {
-    const { error, loading, theme } = this.props
+    const { error, loading } = this.props
 
     return (
       <Fragment>
@@ -51,7 +51,6 @@ class PodcastPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  theme: state.theme.theme,
   error: state.podcast.error,
   loading: state.podcast.loading
 })
