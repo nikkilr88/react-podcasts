@@ -18,11 +18,13 @@
 
 .NowPlaying-img-wrapper {
   position: relative;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .NowPlaying-player img {
   width: 150px;
-  border-radius: 5px;
+  transition: all 0.2s;
 }
 
 .NowPlaying-info {
@@ -59,6 +61,12 @@
 .play-btn {
   font-size: 45px !important;
   margin: 0 25px;
+}
+
+.blur {
+  filter: blur(3px) grayscale(50%);
+  transform: scale(1.1);
+  overflow: hidden;
 }
 
 /* ============ Themes ============ */
