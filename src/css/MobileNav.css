@@ -60,7 +60,7 @@
 
 .MobileNav-top.black {
   border-bottom: 1px solid #2b2b2b;
-  color: #999;
+  color: #ccc;
 }
 
 .MobileNav.black {
@@ -68,7 +68,7 @@
 }
 
 .MobileNav.black .MobileNav-icon {
-  color: #999;
+  color: #ccc;
   opacity: 0.3;
 }
 

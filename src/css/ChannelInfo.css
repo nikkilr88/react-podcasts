@@ -75,16 +75,20 @@
   color: rgb(173, 173, 173);
 }
 
+.ChannelInfo.black {
+  border-bottom: 1px solid #111;
+}
+
 .ChannelInfo.black .ChannelInfo-title {
-  color: #999;
+  color: #ccc;
 }
 
 .ChannelInfo.black .ChannelInfo-text {
-  color: #999;
+  color: #ccc;
 }
 
 .ChannelInfo.black .ChannelInfo-author {
-  color: #444;
+  color: #555;
 }
 
 .ChannelInfo.black .ChannelInfo-website {

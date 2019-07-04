@@ -80,11 +80,11 @@
 }
 
 .Home.black .Home-category-title {
-  color: #999;
+  color: #ccc;
 }
 
 .Home.black .Home-banner {
-  color: #999;
+  color: #ccc;
 }
 
 @media only screen and (max-width: 600px) {

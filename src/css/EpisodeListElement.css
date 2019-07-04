@@ -87,12 +87,12 @@
 }
 
 .EpisodeListElement.black .EpisodeListElement-title {
-  color: #999;
+  color: #ccc;
 }
 
 .EpisodeListElement.black .EpisodeListElement-play {
-  border: 1px solid #555;
-  color: #555;
+  border: 1px solid #444;
+  color: #444;
 }
 
 .EpisodeListElement.black .EpisodeListElement-play.selected {
