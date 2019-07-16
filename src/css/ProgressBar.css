@@ -28,3 +28,9 @@
 .progress-wrapper.black .progress-bar {
   background: #c31432;
 }
+
+@media only screen and (max-width: 600px) {
+  .progress-wrapper.light {
+    background: #ccc;
+  }
+}
