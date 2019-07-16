@@ -42,7 +42,7 @@ class NowPlaying extends Component {
                   <img
                     src={src}
                     alt='podcast image'
-                    className={podcastLoading && 'blur'}
+                    className={podcastLoading ? 'blur' : undefined}
                   />
                 )}
               </ProgressiveImage>
