@@ -44,17 +44,14 @@ export const fetchPodcast = url => dispatch => {
       })
     })
     .catch(err => {
-      if (err.code == 'ECONNABORTED') {
-        dispatch({
-          type: 'SET_ERROR',
-          error: 'Oh-oh, this is taking longer that usual...'
-        })
-      } else {
-        console.log(err)
-        dispatch({
-          type: 'SET_ERROR',
-          error: 'Oh-oh, something went wrong ...'
-        })
-      }
+      let errorMsg =
+        err.code == 'ECONNABORTED'
+          ? 'Oh-oh, this is taking longer that usual...'
+          : 'Oh-oh, something went wrong ...'
+
+      dispatch({
+        type: 'SET_ERROR',
+        error: errorMsg
+      })
     })
 }
