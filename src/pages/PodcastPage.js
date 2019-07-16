@@ -16,8 +16,6 @@ class PodcastPage extends Component {
 
     if (podcast.length > 0) {
       const feedURL = podcast[0].link
-
-      this.props.setLoading()
       this.props.fetchPodcast(feedURL)
     } else {
       this.props.history.push('/404')
