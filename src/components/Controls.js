@@ -129,6 +129,7 @@ class Controls extends Component {
       time,
       skip,
       theme,
+      image,
       track,
       stopAudio,
       pauseAudio,
@@ -144,6 +145,8 @@ class Controls extends Component {
 
         <div className={`Controls-player ${theme}`}>
           <ProgressBar wrapperPosition='absolute' width='100%' />
+
+          <img className='Controls-img' src={image} alt='podcast cover' />
 
           <div className='Controls-title'>
             {track.title.length > 50
