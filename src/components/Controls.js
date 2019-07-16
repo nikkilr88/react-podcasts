@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import Volume from './Volume'
 import Sound from 'react-sound'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import ProgressBar from './ProgressBar'
 import SoundWrapper from './SoundWrapper'
 import { convertSeconds } from '../utils'
@@ -131,6 +132,7 @@ class Controls extends Component {
       theme,
       image,
       track,
+      podcast,
       stopAudio,
       pauseAudio,
       playStatus,
@@ -146,7 +148,9 @@ class Controls extends Component {
         <div className={`Controls-player ${theme}`}>
           <ProgressBar wrapperPosition='absolute' width='100%' />
 
-          <img className='Controls-img' src={image} alt='podcast cover' />
+          <Link to={`/podcast/${podcast.replace(/ /gi, '_')}`}>
+            <img className='Controls-img' src={image} alt='podcast cover' />
+          </Link>
 
           <div className='Controls-title'>
             {track.title.length > 50
@@ -189,7 +193,7 @@ const mapStateToProps = state => ({
   track: state.player.track,
   image: state.player.track.img,
   playStatus: state.player.playStatus,
-  podcast: state.podcast.podcast.title,
+  podcast: state.player.track.podcast,
   volumeVisible: state.player.showVolume,
   time: convertSeconds(state.player.position / 1000)
 })
