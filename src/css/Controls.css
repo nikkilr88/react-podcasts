@@ -10,18 +10,28 @@
   align-items: center;
   justify-content: space-between;
   z-index: 999;
+  padding: 20px 10px;
+}
+
+.Controls-img {
+  height: 30px;
+  margin-right: 10px;
+  border-radius: 3px;
 }
 
 .Controls-title {
   width: 80%;
   text-align: left;
-  padding: 15px;
   margin: 0 auto;
   font-size: 1.6rem;
 }
 
 .Controls-player button {
   margin: 0 15px;
+}
+
+.Controls-btns button:last-child {
+  margin-right: 0;
 }
 
 .Controls-btns {
