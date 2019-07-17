@@ -35,18 +35,21 @@ class Sidebar extends Component {
               </Link>
             </li>
             <li className='sidebar-link'>
-              <Link to='/'>
-                <i className='fas fa-home' /> Home
+              <Link to='/' activeClassName='sidebar-active' exact>
+                <i className='fas fa-podcast' />
+                <h4>Podcasts</h4>
               </Link>
             </li>
             <li className='sidebar-link'>
-              <Link to='/bookmarked'>
-                <i className='fas fa-bookmark' /> Bookmarked
+              <Link to='/bookmarked' activeClassName='sidebar-active' exact>
+                <i className='fas fa-bookmark' />
+                <h4>Bookmarked</h4>
               </Link>
             </li>
             <li className='sidebar-link settings'>
-              <Link to='/settings'>
-                <i className='fas fa-cog' /> Settings
+              <Link to='/settings' activeClassName='sidebar-active' exact>
+                <i className='fas fa-cog' />
+                <h4>Settings</h4>
               </Link>
             </li>
           </ul>

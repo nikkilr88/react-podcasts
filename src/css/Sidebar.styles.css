@@ -39,74 +39,32 @@
   font-size: 1.4rem;
   margin: 25px 0;
   text-align: left;
+  color: #6d6d6d;
 }
 
 .sidebar-link a {
-  text-decoration: none;
-  color: #999;
+  display: flex;
+  align-items: center;
 }
 
 .sidebar-link .fas {
-  margin-right: 5px;
+  margin-right: 15px;
   width: 15px;
   text-align: center;
+  font-size: 22px;
+}
+
+.sidebar-active {
+  color: #eee;
 }
 
 .settings {
   margin-top: auto;
 }
 
-.theme-wrapper {
-  margin: auto auto 10px;
-}
-
-.theme-wrapper h4 {
-  color: #777;
-  margin: 10px 0;
-}
-
-.change-theme {
-  height: 45px;
-  width: 45px;
-  border-radius: 50%;
-  border: 2px solid #555;
-  cursor: pointer;
-}
-
-.change-theme.light {
-  background: #eee;
-}
-
-.change-theme.dark {
-  background: #444;
-}
-
-.toggle-side {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  height: 45px;
-  width: 45px;
-  border-radius: 50%;
-  background: #222;
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.2s;
-  display: none;
-}
-.toggle-side.over {
-  transform: translateX(200px);
-}
-
 .toggle-side img {
   height: 40%;
   width: auto;
-}
-
-.sidebar-out {
-  transform: translateX(0) !important;
 }
 
 @media only screen and (max-width: 600px) {
