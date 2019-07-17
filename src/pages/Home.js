@@ -24,7 +24,7 @@ class HomePage extends Component {
                 src={podcast.img}
                 placeholder={podcast.img.replace(/100x100/g, '30x30')}
               >
-                {src => <img src={src} alt='podcast image' />}
+                {src => <img src={src} alt='podcast cover' />}
               </ProgressiveImage>
 
               <h3 className='Home-podcast-title'>
@@ -47,9 +47,8 @@ class HomePage extends Component {
         <div className='Home-banner'>
           <h1>devCasts</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-            molestiae eius ducimus illo quia odio magnam accusantium pariatur ad
-            autem.
+            A collection of hand-picked podcasts for the newbie and seasoned
+            developer alike. New additions added monthly.
           </p>
         </div>
         {categorySections}
