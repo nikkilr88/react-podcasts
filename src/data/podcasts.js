@@ -119,5 +119,19 @@ export const podcasts = [
       'https://feeds.soundcloud.com/users/soundcloud:users:206137365/sounds.rss',
     img:
       'https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/b6/94/68/b69468bd-753d-50c5-f638-a7a920a0ab16/source/100x100bb.jpg'
+  },
+  {
+    category: 'code newbies',
+    name: 'Learn to Code With Me',
+    link: 'http://learntocodewithme.libsyn.com/rss',
+    img:
+      'https://is4-ssl.mzstatic.com/image/thumb/Music123/v4/52/55/13/52551353-8aea-915c-f00d-460c6a6ea764/source/100x100bb.jpg'
+  },
+  {
+    category: 'code newbies',
+    name: 'Ladybug Podcast',
+    link: 'https://pinecast.com/feed/ladybug-podcast',
+    img:
+      'https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/96/8f/50/968f5054-b35c-50f2-801a-3cc4f4d87707/source/100x100bb.jpg'
   }
 ]
