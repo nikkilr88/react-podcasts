@@ -1,16 +1,15 @@
 /* PLAYER CONTROLS */
 .Controls-player {
   position: fixed;
-  bottom: 10px;
-  right: 10px;
-  left: 210px;
+  bottom: 0;
+  right: 0;
+  left: 200px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   z-index: 999;
   padding-right: 10px;
-  border-radius: 3px;
   overflow: hidden;
 }
 
@@ -44,6 +43,17 @@
 .time {
   margin: 0 25px;
   font-size: 1.6rem;
+}
+
+/* ============ Themes ============ */
+
+.Controls-player.light {
+  color: #ccc;
+  background: #2b2b2b;
+}
+
+.Controls-player.light button {
+  color: #888;
 }
 
 @media only screen and (max-width: 600px) {
