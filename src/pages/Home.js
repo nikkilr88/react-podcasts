@@ -48,7 +48,7 @@ class HomePage extends Component {
           <h1>devCasts</h1>
           <p>
             A collection of hand-picked podcasts for the newbie and seasoned
-            developer alike. New additions added monthly.
+            developer alike. New podcasts added monthly.
           </p>
         </div>
         {categorySections}
