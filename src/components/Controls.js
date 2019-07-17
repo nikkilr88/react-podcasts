@@ -146,7 +146,7 @@ class Controls extends Component {
         {volumeVisible && <Volume theme={theme} />}
 
         <div className={`Controls-player ${theme}`}>
-          <ProgressBar wrapperPosition='absolute' width='100%' />
+          <ProgressBar wrapperPosition='absolute' />
 
           <Link to={`/podcast/${podcast.replace(/ /gi, '_')}`}>
             <img className='Controls-img' src={image} alt='podcast cover' />
