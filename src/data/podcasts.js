@@ -71,7 +71,7 @@ export const podcasts = [
       'https://is5-ssl.mzstatic.com/image/thumb/Music123/v4/60/32/c0/6032c0e8-be92-00ed-f693-1f4ff4205bf1/source/100x100bb.jpg'
   },
   {
-    category: 'general',
+    category: 'code newbies',
     name: 'La Vie en Code',
     link: 'http://lavieencode.libsyn.com/rss',
     img:
