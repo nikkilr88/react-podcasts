@@ -6,7 +6,7 @@ import Logo from '../images/devcasts-logo-slant.png'
 
 import { switchTheme } from '../actions/theme'
 
-import '../css/Sidebar.css'
+import '../css/Sidebar.styles.css'
 
 class Sidebar extends Component {
   state = {

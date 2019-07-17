@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react'
-import Volume from './Volume'
+import Volume from './Volume.component'
 import Sound from 'react-sound'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import ProgressBar from './ProgressBar'
-import SoundWrapper from './SoundWrapper'
+import ProgressBar from './ProgressBar.component'
+import SoundWrapper from './SoundWrapper.component'
 import { convertSeconds } from '../utils'
 import {
   skip,
@@ -15,7 +15,7 @@ import {
   hideVolume
 } from '../actions/player'
 
-import '../css/Controls.css'
+import '../css/Controls.styles.css'
 
 class Controls extends Component {
   // Pause, skip forward / back

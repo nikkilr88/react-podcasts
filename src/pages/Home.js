@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import ProgressiveImage from 'react-progressive-image'
 import { podcasts, categories } from '../data/podcasts'
 
-import '../css/HomePage.css'
+import '../css/HomePage.styles.css'
 
 class HomePage extends Component {
   render() {

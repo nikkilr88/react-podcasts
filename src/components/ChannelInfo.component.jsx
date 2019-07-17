@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { podcasts } from '../data/podcasts'
 import ProgressiveImage from 'react-progressive-image'
 
-import '../css/ChannelInfo.css'
+import '../css/ChannelInfo.styles.css'
 
 class ChannelInfo extends Component {
   render() {

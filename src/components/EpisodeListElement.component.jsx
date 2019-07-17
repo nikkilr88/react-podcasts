@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { setAudio } from '../actions/player'
 import { withRouter } from 'react-router-dom'
 
-import '../css/EpisodeListElement.css'
+import '../css/EpisodeListElement.styles.css'
 
 class EpisodeListElement extends Component {
   handleOnClick = e => {

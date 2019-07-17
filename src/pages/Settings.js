@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { switchTheme } from '../actions/theme'
-import '../css/SettingsPage.css'
+
+import '../css/SettingsPage.styles.css'
 
 class SettingsPage extends Component {
   handleChange = e => {

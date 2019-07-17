@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import '../css/Volume.css'
+
+import '../css/Volume.styles.css'
 
 class Volume extends Component {
   render() {

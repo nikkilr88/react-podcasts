@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import configureStore from './store/config-store'
 import throttle from 'lodash.throttle'
 
-import './css/styles.css'
+import './css/styles.styles.css'
 import './css/themes/light.css'
 import './css/themes/dark.css'
 

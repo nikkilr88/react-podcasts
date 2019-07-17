@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import ChannelInfo from './ChannelInfo'
-import EpisodeList from './EpisodeList'
+import ChannelInfo from './ChannelInfo.component'
+import EpisodeList from './EpisodeList.component'
 import { connect } from 'react-redux'
-import '../css/PodcastPage.css'
 
 class PodcastInfo extends Component {
   render() {

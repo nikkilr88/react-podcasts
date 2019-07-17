@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { NavLink as Link, withRouter } from 'react-router-dom'
-import '../css/MobileNav.css'
+
+import '../css/MobileNav.styles.css'
 
 class MobileNav extends Component {
   render() {

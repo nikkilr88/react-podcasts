@@ -1,11 +1,11 @@
 import React, { Component, Fragment, Suspense, lazy } from 'react'
 import { connect } from 'react-redux'
-import Loader from '../components/Loader'
-import PodcastInfo from '../components/PodcastInfo'
 import { withRouter, Link } from 'react-router-dom'
+import Loader from '../components/Loader.component'
+import PodcastInfo from '../components/PodcastInfo.component'
 import { fetchPodcast, setLoading } from '../actions/podcast'
 
-import '../css/PodcastPage.css'
+import '../css/PodcastPage.styles.css'
 
 import { podcasts } from '../data/podcasts'
 
