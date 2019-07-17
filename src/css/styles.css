@@ -33,6 +33,7 @@ button {
 .app-wrapper-content {
   flex: 1;
   padding: 25px 50px;
+  max-width: 100%;
 }
 
 .error {
