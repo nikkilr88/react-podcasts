@@ -31,6 +31,9 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .progress-wrapper {
+    left: 0;
+  }
   .progress-wrapper.light {
     background: #ccc;
   }
