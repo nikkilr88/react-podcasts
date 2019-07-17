@@ -139,6 +139,8 @@ class Controls extends Component {
       volumeVisible
     } = this.props
 
+    const podcastLink = `/podcast/${podcast.replace(/ /gi, '_')}`
+
     return track.title.length > 0 ? (
       <Fragment>
         <SoundWrapper />
@@ -148,14 +150,20 @@ class Controls extends Component {
         <div className={`Controls-player ${theme}`}>
           <ProgressBar wrapperPosition='absolute' />
 
-          <Link to={`/podcast/${podcast.replace(/ /gi, '_')}`}>
+          <Link to={podcastLink}>
             <img className='Controls-img' src={image} alt='podcast cover' />
           </Link>
 
           <div className='Controls-title'>
-            {track.title.length > 50
-              ? track.title.substring(0, 50) + '...'
-              : track.title}
+            <h6 className='Controls-title-podcast'>
+              <Link to={podcastLink}>{podcast}</Link>
+            </h6>
+            <h5 className='Controls-title-track'>
+              {' '}
+              {track.title.length > 50
+                ? track.title.substring(0, 50) + '...'
+                : track.title}
+            </h5>
           </div>
 
           <div className='Controls-btns'>
