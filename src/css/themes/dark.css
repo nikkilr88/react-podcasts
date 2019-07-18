@@ -1,15 +1,5 @@
-.ChannelInfo.dark {
-  color: #ccc;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.ChannelInfo.dark .ChannelInfo-author {
-  color: #fff;
-  opacity: 0.35;
-}
-
 .Controls-player.dark {
-  color: #ccc;
+  color: #eee;
   background: #222;
   box-shadow: 0 10px 15px rgba(51, 51, 51, 0.9);
 }
