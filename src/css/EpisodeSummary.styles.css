@@ -11,6 +11,24 @@
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
 }
 
+.EpisodeSummary:before {
+  position: fixed;
+  content: '';
+  height: 50px;
+  background: linear-gradient(to bottom, rgb(27, 27, 27), rgba(27, 27, 27, 0));
+  width: 100%;
+  top: 0;
+}
+
+.EpisodeSummary:after {
+  position: fixed;
+  content: '';
+  height: 70px;
+  background: linear-gradient(to top, rgb(27, 27, 27), rgba(27, 27, 27, 0));
+  width: 100%;
+  bottom: 0;
+}
+
 .EpisodeSummary-info {
   margin-bottom: 25px;
   padding-bottom: 15px;
