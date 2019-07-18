@@ -1,3 +1,14 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000;
+  opacity: 0.5;
+  z-index: 998;
+}
+
 .EpisodeSummary {
   position: fixed;
   max-width: 600px;
@@ -9,6 +20,7 @@
   transform: translate(-50%, -50%);
   text-align: left;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 
 .EpisodeSummary:before {
@@ -16,8 +28,10 @@
   content: '';
   height: 50px;
   background: linear-gradient(to bottom, rgb(27, 27, 27), rgba(27, 27, 27, 0));
-  width: 100%;
   top: 0;
+  left: 0;
+  right: 10px;
+  z-index: 998;
 }
 
 .EpisodeSummary:after {
@@ -25,8 +39,9 @@
   content: '';
   height: 70px;
   background: linear-gradient(to top, rgb(27, 27, 27), rgba(27, 27, 27, 0));
-  width: 100%;
   bottom: 0;
+  left: 0;
+  right: 10px;
 }
 
 .EpisodeSummary-info {
@@ -95,17 +110,15 @@
   font-size: 1.5rem;
   cursor: pointer;
   color: #555;
+  z-index: 999;
 }
 
 @media only screen and (max-width: 600px) {
   .EpisodeSummary {
-    transform: none;
+    transform: translate(0);
     left: 10px;
     top: 70px;
     right: 10px;
     bottom: 70px;
-    height: auto;
-    width: auto;
-    z-index: 99999;
   }
 }
