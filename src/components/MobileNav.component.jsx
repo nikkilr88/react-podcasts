@@ -7,7 +7,7 @@ import '../css/MobileNav.styles.css'
 class MobileNav extends Component {
   render() {
     const location = {
-      '/': 'Home',
+      '/': 'Podcasts',
       '/nowplaying': 'Now Playing',
       '/bookmarked': 'Bookmarked',
       '/settings': 'Settings'
