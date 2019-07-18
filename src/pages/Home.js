@@ -45,11 +45,7 @@ class HomePage extends Component {
     return (
       <div className={`Home ${theme}`}>
         <div className='Home-banner'>
-          <h1>devCasts</h1>
-          <p>
-            A collection of hand-picked podcasts for the newbie and seasoned
-            developer alike. New podcasts added monthly.
-          </p>
+          <h1>Podcasts</h1>
         </div>
         {categorySections}
       </div>
