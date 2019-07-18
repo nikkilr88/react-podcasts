@@ -73,6 +73,16 @@
   color: rgb(173, 173, 173);
 }
 
+.ChannelInfo.dark {
+  color: #eee;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ChannelInfo.dark .ChannelInfo-author {
+  color: #fff;
+  opacity: 0.35;
+}
+
 .ChannelInfo.black {
   border-bottom: 1px solid #111;
 }
