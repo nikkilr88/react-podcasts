@@ -8,6 +8,23 @@ import '../css/EpisodeListElement.styles.css'
 
 class EpisodeListElement extends Component {
   handleOnClick = e => {
+    this.playAudio()
+
+    if (window.innerWidth <= 600) {
+      this.props.history.push('/nowplaying')
+    }
+    e.target.blur()
+  }
+
+  handleSetEpisode = () => {
+    this.props.setEpisode(
+      this.props.date,
+      this.props.title,
+      this.props.description
+    )
+  }
+
+  playAudio = () => {
     this.props.setAudio(
       this.props.audio.replace(/http:\/\//, 'https://'),
       this.props.title,
@@ -15,11 +32,6 @@ class EpisodeListElement extends Component {
       this.props.podcastImage,
       this.props.podcast
     )
-
-    if (window.innerWidth <= 600) {
-      this.props.history.push('/nowplaying')
-    }
-    e.target.blur()
   }
 
   formatDate = date => {
@@ -32,7 +44,7 @@ class EpisodeListElement extends Component {
   }
 
   render() {
-    const { trackId, title, date, duration, theme, nowPlayingId } = this.props
+    const { date, title, theme, trackId, duration, nowPlayingId } = this.props
     const isPlaying = trackId === nowPlayingId
 
     const minutesLong = Math.round(
@@ -41,7 +53,10 @@ class EpisodeListElement extends Component {
 
     return (
       <div className={`EpisodeListElement ${theme}`} title={title}>
-        <div className='EpisodeListElement-text'>
+        <div
+          className='EpisodeListElement-text'
+          onClick={this.handleSetEpisode}
+        >
           <p className='EpisodeListElement-date'>
             {this.formatDate(date)}
             <span> &#8226; </span>

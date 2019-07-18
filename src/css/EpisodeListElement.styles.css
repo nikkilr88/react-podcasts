@@ -25,6 +25,7 @@
 .EpisodeListElement-text {
   padding-right: 25px;
   text-align: left;
+  cursor: pointer;
 }
 
 /* PLAY BUTTON */
