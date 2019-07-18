@@ -15,14 +15,6 @@
   font-weight: 500;
 }
 
-.Home-banner p {
-  font-size: 18px;
-  font-weight: 100;
-  width: 55%;
-  font-family: 'Lato';
-  line-height: 1.5;
-}
-
 .Home-category {
   margin: 50px 0;
 }
@@ -84,8 +76,8 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .Home-banner p {
-    width: 100%;
+  .Home-banner {
+    display: none;
   }
 
   .Home-podcasts {
@@ -93,6 +85,10 @@
     width: 100%;
     overflow-y: hidden;
     overflow-x: scroll;
+  }
+
+  .Home-podcast-title {
+    margin-left: 5px;
   }
 
   ::-webkit-scrollbar {
