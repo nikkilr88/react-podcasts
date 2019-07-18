@@ -7,7 +7,6 @@
   margin: 0 0 25px;
   text-align: left;
   color: #555;
-  padding: 35px 0;
 }
 
 .Home-banner h1 {
@@ -46,13 +45,13 @@
 
 .Home-podcast img {
   margin-bottom: 5px;
-  border-radius: 5px;
   width: 100%;
 }
 
 .Home-podcast-title {
   font-weight: normal;
   color: #999;
+  text-align: left;
 }
 
 .Home-podcasts {
