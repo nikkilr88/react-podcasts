@@ -18,14 +18,12 @@
 
 .NowPlaying-img-wrapper {
   position: relative;
-  border-radius: 5px;
   overflow: hidden;
 }
 
 .NowPlaying-player img {
   width: 150px;
   transition: all 0.1s;
-  border-radius: 5px;
 }
 
 .NowPlaying-info {
