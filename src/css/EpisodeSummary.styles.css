@@ -13,7 +13,8 @@
   position: fixed;
   max-width: 600px;
   width: 95%;
-  height: 500px;
+  max-height: 500px;
+  height: auto;
   background: #1b1b1b;
   top: calc(50% - 25px);
   left: calc(50% + 100px);
@@ -22,7 +23,7 @@
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
   z-index: 999;
 }
-
+/* 
 .EpisodeSummary:before {
   position: fixed;
   content: '';
@@ -42,7 +43,7 @@
   bottom: 0;
   left: 0;
   right: 10px;
-}
+} */
 
 .EpisodeSummary-info {
   margin-bottom: 25px;
