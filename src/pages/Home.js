@@ -78,6 +78,7 @@ class HomePage extends Component {
   }
 
   render() {
+    const { sort } = this.state
     const { theme } = this.props
 
     return (
@@ -86,11 +87,13 @@ class HomePage extends Component {
           <h1>Podcasts</h1>
           <div>
             <i
-              className='fas fa-list icon'
+              className={`fas fa-list icon ${
+                sort === 'category' ? 'active' : ''
+              }`}
               onClick={() => this.setSort('category')}
             />
             <i
-              className='fas fa-th icon'
+              className={`fas fa-th icon ${sort === 'grid' ? 'active' : ''}`}
               onClick={() => this.setSort('grid')}
             />
           </div>

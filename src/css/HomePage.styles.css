@@ -15,6 +15,11 @@
   font-size: 20px;
   margin: 10px;
   cursor: pointer;
+  opacity: 0.5;
+}
+
+.Home-banner .icon.active {
+  opacity: 1;
 }
 
 .Home-banner h1 {
