@@ -1,4 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import activityReducer from '../reducers/activity'
 import podcastReducer from '../reducers/podcast'
 import playerReducer from '../reducers/player'
 import themeReducer from '../reducers/theme'
@@ -9,6 +10,7 @@ const initialState = {}
 export default () => {
   const store = createStore(
     combineReducers({
+      activity: activityReducer,
       podcast: podcastReducer,
       player: playerReducer,
       theme: themeReducer

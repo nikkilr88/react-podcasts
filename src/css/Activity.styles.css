@@ -1,0 +1,40 @@
+.Activity {
+  padding: 0 0 25px 50px;
+  border-left: 1px solid #444;
+  color: #ccc;
+  min-height: 500px;
+  align-self: flex-start;
+  margin-left: 50px;
+  position: sticky;
+  top: 0;
+}
+
+.Activity h2 {
+  margin-bottom: 15px;
+  font-size: 2.2em;
+  font-weight: 500;
+}
+
+.Activity-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.Activity-item img {
+  height: 40px;
+  margin-right: 5px;
+}
+
+.Activity-item h4 {
+  font-size: 1.2em;
+  color: #777;
+}
+
+.Activity-item p {
+  font-size: 1.4em;
+}
+
+.Activity-item-text {
+  text-align: left;
+}

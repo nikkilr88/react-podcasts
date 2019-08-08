@@ -1,10 +1,10 @@
 .Home {
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 .Home-banner {
   border-radius: 10px;
-  margin: 0 0 25px;
+  margin: 0 0 50px;
   text-align: left;
   color: #555;
 }
@@ -16,7 +16,7 @@
 }
 
 .Home-category {
-  margin: 50px 0;
+  margin-bottom: 50px;
 }
 
 .Home-category:last-of-type {
@@ -50,6 +50,14 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
   grid-gap: 10px;
+}
+
+.Home-grid {
+  display: flex;
+}
+
+.Home-podcast-categories {
+  flex: 1;
 }
 
 /* ============ Themes ============ */

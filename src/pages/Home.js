@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Activity from '../components/Activity.component'
 import ProgressiveImage from 'react-progressive-image'
 import { podcasts, categories } from '../data/podcasts'
 
@@ -47,7 +48,10 @@ class HomePage extends Component {
         <div className='Home-banner'>
           <h1>Podcasts</h1>
         </div>
-        {categorySections}
+        <div className='Home-grid'>
+          <div className='Home-podcast-categories'>{categorySections}</div>
+          <Activity />
+        </div>
       </div>
     )
   }
