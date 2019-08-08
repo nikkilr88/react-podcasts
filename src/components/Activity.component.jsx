@@ -10,8 +10,16 @@ class Activity extends Component {
       <div key={i} className='Activity-item'>
         <img src={podcast.img} alt={`${podcast.podcast} cover`} />
         <div className='Activity-item-text'>
-          <h4>{podcast.podcast}</h4>
-          <p>{podcast.episode}</p>
+          <h4>
+            {podcast.podcast.length > 20
+              ? podcast.podcast.substring(0, 20) + '...'
+              : podcast.podcast}
+          </h4>
+          <p>
+            {podcast.episode.length > 20
+              ? podcast.episode.substring(0, 20) + '...'
+              : podcast.episode}
+          </p>
         </div>
       </div>
     ))

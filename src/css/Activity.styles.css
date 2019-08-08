@@ -1,5 +1,5 @@
 .Activity {
-  padding: 0 0 25px 50px;
+  padding: 15px 0 0 25px;
   border-left: 1px solid #444;
   color: #ccc;
   min-height: 500px;
@@ -11,8 +11,10 @@
 
 .Activity h2 {
   margin-bottom: 15px;
-  font-size: 2.2em;
+  font-size: 2em;
   font-weight: 500;
+  color: #eee;
+  text-align: left;
 }
 
 .Activity-item {
@@ -22,8 +24,8 @@
 }
 
 .Activity-item img {
-  height: 40px;
-  margin-right: 5px;
+  height: 35px;
+  margin-right: 10px;
 }
 
 .Activity-item h4 {

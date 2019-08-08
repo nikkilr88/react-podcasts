@@ -45,11 +45,13 @@ class HomePage extends Component {
     })
     return (
       <div className={`Home ${theme}`}>
-        <div className='Home-banner'>
-          <h1>Podcasts</h1>
-        </div>
         <div className='Home-grid'>
-          <div className='Home-podcast-categories'>{categorySections}</div>
+          <div className='Home-podcast-categories'>
+            <div className='Home-banner'>
+              <h1>Podcasts</h1>
+            </div>
+            {categorySections}
+          </div>
           <Activity />
         </div>
       </div>
