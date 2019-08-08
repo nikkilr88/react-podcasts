@@ -7,10 +7,43 @@ import { podcasts, categories } from '../data/podcasts'
 import '../css/HomePage.styles.css'
 
 class HomePage extends Component {
-  render() {
-    const { theme } = this.props
+  state = {
+    sort: 'grid'
+  }
 
-    const categorySections = categories.map(category => {
+  setSort = val => {
+    this.setState({
+      sort: val
+    })
+  }
+
+  displayGrid = () => {
+    return podcasts.map(podcast => (
+      <Link
+        key={podcast.name}
+        className='Home-podcast'
+        to={`/podcast/${podcast.name.replace(/ /g, '_')}`}
+      >
+        <div>
+          <ProgressiveImage
+            src={podcast.img.replace(/100x100/g, '360x360')}
+            placeholder={podcast.img.replace(/100x100/g, '30x30')}
+          >
+            {src => <img src={src} alt='podcast cover' />}
+          </ProgressiveImage>
+
+          <h3 className='Home-podcast-title'>
+            {podcast.name.length > 13
+              ? podcast.name.substring(0, 13) + '...'
+              : podcast.name}
+          </h3>
+        </div>
+      </Link>
+    ))
+  }
+
+  sortByCategory = () => {
+    return categories.map(category => {
       const categoryPodcasts = podcasts
         .filter(podcast => podcast.category === category.category)
         .map(podcast => (
@@ -21,7 +54,7 @@ class HomePage extends Component {
           >
             <div>
               <ProgressiveImage
-                src={podcast.img}
+                src={podcast.img.replace(/100x100/g, '360x360')}
                 placeholder={podcast.img.replace(/100x100/g, '30x30')}
               >
                 {src => <img src={src} alt='podcast cover' />}
@@ -42,12 +75,31 @@ class HomePage extends Component {
         </section>
       )
     })
+  }
+
+  render() {
+    const { theme } = this.props
+
     return (
       <div className={`Home ${theme}`}>
         <div className='Home-banner'>
           <h1>Podcasts</h1>
+          <div>
+            <i
+              className='fas fa-list icon'
+              onClick={() => this.setSort('category')}
+            />
+            <i
+              className='fas fa-th icon'
+              onClick={() => this.setSort('grid')}
+            />
+          </div>
         </div>
-        {categorySections}
+        {this.state.sort === 'grid' ? (
+          <div className='grid'>{this.displayGrid()}</div>
+        ) : (
+          this.sortByCategory()
+        )}
       </div>
     )
   }
