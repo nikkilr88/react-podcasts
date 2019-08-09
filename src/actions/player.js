@@ -53,7 +53,7 @@ export const handlePlay = data => (dispatch, getState) => {
   }
 }
 
-export const pauseAudio = () => (dispatch, getState) => {
+export const togglePlayPause = () => (dispatch, getState) => {
   const state = getState()
   const paused =
     state.player.playStatus === Sound.status.PLAYING
@@ -80,12 +80,13 @@ export const skip = value => (dispatch, getState) => {
 export const setVolume = value => (dispatch, getState) => {
   const state = getState()
   const prevVolume = state.player.volume
+  const newVolume = prevVolume + value
+  console.log('⚡🚨: newVolume', newVolume)
 
-  if (state.player.volume + value < 0 || state.player.volume + value > 100)
-    return
+  if (newVolume < 0 || newVolume > 100) return
 
   dispatch({
     type: 'SET_VOLUME',
-    volume: prevVolume + value
+    volume: newVolume
   })
 }

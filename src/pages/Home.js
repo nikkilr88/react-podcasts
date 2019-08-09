@@ -1,115 +1,136 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ProgressiveImage from 'react-progressive-image'
 import { podcasts, categories } from '../data/podcasts'
-
+import styled from 'styled-components/macro'
 import '../css/HomePage.styles.css'
+import { useSpring, animated } from 'react-spring'
 
-class HomePage extends Component {
-  state = {
-    sort: 'grid'
-  }
+const HomeStyles = styled.div`
+  /* css goes here */
+  /* scoped to the div */
+  /* ${interpolatedValue} */
+`
 
-  setSort = val => {
-    this.setState({
-      sort: val
-    })
-  }
-
-  displayGrid = () => {
-    return podcasts.map(podcast => (
-      <Link
-        key={podcast.name}
-        className='Home-podcast'
-        to={`/podcast/${podcast.name.replace(/ /g, '_')}`}
-      >
-        <div>
-          <ProgressiveImage
-            src={podcast.img.replace(/100x100/g, '360x360')}
-            placeholder={podcast.img.replace(/100x100/g, '30x30')}
-          >
-            {src => <img src={src} alt='podcast cover' />}
-          </ProgressiveImage>
-
-          <h3 className='Home-podcast-title'>
-            {podcast.name.length > 13
-              ? podcast.name.substring(0, 13) + '...'
-              : podcast.name}
-          </h3>
-        </div>
-      </Link>
-    ))
-  }
-
-  sortByCategory = () => {
-    return categories.map(category => {
-      const categoryPodcasts = podcasts
-        .filter(podcast => podcast.category === category.category)
-        .map(podcast => (
-          <Link
-            key={podcast.name}
-            className='Home-podcast'
-            to={`/podcast/${podcast.name.replace(/ /g, '_')}`}
-          >
-            <div>
-              <ProgressiveImage
-                src={podcast.img.replace(/100x100/g, '360x360')}
-                placeholder={podcast.img.replace(/100x100/g, '30x30')}
-              >
-                {src => <img src={src} alt='podcast cover' />}
-              </ProgressiveImage>
-
-              <h3 className='Home-podcast-title'>
-                {podcast.name.length > 13
-                  ? podcast.name.substring(0, 13) + '...'
-                  : podcast.name}
-              </h3>
-            </div>
-          </Link>
-        ))
-      return (
-        <section key={category.category} className='Home-category'>
-          <h2 className='Home-category-title'>{category.display}</h2>
-          <div className='Home-podcasts'>{categoryPodcasts}</div>
-        </section>
-      )
-    })
-  }
-
-  render() {
-    const { sort } = this.state
-    const { theme } = this.props
-
-    return (
-      <div className={`Home ${theme}`}>
-        <div className='Home-banner'>
-          <h1>Podcasts</h1>
-          <div>
-            <i
-              className={`fas fa-list icon ${
-                sort === 'category' ? 'active' : ''
-              }`}
-              onClick={() => this.setSort('category')}
-            />
-            <i
-              className={`fas fa-th icon ${sort === 'grid' ? 'active' : ''}`}
-              onClick={() => this.setSort('grid')}
-            />
-          </div>
-        </div>
-        {this.state.sort === 'grid' ? (
-          <div className='grid'>{this.displayGrid()}</div>
-        ) : (
-          this.sortByCategory()
-        )}
-      </div>
-    )
-  }
+const useFadeInOnMount = ({ fromLeft }) => {
+  const [mounted, setMounted] = useState(false)
+  // set visible on mount, invisible on unmount
+  useEffect(() => {
+    setMounted(true)
+    // TODO: transition if you want unmount animation?
+    return () => setMounted(false)
+  }, [])
+  return useSpring({
+    opacity: mounted ? 1 : 0,
+    transform: mounted
+      ? `translateX(0)`
+      : `translateX(${fromLeft ? -50 : 50}px)`,
+    config: { tension: 340, mass: 1, friction: 19 }
+  })
 }
 
-const mapStateToProps = state => ({
-  theme: state.theme.theme
+const PodcastGrid = ({ podcasts }) => {
+  const springVisibleOnMount = useFadeInOnMount({ fromLeft: false })
+
+  return podcasts.map(podcast => (
+    <Link
+      key={podcast.name}
+      className='Home-podcast'
+      to={`/podcast/${podcast.name.replace(/ /g, '_')}`}
+    >
+      <animated.div style={springVisibleOnMount}>
+        <ProgressiveImage
+          src={podcast.img.replace(/100x100/g, '360x360')}
+          placeholder={podcast.img.replace(/100x100/g, '30x30')}
+        >
+          {src => <img src={src} alt='podcast cover' />}
+        </ProgressiveImage>
+
+        <h3 className='Home-podcast-title'>
+          {podcast.name.length > 13
+            ? podcast.name.substring(0, 13) + '...'
+            : podcast.name}
+        </h3>
+      </animated.div>
+    </Link>
+  ))
+}
+
+const PodcastCategories = ({ podcasts }) => {
+  const springVisibleOnMount = useFadeInOnMount({ fromLeft: true })
+
+  return categories.map(podCategory => {
+    const podcastsInCategory = podcasts
+      .filter(({ category }) => category === podCategory.category)
+      .map(podcast => (
+        <Link
+          key={podcast.name}
+          className='Home-podcast'
+          to={`/podcast/${podcast.name.replace(/ /g, '_')}`}
+        >
+          <animated.div style={springVisibleOnMount}>
+            <ProgressiveImage
+              src={podcast.img.replace(/100x100/g, '360x360')}
+              placeholder={podcast.img.replace(/100x100/g, '30x30')}
+            >
+              {src => <img src={src} alt='podcast cover' />}
+            </ProgressiveImage>
+
+            <h3 className='Home-podcast-title'>
+              {podcast.name.length > 13
+                ? podcast.name.substring(0, 13) + '...'
+                : podcast.name}
+            </h3>
+          </animated.div>
+        </Link>
+      ))
+    return (
+      <animated.section
+        style={springVisibleOnMount}
+        key={podCategory.category}
+        className='Home-category'
+      >
+        <h2 className='Home-category-title'>{podCategory.display}</h2>
+        <div className='Home-podcasts'>{podcastsInCategory}</div>
+      </animated.section>
+    )
+  })
+}
+
+const HomePage = ({ theme }) => {
+  const [sort, setSort] = useState('grid')
+
+  return (
+    <HomeStyles className={`Home ${theme}`}>
+      <div className='Home-banner'>
+        <h1>Podcasts</h1>
+        <div>
+          <i
+            className={`fas fa-list icon ${
+              sort === 'category' ? 'active' : ''
+            }`}
+            onClick={() => setSort('category')}
+          />
+          <i
+            className={`fas fa-th icon ${sort === 'grid' ? 'active' : ''}`}
+            onClick={() => setSort('grid')}
+          />
+        </div>
+      </div>
+      {sort === 'grid' ? (
+        <div className='grid'>
+          <PodcastGrid podcasts={podcasts} />
+        </div>
+      ) : (
+        <PodcastCategories podcasts={podcasts} />
+      )}
+    </HomeStyles>
+  )
+}
+
+const mapStateToProps = ({ theme }) => ({
+  theme: theme.theme
 })
 
 export default connect(mapStateToProps)(HomePage)

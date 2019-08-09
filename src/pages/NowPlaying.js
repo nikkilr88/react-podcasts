@@ -6,7 +6,7 @@ import { podcasts } from '../data/podcasts'
 import Loader from '../components/Loader.component'
 import ProgressiveImage from 'react-progressive-image'
 import ProgressBar from '../components/ProgressBar.component'
-import { pauseAudio, skip, stopAudio } from '../actions/player'
+import { togglePlayPause, skip, stopAudio } from '../actions/player'
 
 import '../css/NowPlaying.styles.css'
 
@@ -64,7 +64,7 @@ class NowPlaying extends Component {
                 replay_5
               </i>
               <i
-                onClick={this.props.pauseAudio}
+                onClick={this.props.togglePlayPause}
                 className='material-icons play-btn'
               >
                 {playStatus === Sound.status.PAUSED
@@ -96,5 +96,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { pauseAudio, skip, stopAudio }
+  { togglePlayPause, skip, stopAudio }
 )(NowPlaying)
