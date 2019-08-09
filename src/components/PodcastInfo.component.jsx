@@ -16,7 +16,7 @@ class PodcastInfo extends Component {
 }
 
 const mapStateToProps = state => ({
-  theme: state.theme.theme
+  theme: state.settings.theme
 })
 
 export default connect(mapStateToProps)(PodcastInfo)

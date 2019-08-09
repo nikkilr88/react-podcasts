@@ -24,7 +24,7 @@ class BackButton extends Component {
 }
 
 const mapStateToProps = state => ({
-  theme: state.theme.theme
+  theme: state.settings.theme
 })
 
 export default withRouter(connect(mapStateToProps)(BackButton))
