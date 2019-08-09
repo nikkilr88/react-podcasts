@@ -3,27 +3,35 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "homepage": "https://devcasts.ga",
   "devDependencies": {
-    "autoprefixer": "^9.4.3",
+    "autoprefixer": "^9.5.1",
     "babel-core": "^6.26.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "node-sass": "^4.11.0",
-    "parcel-bundler": "^1.11.0",
+    "parcel-bundler": "^1.12.3",
     "postcss-modules": "^1.4.1"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "moment": "^2.23.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
+    "axios": "^0.19.0",
+    "lodash": "^4.17.11",
+    "lodash.throttle": "^4.1.1",
+    "moment": "^2.24.0",
+    "node-sass": "^4.12.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-progressive-image": "^0.6.0",
-    "react-sound": "^1.2.0"
+    "react-redux": "^7.0.3",
+    "react-router-dom": "^5.0.1",
+    "react-sound": "^1.2.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "dev": "parcel index.html --out-dir build",
-    "build": "parcel build index.html --out-dir build  --public-url ./ --no-content-hash --no-source-maps"
+    "dev": "parcel index.html --out-dir dev",
+    "build": "parcel build index.html --out-dir build --no-content-hash --no-source-maps"
   }
 }

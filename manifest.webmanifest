@@ -1,0 +1,15 @@
+{
+  "name": "devCasts",
+  "short_name": "devCasts",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#333333",
+  "theme_color": "#333333"
+}

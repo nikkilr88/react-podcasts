@@ -1,0 +1,102 @@
+.Home {
+  padding: 10px;
+}
+
+.Home-banner {
+  border-radius: 10px;
+  margin: 0 0 25px;
+  text-align: left;
+  color: #555;
+}
+
+.Home-banner h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.Home-category {
+  margin: 50px 0;
+}
+
+.Home-category:last-of-type {
+  margin-bottom: 100px;
+}
+
+.Home-category-title {
+  font-size: 22px;
+  text-align: left;
+  margin-bottom: 15px;
+  color: #555;
+  font-weight: 500;
+}
+
+.Home-podcast {
+  text-decoration: none;
+}
+
+.Home-podcast img {
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.Home-podcast-title {
+  font-weight: normal;
+  color: #999;
+  text-align: left;
+}
+
+.Home-podcasts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  grid-gap: 10px;
+}
+
+/* ============ Themes ============ */
+
+.Home.dark .Home-category-title,
+.Home.dark .Home-banner {
+  color: #eee;
+}
+
+.Home.dark .Home-podcast-title {
+  color: #777;
+}
+
+.Home.black .Home-podcast-title {
+  color: #555;
+}
+
+.Home.black .Home-category-title {
+  color: #ccc;
+}
+
+.Home.black .Home-banner {
+  color: #ccc;
+}
+
+@media only screen and (max-width: 600px) {
+  .Home-banner {
+    display: none;
+  }
+
+  .Home-podcasts {
+    display: flex;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: scroll;
+  }
+
+  .Home-podcast-title {
+    margin-left: 5px;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .Home-podcast img {
+    width: 90px;
+    margin: 5px;
+  }
+}

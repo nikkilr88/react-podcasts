@@ -1,0 +1,77 @@
+/* PLAYER CONTROLS */
+.Controls-player {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 999;
+  padding-right: 15px;
+  overflow: hidden;
+}
+
+.Controls-img {
+  display: block;
+  height: 65px;
+  margin-right: 10px;
+}
+
+.Controls-title {
+  width: 80%;
+  text-align: left;
+  margin: 0 auto;
+  font-size: 1.6rem;
+}
+
+.Controls-title-podcast {
+  color: #6d6d6d;
+  font-size: 0.8em;
+  margin-bottom: 2px;
+}
+
+.Controls-title-track {
+  font-size: 1em;
+}
+
+.Controls-player button {
+  margin: 0 15px;
+}
+
+.Controls-btns button:last-child {
+  margin-right: 0;
+}
+
+.Controls-btns {
+  display: flex;
+  align-items: center;
+}
+
+.time {
+  margin: 0 25px;
+  font-size: 1.6rem;
+}
+
+/* ============ Themes ============ */
+
+.Controls-player.light {
+  color: #ccc;
+  background: #2b2b2b;
+}
+
+.Controls-player.light button {
+  color: #888;
+}
+
+@media only screen and (max-width: 600px) {
+  .Controls-player {
+    display: none;
+  }
+
+  .Controls-title {
+    display: none;
+    margin-bottom: 25px;
+  }
+}

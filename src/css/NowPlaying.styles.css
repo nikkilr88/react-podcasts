@@ -1,0 +1,104 @@
+.NowPlaying-player {
+  background-position: center;
+  background-size: cover;
+  height: calc(100vh - 140px);
+  margin: 0 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.NowPlaying-close {
+  position: fixed;
+  top: 70px;
+  left: 10px;
+  color: #999;
+}
+
+.NowPlaying-img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.NowPlaying-player img {
+  width: 150px;
+  transition: all 0.1s;
+}
+
+.NowPlaying-info {
+  width: 100%;
+}
+
+.NowPlaying-info h3 {
+  font-size: 18px;
+  color: #555;
+}
+
+.NowPlaying-info h4 {
+  font-weight: normal;
+  font-size: 16px;
+  margin: 10px;
+  color: #999;
+}
+
+.NowPlaying-player a {
+  text-decoration: none;
+}
+
+.NowPlaying-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.NowPlaying-controls .material-icons {
+  font-size: 35px;
+  color: #555;
+}
+
+.play-btn {
+  font-size: 45px !important;
+  margin: 0 25px;
+}
+
+.blur {
+  filter: blur(3px);
+  transform: scale(1.05);
+}
+
+/* ============ Themes ============ */
+
+.NowPlaying-player.light img {
+  border: 3px solid #eee;
+}
+
+.NowPlaying-player.dark .NowPlaying-info h3 {
+  color: #eee;
+}
+
+.NowPlaying-player.dark .NowPlaying-controls .material-icons {
+  color: #eee;
+}
+
+.NowPlaying-player.dark .NowPlaying-close {
+  color: #555;
+}
+
+.NowPlaying-player.black .NowPlaying-info h4 {
+  color: #777;
+}
+
+.NowPlaying-player.black .NowPlaying-info h3 {
+  color: #ccc;
+}
+
+.NowPlaying-player.black .NowPlaying-controls .material-icons {
+  background: linear-gradient(45deg, #c31432, #240b36);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.NowPlaying-player.black .NowPlaying-close {
+  color: #333;
+}

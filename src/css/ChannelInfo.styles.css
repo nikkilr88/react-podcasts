@@ -1,0 +1,121 @@
+/* CHANNEL INFO */
+
+.ChannelInfo {
+  margin: 0;
+  width: 100%;
+  padding: 0 0 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ChannelInfo-text {
+  flex: 1 1 auto;
+  text-align: left;
+}
+
+.ChannelInfo-img {
+  flex: 0 0 auto;
+  display: block;
+  height: 275px;
+  width: 275px;
+  margin-right: 25px;
+}
+
+.ChannelInfo-title {
+  margin: 10px 0;
+  font-size: 3.2rem;
+  text-align: left;
+}
+
+.ChannelInfo-author {
+  margin-bottom: 25px;
+  font-size: 2rem;
+}
+
+.ChannelInfo p {
+  font-size: 1.6rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.ChannelInfo-website {
+  color: #fff;
+  background: #3498db;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1.4rem;
+  text-decoration: none;
+  margin-top: 25px;
+}
+
+.ChannelInfo-website .fas {
+  margin-right: 5px;
+}
+
+.ChannelInfo-website a {
+  color: #999;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+/* ============ Themes ============ */
+
+.ChannelInfo.light {
+  color: #555;
+  border-bottom: 1px solid #eee;
+}
+
+.ChannelInfo-img.light {
+  border: 3px solid #eee;
+}
+
+.ChannelInfo-author.light {
+  color: rgb(173, 173, 173);
+}
+
+.ChannelInfo.dark {
+  color: #eee;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ChannelInfo.dark .ChannelInfo-author {
+  color: #fff;
+  opacity: 0.35;
+}
+
+.ChannelInfo.black {
+  border-bottom: 1px solid #111;
+}
+
+.ChannelInfo.black .ChannelInfo-title {
+  color: #ccc;
+}
+
+.ChannelInfo.black .ChannelInfo-text {
+  color: #ccc;
+}
+
+.ChannelInfo.black .ChannelInfo-author {
+  color: #555;
+}
+
+.ChannelInfo.black .ChannelInfo-website {
+  background: linear-gradient(45deg, #c31432, #240b36);
+}
+
+@media only screen and (max-width: 950px) {
+  .ChannelInfo {
+    flex-direction: column;
+    padding-top: 0;
+  }
+
+  .ChannelInfo-img {
+    margin: 0 0 25px;
+    height: 150px;
+    width: 150px;
+  }
+
+  .ChannelInfo-title {
+    font-size: 2.75rem;
+  }
+}

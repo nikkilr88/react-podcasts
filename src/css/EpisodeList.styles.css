@@ -1,0 +1,31 @@
+.EpisodeList-title {
+  margin: 50px 0 35px 0;
+  padding: 10px;
+  text-align: left;
+  width: 90%;
+  font-weight: normal;
+  display: block;
+  font-size: 2rem;
+}
+
+.EpisodeList-wrapper {
+  margin-bottom: 100px;
+}
+
+/* ============ Themes ============ */
+
+.EpisodeList-title.dark,
+.EpisodeList-title.black {
+  color: #eee;
+}
+
+.EpisodeListElement-title.light {
+  color: #333;
+}
+
+@media only screen and (max-width: 600px) {
+  .EpisodeList-title {
+    padding: 0;
+    margin: 50px 0;
+  }
+}

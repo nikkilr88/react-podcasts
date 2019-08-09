@@ -1,0 +1,39 @@
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: calc(200px / 2);
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  border-right: 4px solid #3498db;
+  border-bottom: 4px solid #3498db;
+  border-left: 4px solid transparent;
+  animation: rotate 2s infinite;
+}
+
+/* ============ Themes ============ */
+
+.loader.black {
+  border-top: 4px solid #c31432;
+  border-right: 4px solid #c31432;
+  border-bottom: 4px solid #c31432;
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .loader {
+    margin-left: 0;
+  }
+}

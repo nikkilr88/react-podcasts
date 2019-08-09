@@ -1,0 +1,126 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000;
+  opacity: 0.5;
+  z-index: 998;
+}
+
+.EpisodeSummary {
+  position: fixed;
+  max-width: 600px;
+  width: 95%;
+  max-height: 500px;
+  height: auto;
+  background: #1b1b1b;
+  top: calc(50% - 25px);
+  left: calc(50% + 100px);
+  transform: translate(-50%, -50%);
+  text-align: left;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+/* 
+.EpisodeSummary:before {
+  position: fixed;
+  content: '';
+  height: 50px;
+  background: linear-gradient(to bottom, rgb(27, 27, 27), rgba(27, 27, 27, 0));
+  top: 0;
+  left: 0;
+  right: 10px;
+  z-index: 998;
+}
+
+.EpisodeSummary:after {
+  position: fixed;
+  content: '';
+  height: 70px;
+  background: linear-gradient(to top, rgb(27, 27, 27), rgba(27, 27, 27, 0));
+  bottom: 0;
+  left: 0;
+  right: 10px;
+} */
+
+.EpisodeSummary-info {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #222;
+}
+
+.EpisodeSummary a {
+  border-bottom: 1px dotted #ccc;
+}
+
+.EpisodeSummary h1,
+.EpisodeSummary h2,
+.EpisodeSummary h3,
+.EpisodeSummary h4 {
+  margin: 10px 0;
+  color: #eee;
+}
+
+.EpisodeSummary h1 {
+  font-size: 2.5rem;
+}
+
+.EpisodeSummary ul {
+  margin-left: 25px;
+  font-size: 1.5rem;
+}
+
+.EpisodeSummary li {
+  margin: 5px;
+}
+
+.EpisodeSummary p {
+  margin: 5px 0;
+  font-size: 1.5rem;
+  color: #ccc;
+  line-height: 1.5;
+}
+
+.scrollable {
+  overflow-y: scroll;
+  max-height: 500px;
+  height: 100%;
+  padding: 50px;
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #eee;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #555;
+  z-index: 999;
+}
+
+@media only screen and (max-width: 600px) {
+  .EpisodeSummary {
+    transform: translate(0);
+    left: 10px;
+    top: 70px;
+    right: 10px;
+    bottom: 70px;
+  }
+}

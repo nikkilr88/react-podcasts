@@ -1,0 +1,30 @@
+.volume-container {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-left: calc(200px / 2);
+  color: #fcfcfc;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 25px;
+  border-radius: 10px;
+  z-index: 9999;
+}
+
+.volume-container h3 {
+  margin-bottom: 10px;
+}
+
+.volume-wrapper {
+  position: relative;
+  height: 20px;
+  width: 100px;
+  background: #333;
+}
+
+.volume-bar {
+  position: absolute;
+  background: #3498db;
+  height: 100%;
+  bottom: 0;
+}
