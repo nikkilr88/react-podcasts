@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { switchTheme } from '../actions/theme'
+import { switchTheme } from '../actions/settings'
 
 import '../css/SettingsPage.styles.css'
 
@@ -38,7 +38,7 @@ class SettingsPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  theme: state.theme.theme
+  theme: state.settings.theme
 })
 
 export default connect(

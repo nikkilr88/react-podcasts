@@ -3,20 +3,11 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ProgressiveImage from 'react-progressive-image'
 import { podcasts, categories } from '../data/podcasts'
+import { switchDisplay } from '../actions/settings'
 
 import '../css/HomePage.styles.css'
 
 class HomePage extends Component {
-  state = {
-    sort: 'grid'
-  }
-
-  setSort = val => {
-    this.setState({
-      sort: val
-    })
-  }
-
   displayGrid = () => {
     return podcasts.map(podcast => (
       <Link
@@ -78,8 +69,7 @@ class HomePage extends Component {
   }
 
   render() {
-    const { sort } = this.state
-    const { theme } = this.props
+    const { theme, display, switchDisplay } = this.props
 
     return (
       <div className={`Home ${theme}`}>
@@ -88,17 +78,17 @@ class HomePage extends Component {
           <div>
             <i
               className={`fas fa-list icon ${
-                sort === 'category' ? 'active' : ''
+                display === 'category' ? 'active' : ''
               }`}
-              onClick={() => this.setSort('category')}
+              onClick={() => switchDisplay('category')}
             />
             <i
-              className={`fas fa-th icon ${sort === 'grid' ? 'active' : ''}`}
-              onClick={() => this.setSort('grid')}
+              className={`fas fa-th icon ${display === 'grid' ? 'active' : ''}`}
+              onClick={() => switchDisplay('grid')}
             />
           </div>
         </div>
-        {this.state.sort === 'grid' ? (
+        {display === 'grid' ? (
           <div className='grid'>{this.displayGrid()}</div>
         ) : (
           this.sortByCategory()
@@ -109,7 +99,11 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = state => ({
-  theme: state.theme.theme
+  theme: state.settings.theme,
+  display: state.settings.display
 })
 
-export default connect(mapStateToProps)(HomePage)
+export default connect(
+  mapStateToProps,
+  { switchDisplay }
+)(HomePage)
