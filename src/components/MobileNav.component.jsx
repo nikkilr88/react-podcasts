@@ -7,7 +7,7 @@ import '../css/MobileNav.styles.css'
 class MobileNav extends Component {
   render() {
     const location = {
-      '/': 'Podcasts',
+      '/': 'Home',
       '/nowplaying': 'Now Playing',
       '/bookmarked': 'Bookmarked',
       '/settings': 'Settings'
@@ -56,7 +56,7 @@ class MobileNav extends Component {
 }
 
 const mapStateToProps = state => ({
-  theme: state.theme.theme,
+  theme: state.settings.theme,
   podcast: state.podcast.podcast.title
 })
 

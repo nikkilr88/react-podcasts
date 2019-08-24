@@ -91,7 +91,7 @@ class NowPlaying extends Component {
 
 const mapStateToProps = state => ({
   player: state.player,
-  theme: state.theme.theme
+  theme: state.settings.theme
 })
 
 export default connect(

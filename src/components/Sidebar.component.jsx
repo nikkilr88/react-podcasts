@@ -1,10 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { NavLink as Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-
 import Logo from '../images/devcasts-logo-slant.png'
-
-import { switchTheme } from '../actions/theme'
 
 import '../css/Sidebar.styles.css'
 
@@ -60,10 +57,7 @@ class Sidebar extends Component {
 }
 
 const mapStateToProps = state => ({
-  theme: state.theme.theme
+  theme: state.settings.theme
 })
 
-export default connect(
-  mapStateToProps,
-  { switchTheme }
-)(Sidebar)
+export default connect(mapStateToProps)(Sidebar)

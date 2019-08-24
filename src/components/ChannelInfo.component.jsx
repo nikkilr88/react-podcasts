@@ -40,7 +40,7 @@ class ChannelInfo extends Component {
 }
 
 const mapStateToProps = state => ({
-  theme: state.theme.theme,
+  theme: state.settings.theme,
   podcast: state.podcast.podcast,
   nowPlaying: state.player.track.title
 })

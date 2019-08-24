@@ -8,7 +8,7 @@ const Loader = ({ theme }) => {
 }
 
 const mapStateToProps = state => ({
-  theme: state.theme.theme
+  theme: state.settings.theme
 })
 
 export default connect(mapStateToProps)(Loader)
