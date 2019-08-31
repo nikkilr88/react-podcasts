@@ -11,6 +11,7 @@
   z-index: 9999;
   display: none;
   transition: background 0.2s;
+  background: #2c3e50;
   box-shadow: 0 -1px #3f3f3f, 0 -2px #222;
 }
 
@@ -23,7 +24,7 @@
   left: 0;
   width: 100%;
   height: 60px;
-  background: #333;
+  background: #2c3e50;
   z-index: 9999;
   display: flex;
   justify-content: space-between;
