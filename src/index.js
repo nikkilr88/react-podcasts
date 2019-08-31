@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import AppRouter from './routers'
 import ReactDOM from 'react-dom'
+
+import Unsupported from './components/Unsupported.component'
 
 import { Provider } from 'react-redux'
 import configureStore from './store/config-store'
@@ -32,8 +34,14 @@ store.subscribe(
 )
 
 ReactDOM.render(
-  <Provider store={store}>
-    <AppRouter />
-  </Provider>,
+  <Fragment>
+    {document.documentMode ? (
+      <Unsupported />
+    ) : (
+      <Provider store={store}>
+        <AppRouter />
+      </Provider>
+    )}
+  </Fragment>,
   document.getElementById('root')
 )
