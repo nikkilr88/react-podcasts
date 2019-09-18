@@ -1,15 +1,18 @@
 export const categories = [
   {
     category: 'general',
-    display: 'General'
+    display: 'General',
+    subtitle: 'Language agnostic podcasts'
   },
   {
     category: 'code newbies',
-    display: 'Code Newbies'
+    display: 'Code Newbies',
+    subtitle: 'Just starting out? Begin here!'
   },
   {
     category: 'javascript',
-    display: 'JavaScript'
+    display: 'JavaScript',
+    subtitle: 'For all of you JS lovers'
   }
 ]
 

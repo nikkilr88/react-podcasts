@@ -12,7 +12,7 @@ class HomePage extends Component {
     return podcasts.map(podcast => (
       <Link
         key={podcast.name}
-        className='Home-podcast'
+        className="Home-podcast"
         to={`/podcast/${podcast.name.replace(/ /g, '_')}`}
       >
         <div>
@@ -20,10 +20,10 @@ class HomePage extends Component {
             src={podcast.img.replace(/100x100/g, '360x360')}
             placeholder={podcast.img.replace(/100x100/g, '30x30')}
           >
-            {src => <img src={src} alt='podcast cover' />}
+            {src => <img src={src} alt="podcast cover" />}
           </ProgressiveImage>
 
-          <h3 className='Home-podcast-title'>
+          <h3 className="Home-podcast-title">
             {podcast.name.length > 13
               ? podcast.name.substring(0, 13) + '...'
               : podcast.name}
@@ -40,7 +40,7 @@ class HomePage extends Component {
         .map(podcast => (
           <Link
             key={podcast.name}
-            className='Home-podcast'
+            className="Home-podcast"
             to={`/podcast/${podcast.name.replace(/ /g, '_')}`}
           >
             <div>
@@ -48,10 +48,10 @@ class HomePage extends Component {
                 src={podcast.img.replace(/100x100/g, '360x360')}
                 placeholder={podcast.img.replace(/100x100/g, '30x30')}
               >
-                {src => <img src={src} alt='podcast cover' />}
+                {src => <img src={src} alt="podcast cover" />}
               </ProgressiveImage>
 
-              <h3 className='Home-podcast-title'>
+              <h3 className="Home-podcast-title">
                 {podcast.name.length > 13
                   ? podcast.name.substring(0, 13) + '...'
                   : podcast.name}
@@ -60,9 +60,10 @@ class HomePage extends Component {
           </Link>
         ))
       return (
-        <section key={category.category} className='Home-category'>
-          <h2 className='Home-category-title'>{category.display}</h2>
-          <div className='Home-podcasts'>{categoryPodcasts}</div>
+        <section key={category.category} className="Home-category">
+          <h2 className="Home-category-title">{category.display}</h2>
+          <p className="Home-category-subtitle">{category.subtitle}</p>
+          <div className="Home-podcasts">{categoryPodcasts}</div>
         </section>
       )
     })
@@ -73,7 +74,7 @@ class HomePage extends Component {
 
     return (
       <div className={`Home ${theme}`}>
-        <div className='Home-banner'>
+        <div className="Home-banner">
           <h1>Podcasts</h1>
           <div>
             <i
@@ -89,7 +90,7 @@ class HomePage extends Component {
           </div>
         </div>
         {display === 'grid' ? (
-          <div className='grid'>{this.displayGrid()}</div>
+          <div className="grid">{this.displayGrid()}</div>
         ) : (
           this.sortByCategory()
         )}
