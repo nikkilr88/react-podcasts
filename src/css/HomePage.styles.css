@@ -55,10 +55,6 @@
   text-decoration: none;
 }
 
-.Home-podcast:last-child {
-  padding-right: 20px;
-}
-
 .Home-podcast img {
   margin-bottom: 5px;
   width: 100%;
@@ -72,7 +68,7 @@
 
 .Home-podcasts {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(105px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   grid-gap: 10px;
 }
 
@@ -142,7 +138,7 @@
   }
 
   .Home-category img {
-    width: 105px;
+    width: 95px;
     margin: 5px;
   }
 }
