@@ -7,7 +7,7 @@ export const categories = [
   {
     category: 'code newbies',
     display: 'Code Newbies',
-    subtitle: 'Just starting out? Begin here!'
+    subtitle: 'New to coding? Start here!'
   },
   {
     category: 'javascript',
