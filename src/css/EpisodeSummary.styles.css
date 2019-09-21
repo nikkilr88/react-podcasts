@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
   background: #000;
-  opacity: 0.5;
+  opacity: 0.35;
   z-index: 998;
 }
 
@@ -15,7 +15,7 @@
   width: 95%;
   max-height: 500px;
   height: auto;
-  background: #1b1b1b;
+  background: #333;
   top: calc(50% - 25px);
   left: calc(50% + 100px);
   transform: translate(-50%, -50%);

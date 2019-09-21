@@ -29,7 +29,8 @@
 
 .ChannelInfo-author {
   margin-bottom: 25px;
-  font-size: 2rem;
+  font-size: 1.7rem;
+  font-weight: 500;
 }
 
 .ChannelInfo p {
