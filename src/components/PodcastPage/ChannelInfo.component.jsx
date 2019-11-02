@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { podcasts } from '../data/podcasts'
+import { podcasts } from '../../data/podcasts'
 import ProgressiveImage from 'react-progressive-image'
 
-import '../css/ChannelInfo.styles.css'
+import '../../css/ChannelInfo.styles.css'
 
 class ChannelInfo extends Component {
   render() {
@@ -20,17 +20,17 @@ class ChannelInfo extends Component {
           {src => (
             <img
               src={src}
-              alt='podcast cover'
+              alt="podcast cover"
               className={`ChannelInfo-img ${theme}`}
             />
           )}
         </ProgressiveImage>
-        <div className='ChannelInfo-text'>
-          <h1 className='ChannelInfo-title'>{title}</h1>
+        <div className="ChannelInfo-text">
+          <h1 className="ChannelInfo-title">{title}</h1>
           <h3 className={`ChannelInfo-author ${theme}`}>{author}</h3>
           <p>{description || 'No Description Available :('}</p>
-          <a href={website} target='_blank' className='ChannelInfo-website'>
-            <i className='fas fa-external-link-alt' />
+          <a href={website} target="_blank" className="ChannelInfo-website">
+            <i className="fas fa-external-link-alt" />
             Visit website
           </a>
         </div>

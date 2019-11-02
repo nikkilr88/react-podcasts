@@ -1,16 +1,16 @@
 import React, { Fragment } from 'react'
 import moment from 'moment'
-import '../css/EpisodeSummary.styles.css'
+import '../../css/EpisodeSummary.styles.css'
 
 const EpisodeSummary = ({ episode, clearEpisode }) => {
   const { date, title, description } = episode
 
   return (
     <Fragment>
-      <div className='EpisodeSummary'>
-        <i className='close far fa-times-circle' onClick={clearEpisode} />
-        <div className='scrollable'>
-          <div className='EpisodeSummary-info'>
+      <div className="EpisodeSummary">
+        <i className="close far fa-times-circle" onClick={clearEpisode} />
+        <div className="scrollable">
+          <div className="EpisodeSummary-info">
             <p>
               <strong>Title: </strong> {title}
             </p>
@@ -23,7 +23,7 @@ const EpisodeSummary = ({ episode, clearEpisode }) => {
         </div>
       </div>
 
-      <div className='overlay' />
+      <div className="overlay" />
     </Fragment>
   )
 }

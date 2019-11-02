@@ -2,7 +2,7 @@ import React, { Component, Fragment, Suspense, lazy } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import Loader from '../components/Loader.component'
-import PodcastInfo from '../components/PodcastInfo.component'
+import PodcastInfo from '../components/PodcastPage/PodcastInfo.component'
 import { fetchPodcast, setLoading } from '../actions/podcast'
 
 import '../css/PodcastPage.styles.css'
@@ -40,7 +40,7 @@ class PodcastPage extends Component {
 
     return (
       <Fragment>
-        {error && <p className='error'>{error}</p>}
+        {error && <p className="error">{error}</p>}
 
         {loading ? <Loader /> : <PodcastInfo />}
       </Fragment>

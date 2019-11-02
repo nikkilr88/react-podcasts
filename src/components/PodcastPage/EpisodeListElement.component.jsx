@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux'
-import { setAudio } from '../actions/player'
+import { setAudio } from '../../actions/player'
 import { withRouter } from 'react-router-dom'
 
-import '../css/EpisodeListElement.styles.css'
+import '../../css/EpisodeListElement.styles.css'
 
 class EpisodeListElement extends Component {
   handleOnClick = e => {
@@ -54,15 +54,15 @@ class EpisodeListElement extends Component {
     return (
       <div className={`EpisodeListElement ${theme}`} title={title}>
         <div
-          className='EpisodeListElement-text'
+          className="EpisodeListElement-text"
           onClick={this.handleSetEpisode}
         >
-          <p className='EpisodeListElement-date'>
+          <p className="EpisodeListElement-date">
             {this.formatDate(date)}
             <span> &#8226; </span>
             {minutesLong} mins
           </p>
-          <h3 className='EpisodeListElement-title'>
+          <h3 className="EpisodeListElement-title">
             {title.length > 50 ? title.substring(0, 50) + '...' : title}
           </h3>
         </div>
@@ -73,9 +73,9 @@ class EpisodeListElement extends Component {
             'selected'}`}
         >
           {isPlaying ? (
-            <i className='material-icons'>volume_up</i>
+            <i className="material-icons">volume_up</i>
           ) : (
-            <i className='material-icons'>play_arrow</i>
+            <i className="material-icons">play_arrow</i>
           )}
         </button>
       </div>

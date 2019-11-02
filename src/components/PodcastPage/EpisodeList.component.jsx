@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import EpisodeSummary from './EpisodeSummary.component'
 import EpisodeListElement from './EpisodeListElement.component'
 
-import '../css/EpisodeList.styles.css'
+import '../../css/EpisodeList.styles.css'
 
 class EpisodeList extends Component {
   state = {
