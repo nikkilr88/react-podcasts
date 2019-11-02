@@ -30,11 +30,7 @@ export const displayGrid = podcasts => {
           )}
         </ProgressiveImage>
 
-        <h3 className="Home-podcast-title">
-          {podcast.name.length > 13
-            ? podcast.name.substring(0, 13) + '...'
-            : podcast.name}
-        </h3>
+        <h3 className="Home-podcast-title">{podcast.name}</h3>
       </div>
     </Link>
   ))
@@ -59,11 +55,7 @@ export const sortByCategory = (categories, podcasts) => {
               {src => <img src={src ? src : Fallback} alt="podcast cover" />}
             </ProgressiveImage>
 
-            <h3 className="Home-podcast-title">
-              {podcast.name.length > 13
-                ? podcast.name.substring(0, 13) + '...'
-                : podcast.name}
-            </h3>
+            <h3 className="Home-podcast-title">{podcast.name}</h3>
           </div>
         </Link>
       ))
