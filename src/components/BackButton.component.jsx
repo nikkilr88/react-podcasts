@@ -15,7 +15,7 @@ class BackButton extends Component {
 
     return path !== '/' ? (
       <button className={`BackButton ${theme}`} onClick={this.goBack}>
-        <i className='fas fa-arrow-left' /> Back
+        <i className="fas fa-arrow-left" /> Back
       </button>
     ) : (
       ''

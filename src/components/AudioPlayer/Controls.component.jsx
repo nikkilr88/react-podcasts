@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ProgressBar from './ProgressBar.component'
 import SoundWrapper from './SoundWrapper.component'
-import { convertSeconds } from '../utils'
+import { convertSeconds } from '../../utils'
 import {
   skip,
   setVolume,
@@ -13,9 +13,9 @@ import {
   pauseAudio,
   showVolume,
   hideVolume
-} from '../actions/player'
+} from '../../actions/player'
 
-import '../css/Controls.styles.css'
+import '../../css/Controls.styles.css'
 
 class Controls extends Component {
   // Pause, skip forward / back
@@ -148,17 +148,17 @@ class Controls extends Component {
         {volumeVisible && <Volume theme={theme} />}
 
         <div className={`Controls-player ${theme}`}>
-          <ProgressBar wrapperPosition='absolute' />
+          <ProgressBar wrapperPosition="absolute" />
 
           <Link to={podcastLink}>
-            <img className='Controls-img' src={image} alt='podcast cover' />
+            <img className="Controls-img" src={image} alt="podcast cover" />
           </Link>
 
-          <div className='Controls-title'>
-            <h6 className='Controls-title-podcast'>
+          <div className="Controls-title">
+            <h6 className="Controls-title-podcast">
               <Link to={podcastLink}>{podcast}</Link>
             </h6>
-            <h5 className='Controls-title-track'>
+            <h5 className="Controls-title-track">
               {' '}
               {track.title.length > 50
                 ? track.title.substring(0, 50) + '...'
@@ -166,26 +166,26 @@ class Controls extends Component {
             </h5>
           </div>
 
-          <div className='Controls-btns'>
-            <span className='time'>{time}</span>
+          <div className="Controls-btns">
+            <span className="time">{time}</span>
             <button onClick={() => skip(-5000)}>
-              <i className='material-icons'>replay_5</i>
+              <i className="material-icons">replay_5</i>
             </button>
 
             <button onClick={pauseAudio}>
               {playStatus == Sound.status.PLAYING ? (
-                <i className='material-icons paused'>pause</i>
+                <i className="material-icons paused">pause</i>
               ) : (
-                <i className='material-icons'>play_arrow</i>
+                <i className="material-icons">play_arrow</i>
               )}
             </button>
 
             <button onClick={stopAudio}>
-              <i className='material-icons'>stop</i>
+              <i className="material-icons">stop</i>
             </button>
 
             <button onClick={() => skip(10000)}>
-              <i className='material-icons'>forward_10</i>
+              <i className="material-icons">forward_10</i>
             </button>
           </div>
         </div>

@@ -5,7 +5,7 @@ import {
   handlePlay,
   setLoading,
   handleFinishedPlaying
-} from '../actions/player'
+} from '../../actions/player'
 
 class SoundWrapper extends Component {
   handleSetLoading = () => {

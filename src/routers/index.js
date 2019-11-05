@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 
 // Components
 import Sidebar from '../components/Sidebar.component'
-import Controls from '../components/Controls.component'
 import MobileNav from '../components/MobileNav.component'
 import BackButton from '../components/BackButton.component'
+import Controls from '../components/AudioPlayer/Controls.component'
 
 // Pages
 import HomePage from '../pages/Home'
@@ -23,15 +23,15 @@ const AppRouter = ({ theme }) => (
       <div>
         <Sidebar />
       </div>
-      <div className='app-wrapper-content'>
+      <div className="app-wrapper-content">
         <BackButton />
         <Controls />
         <Switch>
-          <Route path='/' exact component={HomePage} />
-          <Route path='/settings' exact component={SettingsPage} />
-          <Route path='/nowplaying' exact component={NowPlayingPage} />
-          <Route path='/bookmarked' exact component={BookmarkedPage} />
-          <Route path='/podcast/:podcast' exact component={PodcastPage} />
+          <Route path="/" exact component={HomePage} />
+          <Route path="/settings" exact component={SettingsPage} />
+          <Route path="/nowplaying" exact component={NowPlayingPage} />
+          <Route path="/bookmarked" exact component={BookmarkedPage} />
+          <Route path="/podcast/:podcast" exact component={PodcastPage} />
           <Route component={NotFound} />
         </Switch>
       </div>
