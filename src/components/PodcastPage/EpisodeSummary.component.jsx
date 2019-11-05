@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react'
 import moment from 'moment'
+
+// Styles
 import '../../css/EpisodeSummary.styles.css'
 
 const EpisodeSummary = ({ episode, clearEpisode }) => {

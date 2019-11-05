@@ -2,12 +2,19 @@ import React, { Component } from 'react'
 import Sound from 'react-sound'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { podcasts } from '../data/podcasts'
-import Loader from '../components/Loader.component'
 import ProgressiveImage from 'react-progressive-image'
+
+// Data
+import { podcasts } from '../data/podcasts'
+
+// Components
+import Loader from '../components/Loader.component'
 import ProgressBar from '../components/AudioPlayer/ProgressBar.component'
+
+// Actions
 import { pauseAudio, skip, stopAudio } from '../actions/player'
 
+// Styles
 import '../css/NowPlaying.styles.css'
 
 class NowPlaying extends Component {
@@ -16,13 +23,11 @@ class NowPlaying extends Component {
     const { img, title, podcast } = this.props.player.track
     const podcastLoading = playStatus === 'PLAYING' && loading
 
-    let podcastImage = ''
-
-    if (title) {
-      podcastImage = podcasts
-        .filter(p => p.name === podcast)[0]
-        .img.replace(/100x100/g, '30x30')
-    }
+    let podcastImage = title
+      ? podcasts
+          .filter(p => p.name === podcast)[0]
+          .img.replace(/100x100/g, '30x30')
+      : undefined
 
     return (
       <div>

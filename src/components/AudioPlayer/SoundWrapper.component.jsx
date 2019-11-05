@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Sound from 'react-sound'
 import { connect } from 'react-redux'
+
+// Actions
 import {
   handlePlay,
   setLoading,

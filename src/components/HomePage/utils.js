@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
+// Images
 import FallbackImage from '../../images/grey_square.jpg'
 import ProgressiveImage from 'react-progressive-image'
 

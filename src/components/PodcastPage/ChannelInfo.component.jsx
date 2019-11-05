@@ -1,8 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { podcasts } from '../../data/podcasts'
 import ProgressiveImage from 'react-progressive-image'
 
+// Data
+import { podcasts } from '../../data/podcasts'
+
+// Styles
 import '../../css/ChannelInfo.styles.css'
 
 class ChannelInfo extends Component {

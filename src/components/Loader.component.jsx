@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 
+// Styles
 import '../css/Loader.styles.css'
 
 const Loader = ({ theme }) => {

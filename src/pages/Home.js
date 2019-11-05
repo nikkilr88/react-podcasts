@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+
+// Components
 import HomePage from '../components/HomePage/HomePage.component'
 
 class Home extends Component {

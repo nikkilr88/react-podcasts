@@ -3,9 +3,15 @@ import Volume from './Volume.component'
 import Sound from 'react-sound'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+
+// Utils
+import { convertSeconds } from '../../utils'
+
+// Components
 import ProgressBar from './ProgressBar.component'
 import SoundWrapper from './SoundWrapper.component'
-import { convertSeconds } from '../../utils'
+
+// Actions
 import {
   skip,
   setVolume,
@@ -15,6 +21,7 @@ import {
   hideVolume
 } from '../../actions/player'
 
+// Styles
 import '../../css/Controls.styles.css'
 
 class Controls extends Component {

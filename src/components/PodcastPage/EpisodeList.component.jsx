@@ -1,8 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+
+// Components
 import EpisodeSummary from './EpisodeSummary.component'
 import EpisodeListElement from './EpisodeListElement.component'
 
+// Styles
 import '../../css/EpisodeList.styles.css'
 
 class EpisodeList extends Component {

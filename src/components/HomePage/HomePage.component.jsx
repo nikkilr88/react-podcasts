@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+
+// Data
 import { podcasts, categories } from '../../data/podcasts'
-import { switchDisplay } from '../../actions/settings'
+
+// Utils
 import { displayGrid, sortByCategory } from './utils'
 
+// Actions
+import { switchDisplay } from '../../actions/settings'
+
+// Styles
 import '../../css/HomePage.styles.css'
 
 class HomePage extends Component {

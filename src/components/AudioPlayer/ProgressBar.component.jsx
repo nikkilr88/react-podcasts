@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+// Styles
 import '../../css/ProgressBar.styles.css'
 
 class ProgressBar extends Component {

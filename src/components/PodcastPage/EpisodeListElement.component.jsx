@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import moment from 'moment'
 import { connect } from 'react-redux'
-import { setAudio } from '../../actions/player'
 import { withRouter } from 'react-router-dom'
 
+// Actions
+import { setAudio } from '../../actions/player'
+
+// Styles
 import '../../css/EpisodeListElement.styles.css'
 
 class EpisodeListElement extends Component {
