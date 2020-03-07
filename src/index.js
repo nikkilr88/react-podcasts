@@ -1,13 +1,16 @@
 import React, { Fragment } from 'react'
-import AppRouter from './routers'
 import ReactDOM from 'react-dom'
-
-import Unsupported from './components/Unsupported.component'
-
 import { Provider } from 'react-redux'
-import configureStore from './store/config-store'
 import throttle from 'lodash.throttle'
 
+// Router & Store
+import AppRouter from './routers'
+import configureStore from './store/config-store'
+
+// Components
+import Unsupported from './components/Unsupported.component'
+
+// Styles
 import './css/styles.styles.css'
 import './css/themes/light.css'
 import './css/themes/dark.css'

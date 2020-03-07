@@ -65,6 +65,9 @@
   font-weight: normal;
   color: #999;
   text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .Home-podcasts {
@@ -125,13 +128,18 @@
     display: flex;
     overflow-y: hidden;
     overflow-x: scroll;
-    margin: 0 -25px;
-    width: calc(100% + 40px);
+    margin-left: -20px;
+    width: 100vw;
     padding: 0 20px;
+  }
+
+  .Home-category .Home-podcast:last-child {
+    padding-right: 20px;
   }
 
   .Home-podcast-title {
     margin-left: 5px;
+    width: 95px;
   }
 
   ::-webkit-scrollbar {

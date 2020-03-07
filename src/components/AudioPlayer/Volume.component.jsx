@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import '../css/Volume.styles.css'
+// Styles
+import '../../css/Volume.styles.css'
 
 class Volume extends Component {
   render() {
@@ -9,10 +10,10 @@ class Volume extends Component {
       width: this.props.volume + '%'
     }
     return (
-      <div className='volume-container'>
+      <div className="volume-container">
         <h3>Volume</h3>
         <div className={`volume-wrapper ${this.props.theme}`}>
-          <div style={styles} className='volume-bar' />
+          <div style={styles} className="volume-bar" />
         </div>
       </div>
     )

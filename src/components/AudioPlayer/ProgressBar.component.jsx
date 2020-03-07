@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import '../css/ProgressBar.styles.css'
+// Styles
+import '../../css/ProgressBar.styles.css'
 
 class ProgressBar extends Component {
   render() {
@@ -18,7 +19,7 @@ class ProgressBar extends Component {
 
     return (
       <div className={`progress-wrapper ${theme}`} style={wrapperStyles}>
-        <div style={styles} className='progress-bar' />
+        <div style={styles} className="progress-bar" />
       </div>
     )
   }

@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import Sound from 'react-sound'
 import { connect } from 'react-redux'
+
+// Actions
 import {
   handlePlay,
   setLoading,
   handleFinishedPlaying
-} from '../actions/player'
+} from '../../actions/player'
 
 class SoundWrapper extends Component {
   handleSetLoading = () => {
