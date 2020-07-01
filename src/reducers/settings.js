@@ -1,20 +1,20 @@
 const initialState = {
   theme: localStorage.getItem('theme') || 'light',
-  display: localStorage.getItem('display') || 'grid'
+  display: localStorage.getItem('display') || 'grid',
 }
 
-const themeReducer = (state = initialState, action) => {
+const settingsReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SWITCH_THEME':
       return {
-        ...state,
-        theme: action.theme
+        // TODO: change 'theme:' to 'settings:'
+        theme: action.theme,
       }
 
     case 'SWITCH_DISPLAY':
       return {
         ...state,
-        display: action.displayValue
+        display: action.displayValue,
       }
 
     default:
@@ -22,4 +22,4 @@ const themeReducer = (state = initialState, action) => {
   }
 }
 
-export default themeReducer
+export default settingsReducer

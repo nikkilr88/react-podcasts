@@ -9,12 +9,12 @@ class ProgressBar extends Component {
     const { position, duration, theme, width, wrapperPosition } = this.props
 
     const styles = {
-      width: (position * 100) / duration + '%'
+      width: (position * 100) / duration + '%',
     }
 
     const wrapperStyles = {
       width: width,
-      position: wrapperPosition
+      position: wrapperPosition,
     }
 
     return (
@@ -28,7 +28,7 @@ class ProgressBar extends Component {
 const mapStateToProps = state => ({
   theme: state.settings.theme,
   position: state.player.position,
-  duration: state.player.duration
+  duration: state.player.duration,
 })
 
 export default connect(mapStateToProps)(ProgressBar)

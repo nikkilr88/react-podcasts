@@ -11,7 +11,7 @@ export default () => {
     combineReducers({
       podcast: podcastReducer,
       player: playerReducer,
-      settings: settingsReducer
+      settings: settingsReducer,
     }),
     initialState,
     compose(

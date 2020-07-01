@@ -1,219 +1,227 @@
-import React, { Component, Fragment } from 'react'
-import Volume from './Volume.component'
+import React, { useRef, useEffect } from 'react'
 import Sound from 'react-sound'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-
-// Utils
+import Volume from './Volume.component'
 import { convertSeconds } from '../../utils'
-
-// Components
 import ProgressBar from './ProgressBar.component'
 import SoundWrapper from './SoundWrapper.component'
-
-// Actions
 import {
   skip,
-  setVolume,
   stopAudio,
-  pauseAudio,
+  setVolume,
+  hideVolume,
   showVolume,
-  hideVolume
+  togglePlayPause,
 } from '../../actions/player'
 
 // Styles
 import '../../css/Controls.styles.css'
 
-class Controls extends Component {
+const Controls = ({
+  hideVolume,
+  image,
+  playStatus,
+  podcast,
+  setVolume,
+  showVolume,
+  skip,
+  stopAudio,
+  theme,
+  time,
+  togglePlayPause,
+  track,
+  volumeVisible,
+}) => {
   // Pause, skip forward / back
-  keyboardShortcuts = e => {
-    switch (e.which) {
-      case 32:
-        this.props.pauseAudio()
+  const keyboardShortcuts = event => {
+    switch (event.key) {
+      case ' ':
+        togglePlayPause()
         break
-      case 37:
-        this.props.skip(-5000)
+      case 'ArrowLeft':
+        skip(-5000)
         break
-      case 39:
-        this.props.skip(10000)
+      case 'ArrowRight':
+        skip(10000)
         break
     }
   }
 
   // Keyup keyboard shortcuts
-  handleOnKeyUp = e => {
-    switch (e.which) {
-      case 32:
-      case 39:
-      case 37:
-        this.keyboardShortcuts(e)
+  const handleOnKeyUp = event => {
+    switch (event.key) {
+      case ' ':
+      case 'ArrowRight':
+      case 'ArrowLeft':
+        keyboardShortcuts(event)
         break
-      case 38:
-      case 40:
-        this.setVolume(e)
+      case 'ArrowUp':
+      case 'ArrowDown':
+        onSetVolume(event)
         break
     }
   }
 
-  toggleVolume = () => {
-    if (this.timeout) {
-      clearInterval(this.timeout)
+  const timerRef = useRef(null)
+  /* timerRef = {current: null} */
+
+  const toggleVolumeVisibility = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current)
     }
 
-    this.props.showVolume()
-
-    this.timeout = setTimeout(() => {
-      this.props.hideVolume()
+    timerRef.current = setTimeout(() => {
+      hideVolume()
     }, 1000)
+
+    showVolume()
   }
 
-  setVolume = e => {
-    const val = e.which === 38 ? 5 : -5
+  // TODO: FEATURE REQUEST: speed controls!!!
 
-    this.toggleVolume()
-    this.props.setVolume(val)
+  const onSetVolume = event => {
+    console.log('⚡🚨: event', event)
+    console.log('VOLUME')
+    // turbo console log
+    const val = event.key === 'ArrowUp' ? 5 : -5
+
+    toggleVolumeVisibility()
+    setVolume(val)
+    console.log('⚡🚨: val', val)
+    console.log('⚡🚨: setVolume', setVolume)
   }
 
-  handleOnKeyDown = e => {
-    if (this.props.track.src.length < 1) return
+  const handleOnKeyDown = event => {
+    // if no track, do nothing
+    // TODO: unnecessary?
+    // if (track.src.length < 1) return
 
-    if (e.which == 32 || e.which == 38 || e.which == 40) {
-      e.preventDefault()
+    if ([' ', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
+      event.preventDefault()
       return false
     }
   }
 
-  setMediaSession = () => {
+  const setMediaSession = () => {
     if ('mediaSession' in navigator) {
       navigator.mediaSession.metadata = new MediaMetadata({
-        title: this.props.track.title,
-        artist: this.props.podcast,
+        title: track.title,
+        artist: podcast,
         album: 'Podcast',
         artwork: [
           {
-            src: this.props.image,
+            src: image,
             sizes: '192x192',
-            type: 'image/png'
-          }
-        ]
+            type: 'image/png',
+          },
+        ],
       })
 
       navigator.mediaSession.setActionHandler('seekbackward', () => {
-        this.props.skip(-5000)
+        skip(-5000)
       })
 
       navigator.mediaSession.setActionHandler('seekforward', () => {
-        this.props.skip(10000)
+        skip(10000)
       })
     }
   }
 
-  // Fetch podcast data on mount
-  componentDidMount() {
-    // Set media session for mobile notifications/lockscreen display
-    this.setMediaSession()
+  // boot up media sessions
+  useEffect(setMediaSession, [])
 
+  // media sessions
+  useEffect(() => {
+    if (track.title !== track.title) {
+      // Update media session when track changes
+      setMediaSession()
+    }
+  })
+
+  // boot up keyboard controls
+  useEffect(() => {
     // Keyboard controls
-    document.addEventListener('keyup', this.handleOnKeyUp, false)
+    document.addEventListener('keyup', handleOnKeyUp, false)
 
     // Prevent spacebar scrolling
-    document.addEventListener('keydown', this.handleOnKeyDown, false)
-  }
+    document.addEventListener('keydown', handleOnKeyDown, false)
 
-  componentWillUnmount() {
-    document.removeEventListener('keyup', this.handleOnKeyUp, false)
-    document.removeEventListener('keydown', this.handleOnKeyDown, false)
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.track.title !== this.props.track.title) {
-      // Update media session when track changes
-      this.setMediaSession()
+    return () => {
+      document.removeEventListener('keyup', handleOnKeyUp, false)
+      document.removeEventListener('keydown', handleOnKeyDown, false)
     }
-  }
+  }, [])
 
-  render() {
-    const {
-      time,
-      skip,
-      theme,
-      image,
-      track,
-      podcast,
-      stopAudio,
-      pauseAudio,
-      playStatus,
-      volumeVisible
-    } = this.props
+  const podcastLink = `/podcast/${podcast.replace(/ /gi, '_')}`
 
-    const podcastLink = `/podcast/${podcast.replace(/ /gi, '_')}`
+  return track.title.length > 0 ? (
+    <React.Fragment>
+      <SoundWrapper />
 
-    return track.title.length > 0 ? (
-      <Fragment>
-        <SoundWrapper />
+      {volumeVisible && <Volume theme={theme} />}
 
-        {volumeVisible && <Volume theme={theme} />}
+      <div className={`Controls-player ${theme}`}>
+        <ProgressBar wrapperPosition="absolute" />
 
-        <div className={`Controls-player ${theme}`}>
-          <ProgressBar wrapperPosition="absolute" />
+        <Link to={podcastLink}>
+          <img className="Controls-img" src={image} alt="podcast cover" />
+        </Link>
 
-          <Link to={podcastLink}>
-            <img className="Controls-img" src={image} alt="podcast cover" />
-          </Link>
-
-          <div className="Controls-title">
-            <h6 className="Controls-title-podcast">
-              <Link to={podcastLink}>{podcast}</Link>
-            </h6>
-            <h5 className="Controls-title-track">
-              {' '}
-              {track.title.length > 50
-                ? track.title.substring(0, 50) + '...'
-                : track.title}
-            </h5>
-          </div>
-
-          <div className="Controls-btns">
-            <span className="time">{time}</span>
-            <button onClick={() => skip(-5000)}>
-              <i className="material-icons">replay_5</i>
-            </button>
-
-            <button onClick={pauseAudio}>
-              {playStatus == Sound.status.PLAYING ? (
-                <i className="material-icons paused">pause</i>
-              ) : (
-                <i className="material-icons">play_arrow</i>
-              )}
-            </button>
-
-            <button onClick={stopAudio}>
-              <i className="material-icons">stop</i>
-            </button>
-
-            <button onClick={() => skip(10000)}>
-              <i className="material-icons">forward_10</i>
-            </button>
-          </div>
+        <div className="Controls-title">
+          <h6 className="Controls-title-podcast">
+            <Link to={podcastLink}>{podcast}</Link>
+          </h6>
+          <h5 className="Controls-title-track">
+            {' '}
+            {track.title.length > 50
+              ? track.title.substring(0, 50) + '...'
+              : track.title}
+          </h5>
         </div>
-      </Fragment>
-    ) : (
-      ''
-    )
-  }
+
+        <div className="Controls-btns">
+          <span className="time">{time}</span>
+          <button onClick={() => skip(-5000)}>
+            <i className="material-icons">replay_5</i>
+          </button>
+
+          <button onClick={togglePlayPause}>
+            {playStatus == Sound.status.PLAYING ? (
+              <i className="material-icons paused">pause</i>
+            ) : (
+              <i className="material-icons">play_arrow</i>
+            )}
+          </button>
+
+          <button onClick={stopAudio}>
+            <i className="material-icons">stop</i>
+          </button>
+
+          <button onClick={() => skip(10000)}>
+            <i className="material-icons">forward_10</i>
+          </button>
+        </div>
+      </div>
+    </React.Fragment>
+  ) : null
 }
 
-const mapStateToProps = state => ({
-  theme: state.settings.theme,
-  track: state.player.track,
-  image: state.player.track.img,
-  playStatus: state.player.playStatus,
-  podcast: state.player.track.podcast,
-  volumeVisible: state.player.showVolume,
-  time: convertSeconds(state.player.position / 1000)
+const mapStateToProps = ({ settings, player }) => ({
+  theme: settings.theme,
+  track: player.track,
+  image: player.track.img,
+  playStatus: player.playStatus,
+  podcast: player.track.podcast,
+  volumeVisible: player.showVolume,
+  time: convertSeconds(player.position / 1000),
 })
 
-export default connect(
-  mapStateToProps,
-  { pauseAudio, stopAudio, skip, showVolume, hideVolume, setVolume }
-)(Controls)
+export default connect(mapStateToProps, {
+  togglePlayPause,
+  stopAudio,
+  skip,
+  showVolume,
+  hideVolume,
+  setVolume,
+})(Controls)

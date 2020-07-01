@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import Sound from 'react-sound'
 import { connect } from 'react-redux'
 
@@ -9,56 +9,76 @@ import {
   handleFinishedPlaying
 } from '../../actions/player'
 
-class SoundWrapper extends Component {
-  handleSetLoading = () => {
-    this.props.setLoading(false)
+const SoundWrapper = ({
+  track,
+  volume,
+  onError,
+  position,
+  playStatus,
+  handlePlay,
+  handleFinishedPlaying,
+  setLoading
+}) => {
+  const handleSetLoading = () => {
+    setLoading(false)
   }
 
-  shouldComponentUpdate(nextProps) {
-    if (
-      nextProps.position !== this.props.position ||
-      nextProps.playStatus !== this.props.playStatus
-    ) {
-      return true
-    }
-    return false
-  }
+  // TODO:
+  const [playbackRate /* , setPlaybackRate */] = useState(1)
+  // between 0.5 and 4
+  // hotkeys D and S for fast and slow
 
-  render() {
-    const {
-      track,
-      volume,
-      onError,
-      position,
-      playStatus,
-      handlePlay,
-      handleFinishedPlaying
-    } = this.props
-
-    return (
-      <Sound
-        url={track}
-        volume={volume}
-        onError={onError}
-        onPlaying={handlePlay}
-        playStatus={playStatus}
-        playFromPosition={position}
-        onLoad={this.handleSetLoading}
-        onResume={this.handleSetLoading}
-        onFinishedPlaying={handleFinishedPlaying}
-      />
-    )
-  }
+  return (
+    <Sound
+      url={track}
+      volume={volume}
+      onError={onError}
+      onPlaying={handlePlay}
+      playStatus={playStatus}
+      onLoad={handleSetLoading}
+      playFromPosition={position}
+      onResume={handleSetLoading}
+      onFinishedPlaying={handleFinishedPlaying}
+      playbackRate={playbackRate}
+      // TODO: this doesn't work??? BUT WHY
+      // {...{
+      //   volume,
+      //   onError,
+      //   playStatus,
+      //   url: track,
+      //   onLoad: handleSetLoading,
+      //   onResume: handleSetLoading,
+      //   playFromPosition: position,
+      //   onPlaying: handleSetLoading,
+      //   onFinishedPlaying: handleFinishedPlaying
+      // }}
+    />
+  )
 }
 
-const mapStateToProps = state => ({
-  volume: state.player.volume,
-  track: state.player.track.src,
-  position: state.player.position,
-  playStatus: state.player.playStatus
+const mapStateToProps = ({ player }) => ({
+  volume: player.volume,
+  track: player.track.src,
+  position: player.position,
+  playStatus: player.playStatus
 })
 
-export default connect(
+// shouldComponentNOTUpdate
+const areEqual = (prevProps, nextProps) => {
+  console.log('⚡🚨: areEqual -> prevProps.playStatus', prevProps.playStatus)
+  console.log('⚡🚨: areEqual -> prevProps.position', prevProps.position)
+  if (
+    prevProps.position !== nextProps.position ||
+    prevProps.playStatus !== nextProps.playStatus
+  ) {
+    return false
+  }
+  return true
+}
+
+const SoundWrapperConnected = connect(
   mapStateToProps,
   { handlePlay, handleFinishedPlaying, setLoading }
-)(SoundWrapper)
+)(React.memo(SoundWrapper, areEqual))
+
+export default SoundWrapperConnected

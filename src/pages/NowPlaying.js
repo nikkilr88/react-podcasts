@@ -2,17 +2,15 @@ import React, { Component } from 'react'
 import Sound from 'react-sound'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import ProgressiveImage from 'react-progressive-image'
 
 // Data
 import { podcasts } from '../data/podcasts'
 
 // Components
 import Loader from '../components/Loader.component'
+import ProgressiveImage from 'react-progressive-image'
 import ProgressBar from '../components/AudioPlayer/ProgressBar.component'
-
-// Actions
-import { pauseAudio, skip, stopAudio } from '../actions/player'
+import { togglePlayPause, skip, stopAudio } from '../actions/player'
 
 // Styles
 import '../css/NowPlaying.styles.css'
@@ -69,7 +67,7 @@ class NowPlaying extends Component {
                 replay_5
               </i>
               <i
-                onClick={this.props.pauseAudio}
+                onClick={this.props.togglePlayPause}
                 className="material-icons play-btn"
               >
                 {playStatus === Sound.status.PAUSED
@@ -96,10 +94,9 @@ class NowPlaying extends Component {
 
 const mapStateToProps = state => ({
   player: state.player,
-  theme: state.settings.theme
+  theme: state.settings.theme,
 })
 
-export default connect(
-  mapStateToProps,
-  { pauseAudio, skip, stopAudio }
-)(NowPlaying)
+export default connect(mapStateToProps, { togglePlayPause, skip, stopAudio })(
+  NowPlaying
+)
