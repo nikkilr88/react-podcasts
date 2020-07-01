@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
+// Styles
 import '../css/BackButton.styles.css'
 
 class BackButton extends Component {
@@ -15,7 +16,7 @@ class BackButton extends Component {
 
     return path !== '/' ? (
       <button className={`BackButton ${theme}`} onClick={this.goBack}>
-        <i className='fas fa-arrow-left' /> Back
+        <i className="fas fa-arrow-left" /> Back
       </button>
     ) : (
       ''
@@ -24,7 +25,7 @@ class BackButton extends Component {
 }
 
 const mapStateToProps = state => ({
-  theme: state.theme.theme
+  theme: state.settings.theme
 })
 
 export default withRouter(connect(mapStateToProps)(BackButton))

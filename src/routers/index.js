@@ -4,15 +4,16 @@ import { connect } from 'react-redux'
 
 // Components
 import Sidebar from '../components/Sidebar.component'
-import Controls from '../components/Controls.component'
 import MobileNav from '../components/MobileNav.component'
 import BackButton from '../components/BackButton.component'
+import Controls from '../components/AudioPlayer/Controls.component'
 
 // Pages
 import HomePage from '../pages/Home'
 import NotFound from '../pages/NotFound'
 import SettingsPage from '../pages/Settings'
 import PodcastPage from '../pages/PodcastPage'
+import BookmarkedPage from '../pages/Bookmarked'
 import NowPlayingPage from '../pages/NowPlaying'
 
 const AppRouter = ({ theme }) => (
@@ -22,14 +23,15 @@ const AppRouter = ({ theme }) => (
       <div>
         <Sidebar />
       </div>
-      <div className='app-wrapper-content'>
+      <div className="app-wrapper-content">
         <BackButton />
         <Controls />
         <Switch>
-          <Route path='/' exact component={HomePage} />
-          <Route path='/nowplaying' exact component={NowPlayingPage} />
-          <Route path='/settings' exact component={SettingsPage} />
-          <Route path='/podcast/:podcast' exact component={PodcastPage} />
+          <Route path="/" exact component={HomePage} />
+          <Route path="/settings" exact component={SettingsPage} />
+          <Route path="/nowplaying" exact component={NowPlayingPage} />
+          <Route path="/bookmarked" exact component={BookmarkedPage} />
+          <Route path="/podcast/:podcast" exact component={PodcastPage} />
           <Route component={NotFound} />
         </Switch>
       </div>
@@ -38,7 +40,7 @@ const AppRouter = ({ theme }) => (
 )
 
 const mapStateToProps = state => ({
-  theme: state.theme.theme
+  theme: state.settings.theme
 })
 
 export default connect(mapStateToProps)(AppRouter)

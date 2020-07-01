@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { switchTheme } from '../actions/theme'
+import { switchTheme } from '../actions/settings'
 
+// Styles
 import '../css/SettingsPage.styles.css'
 
 class SettingsPage extends Component {
@@ -17,19 +18,19 @@ class SettingsPage extends Component {
       <label className={`Setting-radio Setting-radio-${theme}`} key={theme}>
         {theme}
         <input
-          type='radio'
-          name='theme'
+          type="radio"
+          name="theme"
           value={theme}
           onChange={this.handleChange}
           checked={theme === this.props.theme}
         />
-        <span className='checkmark' />
+        <span className="checkmark" />
       </label>
     ))
     return (
       <div className={`SettingsPage ${theme}`}>
-        <div className='SettingsPage-setting'>
-          <h2 className='Setting-title'>Theme</h2>
+        <div className="SettingsPage-setting">
+          <h2 className="Setting-title">Theme</h2>
           {themeRadioButtons}
         </div>
       </div>
@@ -38,7 +39,7 @@ class SettingsPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  theme: state.theme.theme
+  theme: state.settings.theme
 })
 
 export default connect(

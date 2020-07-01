@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 
+// Styles
 import '../css/Loader.styles.css'
 
 const Loader = ({ theme }) => {
@@ -8,7 +9,7 @@ const Loader = ({ theme }) => {
 }
 
 const mapStateToProps = state => ({
-  theme: state.theme.theme
+  theme: state.settings.theme
 })
 
 export default connect(mapStateToProps)(Loader)

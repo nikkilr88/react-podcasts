@@ -1,0 +1,48 @@
+.Unsupported-bg {
+  background: #2b2b2b;
+  height: 100vh;
+}
+
+.Unsupported-box {
+  background: #fcfcfc;
+  max-width: 550px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 50px;
+  border-radius: 3px;
+}
+
+.Unsupported-box p {
+  margin: 15px 0 35px 0;
+  font-size: 16px;
+  font-family: 'Lato';
+  font-weight: 100;
+}
+
+.Unsupported-box small {
+  font-size: 12px;
+  font-family: 'Lato';
+  font-weight: 100;
+  color: #777;
+}
+
+.Unsupported-box a {
+  border-bottom: 1px dotted #333;
+}
+
+.Unsupported-icon-wrapper {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 100%;
+  line-height: 50px;
+  background: #fcfcfc;
+  color: #e74c3c;
+  font-size: 20px;
+  font-weight: bold;
+}

@@ -4,16 +4,13 @@ import { Link } from 'react-router-dom'
 import ProgressiveImage from 'react-progressive-image'
 import { podcasts, categories } from '../data/podcasts'
 import styled from 'styled-components/macro'
-import '../css/HomePage.styles.css'
 import { useSpring, animated } from 'react-spring'
 
-const HomeStyles = styled.div`
-  /* css goes here */
-  /* scoped to the div */
-  /* ${interpolatedValue} */
-`
+// Styles
+import '../css/HomePage.styles.css'
 
-const useFadeInOnMount = ({ fromLeft }) => {
+// Fade in on mount
+const useFadeInOnMount = () => {
   const [mounted, setMounted] = useState(false)
   // set visible on mount, invisible on unmount
   useEffect(() => {
@@ -23,20 +20,16 @@ const useFadeInOnMount = ({ fromLeft }) => {
   }, [])
   return useSpring({
     opacity: mounted ? 1 : 0,
-    transform: mounted
-      ? `translateX(0)`
-      : `translateX(${fromLeft ? -50 : 50}px)`,
-    config: { tension: 340, mass: 1, friction: 19 }
   })
 }
 
 const PodcastGrid = ({ podcasts }) => {
-  const springVisibleOnMount = useFadeInOnMount({ fromLeft: false })
+  const springVisibleOnMount = useFadeInOnMount()
 
   return podcasts.map(podcast => (
     <Link
       key={podcast.name}
-      className='Home-podcast'
+      className="Home-podcast"
       to={`/podcast/${podcast.name.replace(/ /g, '_')}`}
     >
       <animated.div style={springVisibleOnMount}>
@@ -44,10 +37,10 @@ const PodcastGrid = ({ podcasts }) => {
           src={podcast.img.replace(/100x100/g, '360x360')}
           placeholder={podcast.img.replace(/100x100/g, '30x30')}
         >
-          {src => <img src={src} alt='podcast cover' />}
+          {src => <img src={src} alt="podcast cover" />}
         </ProgressiveImage>
 
-        <h3 className='Home-podcast-title'>
+        <h3 className="Home-podcast-title">
           {podcast.name.length > 13
             ? podcast.name.substring(0, 13) + '...'
             : podcast.name}
@@ -66,7 +59,7 @@ const PodcastCategories = ({ podcasts }) => {
       .map(podcast => (
         <Link
           key={podcast.name}
-          className='Home-podcast'
+          className="Home-podcast"
           to={`/podcast/${podcast.name.replace(/ /g, '_')}`}
         >
           <animated.div style={springVisibleOnMount}>
@@ -74,10 +67,10 @@ const PodcastCategories = ({ podcasts }) => {
               src={podcast.img.replace(/100x100/g, '360x360')}
               placeholder={podcast.img.replace(/100x100/g, '30x30')}
             >
-              {src => <img src={src} alt='podcast cover' />}
+              {src => <img src={src} alt="podcast cover" />}
             </ProgressiveImage>
 
-            <h3 className='Home-podcast-title'>
+            <h3 className="Home-podcast-title">
               {podcast.name.length > 13
                 ? podcast.name.substring(0, 13) + '...'
                 : podcast.name}
@@ -89,10 +82,10 @@ const PodcastCategories = ({ podcasts }) => {
       <animated.section
         style={springVisibleOnMount}
         key={podCategory.category}
-        className='Home-category'
+        className="Home-category"
       >
-        <h2 className='Home-category-title'>{podCategory.display}</h2>
-        <div className='Home-podcasts'>{podcastsInCategory}</div>
+        <h2 className="Home-category-title">{podCategory.display}</h2>
+        <div className="Home-podcasts">{podcastsInCategory}</div>
       </animated.section>
     )
   })
@@ -102,8 +95,8 @@ const HomePage = ({ theme }) => {
   const [sort, setSort] = useState('grid')
 
   return (
-    <HomeStyles className={`Home ${theme}`}>
-      <div className='Home-banner'>
+    <div className={`Home ${theme}`}>
+      <div className="Home-banner">
         <h1>Podcasts</h1>
         <div>
           <i
@@ -119,18 +112,18 @@ const HomePage = ({ theme }) => {
         </div>
       </div>
       {sort === 'grid' ? (
-        <div className='grid'>
+        <div className="grid">
           <PodcastGrid podcasts={podcasts} />
         </div>
       ) : (
         <PodcastCategories podcasts={podcasts} />
       )}
-    </HomeStyles>
+    </div>
   )
 }
 
-const mapStateToProps = ({ theme }) => ({
-  theme: theme.theme
+const mapStateToProps = ({ settings }) => ({
+  theme: settings.theme,
 })
 
 export default connect(mapStateToProps)(HomePage)

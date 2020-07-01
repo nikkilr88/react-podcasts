@@ -2,10 +2,10 @@ import React, { Component, Fragment } from 'react'
 import { NavLink as Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+// Images
 import Logo from '../images/devcasts-logo-slant.png'
 
-import { switchTheme } from '../actions/theme'
-
+// Styles
 import '../css/Sidebar.styles.css'
 
 class Sidebar extends Component {
@@ -29,26 +29,26 @@ class Sidebar extends Component {
             'sidebar-out'}`}
         >
           <ul>
-            <li className='sidebar-top'>
-              <Link to='/'>
-                <img src={Logo} alt='dev casts logo' />
+            <li className="sidebar-top">
+              <Link to="/">
+                <img src={Logo} alt="dev casts logo" />
               </Link>
             </li>
-            <li className='sidebar-link'>
-              <Link to='/' activeClassName='sidebar-active' exact>
-                <i className='fas fa-podcast' />
+            <li className="sidebar-link">
+              <Link to="/" activeClassName="sidebar-active" exact>
+                <i className="fas fa-podcast" />
                 <h4>Podcasts</h4>
               </Link>
             </li>
-            <li className='sidebar-link'>
-              <Link to='/bookmarked' activeClassName='sidebar-active' exact>
-                <i className='fas fa-bookmark' />
+            <li className="sidebar-link">
+              <Link to="/bookmarked" activeClassName="sidebar-active" exact>
+                <i className="fas fa-bookmark" />
                 <h4>Bookmarked</h4>
               </Link>
             </li>
-            <li className='sidebar-link settings'>
-              <Link to='/settings' activeClassName='sidebar-active' exact>
-                <i className='fas fa-cog' />
+            <li className="sidebar-link settings">
+              <Link to="/settings" activeClassName="sidebar-active" exact>
+                <i className="fas fa-cog" />
                 <h4>Settings</h4>
               </Link>
             </li>
@@ -60,10 +60,7 @@ class Sidebar extends Component {
 }
 
 const mapStateToProps = state => ({
-  theme: state.theme.theme
+  theme: state.settings.theme
 })
 
-export default connect(
-  mapStateToProps,
-  { switchTheme }
-)(Sidebar)
+export default connect(mapStateToProps)(Sidebar)

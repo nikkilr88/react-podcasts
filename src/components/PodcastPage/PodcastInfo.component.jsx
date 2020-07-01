@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
+
+// Components
 import ChannelInfo from './ChannelInfo.component'
 import EpisodeList from './EpisodeList.component'
-import { connect } from 'react-redux'
 
 class PodcastInfo extends Component {
   render() {
@@ -16,7 +18,7 @@ class PodcastInfo extends Component {
 }
 
 const mapStateToProps = state => ({
-  theme: state.theme.theme
+  theme: state.settings.theme
 })
 
 export default connect(mapStateToProps)(PodcastInfo)

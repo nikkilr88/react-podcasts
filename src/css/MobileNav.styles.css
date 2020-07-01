@@ -2,7 +2,6 @@
   position: fixed;
   width: 100%;
   bottom: 0;
-  background: #2c3e50;
   height: 60px;
   display: flex;
   align-items: center;
@@ -12,6 +11,7 @@
   z-index: 9999;
   display: none;
   transition: background 0.2s;
+  background: #2c3e50;
 }
 
 .MobileNav-top {
@@ -48,9 +48,14 @@
 
 /* ============ Themes ============ */
 
-.MobileNav.dark,
+.MobileNav.dark {
+  background: #333;
+  box-shadow: 0 -1px #3f3f3f, 0 -2px #222;
+}
+
 .MobileNav-top.dark {
-  background: #222;
+  background: #333;
+  box-shadow: 0 1px #3f3f3f, 0 2px #222;
 }
 
 .MobileNav.black,
@@ -59,12 +64,12 @@
 }
 
 .MobileNav-top.black {
-  border-bottom: 1px solid #2b2b2b;
+  border-bottom: 1px solid #111;
   color: #ccc;
 }
 
 .MobileNav.black {
-  border-top: 1px solid #2b2b2b;
+  border-top: 1px solid #111;
 }
 
 .MobileNav.black .MobileNav-icon {

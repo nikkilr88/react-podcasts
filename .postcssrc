@@ -3,7 +3,7 @@
   "plugins": {
     "autoprefixer": {
       "grid": true,
-       "browsers": ["last 4 versions"]
+       "browserList": ["last 4 versions"]
     }
   }
 }

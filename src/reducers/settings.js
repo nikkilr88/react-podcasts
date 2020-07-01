@@ -1,5 +1,6 @@
 const initialState = {
-  theme: localStorage.getItem('theme') || 'light'
+  theme: localStorage.getItem('theme') || 'light',
+  display: localStorage.getItem('display') || 'grid',
 }
 
 const settingsReducer = (state = initialState, action) => {
@@ -7,8 +8,15 @@ const settingsReducer = (state = initialState, action) => {
     case 'SWITCH_THEME':
       return {
         // TODO: change 'theme:' to 'settings:'
-        theme: action.theme
+        theme: action.theme,
       }
+
+    case 'SWITCH_DISPLAY':
+      return {
+        ...state,
+        display: action.displayValue,
+      }
+
     default:
       return state
   }

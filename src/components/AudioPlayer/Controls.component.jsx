@@ -3,7 +3,7 @@ import Sound from 'react-sound'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Volume from './Volume.component'
-import { convertSeconds } from '../utils'
+import { convertSeconds } from '../../utils'
 import ProgressBar from './ProgressBar.component'
 import SoundWrapper from './SoundWrapper.component'
 import {
@@ -12,10 +12,11 @@ import {
   setVolume,
   hideVolume,
   showVolume,
-  togglePlayPause
-} from '../actions/player'
+  togglePlayPause,
+} from '../../actions/player'
 
-import '../css/Controls.styles.css'
+// Styles
+import '../../css/Controls.styles.css'
 
 const Controls = ({
   hideVolume,
@@ -30,7 +31,7 @@ const Controls = ({
   time,
   togglePlayPause,
   track,
-  volumeVisible
+  volumeVisible,
 }) => {
   // Pause, skip forward / back
   const keyboardShortcuts = event => {
@@ -112,9 +113,9 @@ const Controls = ({
           {
             src: image,
             sizes: '192x192',
-            type: 'image/png'
-          }
-        ]
+            type: 'image/png',
+          },
+        ],
       })
 
       navigator.mediaSession.setActionHandler('seekbackward', () => {
@@ -161,17 +162,17 @@ const Controls = ({
       {volumeVisible && <Volume theme={theme} />}
 
       <div className={`Controls-player ${theme}`}>
-        <ProgressBar wrapperPosition='absolute' />
+        <ProgressBar wrapperPosition="absolute" />
 
         <Link to={podcastLink}>
-          <img className='Controls-img' src={image} alt='podcast cover' />
+          <img className="Controls-img" src={image} alt="podcast cover" />
         </Link>
 
-        <div className='Controls-title'>
-          <h6 className='Controls-title-podcast'>
+        <div className="Controls-title">
+          <h6 className="Controls-title-podcast">
             <Link to={podcastLink}>{podcast}</Link>
           </h6>
-          <h5 className='Controls-title-track'>
+          <h5 className="Controls-title-track">
             {' '}
             {track.title.length > 50
               ? track.title.substring(0, 50) + '...'
@@ -179,26 +180,26 @@ const Controls = ({
           </h5>
         </div>
 
-        <div className='Controls-btns'>
-          <span className='time'>{time}</span>
+        <div className="Controls-btns">
+          <span className="time">{time}</span>
           <button onClick={() => skip(-5000)}>
-            <i className='material-icons'>replay_5</i>
+            <i className="material-icons">replay_5</i>
           </button>
 
           <button onClick={togglePlayPause}>
             {playStatus == Sound.status.PLAYING ? (
-              <i className='material-icons paused'>pause</i>
+              <i className="material-icons paused">pause</i>
             ) : (
-              <i className='material-icons'>play_arrow</i>
+              <i className="material-icons">play_arrow</i>
             )}
           </button>
 
           <button onClick={stopAudio}>
-            <i className='material-icons'>stop</i>
+            <i className="material-icons">stop</i>
           </button>
 
           <button onClick={() => skip(10000)}>
-            <i className='material-icons'>forward_10</i>
+            <i className="material-icons">forward_10</i>
           </button>
         </div>
       </div>
@@ -206,17 +207,21 @@ const Controls = ({
   ) : null
 }
 
-const mapStateToProps = ({ theme, player }) => ({
-  theme: theme.theme,
+const mapStateToProps = ({ settings, player }) => ({
+  theme: settings.theme,
   track: player.track,
   image: player.track.img,
   playStatus: player.playStatus,
   podcast: player.track.podcast,
   volumeVisible: player.showVolume,
-  time: convertSeconds(player.position / 1000)
+  time: convertSeconds(player.position / 1000),
 })
 
-export default connect(
-  mapStateToProps,
-  { togglePlayPause, stopAudio, skip, showVolume, hideVolume, setVolume }
-)(Controls)
+export default connect(mapStateToProps, {
+  togglePlayPause,
+  stopAudio,
+  skip,
+  showVolume,
+  hideVolume,
+  setVolume,
+})(Controls)

@@ -1,11 +1,16 @@
-import React from 'react'
-import AppRouter from './routers'
+import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
-
 import { Provider } from 'react-redux'
-import configureStore from './store/config-store'
 import throttle from 'lodash.throttle'
 
+// Router & Store
+import AppRouter from './routers'
+import configureStore from './store/config-store'
+
+// Components
+import Unsupported from './components/Unsupported.component'
+
+// Styles
 import './css/styles.styles.css'
 import './css/themes/light.css'
 import './css/themes/dark.css'
@@ -32,8 +37,14 @@ store.subscribe(
 )
 
 ReactDOM.render(
-  <Provider store={store}>
-    <AppRouter />
-  </Provider>,
+  <Fragment>
+    {document.documentMode ? (
+      <Unsupported />
+    ) : (
+      <Provider store={store}>
+        <AppRouter />
+      </Provider>
+    )}
+  </Fragment>,
   document.getElementById('root')
 )
