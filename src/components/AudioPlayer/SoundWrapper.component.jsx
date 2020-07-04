@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import {
   handlePlay,
   setLoading,
-  handleFinishedPlaying
+  handleFinishedPlaying,
 } from '../../actions/player'
 
 const SoundWrapper = ({
@@ -17,8 +17,10 @@ const SoundWrapper = ({
   playStatus,
   handlePlay,
   handleFinishedPlaying,
-  setLoading
+  setLoading,
 }) => {
+  const [playbackRate, setPlaybackRate] = useState(1)
+
   const handleSetLoading = () => {
     setLoading(false)
   }
@@ -43,7 +45,7 @@ const mapStateToProps = ({ player }) => ({
   volume: player.volume,
   track: player.track.src,
   position: player.position,
-  playStatus: player.playStatus
+  playStatus: player.playStatus,
 })
 
 // shouldComponentNOTUpdate
@@ -60,7 +62,7 @@ const areEqual = (prevProps, nextProps) => {
 const SoundWrapperConnected = connect(mapStateToProps, {
   handlePlay,
   handleFinishedPlaying,
-  setLoading
+  setLoading,
 })(React.memo(SoundWrapper, areEqual))
 
 export default SoundWrapperConnected
