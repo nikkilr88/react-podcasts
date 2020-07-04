@@ -2,10 +2,13 @@ import React, { useRef, useEffect, Fragment } from 'react'
 import Sound from 'react-sound'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+
+// Components
 import Volume from './Volume.component'
-import { convertSeconds } from '../../utils'
 import ProgressBar from './ProgressBar.component'
 import SoundWrapper from './SoundWrapper.component'
+
+// Actions
 import {
   skip,
   stopAudio,
@@ -14,6 +17,9 @@ import {
   showVolume,
   togglePlayPause,
 } from '../../actions/player'
+
+// Utils
+import { convertSeconds } from '../../utils'
 
 // Styles
 import '../../css/Controls.styles.css'
@@ -75,8 +81,6 @@ const Controls = ({
     showVolume()
   }
 
-  // TODO: FEATURE REQUEST: speed controls!!!
-
   const onSetVolume = event => {
     const val = event.key === 'ArrowUp' ? 5 : -5
 
@@ -116,10 +120,10 @@ const Controls = ({
     }
   }
 
-  // boot up media sessions
+  // Set Media session whenever track title changes
   useEffect(setMediaSession, [track.title])
 
-  // boot up keyboard controls
+  // Set up event listeners
   useEffect(() => {
     // Keyboard controls
     document.addEventListener('keyup', handleOnKeyUp, false)
@@ -153,7 +157,6 @@ const Controls = ({
             <Link to={podcastLink}>{podcast}</Link>
           </h6>
           <h5 className="Controls-title-track">
-            {' '}
             {track.title.length > 50
               ? track.title.substring(0, 50) + '...'
               : track.title}
