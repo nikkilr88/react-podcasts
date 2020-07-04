@@ -64,7 +64,6 @@ const Controls = ({
   }
 
   const timerRef = useRef(null)
-  /* timerRef = {current: null} */
 
   const toggleVolumeVisibility = () => {
     if (timerRef.current) {
@@ -81,15 +80,10 @@ const Controls = ({
   // TODO: FEATURE REQUEST: speed controls!!!
 
   const onSetVolume = event => {
-    console.log('⚡🚨: event', event)
-    console.log('VOLUME')
-    // turbo console log
     const val = event.key === 'ArrowUp' ? 5 : -5
 
     toggleVolumeVisibility()
     setVolume(val)
-    console.log('⚡🚨: val', val)
-    console.log('⚡🚨: setVolume', setVolume)
   }
 
   const handleOnKeyDown = event => {

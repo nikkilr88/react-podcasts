@@ -23,11 +23,6 @@ const SoundWrapper = ({
     setLoading(false)
   }
 
-  // TODO:
-  const [playbackRate /* , setPlaybackRate */] = useState(1)
-  // between 0.5 and 4
-  // hotkeys D and S for fast and slow
-
   return (
     <Sound
       url={track}
@@ -40,18 +35,6 @@ const SoundWrapper = ({
       onResume={handleSetLoading}
       onFinishedPlaying={handleFinishedPlaying}
       playbackRate={playbackRate}
-      // TODO: this doesn't work??? BUT WHY
-      // {...{
-      //   volume,
-      //   onError,
-      //   playStatus,
-      //   url: track,
-      //   onLoad: handleSetLoading,
-      //   onResume: handleSetLoading,
-      //   playFromPosition: position,
-      //   onPlaying: handleSetLoading,
-      //   onFinishedPlaying: handleFinishedPlaying
-      // }}
     />
   )
 }
@@ -65,8 +48,6 @@ const mapStateToProps = ({ player }) => ({
 
 // shouldComponentNOTUpdate
 const areEqual = (prevProps, nextProps) => {
-  console.log('⚡🚨: areEqual -> prevProps.playStatus', prevProps.playStatus)
-  console.log('⚡🚨: areEqual -> prevProps.position', prevProps.position)
   if (
     prevProps.position !== nextProps.position ||
     prevProps.playStatus !== nextProps.playStatus
@@ -76,9 +57,10 @@ const areEqual = (prevProps, nextProps) => {
   return true
 }
 
-const SoundWrapperConnected = connect(
-  mapStateToProps,
-  { handlePlay, handleFinishedPlaying, setLoading }
-)(React.memo(SoundWrapper, areEqual))
+const SoundWrapperConnected = connect(mapStateToProps, {
+  handlePlay,
+  handleFinishedPlaying,
+  setLoading
+})(React.memo(SoundWrapper, areEqual))
 
 export default SoundWrapperConnected
