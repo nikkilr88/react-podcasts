@@ -1,9 +1,9 @@
 /* PLAYER CONTROLS */
 .Controls-player {
-  position: fixed;
+  /* position: fixed;
   bottom: 0;
   right: 0;
-  left: 200px;
+  left: 200px; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -11,6 +11,7 @@
   z-index: 999;
   padding-right: 15px;
   overflow: hidden;
+  grid-area: Controls;
 }
 
 .Controls-img {

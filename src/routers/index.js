@@ -25,7 +25,6 @@ const AppRouter = ({ theme }) => (
       </div>
       <div className="app-wrapper-content">
         <BackButton />
-        <Controls />
         <Switch>
           <Route path="/" exact component={HomePage} />
           <Route path="/settings" exact component={SettingsPage} />
@@ -35,12 +34,13 @@ const AppRouter = ({ theme }) => (
           <Route component={NotFound} />
         </Switch>
       </div>
+      <Controls />
     </div>
   </Router>
 )
 
 const mapStateToProps = state => ({
-  theme: state.settings.theme
+  theme: state.settings.theme,
 })
 
 export default connect(mapStateToProps)(AppRouter)

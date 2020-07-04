@@ -7,6 +7,7 @@ body {
   overflow-y: scroll;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
 }
 
 html {
@@ -32,15 +33,25 @@ button {
 }
 
 .app-wrapper {
-  display: flex;
+  /* display: flex;
+  flex-wrap: wrap;
   transition: background 0.2s;
-  min-height: calc(100vh - 120px);
+  min-height: calc(100vh - 120px); */
+  display: grid;
+  grid-template-areas:
+    'Sidebar Content Content'
+    'Controls Controls Controls';
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto;
+  height: 100vh;
 }
 
 .app-wrapper-content {
   flex: 1;
   padding: 25px 50px;
   max-width: 100%;
+  grid-area: Content;
+  overflow-y: scroll;
 }
 
 .error {

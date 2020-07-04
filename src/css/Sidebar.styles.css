@@ -2,13 +2,14 @@
   position: sticky;
   left: 0;
   top: 0;
-  height: 100vh;
+  height: 100%;
   width: 200px;
   background: #1b1b1b;
   z-index: 9999;
   display: flex;
   flex-direction: column;
   padding: 15px 35px;
+  grid-area: Sidebar;
 }
 
 .sidebar img {
