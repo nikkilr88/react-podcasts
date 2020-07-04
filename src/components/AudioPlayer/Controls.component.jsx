@@ -117,15 +117,7 @@ const Controls = ({
   }
 
   // boot up media sessions
-  useEffect(setMediaSession, [])
-
-  // media sessions
-  useEffect(() => {
-    if (track.title !== track.title) {
-      // Update media session when track changes
-      setMediaSession()
-    }
-  })
+  useEffect(setMediaSession, [track.title])
 
   // boot up keyboard controls
   useEffect(() => {
