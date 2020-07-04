@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, Fragment } from 'react'
 import Sound from 'react-sound'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -70,9 +70,7 @@ const Controls = ({
       clearInterval(timerRef.current)
     }
 
-    timerRef.current = setTimeout(() => {
-      hideVolume()
-    }, 1000)
+    timerRef.current = setTimeout(hideVolume, 1000)
 
     showVolume()
   }
@@ -87,10 +85,6 @@ const Controls = ({
   }
 
   const handleOnKeyDown = event => {
-    // if no track, do nothing
-    // TODO: unnecessary?
-    // if (track.src.length < 1) return
-
     if ([' ', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
       event.preventDefault()
       return false
@@ -150,7 +144,7 @@ const Controls = ({
   const podcastLink = `/podcast/${podcast.replace(/ /gi, '_')}`
 
   return track.title.length > 0 ? (
-    <React.Fragment>
+    <Fragment>
       <SoundWrapper />
 
       {volumeVisible && <Volume theme={theme} />}
@@ -197,7 +191,7 @@ const Controls = ({
           </button>
         </div>
       </div>
-    </React.Fragment>
+    </Fragment>
   ) : null
 }
 

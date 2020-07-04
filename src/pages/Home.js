@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ProgressiveImage from 'react-progressive-image'
 import { podcasts, categories } from '../data/podcasts'
-import { useSpring, animated } from 'react-spring'
+import { useSpring, animated } from 'react-spring/web.cjs'
 
 // Styles
 import '../css/HomePage.styles.css'
@@ -22,7 +22,7 @@ const useFadeInOnMount = () => {
   })
 }
 
-const PodcastGridView = ({ podcasts }) => {
+const PodcastGrid = ({ podcasts }) => {
   const springVisibleOnMount = useFadeInOnMount()
 
   return podcasts.map(podcast => (
@@ -49,7 +49,7 @@ const PodcastGridView = ({ podcasts }) => {
   ))
 }
 
-const PodcastCategoriesView = ({ podcasts }) => {
+const PodcastCategories = ({ podcasts }) => {
   const springVisibleOnMount = useFadeInOnMount({ fromLeft: true })
 
   return categories.map(podCategory => {
@@ -112,10 +112,10 @@ const HomePage = ({ theme }) => {
       </div>
       {sort === 'grid' ? (
         <div className="grid">
-          <PodcastGridView podcasts={podcasts} />
+          <PodcastGrid podcasts={podcasts} />
         </div>
       ) : (
-        <PodcastCategoriesView podcasts={podcasts} />
+        <PodcastCategories podcasts={podcasts} />
       )}
     </div>
   )
