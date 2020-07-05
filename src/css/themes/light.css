@@ -2,10 +2,6 @@
   background: none;
 }
 
-.volume-wrapper.light {
-  background: #666;
-}
-
 @media (hover: hover) {
   .EpisodeListElement.light:hover {
     background: #f9f9f9;

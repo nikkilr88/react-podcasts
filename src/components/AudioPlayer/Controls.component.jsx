@@ -146,25 +146,24 @@ const Controls = ({
       {volumeVisible && <Volume theme={theme} />}
 
       <div className={`Controls-player ${theme}`}>
-        <ProgressBar wrapperPosition="absolute" />
-
         <Link to={podcastLink}>
           <img className="Controls-img" src={image} alt="podcast cover" />
         </Link>
 
         <div className="Controls-title">
-          <h6 className="Controls-title-podcast">
-            <Link to={podcastLink}>{podcast}</Link>
-          </h6>
-          <h5 className="Controls-title-track">
-            {track.title.length > 50
-              ? track.title.substring(0, 50) + '...'
+          <strong className="Controls-title-track">
+            {track.title.length > 20
+              ? track.title.substring(0, 20) + '...'
               : track.title}
-          </h5>
+          </strong>
+          <Link to={podcastLink} className="Controls-title-podcast">
+            {podcast}
+          </Link>
         </div>
 
+        <ProgressBar />
+
         <div className="Controls-btns">
-          <span className="time">{time}</span>
           <button onClick={() => skip(-5000)}>
             <i className="material-icons">replay_5</i>
           </button>

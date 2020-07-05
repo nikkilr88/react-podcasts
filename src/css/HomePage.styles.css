@@ -1,47 +1,42 @@
-.Home {
-  padding: 10px;
-}
-
-.Home-banner {
-  border-radius: 10px;
-  margin: 0 0 25px;
+/* .Home-banner {
+  font-family: 'Poppins', sans-serif;
+  font-size: 42px;
   text-align: left;
-  color: #555;
+  margin-bottom: 100px;
+} */
+
+.Home-podcastTitleBar {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 25px;
 }
 
-.Home-banner .icon {
-  font-size: 20px;
+.Home-podcastTitleBar .icon {
+  font-size: 16px;
   margin: 10px;
   cursor: pointer;
   opacity: 0.5;
 }
 
-.Home-banner .icon.active {
+.Home-podcastTitleBar .icon.active {
   opacity: 1;
 }
 
-.Home-banner h1 {
-  font-size: 33px;
+.Home-podcastTitleBar strong {
+  font-size: 22px;
   margin-bottom: 10px;
-  font-weight: 500;
+  font-weight: bold;
 }
 
 .Home-category {
   margin: 50px 0;
 }
 
-.Home-category:last-of-type {
-  margin-bottom: 100px;
-}
-
 .Home-category-title {
-  font-size: 22px;
+  font-size: 18px;
   text-align: left;
-  color: #555;
-  font-weight: 500;
-  margin-bottom: 5px;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
 .Home-category-subtitle {
@@ -52,6 +47,7 @@
   font-weight: 500;
 }
 
+/* TODO: Move podcast styles into own file */
 .Home-podcast {
   text-decoration: none;
 }
@@ -59,11 +55,12 @@
 .Home-podcast img {
   margin-bottom: 5px;
   width: 100%;
+  border-radius: 10px;
 }
 
 .Home-podcast-title {
   font-weight: normal;
-  color: #999;
+  color: #777;
   text-align: left;
   overflow: hidden;
   white-space: nowrap;
@@ -72,30 +69,30 @@
 
 .Home-podcasts {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+  grid-gap: 20px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
   grid-gap: 20px;
-  margin-bottom: 100px;
 }
 
 /* ============ Themes ============ */
 
 .Home.dark .Home-category-title,
-.Home.dark .Home-banner {
-  color: #eee;
+.Home.dark .Home-podcastTitleBar,
+.Home.dark .Home-podcastTitleBar button {
+  color: #fff;
 }
 
 .Home.dark .Home-podcast-title {
-  color: #777;
+  color: #eee;
 }
 
 .Home.dark .Home-category-subtitle {
-  color: #6d6d6d;
+  color: #fff;
 }
 
 .Home.black .Home-podcast-title {

@@ -1,28 +1,26 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
+
+// Utils
+import { convertSeconds } from '../../utils'
 
 // Styles
 import '../../css/ProgressBar.styles.css'
 
-class ProgressBar extends Component {
-  render() {
-    const { position, duration, theme, width, wrapperPosition } = this.props
-
-    const styles = {
-      width: (position * 100) / duration + '%',
-    }
-
-    const wrapperStyles = {
-      width: width,
-      position: wrapperPosition,
-    }
-
-    return (
-      <div className={`progress-wrapper ${theme}`} style={wrapperStyles}>
-        <div style={styles} className="progress-bar" />
-      </div>
-    )
+const ProgressBar = ({ position, duration, theme, width, wrapperPosition }) => {
+  const styles = {
+    width: (position * 100) / duration + '%',
   }
+
+  return (
+    <div className="Progress-wrapper">
+      <p>{convertSeconds(position / 1000)}</p>
+      <div className={`Progress-background ${theme}`}>
+        <div style={styles} className="Progress-bar" />
+      </div>
+      <p>{convertSeconds(duration / 1000)}</p>
+    </div>
+  )
 }
 
 const mapStateToProps = state => ({

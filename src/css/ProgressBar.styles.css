@@ -1,40 +1,50 @@
-.progress-wrapper {
-  top: 0;
-  left: 65px;
-  right: 0;
-  height: 5px;
-  margin: 0 auto 25px auto;
+.Progress-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
 }
 
-.progress-bar {
+.Progress-wrapper p {
+  margin: 0 10px;
+}
+
+.Progress-background {
+  height: 5px;
+  width: 250px;
+  margin: 0 auto 0 auto;
+  border-radius: 50px;
+  position: relative !important;
+}
+
+.Progress-bar {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 0%;
   background: linear-gradient(to right, #aa4b6b, #6b6b83, #3b8d99);
+  border-radius: 50px;
 }
 
 /* ============ Themes ============ */
 
-.progress-wrapper.black {
+.Progress-background.black {
   background: #222;
 }
 
-.progress-wrapper.dark,
-.progress-wrapper.light {
-  background: #444;
+.Progress-background.dark,
+.Progress-background.light {
+  background: #333;
 }
 
-.progress-wrapper.black .progress-bar {
+.Progress-background.black .Progress-bar {
   background: #c31432;
 }
 
 @media only screen and (max-width: 600px) {
-  .progress-wrapper {
-    left: 0;
-  }
-  .progress-wrapper.light {
+  .Progress-background.light {
     background: #ccc;
   }
 }

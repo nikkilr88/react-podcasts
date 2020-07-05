@@ -2,26 +2,32 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ProgressiveImage from 'react-progressive-image'
-import { podcasts, categories } from '../data/podcasts'
 import { useSpring, animated } from 'react-spring/web.cjs'
+
+// Actions
+import { switchDisplay } from '../actions/settings'
+
+// Data
+import { podcasts, categories } from '../data/podcasts'
 
 // Styles
 import '../css/HomePage.styles.css'
 
-// Fade in on mount
+// !: FADE IN HOOK
 const useFadeInOnMount = () => {
   const [mounted, setMounted] = useState(false)
-  // set visible on mount, invisible on unmount
+
   useEffect(() => {
     setMounted(true)
-    // TODO: transition if you want unmount animation?
     return () => setMounted(false)
   }, [])
+
   return useSpring({
     opacity: mounted ? 1 : 0,
   })
 }
 
+// !: PODCAST GRID VIEW
 const PodcastGrid = ({ podcasts }) => {
   const springVisibleOnMount = useFadeInOnMount()
 
@@ -36,19 +42,16 @@ const PodcastGrid = ({ podcasts }) => {
           src={podcast.img.replace(/100x100/g, '360x360')}
           placeholder={podcast.img.replace(/100x100/g, '30x30')}
         >
-          {src => <img src={src} alt="podcast cover" />}
+          {src => <img src={src} alt={`${podcast.name} podcast image`} />}
         </ProgressiveImage>
 
-        <h3 className="Home-podcast-title">
-          {podcast.name.length > 13
-            ? podcast.name.substring(0, 13) + '...'
-            : podcast.name}
-        </h3>
+        <p className="Home-podcast-title">{podcast.name}</p>
       </animated.div>
     </Link>
   ))
 }
 
+// !: PODCAST CATEGORY VIEW
 const PodcastCategories = ({ podcasts }) => {
   const springVisibleOnMount = useFadeInOnMount({ fromLeft: true })
 
@@ -90,27 +93,39 @@ const PodcastCategories = ({ podcasts }) => {
   })
 }
 
-const HomePage = ({ theme }) => {
-  const [sort, setSort] = useState('grid')
-
+// !: HOMEPAGE COMPONENT
+const HomePage = ({ theme, display, switchDisplay }) => {
   return (
     <div className={`Home ${theme}`}>
-      <div className="Home-banner">
-        <h1>Podcasts</h1>
+      {/* <h1 className="Home-banner">
+        Find a podcast. <br />{' '}
+        {phrases[Math.floor(Math.random() * phrases.length)]}
+      </h1> */}
+      <div className="Home-podcastTitleBar">
+        <strong>Podcasts</strong>
         <div>
-          <i
-            className={`fas fa-list icon ${
-              sort === 'category' ? 'active' : ''
-            }`}
-            onClick={() => setSort('category')}
-          />
-          <i
-            className={`fas fa-th icon ${sort === 'grid' ? 'active' : ''}`}
-            onClick={() => setSort('grid')}
-          />
+          <button>
+            <i
+              className={`fas fa-list icon ${
+                display === 'category' ? 'active' : ''
+              }`}
+              onClick={() => {
+                switchDisplay('category')
+              }}
+            />
+          </button>
+          <button>
+            {' '}
+            <i
+              className={`fas fa-th icon ${display === 'grid' ? 'active' : ''}`}
+              onClick={() => {
+                switchDisplay('grid')
+              }}
+            />
+          </button>
         </div>
       </div>
-      {sort === 'grid' ? (
+      {display === 'grid' ? (
         <div className="grid">
           <PodcastGrid podcasts={podcasts} />
         </div>
@@ -123,6 +138,7 @@ const HomePage = ({ theme }) => {
 
 const mapStateToProps = ({ settings }) => ({
   theme: settings.theme,
+  display: settings.display,
 })
 
-export default connect(mapStateToProps)(HomePage)
+export default connect(mapStateToProps, { switchDisplay })(HomePage)

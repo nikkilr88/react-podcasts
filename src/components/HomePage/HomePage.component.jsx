@@ -19,8 +19,11 @@ class HomePage extends Component {
 
     return (
       <div className={`Home ${theme}`}>
-        <div className="Home-banner">
-          <h1>Podcasts</h1>
+        <h1>
+          Listen to a podcast. <br /> Level up your coding skills.
+        </h1>
+        <div>
+          <strong>Podcast</strong>
           <div>
             <i
               className={`fas fa-list icon ${
@@ -46,10 +49,7 @@ class HomePage extends Component {
 
 const mapStateToProps = state => ({
   theme: state.settings.theme,
-  display: state.settings.display
+  display: state.settings.display,
 })
 
-export default connect(
-  mapStateToProps,
-  { switchDisplay }
-)(HomePage)
+export default connect(mapStateToProps, { switchDisplay })(HomePage)

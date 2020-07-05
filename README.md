@@ -7,6 +7,9 @@ Website: https://devcasts.netlify.com
 ### Built With
 
 - [React](https://reactjs.org/)
+
+  - Hooks
+
 - [Parcel](https://parceljs.org)
 
 ### Prerequisites

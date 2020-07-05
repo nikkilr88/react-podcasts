@@ -3,19 +3,19 @@ import { NavLink as Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 // Images
-import Logo from '../images/devcasts-logo-slant.png'
+import Logo from '../images/DevCasts-Logo.svg'
 
 // Styles
 import '../css/Sidebar.styles.css'
 
 class Sidebar extends Component {
   state = {
-    showSidebar: false
+    showSidebar: false,
   }
 
   toggleSidebar = e => {
     this.setState(prevState => ({
-      showSidebar: !prevState.showSidebar
+      showSidebar: !prevState.showSidebar,
     }))
   }
 
@@ -25,8 +25,9 @@ class Sidebar extends Component {
     return (
       <Fragment>
         <div
-          className={`sidebar ${theme} ${this.state.showSidebar &&
-            'sidebar-out'}`}
+          className={`sidebar ${theme} ${
+            this.state.showSidebar && 'sidebar-out'
+          }`}
         >
           <ul>
             <li className="sidebar-top">
@@ -37,19 +38,19 @@ class Sidebar extends Component {
             <li className="sidebar-link">
               <Link to="/" activeClassName="sidebar-active" exact>
                 <i className="fas fa-podcast" />
-                <h4>Podcasts</h4>
+                <strong>Library</strong>
               </Link>
             </li>
             <li className="sidebar-link">
               <Link to="/bookmarked" activeClassName="sidebar-active" exact>
                 <i className="fas fa-bookmark" />
-                <h4>Bookmarked</h4>
+                <strong>Bookmarked</strong>
               </Link>
             </li>
             <li className="sidebar-link settings">
               <Link to="/settings" activeClassName="sidebar-active" exact>
                 <i className="fas fa-cog" />
-                <h4>Settings</h4>
+                <strong>Settings</strong>
               </Link>
             </li>
           </ul>
@@ -60,7 +61,7 @@ class Sidebar extends Component {
 }
 
 const mapStateToProps = state => ({
-  theme: state.settings.theme
+  theme: state.settings.theme,
 })
 
 export default connect(mapStateToProps)(Sidebar)

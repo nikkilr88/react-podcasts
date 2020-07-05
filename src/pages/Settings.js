@@ -14,6 +14,7 @@ class SettingsPage extends Component {
     const { theme } = this.props
     const themes = ['light', 'dark', 'black']
 
+    // TODO: Make accessible!
     const themeRadioButtons = themes.map(theme => (
       <label className={`Setting-radio Setting-radio-${theme}`} key={theme}>
         {theme}
@@ -39,10 +40,7 @@ class SettingsPage extends Component {
 }
 
 const mapStateToProps = state => ({
-  theme: state.settings.theme
+  theme: state.settings.theme,
 })
 
-export default connect(
-  mapStateToProps,
-  { switchTheme }
-)(SettingsPage)
+export default connect(mapStateToProps, { switchTheme })(SettingsPage)
