@@ -10,7 +10,7 @@ import '../../css/EpisodeList.styles.css'
 
 class EpisodeList extends Component {
   state = {
-    episode: null
+    episode: null,
   }
 
   setEpisode = (date, title, description) => {
@@ -18,14 +18,14 @@ class EpisodeList extends Component {
       episode: {
         date,
         title,
-        description
-      }
+        description,
+      },
     })
   }
 
   clearEpisode = () => {
     this.setState({
-      episode: null
+      episode: null,
     })
   }
 
@@ -57,7 +57,11 @@ class EpisodeList extends Component {
             clearEpisode={this.clearEpisode}
           />
         )}
-        <h1 className={`EpisodeList-title ${theme}`}>Available Episodes</h1>
+        <p className={`EpisodeList-title ${theme}`}>
+          <strong>Available Episodes</strong>
+          <small> ({episodes.length})</small>
+        </p>
+
         <div className="EpisodeList-wrapper">{episodeList}</div>
       </Fragment>
     )
@@ -66,7 +70,7 @@ class EpisodeList extends Component {
 
 const mapStateToProps = state => ({
   theme: state.settings.theme,
-  podcast: state.podcast.podcast
+  podcast: state.podcast.podcast,
 })
 
 export default connect(mapStateToProps)(EpisodeList)

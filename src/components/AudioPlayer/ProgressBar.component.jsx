@@ -7,18 +7,20 @@ import { convertSeconds } from '../../utils'
 // Styles
 import '../../css/ProgressBar.styles.css'
 
-const ProgressBar = ({ position, duration, theme, width, wrapperPosition }) => {
+const ProgressBar = ({ position, duration, theme }) => {
   const styles = {
     width: (position * 100) / duration + '%',
   }
 
   return (
     <div className="Progress-wrapper">
-      <p>{convertSeconds(position / 1000)}</p>
       <div className={`Progress-background ${theme}`}>
         <div style={styles} className="Progress-bar" />
       </div>
-      <p>{convertSeconds(duration / 1000)}</p>
+      <div className="Progress-times">
+        <p>{convertSeconds(position / 1000)}</p>
+        <p>- {convertSeconds(duration / 1000 - position / 1000)}</p>
+      </div>
     </div>
   )
 }

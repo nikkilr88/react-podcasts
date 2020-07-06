@@ -73,11 +73,8 @@
   width: 20px;
 }
 
-.scrollable::-webkit-scrollbar-track {
-}
-
 .scrollable::-webkit-scrollbar-thumb {
-  background: #333;
+  background: #1b1b1b;
 }
 
 .close {

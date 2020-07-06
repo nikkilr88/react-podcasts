@@ -79,6 +79,8 @@
   grid-gap: 20px;
 }
 
+/* https://stackoverflow.com/questions/39586445/child-div-ignoring-parent-element-padding-bottom-in-firefox-but-working-on-chrom */
+
 /* ============ Themes ============ */
 
 .Home.dark .Home-category-title,

@@ -2,17 +2,20 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  align-items: center;
 }
 
-.Progress-wrapper p {
-  margin: 0 10px;
+.Progress-times {
+  /* position: absolute; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  color: #999;
 }
 
 .Progress-background {
   height: 5px;
-  width: 250px;
+  width: 300px;
   margin: 0 auto 0 auto;
   border-radius: 50px;
   position: relative !important;

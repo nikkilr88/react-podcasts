@@ -1,15 +1,25 @@
 .NowPlaying-player {
   background-position: center;
   background-size: cover;
-  height: calc(100vh - 140px);
-  margin: 0 25px;
+  height: calc(100vh - 130px);
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
-.NowPlaying-close {
+/* Override progress bar styles */
+.NowPlaying-player .Progress-wrapper {
+  position: relative;
+  min-width: 100%;
+  margin-top: -25px;
+}
+
+.NowPlaying-player .Progress-background {
+  width: 100%;
+}
+
+.NowPlaying-player .NowPlaying-close {
   position: fixed;
   top: 70px;
   left: 10px;
@@ -22,7 +32,9 @@
 }
 
 .NowPlaying-player img {
-  width: 150px;
+  display: block;
+  width: 100vw;
+  padding: 0 10px;
   transition: all 0.1s;
 }
 
@@ -31,15 +43,17 @@
 }
 
 .NowPlaying-info h3 {
-  font-size: 18px;
-  color: #555;
+  font-weight: normal;
+  font-size: 1.8em;
+  margin-top: 20px;
+  color: #999;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .NowPlaying-info h4 {
-  font-weight: normal;
-  font-size: 16px;
-  margin: 10px;
-  color: #999;
+  display: none;
 }
 
 .NowPlaying-player a {
@@ -50,6 +64,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .NowPlaying-controls .material-icons {

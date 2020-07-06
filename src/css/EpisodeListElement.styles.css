@@ -60,7 +60,7 @@
 
 .EpisodeListElement.light .EpisodeListElement-play.selected {
   background: #3498db;
-  border: 1px solid #3498db;
+  border: 2px solid #3498db;
   color: #fcfcfc;
 }
 
@@ -73,13 +73,13 @@
 }
 
 .EpisodeListElement.dark .EpisodeListElement-play {
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 2px solid rgba(255, 255, 255, 0.35);
   color: rgba(255, 255, 255, 0.35);
 }
 
 .EpisodeListElement.dark .EpisodeListElement-play.selected {
   background: #3498db;
-  border: 1px solid #3498db;
+  border: 2px solid #3498db;
   color: #fcfcfc;
 }
 
@@ -98,7 +98,7 @@
 
 .EpisodeListElement.black .EpisodeListElement-play.selected {
   background: linear-gradient(45deg, #c31432, #240b36);
-  border: 1px solid #240b36;
+  border: 2px solid #240b36;
   color: #fcfcfc;
 }
 

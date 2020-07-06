@@ -3,9 +3,15 @@
   padding: 10px;
   text-align: left;
   width: 90%;
-  font-weight: normal;
   display: block;
-  font-size: 2rem;
+  font-size: 2.2em;
+  display: flex;
+  align-items: center;
+}
+
+.EpisodeList-title small {
+  margin-left: 5px;
+  opacity: 0.5;
 }
 
 /* ============ Themes ============ */

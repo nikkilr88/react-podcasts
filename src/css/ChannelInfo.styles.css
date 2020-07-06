@@ -19,6 +19,7 @@
   height: 275px;
   width: 275px;
   margin-right: 25px;
+  border-radius: 10px;
 }
 
 .ChannelInfo-title {
@@ -47,6 +48,7 @@
   font-size: 1.4rem;
   text-decoration: none;
   margin-top: 25px;
+  border-radius: 10px;
 }
 
 .ChannelInfo-website .fas {

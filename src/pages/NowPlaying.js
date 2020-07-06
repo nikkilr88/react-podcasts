@@ -30,6 +30,7 @@ class NowPlaying extends Component {
     return (
       <div>
         {title ? (
+          // TODO: Wrap image with progress bar, title with buttons
           <div className={`NowPlaying-player ${this.props.theme}`}>
             <i
               onClick={this.props.stopAudio}

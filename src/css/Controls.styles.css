@@ -9,6 +9,10 @@
   padding: 10px;
   overflow: hidden;
   grid-area: Controls;
+  color: #eee;
+  background: #222;
+  box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.5);
+  border-top: 1px solid #333;
 }
 
 .Controls-img {
@@ -41,6 +45,7 @@
 
 .Controls-player button {
   margin: 0 15px;
+  color: #eee;
 }
 
 .Controls-btns button:last-child {
@@ -52,18 +57,7 @@
   align-items: center;
 }
 
-/* ============ Themes ============ */
-/* 
-.Controls-player.light {
-  color: #fff;
-  background: #111;
-}
-
-.Controls-player.light button {
-  color: #888;
-} */
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
   .Controls-player {
     display: none;
   }
