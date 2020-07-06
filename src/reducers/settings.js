@@ -1,5 +1,5 @@
 const initialState = {
-  theme: localStorage.getItem('theme') || 'light',
+  theme: localStorage.getItem('theme') || 'dark',
   display: localStorage.getItem('display') || 'grid',
 }
 
