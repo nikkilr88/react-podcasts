@@ -94,5 +94,6 @@ button {
 @media only screen and (max-width: 600px) {
   .app-wrapper-content {
     padding: 10px;
+    height: calc(100vh - 120px);
   }
 }
