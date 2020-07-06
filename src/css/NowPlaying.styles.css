@@ -1,7 +1,7 @@
 .NowPlaying-player {
   background-position: center;
   background-size: cover;
-  height: calc(100vh - 120px);
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -12,7 +12,9 @@
 .NowPlaying-player .Progress-wrapper {
   position: relative;
   min-width: 100%;
-  margin-top: -25px;
+  transform: none;
+  left: 0;
+  padding: 20px 0 0;
 }
 
 .NowPlaying-player .Progress-background {
@@ -21,20 +23,22 @@
 
 .NowPlaying-player .NowPlaying-close {
   position: fixed;
-  top: 70px;
-  left: 10px;
+  top: 85px;
+  left: 25px;
   color: #999;
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
 
 .NowPlaying-img-wrapper {
   position: relative;
   overflow: hidden;
+  border-radius: 10px;
 }
 
 .NowPlaying-player img {
   display: block;
-  width: 100vw;
-  padding: 0 10px;
+  width: 100%;
   transition: all 0.1s;
 }
 
@@ -42,18 +46,26 @@
   width: 100%;
 }
 
-.NowPlaying-info h3 {
+.NowPlaying-text {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.NowPlaying-text h3 {
   font-weight: normal;
   font-size: 1.8em;
-  margin-top: 20px;
-  color: #999;
+  margin: 8px 0;
+  color: #eee;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
-.NowPlaying-info h4 {
-  display: none;
+.NowPlaying-text h4 {
+  font-size: 1.4em;
+  color: #eee;
+  opacity: 0.5;
+  font-weight: normal;
 }
 
 .NowPlaying-player a {
@@ -64,11 +76,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .NowPlaying-controls .material-icons {
-  font-size: 35px;
+  font-size: 30px;
   color: #555;
 }
 
@@ -79,7 +91,6 @@
 
 .blur {
   filter: blur(3px);
-  transform: scale(1.05);
 }
 
 /* ============ Themes ============ */
@@ -96,24 +107,21 @@
   color: #eee;
 }
 
-.NowPlaying-player.dark .NowPlaying-close {
-  color: #555;
+.NowPlaying-player.light .NowPlaying-info h3 {
+  color: #333;
 }
 
-.NowPlaying-player.black .NowPlaying-info h4 {
-  color: #777;
+.NowPlaying-player.light .NowPlaying-info h4 {
+  color: #333;
+  opacity: 0.75;
 }
 
 .NowPlaying-player.black .NowPlaying-info h3 {
-  color: #ccc;
+  color: #eee;
 }
 
 .NowPlaying-player.black .NowPlaying-controls .material-icons {
   background: linear-gradient(45deg, #c31432, #240b36);
   background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.NowPlaying-player.black .NowPlaying-close {
-  color: #333;
 }

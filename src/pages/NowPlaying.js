@@ -27,68 +27,68 @@ class NowPlaying extends Component {
           .img.replace(/100x100/g, '30x30')
       : undefined
 
-    return (
-      <div>
-        {title ? (
-          // TODO: Wrap image with progress bar, title with buttons
-          <div className={`NowPlaying-player ${this.props.theme}`}>
-            <i
-              onClick={this.props.stopAudio}
-              className="material-icons NowPlaying-close"
-            >
-              close
-            </i>
+    return title ? (
+      <div className={`NowPlaying-player ${this.props.theme}`}>
+        <i
+          onClick={this.props.stopAudio}
+          className="material-icons NowPlaying-close"
+        >
+          close
+        </i>
 
-            <div className="NowPlaying-img-wrapper">
-              {podcastLoading && <Loader />}
-              <ProgressiveImage src={img} placeholder={podcastImage}>
-                {src => (
-                  <img
-                    src={src}
-                    alt="podcast image"
-                    className={podcastLoading ? 'blur' : undefined}
-                  />
-                )}
-              </ProgressiveImage>
-            </div>
-
-            <div className="NowPlaying-info">
-              <ProgressBar width="75%" wrapperPosition="relative" />
-              <Link to={`/podcast/${podcast.replace(/ /g, '_')}`}>
-                <h4>{podcast}</h4>
-              </Link>
-              <h3>{title}</h3>
-            </div>
-
-            <div className="NowPlaying-controls">
-              <i
-                className="material-icons"
-                onClick={() => this.props.skip(-5000)}
-              >
-                replay_5
-              </i>
-              <i
-                onClick={this.props.togglePlayPause}
-                className="material-icons play-btn"
-              >
-                {playStatus === Sound.status.PAUSED
-                  ? 'play_circle_outline'
-                  : 'pause_circle_outline'}
-              </i>
-              <i
-                className="material-icons"
-                onClick={() => this.props.skip(10000)}
-              >
-                forward_10
-              </i>
-            </div>
+        <div>
+          <div className="NowPlaying-img-wrapper">
+            {podcastLoading && <Loader />}
+            <ProgressiveImage src={img} placeholder={podcastImage}>
+              {src => (
+                <img
+                  src={src}
+                  alt="podcast image"
+                  className={podcastLoading ? 'blur' : undefined}
+                />
+              )}
+            </ProgressiveImage>
           </div>
-        ) : (
-          <p className="middle">
-            There is nothing playing. Go find something awesome!
-          </p>
-        )}
+
+          <ProgressBar />
+        </div>
+
+        <div className="NowPlaying-info">
+          <div className="NowPlaying-text">
+            <h3>{title}</h3>
+            <Link to={`/podcast/${podcast.replace(/ /g, '_')}`}>
+              <h4>{podcast}</h4>
+            </Link>
+          </div>
+
+          <div className="NowPlaying-controls">
+            <i
+              className="material-icons"
+              onClick={() => this.props.skip(-5000)}
+            >
+              replay_5
+            </i>
+            <i
+              onClick={this.props.togglePlayPause}
+              className="material-icons play-btn"
+            >
+              {playStatus === Sound.status.PAUSED
+                ? 'play_circle_outline'
+                : 'pause_circle_outline'}
+            </i>
+            <i
+              className="material-icons"
+              onClick={() => this.props.skip(10000)}
+            >
+              forward_10
+            </i>
+          </div>
+        </div>
       </div>
+    ) : (
+      <p className="middle">
+        There is nothing playing. Go find something awesome!
+      </p>
     )
   }
 }

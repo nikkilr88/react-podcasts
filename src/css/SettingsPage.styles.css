@@ -1,6 +1,6 @@
 .SettingsPage {
   text-align: left;
-  color: #555;
+  color: #333;
 }
 
 .SettingsPage-setting {
@@ -8,8 +8,6 @@
 }
 
 .Setting-title {
-  font-family: 'Ubuntu';
-  font-weight: 500;
   font-size: 22px;
   margin: 10px 0 25px 0;
 }
@@ -77,6 +75,10 @@
 /* ============ Themes ============ */
 
 .SettingsPage.dark {
+  color: #eee;
+}
+
+.SettingsPage.black {
   color: #eee;
 }
 

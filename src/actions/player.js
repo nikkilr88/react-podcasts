@@ -2,32 +2,32 @@ import Sound from 'react-sound'
 
 export const showVolume = () => dispatch => {
   dispatch({
-    type: 'SHOW_VOLUME'
+    type: 'SHOW_VOLUME',
   })
 }
 
 export const hideVolume = () => dispatch => {
   dispatch({
-    type: 'HIDE_VOLUME'
+    type: 'HIDE_VOLUME',
   })
 }
 
 export const handleFinishedPlaying = () => dispatch => {
   dispatch({
-    type: 'HANDLE_FINISHED_PLAYING'
+    type: 'HANDLE_FINISHED_PLAYING',
   })
 }
 
 export const stopAudio = () => dispatch => {
   dispatch({
-    type: 'STOP_AUDIO'
+    type: 'STOP_AUDIO',
   })
 }
 
 export const setLoading = value => dispatch => {
   dispatch({
     type: 'SET_PLAYER_LOADING',
-    loading: value
+    loading: value,
   })
 }
 
@@ -38,7 +38,7 @@ export const setAudio = (audio, title, id, img, podcast) => dispatch => {
     src: audio,
     id: id,
     img: img,
-    podcast: podcast
+    podcast: podcast,
   })
 }
 
@@ -48,7 +48,7 @@ export const handlePlay = data => (dispatch, getState) => {
   if (state.player.playStatus === Sound.status.PLAYING) {
     dispatch({
       type: 'HANDLE_PLAY',
-      payload: data
+      payload: data,
     })
   }
 }
@@ -62,7 +62,7 @@ export const togglePlayPause = () => (dispatch, getState) => {
 
   dispatch({
     type: 'PAUSE_AUDIO',
-    paused
+    paused,
   })
 }
 
@@ -72,7 +72,7 @@ export const skip = value => (dispatch, getState) => {
   if (state.player.position > 0) {
     dispatch({
       type: 'SKIP',
-      position: (state.player.position += value)
+      position: (state.player.position += value),
     })
   }
 }
@@ -81,12 +81,11 @@ export const setVolume = value => (dispatch, getState) => {
   const state = getState()
   const prevVolume = state.player.volume
   const newVolume = prevVolume + value
-  console.log('⚡🚨: newVolume', newVolume)
 
   if (newVolume < 0 || newVolume > 100) return
 
   dispatch({
     type: 'SET_VOLUME',
-    volume: newVolume
+    volume: newVolume,
   })
 }

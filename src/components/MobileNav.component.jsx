@@ -11,10 +11,10 @@ class MobileNav extends Component {
       '/': 'Home',
       '/nowplaying': 'Now Playing',
       '/bookmarked': 'Bookmarked',
-      '/settings': 'Settings'
+      '/settings': 'Settings',
     }
 
-    const { podcast = 'Loading...', theme } = this.props
+    const { podcast = 'Loading...', theme, nowPlaying } = this.props
     const { pathname } = this.props.location
 
     const formattedPodcastName =
@@ -41,7 +41,11 @@ class MobileNav extends Component {
           <Link to="/" exact activeClassName="active-nav-item">
             <i className="fas fa-home MobileNav-icon" />
           </Link>
-          <Link to="/nowplaying" activeClassName="active-nav-item">
+          <Link
+            to="/nowplaying"
+            activeClassName="active-nav-item"
+            className={nowPlaying && 'nowPlaying-active'}
+          >
             <i className="fas fa-headphones-alt MobileNav-icon" />
           </Link>
           <Link to="/bookmarked" activeClassName="active-nav-item">
@@ -58,7 +62,8 @@ class MobileNav extends Component {
 
 const mapStateToProps = state => ({
   theme: state.settings.theme,
-  podcast: state.podcast.podcast.title
+  podcast: state.podcast.podcast.title,
+  nowPlaying: state.player.track.title,
 })
 
 export default withRouter(connect(mapStateToProps)(MobileNav))

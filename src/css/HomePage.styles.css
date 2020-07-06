@@ -62,13 +62,13 @@
 
 .Home-podcasts {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
   grid-gap: 20px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
   grid-gap: 20px;
 }
 
@@ -76,22 +76,33 @@
 
 /* ============ Themes ============ */
 
-.Home.dark .Home-category-title,
+.Home.dark .Home-category-title {
+  color: #eee;
+}
+
 .Home.dark .Home-podcastTitleBar,
 .Home.dark .Home-podcastTitleBar button {
   color: #fff;
 }
 
 .Home.dark .Home-podcast-title {
-  color: #eee;
+  color: #999;
 }
 
 .Home.dark .Home-category-subtitle {
   color: #fff;
 }
 
+.Home.black .Home-podcastTitleBar {
+  color: #ccc;
+}
+
+.Home.black .Home-podcastTitleBar button {
+  color: #ccc;
+}
+
 .Home.black .Home-podcast-title {
-  color: #555;
+  color: #999;
 }
 
 .Home.black .Home-category-title {
@@ -99,16 +110,12 @@
 }
 
 .Home.black .Home-category-subtitle {
-  color: #444;
-}
-
-.Home.black .Home-banner {
   color: #ccc;
 }
 
 @media only screen and (max-width: 600px) {
   .grid {
-    grid-gap: 10px;
+    grid-gap: 15px;
   }
 
   .Home-banner h1 {
@@ -120,9 +127,9 @@
     display: flex;
     overflow-y: hidden;
     overflow-x: scroll;
-    margin: 0 -10px;
+    margin: 0 -20px;
     width: 100vw;
-    padding: 0 5px;
+    padding: 0 10px;
   }
 
   .Home-category .Home-podcast:last-child {
