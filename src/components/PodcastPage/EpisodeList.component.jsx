@@ -9,20 +9,25 @@ import EpisodeListElement from './EpisodeListElement.component'
 import '../../css/EpisodeList.styles.css'
 
 const EpisodeList = ({ theme, podcast: { episodes } }) => {
+  // State
   const [searchValue, setSearchValue] = useState('')
   const [showSearch, setShowSearch] = useState(false)
   const [selectedEpisode, setSelectedEpisode] = useState(null)
+
+  const toggleSearchbar = () => {
+    setShowSearch(!showSearch)
+  }
 
   const clearEpisode = () => {
     setSelectedEpisode(null)
   }
 
   const episodeList = episodes
-    .filter(episode => episode.enclosure)
     .filter(episode => {
       const searchValueLowerCase = searchValue.toLowerCase().trim()
       const episodeTitle = episode.title.toLowerCase()
-      return episodeTitle.includes(searchValueLowerCase)
+
+      return episode.enclosure && episodeTitle.includes(searchValueLowerCase)
     })
     .map((episode, i) => (
       <EpisodeListElement
@@ -48,15 +53,13 @@ const EpisodeList = ({ theme, podcast: { episodes } }) => {
           <strong>Available Episodes</strong>
           <small> ({episodeList.length})</small>
         </p>
-        <button
-          title="Toggle searchbar"
-          onClick={() => setShowSearch(!showSearch)}
-        >
+        <button title="Toggle searchbar" onClick={toggleSearchbar}>
           <i className="fas fa-search"></i>
         </button>
 
         {showSearch && (
           <input
+            autoFocus
             type="text"
             placeholder="Search podcast episodes"
             className="EpisodeList-search"

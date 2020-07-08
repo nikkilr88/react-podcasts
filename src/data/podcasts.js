@@ -144,4 +144,32 @@ export const podcasts = [
     img:
       'https://is4-ssl.mzstatic.com/image/thumb/Podcasts113/v4/1d/3a/b7/1d3ab76e-596f-590e-30be-7f5901bebc32/mza_13550373155129918169.jpg/100x100bb.jpg',
   },
+  {
+    category: 'general',
+    name: 'The Bike Shed',
+    link: 'https://feeds.fireside.fm/bikeshed/rss',
+    img:
+      'https://is2-ssl.mzstatic.com/image/thumb/Podcasts113/v4/1d/56/4f/1d564fb2-23b0-4475-4741-e87030365b9d/mza_3215247801185675676.jpg/100x100bb.jpg',
+  },
+  {
+    category: 'general',
+    name: 'devMode.fm',
+    link: 'https://devmode.fm/rss',
+    img:
+      'https://is2-ssl.mzstatic.com/image/thumb/Podcasts123/v4/f1/1a/8b/f11a8b74-283d-03b1-5004-299247eb2bec/mza_13702915490426816137.jpg/100x100bb.jpg',
+  },
+  {
+    category: 'javascript',
+    name: 'The Vanilla JS Podcast',
+    link: 'https://vanillajspodcast.com/feed/index.xml',
+    img:
+      'https://is5-ssl.mzstatic.com/image/thumb/Podcasts123/v4/f3/58/62/f35862f5-6e21-6d48-bb3b-88bc895d2377/mza_5168123222919276770.jpg/100x100bb.jpg',
+  },
+  {
+    category: 'javascript',
+    name: 'JavaScript Jabber',
+    link: 'https://feeds.feedwrench.com/js-jabber.rss',
+    img:
+      'https://is4-ssl.mzstatic.com/image/thumb/Podcasts113/v4/4f/27/53/4f275341-b4b7-a878-edc6-6167faed8ef8/mza_1286199390789031654.jpg/100x100bb.jpg',
+  },
 ]

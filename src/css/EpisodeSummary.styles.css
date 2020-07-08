@@ -27,7 +27,7 @@
 .EpisodeSummary-info {
   margin-bottom: 25px;
   padding-bottom: 15px;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .EpisodeSummary a {
@@ -42,8 +42,12 @@
   color: #eee;
 }
 
-.EpisodeSummary h1 {
+.EpisodeSummary h3 {
   font-size: 2.5rem;
+}
+
+.EpisodeSummary-info small {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .EpisodeSummary ul {

@@ -13,13 +13,8 @@ const EpisodeSummary = ({ episode, clearEpisode }) => {
         <i className="close far fa-times-circle" onClick={clearEpisode} />
         <div className="scrollable">
           <div className="EpisodeSummary-info">
-            <p>
-              <strong>Title: </strong> {title}
-            </p>
-            <p>
-              <strong>Published: </strong>
-              {moment(date).format('MM-DD-YYYY')}
-            </p>
+            <small>{moment(date).format('MM-DD-YYYY')}</small>
+            <h3>{title}</h3>
           </div>
           <p dangerouslySetInnerHTML={{ __html: `${description}` }} />
         </div>
