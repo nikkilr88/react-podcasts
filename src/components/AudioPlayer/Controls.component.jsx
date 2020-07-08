@@ -39,6 +39,8 @@ const Controls = ({
   track,
   volumeVisible,
 }) => {
+  const inputActive = event => event.target.tagName === 'INPUT'
+
   // Pause, skip forward / back
   const keyboardShortcuts = event => {
     switch (event.key) {
@@ -56,6 +58,8 @@ const Controls = ({
 
   // Keyup keyboard shortcuts
   const handleOnKeyUp = event => {
+    if (inputActive(event)) return
+
     switch (event.key) {
       case ' ':
       case 'ArrowRight':
@@ -89,9 +93,11 @@ const Controls = ({
   }
 
   const handleOnKeyDown = event => {
-    if ([' ', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
+    if (
+      !inputActive(event) &&
+      [' ', 'ArrowUp', 'ArrowDown'].includes(event.key)
+    ) {
       event.preventDefault()
-      return false
     }
   }
 

@@ -20,11 +20,11 @@ class EpisodeListElement extends Component {
   }
 
   handleSetEpisode = () => {
-    this.props.setEpisode(
-      this.props.date,
-      this.props.title,
-      this.props.description
-    )
+    this.props.setEpisode({
+      date: this.props.date,
+      title: this.props.title,
+      description: this.props.description,
+    })
   }
 
   playAudio = () => {
@@ -72,8 +72,9 @@ class EpisodeListElement extends Component {
         <button
           disabled={isPlaying}
           onClick={this.handleOnClick}
-          className={`EpisodeListElement-play ${theme} ${isPlaying &&
-            'selected'}`}
+          className={`EpisodeListElement-play ${theme} ${
+            isPlaying && 'selected'
+          }`}
         >
           {isPlaying ? (
             <i className="material-icons">volume_up</i>
@@ -89,12 +90,9 @@ class EpisodeListElement extends Component {
 const mapStateToProps = state => ({
   nowPlayingId: state.player.track.id,
   podcastImage: state.podcast.podcast.img,
-  podcast: state.podcast.podcast.title
+  podcast: state.podcast.podcast.title,
 })
 
 export default withRouter(
-  connect(
-    mapStateToProps,
-    { setAudio }
-  )(EpisodeListElement)
+  connect(mapStateToProps, { setAudio })(EpisodeListElement)
 )

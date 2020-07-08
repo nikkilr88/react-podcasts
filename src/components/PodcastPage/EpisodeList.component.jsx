@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { connect } from 'react-redux'
 
 // Components
@@ -8,64 +8,67 @@ import EpisodeListElement from './EpisodeListElement.component'
 // Styles
 import '../../css/EpisodeList.styles.css'
 
-class EpisodeList extends Component {
-  state = {
-    episode: null,
+const EpisodeList = ({ theme, podcast: { episodes } }) => {
+  const [searchValue, setSearchValue] = useState('')
+  const [showSearch, setShowSearch] = useState(false)
+  const [selectedEpisode, setSelectedEpisode] = useState(null)
+
+  const clearEpisode = () => {
+    setSelectedEpisode(null)
   }
 
-  setEpisode = (date, title, description) => {
-    this.setState({
-      episode: {
-        date,
-        title,
-        description,
-      },
+  const episodeList = episodes
+    .filter(episode => episode.enclosure)
+    .filter(episode => {
+      const searchValueLowerCase = searchValue.toLowerCase().trim()
+      const episodeTitle = episode.title.toLowerCase()
+      return episodeTitle.includes(searchValueLowerCase)
     })
-  }
+    .map((episode, i) => (
+      <EpisodeListElement
+        key={episode.guid}
+        theme={theme}
+        title={episode.title}
+        trackId={episode.guid}
+        date={episode.published}
+        duration={episode.duration}
+        audio={episode.enclosure.url}
+        description={episode.description}
+        setEpisode={setSelectedEpisode}
+      />
+    ))
 
-  clearEpisode = () => {
-    this.setState({
-      episode: null,
-    })
-  }
-
-  render() {
-    const { theme } = this.props
-    const { episodes } = this.props.podcast
-
-    const episodeList = episodes
-      .filter(e => e.enclosure)
-      .map((e, i) => (
-        <EpisodeListElement
-          key={e.guid}
-          theme={theme}
-          title={e.title}
-          trackId={e.guid}
-          date={e.published}
-          duration={e.duration}
-          audio={e.enclosure.url}
-          description={e.description}
-          setEpisode={this.setEpisode}
-        />
-      ))
-
-    return (
-      <Fragment>
-        {this.state.episode && (
-          <EpisodeSummary
-            episode={this.state.episode}
-            clearEpisode={this.clearEpisode}
-          />
-        )}
+  return (
+    <Fragment>
+      {selectedEpisode && (
+        <EpisodeSummary episode={selectedEpisode} clearEpisode={clearEpisode} />
+      )}
+      <div className="EpisodeList-titleWrapper">
         <p className={`EpisodeList-title ${theme}`}>
           <strong>Available Episodes</strong>
-          <small> ({episodes.length})</small>
+          <small> ({episodeList.length})</small>
         </p>
+        <button
+          title="Toggle searchbar"
+          onClick={() => setShowSearch(!showSearch)}
+        >
+          <i className="fas fa-search"></i>
+        </button>
 
-        <div className="EpisodeList-wrapper">{episodeList}</div>
-      </Fragment>
-    )
-  }
+        {showSearch && (
+          <input
+            type="text"
+            placeholder="Search podcast episodes"
+            className="EpisodeList-search"
+            value={searchValue}
+            onChange={event => setSearchValue(event.target.value)}
+          />
+        )}
+      </div>
+
+      <div className="EpisodeList-wrapper">{episodeList}</div>
+    </Fragment>
+  )
 }
 
 const mapStateToProps = state => ({

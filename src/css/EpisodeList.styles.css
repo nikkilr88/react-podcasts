@@ -1,6 +1,33 @@
-.EpisodeList-title {
-  margin: 50px 0 35px 0;
+.EpisodeList-titleWrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   padding: 10px;
+  margin: 50px 0 35px;
+}
+
+.EpisodeList-search {
+  flex-basis: 100%;
+  padding: 15px 5px;
+  margin: 20px 0 0;
+  background: none;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  color: #eee;
+  font-size: 1.6em;
+}
+
+.EpisodeList-search:focus {
+  outline: none;
+  border-bottom: 2px solid #3498db;
+}
+
+.EpisodeList-titleWrapper .fas {
+  color: #eee;
+  padding: 0 14px;
+}
+
+.EpisodeList-title {
   text-align: left;
   width: 90%;
   display: block;
