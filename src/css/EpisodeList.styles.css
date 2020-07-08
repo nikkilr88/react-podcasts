@@ -6,6 +6,7 @@
   margin: 50px 0 35px;
 }
 
+/* TODO: Change text colors based on theme */
 .EpisodeList-search {
   flex-basis: 100%;
   padding: 15px 5px;
