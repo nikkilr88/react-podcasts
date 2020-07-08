@@ -36,7 +36,7 @@ class NowPlaying extends Component {
           close
         </i>
 
-        <div>
+        <div className="NowPlaying-top">
           <div className="NowPlaying-img-wrapper">
             {podcastLoading && <Loader />}
             <ProgressiveImage src={img} placeholder={podcastImage}>

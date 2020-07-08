@@ -3,7 +3,6 @@
 .ChannelInfo {
   margin: 0;
   width: 100%;
-  padding: 0 0 50px;
   display: flex;
   justify-content: space-between;
 }
@@ -65,7 +64,6 @@
 
 .ChannelInfo.light {
   color: #555;
-  border-bottom: 1px solid #eee;
 }
 
 .ChannelInfo-img.light {
@@ -78,16 +76,11 @@
 
 .ChannelInfo.dark {
   color: #eee;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .ChannelInfo.dark .ChannelInfo-author {
   color: #fff;
   opacity: 0.35;
-}
-
-.ChannelInfo.black {
-  border-bottom: 1px solid #111;
 }
 
 .ChannelInfo.black .ChannelInfo-title {

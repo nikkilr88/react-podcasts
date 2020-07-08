@@ -21,6 +21,7 @@
   width: 100%;
 }
 
+/* Close button */
 .NowPlaying-player .NowPlaying-close {
   position: fixed;
   top: 85px;
@@ -30,13 +31,18 @@
   z-index: 999;
 }
 
+/* Image */
+.NowPlaying-top {
+  width: 100%;
+}
+
 .NowPlaying-img-wrapper {
   position: relative;
   overflow: hidden;
   border-radius: 10px;
 }
 
-.NowPlaying-player img {
+.NowPlaying-img-wrapper img {
   display: block;
   width: 100%;
   transition: all 0.1s;
