@@ -1,5 +1,4 @@
-import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 import ProgressiveImage from 'react-progressive-image'
 
 // Data

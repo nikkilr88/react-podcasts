@@ -87,6 +87,8 @@ class EpisodeListElement extends Component {
   }
 }
 
+// ?: Disconnect from redux
+// Would that improve performance?
 const mapStateToProps = state => ({
   nowPlayingId: state.player.track.id,
   podcastImage: state.podcast.podcast.img,
