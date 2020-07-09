@@ -96,7 +96,7 @@ export const podcasts = [
   },
   {
     category: 'javascript',
-    name: 'JS Party',
+    name: 'JS Party: JavaScript & Web Dev',
     link: 'https://changelog.com/jsparty/feed',
     img:
       'https://is2-ssl.mzstatic.com/image/thumb/Music123/v4/18/55/87/18558757-eaf3-e4e3-023a-031ae4c716fc/source/100x100bb.jpg',
