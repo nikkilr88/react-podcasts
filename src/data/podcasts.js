@@ -110,7 +110,7 @@ export const podcasts = [
   },
   {
     category: 'general',
-    name: 'The Changelog',
+    name: 'The Changelog: Software Dev & Open Source',
     link: 'https://changelog.com/podcast/feed',
     img:
       'https://is4-ssl.mzstatic.com/image/thumb/Music123/v4/bd/4a/62/bd4a6284-5316-0fd2-d8b4-5ddfc1214279/source/100x100bb.jpg',
