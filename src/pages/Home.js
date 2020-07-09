@@ -97,10 +97,6 @@ const PodcastCategories = ({ podcasts }) => {
 const HomePage = ({ theme, display, switchDisplay }) => {
   return (
     <div className={`Home ${theme}`}>
-      {/* <h1 className="Home-banner">
-        Find a podcast. <br />{' '}
-        {phrases[Math.floor(Math.random() * phrases.length)]}
-      </h1> */}
       <div className="Home-podcastTitleBar">
         <strong>Podcasts</strong>
         <div>
