@@ -31,7 +31,7 @@ const store = configureStore()
 store.subscribe(
   throttle(() => {
     saveState({
-      playerState: { ...store.getState().player, playStatus: 'PAUSED' }
+      playerState: { ...store.getState().player, playStatus: 'PAUSED' },
     })
   }, 1000)
 )

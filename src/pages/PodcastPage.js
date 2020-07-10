@@ -1,13 +1,13 @@
-import React, { Component, Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 // Data
 import { podcasts } from '../data/podcasts'
 
 // Components
 import Loader from '../components/Loader.component'
-import PodcastInfo from '../components/PodcastPage/PodcastInfo.component'
+import PodcastInfo from '../components/podcast-page/PodcastInfo.component'
 
 // Actions
 import { fetchPodcast, setLoading } from '../actions/podcast'

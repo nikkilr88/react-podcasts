@@ -45,9 +45,9 @@
 .Progress-background.black .Progress-bar {
   background: #c31432;
 }
-
+/* 
 @media only screen and (max-width: 600px) {
   .Progress-background.light {
     background: #ccc;
   }
-}
+} */

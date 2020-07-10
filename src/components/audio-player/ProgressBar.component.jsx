@@ -14,8 +14,6 @@ const ProgressBar = ({ position, duration, theme, loading, playStatus }) => {
 
   const podcastLoading = playStatus === 'PLAYING' && loading
 
-  console.log(podcastLoading, playStatus, loading)
-
   return (
     <div className="Progress-wrapper">
       <div className={`Progress-background ${theme}`}>

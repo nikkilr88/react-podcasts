@@ -92,12 +92,18 @@
   z-index: 999;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
   .EpisodeSummary {
     transform: translate(0);
-    left: 10px;
-    top: 70px;
-    right: 10px;
-    bottom: 70px;
+    left: 15px;
+    top: 75px;
+    right: 15px;
+    bottom: 75px;
+    max-height: 100%;
+    width: auto;
+  }
+
+  .scrollable {
+    max-height: 100%;
   }
 }

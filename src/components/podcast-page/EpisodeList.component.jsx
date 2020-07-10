@@ -28,16 +28,11 @@ const EpisodeList = ({ theme, episodeList }) => {
 
       return episodeTitle.includes(searchValueLowerCase)
     })
-    .map((episode, i) => (
+    .map(episode => (
       <EpisodeListElement
         key={episode.guid}
         theme={theme}
-        title={episode.title}
-        trackId={episode.guid}
-        date={episode.published}
-        duration={episode.duration}
-        audio={episode.enclosure.url}
-        description={episode.description}
+        episode={episode}
         setEpisode={setSelectedEpisode}
       />
     ))
