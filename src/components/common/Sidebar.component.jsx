@@ -3,10 +3,10 @@ import { NavLink as Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 // Images
-import Logo from '../images/DevCasts-Logo.svg'
+import Logo from '../../images/DevCasts-Logo.svg'
 
 // Styles
-import '../css/Sidebar.styles.css'
+import '../../css/Sidebar.styles.css'
 
 class Sidebar extends Component {
   state = {

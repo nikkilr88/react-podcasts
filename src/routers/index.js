@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 // Components
-import Sidebar from '../components/Sidebar.component'
-import MobileNav from '../components/MobileNav.component'
-import BackButton from '../components/BackButton.component'
-import Controls from '../components/AudioPlayer/Controls.component'
+import Sidebar from '../components/common/Sidebar.component'
+import MobileNav from '../components/common/MobileNav.component'
+import BackButton from '../components/common/BackButton.component'
+import Controls from '../components/audio-player/Controls.component'
 
 // Pages
 import HomePage from '../pages/Home'

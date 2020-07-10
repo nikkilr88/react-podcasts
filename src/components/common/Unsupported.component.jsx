@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 // Styles
-import '../css/Unsupported.styles.css'
+import '../../css/Unsupported.styles.css'
 
 class Unsupported extends Component {
   render() {

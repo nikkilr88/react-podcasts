@@ -8,7 +8,7 @@ import AppRouter from './routers'
 import configureStore from './store/config-store'
 
 // Components
-import Unsupported from './components/Unsupported.component'
+import Unsupported from './components/common/Unsupported.component'
 
 // Styles
 import './css/styles.styles.css'

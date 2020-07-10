@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom'
 import { podcasts } from '../data/podcasts'
 
 // Components
-import Loader from '../components/Loader.component'
+import Loader from '../components/common/Loader.component'
 import ProgressiveImage from 'react-progressive-image'
-import ProgressBar from '../components/AudioPlayer/ProgressBar.component'
+import ProgressBar from '../components/audio-player/ProgressBar.component'
 import { togglePlayPause, skip, stopAudio } from '../actions/player'
 
 // Styles

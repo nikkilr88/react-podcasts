@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 // Styles
-import '../css/BackButton.styles.css'
+import '../../css/BackButton.styles.css'
 
 class BackButton extends Component {
   goBack = () => {
@@ -25,7 +25,7 @@ class BackButton extends Component {
 }
 
 const mapStateToProps = state => ({
-  theme: state.settings.theme
+  theme: state.settings.theme,
 })
 
 export default withRouter(connect(mapStateToProps)(BackButton))

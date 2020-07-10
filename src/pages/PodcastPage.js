@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom'
 import { podcasts } from '../data/podcasts'
 
 // Components
-import Loader from '../components/Loader.component'
+import Loader from '../components/common/Loader.component'
 import PodcastInfo from '../components/podcast-page/PodcastInfo.component'
 
 // Actions

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { NavLink as Link, withRouter } from 'react-router-dom'
 
 // Styles
-import '../css/MobileNav.styles.css'
+import '../../css/MobileNav.styles.css'
 
 class MobileNav extends Component {
   render() {
