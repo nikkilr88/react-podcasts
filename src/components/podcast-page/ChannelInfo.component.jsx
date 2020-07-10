@@ -31,7 +31,7 @@ const ChannelInfo = ({
       </ProgressiveImage>
       <div className="ChannelInfo-text">
         <h1 className="ChannelInfo-title">{title}</h1>
-        <h3 className={`ChannelInfo-author ${theme}`}>{author}</h3>
+        <p className={`ChannelInfo-author ${theme}`}>{author}</p>
         <p>{description || 'No Description Available :('}</p>
         <a href={website} target="_blank" className="ChannelInfo-website">
           <i className="fas fa-external-link-alt" />

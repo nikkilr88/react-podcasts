@@ -25,8 +25,12 @@ const EpisodeList = ({ theme, episodeList }) => {
     .filter(episode => {
       const searchValueLowerCase = searchValue.toLowerCase().trim()
       const episodeTitle = episode.title.toLowerCase()
+      const episodeDescription = episode.description.toLowerCase()
 
-      return episodeTitle.includes(searchValueLowerCase)
+      return (
+        episodeTitle.includes(searchValueLowerCase) ||
+        episodeDescription.includes(searchValueLowerCase)
+      )
     })
     .map(episode => (
       <EpisodeListElement

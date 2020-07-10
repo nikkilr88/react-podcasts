@@ -15,6 +15,11 @@
   border-top: 1px solid #333;
 }
 
+.Controls-podcastInfo {
+  display: flex;
+  align-items: center;
+}
+
 .Controls-img {
   height: 55px;
   margin-right: 10px;
@@ -23,9 +28,8 @@
 
 .Controls-title {
   display: block;
-  width: 80%;
   text-align: left;
-  margin: 0 auto;
+  margin: 0;
   font-size: 1.6rem;
 }
 
@@ -37,10 +41,18 @@
   color: #6d6d6d;
   font-size: 0.8em;
   margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 250px;
 }
 
 .Controls-title-track {
   font-size: 1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 250px;
 }
 
 .Controls-player button {

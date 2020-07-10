@@ -152,19 +152,17 @@ const Controls = ({
       {volumeVisible && <Volume theme={theme} />}
 
       <div className={`Controls-player ${theme}`}>
-        <Link to={podcastLink}>
-          <img className="Controls-img" src={image} alt="podcast cover" />
-        </Link>
-
-        <div className="Controls-title">
-          <strong className="Controls-title-track">
-            {track.title.length > 20
-              ? track.title.substring(0, 20) + '...'
-              : track.title}
-          </strong>
-          <Link to={podcastLink} className="Controls-title-podcast">
-            {podcast}
+        <div className="Controls-podcastInfo">
+          <Link to={podcastLink}>
+            <img className="Controls-img" src={image} alt="podcast cover" />
           </Link>
+
+          <div className="Controls-title">
+            <strong className="Controls-title-track">{track.title}</strong>
+            <Link to={podcastLink} className="Controls-title-podcast">
+              {podcast}
+            </Link>
+          </div>
         </div>
 
         <ProgressBar />
