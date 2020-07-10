@@ -8,7 +8,6 @@ export const switchTheme = theme => dispatch => {
 }
 
 export const switchDisplay = displayValue => dispatch => {
-  console.log(displayValue)
   localStorage.setItem('display', displayValue)
 
   dispatch({
