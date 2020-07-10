@@ -113,7 +113,7 @@
   color: #ccc;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
   .grid {
     grid-gap: 15px;
   }
@@ -135,11 +135,11 @@
   .Home-category .Home-podcast:last-child {
     padding-right: 5px;
   }
-
+  /* 
   .Home-podcast-title {
     margin-left: 5px;
     width: 95px;
-  }
+  } */
 
   ::-webkit-scrollbar {
     display: none;
