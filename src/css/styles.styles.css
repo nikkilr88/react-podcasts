@@ -4,8 +4,6 @@ body {
   text-align: center;
   background: #fff;
   font-family: 'Open Sans';
-  overflow-y: scroll;
-  overflow: hidden;
 }
 
 html {

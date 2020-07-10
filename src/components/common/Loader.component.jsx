@@ -1,10 +1,13 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 
-// Styles
-import '../../css/Loader.styles.css'
+// Data
+import themes from '../../themes'
 
-const Loader = ({ theme }) => <div className={`loader ${theme}`} />
+// Styles
+import { StyledLoader } from './Loader.styles'
+
+const Loader = ({ theme }) => <StyledLoader theme={themes[theme]} />
 
 const mapStateToProps = state => ({
   theme: state.settings.theme,

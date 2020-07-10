@@ -115,7 +115,8 @@
 
 @media only screen and (max-width: 900px) {
   .grid {
-    grid-gap: 15px;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   }
 
   .Home-banner h1 {
@@ -135,11 +136,11 @@
   .Home-category .Home-podcast:last-child {
     padding-right: 5px;
   }
-  /* 
+
   .Home-podcast-title {
     margin-left: 5px;
     width: 95px;
-  } */
+  }
 
   ::-webkit-scrollbar {
     display: none;

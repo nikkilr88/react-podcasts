@@ -1,13 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class BookmarkedPage extends Component {
-  render() {
-    return (
-      <div className='middle'>
-        <h1>Coming soon!</h1>
-      </div>
-    )
-  }
-}
+const BookmarkedPage = () => (
+  <div className="middle">
+    <h1>Coming soon!</h1>
+  </div>
+)
 
 export default BookmarkedPage

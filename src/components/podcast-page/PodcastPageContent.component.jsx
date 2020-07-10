@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import ChannelInfo from './ChannelInfo.component'
 import EpisodeList from './EpisodeList.component'
 
-const PodcastInfo = ({ theme, podcast, podcast: { episodes } }) => {
+const PodcastPageContent = ({ theme, podcast, podcast: { episodes } }) => {
   const episodeList = episodes.filter(episode => episode.enclosure)
 
   return (
@@ -21,4 +21,4 @@ const mapStateToProps = state => ({
   podcast: state.podcast.podcast,
 })
 
-export default connect(mapStateToProps)(PodcastInfo)
+export default connect(mapStateToProps)(PodcastPageContent)

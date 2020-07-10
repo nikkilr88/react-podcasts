@@ -1,27 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
+// Data
+import themes from '../../themes'
+
 // Styles
-import '../../css/BackButton.styles.css'
+import { StyledBackButton } from './BackButton.styles'
 
-class BackButton extends Component {
-  goBack = () => {
-    this.props.history.goBack()
+const BackButton = ({ history, theme, location: { pathname } }) => {
+  const goBack = () => {
+    history.goBack()
   }
 
-  render() {
-    const { theme } = this.props
-    const path = this.props.location.pathname
-
-    return path !== '/' ? (
-      <button className={`BackButton ${theme}`} onClick={this.goBack}>
-        <i className="fas fa-arrow-left" /> Back
-      </button>
-    ) : (
-      ''
-    )
-  }
+  return pathname !== '/' ? (
+    <StyledBackButton theme={themes[theme]} onClick={goBack}>
+      <i className="fas fa-arrow-left" /> Back
+    </StyledBackButton>
+  ) : null
 }
 
 const mapStateToProps = state => ({

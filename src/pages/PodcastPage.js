@@ -7,7 +7,7 @@ import { podcasts } from '../data/podcasts'
 
 // Components
 import Loader from '../components/common/Loader.component'
-import PodcastInfo from '../components/podcast-page/PodcastInfo.component'
+import PodcastPageContent from '../components/podcast-page/PodcastPageContent.component'
 
 // Actions
 import { fetchPodcast, setLoading } from '../actions/podcast'
@@ -15,7 +15,7 @@ import { fetchPodcast, setLoading } from '../actions/podcast'
 // Styles
 import '../css/PodcastPage.styles.css'
 
-const PodcastPage = ({ fetchPodcast, match, history, error, loading }) => {
+const PodcastPage = ({ match, history, error, loading, fetchPodcast }) => {
   const loadPodcast = () => {
     const name = match.params.podcast.replace(/_/g, ' ')
     const podcast = podcasts.filter(podcast => podcast.name === name)
@@ -35,7 +35,7 @@ const PodcastPage = ({ fetchPodcast, match, history, error, loading }) => {
       {/* TODO: Create error flash message */}
       {error && <p className="error">{error}</p>}
 
-      {loading ? <Loader /> : <PodcastInfo />}
+      {loading ? <Loader /> : <PodcastPageContent />}
     </Fragment>
   )
 }
