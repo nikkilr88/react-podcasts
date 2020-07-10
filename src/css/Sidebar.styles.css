@@ -36,8 +36,6 @@
 
 .sidebar-link {
   font-size: 1.4rem;
-  letter-spacing: 1px;
-
   margin: 25px 0;
   text-align: left;
   color: #777;
@@ -53,6 +51,7 @@
   align-items: center;
   position: relative;
   padding-left: 35px;
+  font-weight: 600;
 }
 
 .sidebar-link .fas {
