@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react'
 import ReactDOM from 'react-dom'
+import { connect } from 'react-redux'
 import { Provider } from 'react-redux'
 import throttle from 'lodash.throttle'
+import { ThemeProvider } from 'styled-components'
 
 // Router & Store
 import AppRouter from './routers'
@@ -9,6 +11,9 @@ import configureStore from './store/config-store'
 
 // Components
 import Unsupported from './components/common/Unsupported.component'
+
+// Data
+import themes from './themes'
 
 // Styles
 import './css/styles.styles.css'
@@ -36,13 +41,25 @@ store.subscribe(
   }, 1000)
 )
 
+const ThemeWrapper = ({ children, theme }) => (
+  <ThemeProvider theme={themes[theme]}>{children}</ThemeProvider>
+)
+
+const mapStateToProps = state => ({
+  theme: state.settings.theme,
+})
+
+const ConnectedThemeWrapper = connect(mapStateToProps)(ThemeWrapper)
+
 ReactDOM.render(
   <Fragment>
     {document.documentMode ? (
       <Unsupported />
     ) : (
       <Provider store={store}>
-        <AppRouter />
+        <ConnectedThemeWrapper>
+          <AppRouter />
+        </ConnectedThemeWrapper>
       </Provider>
     )}
   </Fragment>,

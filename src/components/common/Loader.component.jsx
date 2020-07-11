@@ -1,16 +1,13 @@
-import React, { Fragment } from 'react'
-import { connect } from 'react-redux'
-
-// Data
-import themes from '../../themes'
+import React, { useContext } from 'react'
+import { ThemeContext } from 'styled-components'
 
 // Styles
 import { StyledLoader } from './Loader.styles'
 
-const Loader = ({ theme }) => <StyledLoader theme={themes[theme]} />
+const Loader = () => {
+  const currentTheme = useContext(ThemeContext)
 
-const mapStateToProps = state => ({
-  theme: state.settings.theme,
-})
+  return <StyledLoader theme={currentTheme} />
+}
 
-export default connect(mapStateToProps)(Loader)
+export default Loader

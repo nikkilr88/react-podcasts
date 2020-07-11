@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 export const StyledLoader = styled.div`
   position: absolute;
@@ -11,11 +11,9 @@ export const StyledLoader = styled.div`
   width: 30px;
   border-radius: 50%;
   animation: rotate 2s infinite;
-
-  ${({ theme }) => css`
+  ${({ theme }) => `
     border: 4px solid ${theme.loaderColor};
   `}
-
   border-left: 4px solid transparent;
 
   @media only screen and (max-width: 900px) {

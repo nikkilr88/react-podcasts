@@ -20,9 +20,8 @@ const AppRouter = ({ theme }) => (
   <Router>
     <MobileNav />
     <div className={`app-wrapper ${theme}`}>
-      <div>
-        <Sidebar />
-      </div>
+      <Sidebar />
+      {/* TODO: Create a component for app content */}
       <div className="app-wrapper-content">
         <BackButton />
         <Switch>

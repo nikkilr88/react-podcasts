@@ -18,26 +18,22 @@ import {
   togglePlayPause,
 } from '../../actions/player'
 
-// Utils
-import { convertSeconds } from '../../utils'
-
 // Styles
 import '../../css/Controls.styles.css'
 
 const Controls = ({
-  hideVolume,
+  skip,
   image,
-  playStatus,
+  theme,
+  track,
   podcast,
   setVolume,
-  showVolume,
-  skip,
   stopAudio,
-  theme,
-  time,
-  togglePlayPause,
-  track,
+  hideVolume,
+  playStatus,
+  showVolume,
   volumeVisible,
+  togglePlayPause,
 }) => {
   const inputActive = event => event.target.tagName === 'INPUT'
 
@@ -194,20 +190,19 @@ const Controls = ({
 }
 
 const mapStateToProps = ({ settings, player }) => ({
-  theme: settings.theme,
   track: player.track,
+  theme: settings.theme,
   image: player.track.img,
   playStatus: player.playStatus,
   podcast: player.track.podcast,
   volumeVisible: player.showVolume,
-  time: convertSeconds(player.position / 1000),
 })
 
 export default connect(mapStateToProps, {
-  togglePlayPause,
-  stopAudio,
   skip,
+  stopAudio,
+  setVolume,
   showVolume,
   hideVolume,
-  setVolume,
+  togglePlayPause,
 })(Controls)

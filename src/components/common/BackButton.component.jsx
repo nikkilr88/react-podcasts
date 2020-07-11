@@ -1,27 +1,22 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { useContext } from 'react'
 import { withRouter } from 'react-router-dom'
-
-// Data
-import themes from '../../themes'
+import { ThemeContext } from 'styled-components'
 
 // Styles
 import { StyledBackButton } from './BackButton.styles'
 
-const BackButton = ({ history, theme, location: { pathname } }) => {
+const BackButton = ({ history, location: { pathname } }) => {
+  const currentTheme = useContext(ThemeContext)
+
   const goBack = () => {
     history.goBack()
   }
 
   return pathname !== '/' ? (
-    <StyledBackButton theme={themes[theme]} onClick={goBack}>
+    <StyledBackButton theme={currentTheme} onClick={goBack}>
       <i className="fas fa-arrow-left" /> Back
     </StyledBackButton>
   ) : null
 }
 
-const mapStateToProps = state => ({
-  theme: state.settings.theme,
-})
-
-export default withRouter(connect(mapStateToProps)(BackButton))
+export default withRouter(BackButton)
