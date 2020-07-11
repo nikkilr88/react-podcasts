@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 // Components
@@ -23,7 +23,7 @@ const HomePage = ({ theme, display, switchDisplay }) => {
           <button>
             <i
               className={`fas fa-list icon ${
-                display === 'category' && 'active'
+                display === 'category' ? 'active' : ''
               }`}
               onClick={() => {
                 switchDisplay('category')
@@ -33,7 +33,7 @@ const HomePage = ({ theme, display, switchDisplay }) => {
           <button>
             {' '}
             <i
-              className={`fas fa-th icon ${display === 'grid' && 'active'}`}
+              className={`fas fa-th icon ${display === 'grid' ? 'active' : ''}`}
               onClick={() => {
                 switchDisplay('grid')
               }}

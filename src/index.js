@@ -16,7 +16,8 @@ import Unsupported from './components/common/Unsupported.component'
 import themes from './themes'
 
 // Styles
-import './css/styles.styles.css'
+import GlobalStyles from './index.styles'
+
 import './css/themes/light.css'
 import './css/themes/dark.css'
 
@@ -51,8 +52,11 @@ const mapStateToProps = state => ({
 
 const ConnectedThemeWrapper = connect(mapStateToProps)(ThemeWrapper)
 
+// Render 'Unsupported' component if user is on IE
+// Render app for any other browsers
 ReactDOM.render(
   <Fragment>
+    <GlobalStyles />
     {document.documentMode ? (
       <Unsupported />
     ) : (

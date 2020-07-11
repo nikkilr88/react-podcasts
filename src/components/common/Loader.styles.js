@@ -4,7 +4,6 @@ export const StyledLoader = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-left: calc(200px / 2);
   transform: translate(-50%, -50%);
   z-index: 999;
   height: 30px;
