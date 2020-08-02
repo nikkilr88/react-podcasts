@@ -129,11 +129,12 @@
     overflow-x: scroll;
     margin: 0 -20px;
     width: 100vw;
-    padding: 0 10px;
+    padding: 0 15px;
+    grid-gap: 5px;
   }
 
   .Home-category .Home-podcast:last-child {
-    padding-right: 5px;
+    padding-right: 15px;
   }
 
   .Home-podcast-title {
@@ -146,7 +147,7 @@
   }
 
   .Home-category img {
-    width: 95px;
+    width: 100px;
     margin: 5px;
   }
 }

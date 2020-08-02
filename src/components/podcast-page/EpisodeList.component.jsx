@@ -21,6 +21,10 @@ const EpisodeList = ({ theme, episodeList }) => {
     setSelectedEpisode(null)
   }
 
+  const handleSearchInputChange = event => {
+    setSearchValue(event.target.value)
+  }
+
   const filteredEpisodeList = episodeList
     .filter(episode => {
       const searchValueLowerCase = searchValue.toLowerCase().trim()
@@ -62,7 +66,7 @@ const EpisodeList = ({ theme, episodeList }) => {
             placeholder="Search podcast episodes"
             className="EpisodeList-search"
             value={searchValue}
-            onChange={event => setSearchValue(event.target.value)}
+            onChange={handleSearchInputChange}
           />
         )}
       </div>
