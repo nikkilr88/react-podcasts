@@ -59,61 +59,6 @@ const MobileNav = ({
   )
 }
 
-// class MobileNav extends Component {
-//   render() {
-//     const location = {
-//       '/': 'Home',
-//       '/nowplaying': 'Now Playing',
-//       '/bookmarked': 'Bookmarked',
-//       '/settings': 'Settings',
-//     }
-
-//     const { podcast = 'Loading...', theme, nowPlaying } = this.props
-//     const { pathname } = this.props.location
-
-//     const formattedPodcastName =
-//       podcast.length > 15 ? podcast.substring(0, 15) + '...' : podcast
-
-//     return (
-//       <Fragment>
-//         <nav className={`MobileNav-top ${theme}`}>
-//           <p className="MobileNav-title">
-//             {location[pathname] || formattedPodcastName}
-//           </p>
-//           {pathname !== '/' && (
-//             <button
-//               className="MobileNav-back"
-//               onClick={() => this.props.history.goBack()}
-//             >
-//               <i className="fas fa-arrow-left" />
-//               Back
-//             </button>
-//           )}
-//         </nav>
-
-//         <nav className={`MobileNav ${theme}`}>
-//           <Link to="/" exact activeClassName="active-nav-item">
-//             <i className="fas fa-home MobileNav-icon" />
-//           </Link>
-//           <Link
-//             to="/nowplaying"
-//             activeClassName="active-nav-item"
-//             className={nowPlaying && 'nowPlaying-active'}
-//           >
-//             <i className="fas fa-headphones-alt MobileNav-icon" />
-//           </Link>
-//           <Link to="/bookmarked" activeClassName="active-nav-item">
-//             <i className="fas fa-bookmark MobileNav-icon" />
-//           </Link>
-//           <Link to="/settings" activeClassName="active-nav-item">
-//             <i className="fas fa-cog MobileNav-icon" />
-//           </Link>
-//         </nav>
-//       </Fragment>
-//     )
-//   }
-// }
-
 const mapStateToProps = state => ({
   podcast: state.podcast.podcast.title,
   nowPlaying: state.player.track.title,

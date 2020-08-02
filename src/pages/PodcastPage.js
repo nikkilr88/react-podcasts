@@ -15,10 +15,19 @@ import { fetchPodcast, setLoading } from '../actions/podcast'
 // Styles
 import '../css/PodcastPage.styles.css'
 
-const PodcastPage = ({ match, history, error, loading, fetchPodcast }) => {
+const PodcastPage = ({
+  match,
+  history,
+  error,
+  loading,
+  fetchPodcast,
+  currentPodcast,
+}) => {
   const loadPodcast = () => {
     const name = match.params.podcast.replace(/_/g, ' ')
     const podcast = podcasts.filter(podcast => podcast.name === name)
+
+    if (currentPodcast === name) return
 
     if (podcast.length > 0) {
       const feedURL = podcast[0].link
@@ -28,7 +37,9 @@ const PodcastPage = ({ match, history, error, loading, fetchPodcast }) => {
     }
   }
 
-  useEffect(loadPodcast, [match.url])
+  useEffect(() => {
+    loadPodcast()
+  }, [])
 
   return (
     <Fragment>
@@ -43,6 +54,7 @@ const PodcastPage = ({ match, history, error, loading, fetchPodcast }) => {
 const mapStateToProps = state => ({
   error: state.podcast.error,
   loading: state.podcast.loading,
+  currentPodcast: state.podcast.podcast.title,
 })
 
 export default withRouter(
