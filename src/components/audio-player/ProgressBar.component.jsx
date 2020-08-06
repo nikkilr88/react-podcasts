@@ -1,13 +1,16 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import { connect } from 'react-redux'
+import { ThemeContext } from 'styled-components'
 
 // Utils
 import { convertSeconds } from '../../utils'
 
 // Styles
-import '../../css/ProgressBar.styles.css'
+import { StyledProgressBar } from './ProgressBar.styles'
 
-const ProgressBar = ({ position, duration, theme, loading, playStatus }) => {
+const ProgressBar = ({ position, duration, loading, playStatus }) => {
+  const currentTheme = useContext(ThemeContext)
+
   const styles = {
     width: (position * 100) / duration + '%',
   }
@@ -15,11 +18,11 @@ const ProgressBar = ({ position, duration, theme, loading, playStatus }) => {
   const podcastLoading = playStatus === 'PLAYING' && loading
 
   return (
-    <div className="Progress-wrapper">
-      <div className={`Progress-background ${theme}`}>
-        <div style={styles} className="Progress-bar" />
+    <StyledProgressBar theme={currentTheme}>
+      <div className="background">
+        <div style={styles} className="bar" />
       </div>
-      <div className="Progress-times">
+      <div className="times">
         {podcastLoading ? (
           <p>Loading...</p>
         ) : (
@@ -29,12 +32,11 @@ const ProgressBar = ({ position, duration, theme, loading, playStatus }) => {
           </Fragment>
         )}
       </div>
-    </div>
+    </StyledProgressBar>
   )
 }
 
 const mapStateToProps = state => ({
-  theme: state.settings.theme,
   position: state.player.position,
   duration: state.player.duration,
   loading: state.player.loading,

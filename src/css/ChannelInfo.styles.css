@@ -22,14 +22,14 @@
 }
 
 .ChannelInfo-title {
-  margin: 10px 0;
-  font-size: 3.2rem;
+  margin: 5px 0;
+  font-size: 3.2em;
   text-align: left;
 }
 
 .ChannelInfo-author {
   margin-bottom: 30px;
-  font-size: 1.8rem;
+  font-size: 1.8em;
   font-weight: 100;
 }
 
@@ -112,6 +112,7 @@
   }
 
   .ChannelInfo-title {
-    font-size: 2.75rem;
+    font-size: 2.8em;
+    margin: 2px 0;
   }
 }
