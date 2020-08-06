@@ -1,17 +1,20 @@
-import React, { Fragment, useState } from 'react'
+import React, { useState, useContext, Fragment } from 'react'
+import { ThemeContext } from 'styled-components'
 
 // Components
 import EpisodeSummary from './EpisodeSummary.component'
 import EpisodeListElement from './EpisodeListElement.component'
 
 // Styles
-import '../../css/EpisodeList.styles.css'
+import { StyledSearch, StyledTitleWrapper } from './EpisodeList.styles'
 
 const EpisodeList = ({ theme, episodeList }) => {
   // State
   const [searchValue, setSearchValue] = useState('')
   const [showSearch, setShowSearch] = useState(false)
   const [selectedEpisode, setSelectedEpisode] = useState(null)
+
+  const currentTheme = useContext(ThemeContext)
 
   const toggleSearchbar = () => {
     setShowSearch(!showSearch)
@@ -50,8 +53,8 @@ const EpisodeList = ({ theme, episodeList }) => {
       {selectedEpisode && (
         <EpisodeSummary episode={selectedEpisode} clearEpisode={clearEpisode} />
       )}
-      <div className="EpisodeList-titleWrapper">
-        <p className={`EpisodeList-title ${theme}`}>
+      <StyledTitleWrapper theme={currentTheme}>
+        <p className="title">
           <strong>Available Episodes</strong>
           <small> ({filteredEpisodeList.length})</small>
         </p>
@@ -60,18 +63,18 @@ const EpisodeList = ({ theme, episodeList }) => {
         </button>
 
         {showSearch && (
-          <input
+          <StyledSearch
             autoFocus
             type="text"
             placeholder="Search podcast episodes"
-            className="EpisodeList-search"
+            className="search"
             value={searchValue}
             onChange={handleSearchInputChange}
           />
         )}
-      </div>
+      </StyledTitleWrapper>
 
-      <div className="EpisodeList-wrapper">{filteredEpisodeList}</div>
+      <div>{filteredEpisodeList}</div>
     </Fragment>
   )
 }

@@ -130,7 +130,7 @@
     margin: 0 -20px;
     width: 100vw;
     padding: 0 15px;
-    grid-gap: 5px;
+    grid-gap: 0;
   }
 
   .Home-category .Home-podcast:last-child {
