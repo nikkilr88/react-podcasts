@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
 // Styles
 import { StyledVolume } from './Volume.styles'
 
-const Volume = ({ volume, theme }) => {
+const Volume = ({ volume }) => {
   const styles = {
     width: volume + '%',
   }

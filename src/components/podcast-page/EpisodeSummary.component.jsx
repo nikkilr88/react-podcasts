@@ -1,26 +1,29 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
+import { ThemeContext } from 'styled-components'
 import moment from 'moment'
 
 // Styles
-import '../../css/EpisodeSummary.styles.css'
+import { StyledOverlay, StyledSummary } from './EpisodeSummary.styles'
 
 const EpisodeSummary = ({ episode, clearEpisode }) => {
   const { date, title, description } = episode
 
+  const currentTheme = useContext(ThemeContext)
+
   return (
     <Fragment>
-      <div className="EpisodeSummary">
+      <StyledSummary theme={currentTheme}>
         <i className="close far fa-times-circle" onClick={clearEpisode} />
         <div className="scrollable">
-          <div className="EpisodeSummary-info">
+          <div className="info">
             <small>{moment(date).format('MM-DD-YYYY')}</small>
             <h3>{title}</h3>
           </div>
           <p dangerouslySetInnerHTML={{ __html: `${description}` }} />
         </div>
-      </div>
+      </StyledSummary>
 
-      <div className="overlay" />
+      <StyledOverlay />
     </Fragment>
   )
 }
