@@ -2,19 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 // Styles
-import '../../css/Volume.styles.css'
+import { StyledVolume } from './Volume.styles'
 
 const Volume = ({ volume, theme }) => {
   const styles = {
     width: volume + '%',
   }
   return (
-    <div className="volume-container">
+    <StyledVolume>
       <h3>Volume</h3>
-      <div className={`volume-wrapper ${theme}`}>
-        <div style={styles} className="volume-bar" />
+      <div className="wrapper">
+        <div style={styles} className="bar" />
       </div>
-    </div>
+    </StyledVolume>
   )
 }
 

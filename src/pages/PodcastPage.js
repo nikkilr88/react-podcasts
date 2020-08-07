@@ -37,9 +37,7 @@ const PodcastPage = ({
     }
   }
 
-  useEffect(() => {
-    loadPodcast()
-  }, [])
+  useEffect(loadPodcast, [])
 
   return (
     <Fragment>
