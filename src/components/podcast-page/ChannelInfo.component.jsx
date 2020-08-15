@@ -5,7 +5,7 @@ import ProgressiveImage from 'react-progressive-image'
 import { podcasts } from '../../data/podcasts'
 
 // Styles
-import '../../css/ChannelInfo.styles.css'
+import { StyledChannelInfo } from './ChannelInfo.styles'
 
 const ChannelInfo = ({
   theme,
@@ -19,26 +19,33 @@ const ChannelInfo = ({
     .img.replace(/100x100/g, '30x30')
 
   return (
-    <div className={`ChannelInfo ${theme}`}>
+    <StyledChannelInfo className="ChannelInfo">
       <ProgressiveImage src={img} placeholder={podcastImage}>
         {src => (
           <img
             src={src}
-            alt="podcast cover"
-            className={`ChannelInfo-img ${theme}`}
+            className={`img ${theme}`}
+            alt={`${title} podcast cover`}
           />
         )}
       </ProgressiveImage>
-      <div className="ChannelInfo-text">
-        <h1 className="ChannelInfo-title">{title}</h1>
-        <p className={`ChannelInfo-author ${theme}`}>{author}</p>
-        <p>{description || 'No Description Available :('}</p>
-        <a href={website} target="_blank" className="ChannelInfo-website">
+      <div className="text-wrapper">
+        <h1 className="title">{title}</h1>
+        <p className={`author ${theme}`}>{author}</p>
+        <p className="description">
+          {description || 'No Description Available :('}
+        </p>
+        <a
+          href={website}
+          target="_blank"
+          className="website"
+          aria-label={`Visit ${title} website`}
+        >
           <i className="fas fa-external-link-alt" />
           Visit website
         </a>
       </div>
-    </div>
+    </StyledChannelInfo>
   )
 }
 
